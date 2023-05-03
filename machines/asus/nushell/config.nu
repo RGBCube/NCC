@@ -404,7 +404,7 @@ let-env config = {
       mode: emacs
       event: {
         until: [
-          {edit: pastecutbufferafter}
+          { edit: pastecutbufferafter }
         ]
       }
     }
@@ -415,7 +415,7 @@ let-env config = {
       mode: [emacs, vi_normal, vi_insert]
       event: {
         until: [
-          {edit: cutfromlinestart}
+          { edit: cutfromlinestart }
         ]
       }
     }
@@ -426,7 +426,7 @@ let-env config = {
       mode: [emacs, vi_normal, vi_insert]
       event: {
         until: [
-          {edit: cuttolineend}
+          { edit: cuttolineend }
         ]
       }
     }
