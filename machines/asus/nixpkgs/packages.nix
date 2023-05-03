@@ -2,6 +2,7 @@ pkgs: with pkgs; []
 
 ++ [ # EDITORS
   # neovim # Declared in neovim/.
+  neovim-qt
   jetbrains.idea-ultimate
 ]
 
