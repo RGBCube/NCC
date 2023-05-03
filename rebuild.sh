@@ -1,14 +1,20 @@
 #!/bin/sh
 
-if [[ "$1" = "--help" ]] || [[ "$1" = "-h" ]]; then
+if [[ $1 = "--help" ]] || [[ $1 = "-h" ]]; then
     echo "Usage: rebuild.sh [-h | --help] [-c | --clean-garbage] [machine]"
     exit
 fi
 
 sudo true
 
-if [[ -n "$1" ]]; then
-  machine = $1
+if [[ -n $1 ]]; then
+  if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
+    machine = $1
+  elif [[ -n $2 ]]; then
+    machine = $1
+  else
+    read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
+  fi
 else
   read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
 fi
