@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  users.defaultShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.nushell;
 
   imports = [
     ./nixos.nix

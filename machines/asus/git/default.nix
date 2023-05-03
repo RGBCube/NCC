@@ -6,6 +6,6 @@ homeManagerConfiguration {
     userName = "RGBCube";
     userEmail = "RGBCube@users.noreply.github.com";
 
-    config.init.defaultBranch = "master";
+    extraConfig.init.defaultBranch = "master";
   };
 }

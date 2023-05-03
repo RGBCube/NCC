@@ -1,10 +1,14 @@
 { homeManagerConfiguration, ... }:
 
-homeManagerConfiguration {
+{
   # Nuking nano out of orbit.
   environment.defaultPackages = [];
   programs.nano.syntaxHighlight = false;
+}
 
+//
+
+(homeManagerConfiguration {
   programs.neovim.enable = true;
   programs.neovim = {
     defaultEditor = true;
@@ -16,4 +20,4 @@ homeManagerConfiguration {
       # lunarVim
     ];
   };
-}
+})
