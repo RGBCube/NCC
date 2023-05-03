@@ -32,11 +32,11 @@ let-env PROMPT_INDICATOR = ""
 let-env PROMPT_MULTILINE_INDICATOR = (^/run/current-system/sw/bin/starship prompt --continuation)
 
 let-env PROMPT_COMMAND = { ||
-    let width = term size | get columns
+    let width = (term size | get columns)
     ^/run/current-system/sw/bin/starship prompt $"--cmd-duration=($env.CMD_DURATION_MS)" $"--status=($env.LAST_EXIT_CODE)" $"--terminal-width=($width)"
 }
 
 let-env PROMPT_COMMAND_RIGHT = { ||
-    let width = term size | get columns
+    let width = (term size | get columns)
     ^/run/current-system/sw/bin/starship prompt --right $"--cmd-duration=($env.CMD_DURATION_MS)" $"--status=($env.LAST_EXIT_CODE)" $"--terminal-width=($width)"
 }
