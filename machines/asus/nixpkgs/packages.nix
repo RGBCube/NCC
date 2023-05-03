@@ -25,6 +25,16 @@ pkgs: with pkgs; []
   neofetch
 ]
 
+++ [ # APPLICATIONS
+  firefox
+  discord
+  qbittorrent
+]
+
+++ [ # GAMES
+  openttd
+]
+
 ++ [ # PYTHON
   (python311.withPackages (pkgs: with pkgs; [
     pip
@@ -34,21 +44,14 @@ pkgs: with pkgs; []
   poetry
 ]
 
-++ [ # APPLICATIONS
-  firefox
-  discord
-  qbittorrent
-  lightly-qt
-]
-
 ++ [ # LIBREOFFICE
   libreoffice
   hunspellDicts.en_US
   hunspellDicts.en_GB-ize
 ]
 
-++ [ # GAMES
-  openttd
+++ [ # PLASMA THEMES
+  lightly-qt
 ]
 
 ++ [ # EMULATION
