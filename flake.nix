@@ -67,7 +67,7 @@
     };
   in
   # Basically imports all machines in ./machines/.
-  builtins.foldl' lib.recursiveUpdate {} (builtins.map importConfiguration [
+  builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.map importConfiguration [
     ./machines/asus # HACK: Use a function to list the directory.
   ]);
 }
