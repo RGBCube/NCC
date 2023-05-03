@@ -1,39 +1,46 @@
 let theme = {
-  filesize: {|e|
-    if $e == 0b {
+  filesize: { |size|
+    if $size == 0b {
       'white'
-    } else if $e < 1mb {
+    } else if $size < 1mb {
       'cyan'
-    } else { 'blue' }
+    } else {
+      'blue'
+    }
   }
 
-  date: {|| (date now) - $in |
-    if $in < 1hr {
-      'red3b'
-    } else if $in < 6hr {
-      'orange3'
-    } else if $in < 1day {
-      'yellow3b'
-    } else if $in < 3day {
-      'chartreuse2b'
-    } else if $in < 1wk {
-      'green3b'
-    } else if $in < 6wk {
-      'darkturquoise'
-    } else if $in < 52wk {
-      'deepskyblue3b'
-    } else { 'dark_gray' }
+  date: { ||
+    (date now) - $in |
+      if $in < 1hr {
+        'red3b'
+      } else if $in < 6hr {
+        'orange3'
+      } else if $in < 1day {
+        'yellow3b'
+      } else if $in < 3day {
+        'chartreuse2b'
+      } else if $in < 1wk {
+        'green3b'
+      } else if $in < 6wk {
+        'darkturquoise'
+      } else if $in < 52wk {
+        'deepskyblue3b'
+      } else {
+        'dark_gray'
+      }
   }
 
-  bool: {||
+  bool: { ||
     if $in {
-    'light_cyan'
-  } else {
-    'light_gray'
-  }
+      'light_cyan'
+    } else {
+      'light_gray'
+    }
   }
 
-  leading_trailing_space_bg: { attr: n }
+  leading_trailing_space_bg: {
+    attr: n
+  }
 
   empty: blue
   hints: dark_gray
@@ -52,8 +59,16 @@ let theme = {
   list: white
   block: white
 
-  shape_garbage: { fg: "#FFFFFF" bg: "#FF0000" attr: b}
-  shape_matching_brackets: { attr: u }
+  shape_garbage: {
+    fg: "#FFFFFF"
+    bg: "#FF0000"
+    attr: b
+  }
+
+  shape_matching_brackets: {
+    attr: u
+  }
+
   shape_and: purple_bold
   shape_binary: purple_bold
   shape_block: blue_bold
@@ -107,6 +122,7 @@ let-env config = {
     mode: rounded
     index_mode: always
     show_empty: true
+
     trim: {
       methodology: wrapping
       wrapping_try_keep_words: true
@@ -118,8 +134,16 @@ let-env config = {
     help_banner: true
     exit_esc: true
     command_bar_text: '#C4C9C6'
-    status_bar_background: {fg: '#1D1F21' bg: '#C4C9C6' }
-    highlight: {bg: 'yellow' fg: 'black' }
+
+    status_bar_background: {
+      fg: '#1D1F21'
+      bg: '#C4C9C6'
+    }
+
+    highlight: {
+      bg: 'yellow'
+      fg: 'black'
+    }
 
     table: {
       split_line: '#404040'
@@ -133,12 +157,15 @@ let-env config = {
     }
 
     config: {
-      cursor_color: {bg: 'yellow' fg: 'black' }
+      cursor_color: {
+        bg: 'yellow'
+        fg: 'black'
+      }
     }
   }
 
   history: {
-    max_size: 10000
+    max_size: 1000
     sync_on_enter: true
     file_format: "plaintext"
   }
@@ -147,7 +174,8 @@ let-env config = {
     case_sensitive: false
     quick: true
     partial: true
-    algorithm: "prefix"
+    algorithm: "fuzzy"
+
     external: {
       enable: true
       max_results: 100
@@ -172,11 +200,15 @@ let-env config = {
   use_ansi_coloring: true
   edit_mode: vi
   shell_integration: false
-  render_right_prompt_on_last_line: false
+  render_right_prompt_on_last_line: true
 
   hooks: {
-    display_output: {||
-      if (term size).columns >= 100 { table -e } else { table }
+    display_output: { ||
+      if (term size).columns >= 100 {
+        table -e
+      } else {
+        table
+      }
     }
   }
 
@@ -185,12 +217,14 @@ let-env config = {
       name: completion_menu
       only_buffer_difference: false
       marker: "| "
+
       type: {
         layout: columnar
         columns: 4
         col_width: 20
         col_padding: 2
       }
+
       style: {
         text: green
         selected_text: green_reverse
@@ -201,10 +235,12 @@ let-env config = {
       name: history_menu
       only_buffer_difference: true
       marker: "? "
+
       type: {
         layout: list
         page_size: 10
       }
+
       style: {
         text: green
         selected_text: green_reverse
@@ -215,6 +251,7 @@ let-env config = {
       name: help_menu
       only_buffer_difference: true
       marker: "? "
+
       type: {
         layout: description
         columns: 4
@@ -223,6 +260,7 @@ let-env config = {
         selection_rows: 4
         description_rows: 10
       }
+
       style: {
         text: green
         selected_text: green_reverse
@@ -233,47 +271,60 @@ let-env config = {
       name: commands_menu
       only_buffer_difference: false
       marker: "# "
+
       type: {
         layout: columnar
         columns: 4
         col_width: 20
         col_padding: 2
       }
+
       style: {
         text: green
         selected_text: green_reverse
         description_text: yellow
       }
+
       source: { |buffer, position|
         $nu.scope.commands
         | where name =~ $buffer
-        | each { |it| {value: $it.name description: $it.usage} }
+        | each { |it| {
+          value: $it.name
+          description: $it.usage
+        } }
       }
     }
     {
       name: vars_menu
       only_buffer_difference: true
       marker: "# "
+
       type: {
         layout: list
         page_size: 10
       }
+
       style: {
         text: green
         selected_text: green_reverse
         description_text: yellow
       }
+
       source: { |buffer, position|
         nu.scope.vars
         | where name =~ $buffer
         | sort-by name
-        | each { |it| {value: $it.name description: $it.type} }
+        | each { |it| {
+          value: $it.name
+          description: $it.type
+        } }
       }
     }
     {
       name: commands_with_description
       only_buffer_difference: true
       marker: "# "
+
       type: {
         layout: description
         columns: 4
@@ -282,15 +333,20 @@ let-env config = {
         selection_rows: 4
         description_rows: 10
       }
+
       style: {
         text: green
         selected_text: green_reverse
         description_text: yellow
       }
+
       source: { |buffer, position|
         $nu.scope.commands
         | where name =~ $buffer
-        | each { |it| {value: $it.name description: $it.usage} }
+        | each { |it| {
+          value: $it.name
+          description: $it.usage
+        } }
       }
     }
   ]
