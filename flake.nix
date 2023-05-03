@@ -25,36 +25,40 @@
     ...
   }:
   let
-    lib = nixpkgs.lib;
+    importConfiguration = directory:
 
-    importConfiguration = directory: {
-      nixosConfigurations.${builtins.baseNameOf directory} =
-      let
-        hostPlatform = import (directory + "/platform.nix");
-      in
-      lib.nixosSystem {
+     let
+       hostPlatform = import (directory + "/platform.nix");
+       # The folder name is the host name of the machine.
+       hostName = builtins.baseNameOf directory;
+       userName = import (directory + "/username.nix");
+     in
+
+     {
+      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          inherit lib;
+          lib =  nixpkgs.lib;
 
           pkgs = import nixpkgs {
             system = hostPlatform;
             config.allowUnfree = true;
           };
 
+          # Helper function for DRY.
           homeManagerConfiguration = attrs: {
-            home-manager.users.${import (directory + "/username.nix")} = attrs;
+            home-manager.users.${userName} = attrs;
           };
         };
 
         modules = [
           directory
+          home-manager.nixosModules.home-manager
+
+          # Extra configuration derived from the metadata.
           {
             networking.hostName = builtins.baseNameOf directory;
             nixpkgs.hostPlatform = hostPlatform;
-          }
 
-          home-manager.nixosModules.home-manager
-          {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
           }
@@ -62,6 +66,7 @@
       };
     };
   in
+  # Basically imports all machines in ./machines/.
   builtins.foldl' lib.recursiveUpdate {} (builtins.map importConfiguration [
     ./machines/asus # HACK: Use a function to list the directory.
   ]);
