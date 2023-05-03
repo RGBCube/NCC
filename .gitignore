@@ -1,0 +1,23 @@
+*
+
+!machines/
+!machines/asus/
+!machines/asus/docker/
+!machines/asus/git/
+!machines/asus/neovim/
+!machines/asus/networkmanager/
+!machines/asus/nixpkgs/
+!machines/asus/nushell/
+!machines/asus/pipewire/
+!machines/asus/users/
+# !machines/asus/plasma/
+!machines/asus/system/
+!machines/asus/xserver/
+
+!.editorconfig
+!.gitignore
+
+!*.md
+!*.nu
+!*.nix
+!*.sh
