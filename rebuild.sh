@@ -1,17 +1,20 @@
 #!/bin/sh
 
 if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
-    echo "Usage: rebuild.sh [-h | --help] [-c | --clean-garbage]"
+    echo "Usage: rebuild.sh [-h | --help] [-c | --clean-garbage] [machine]"
     exit
 fi
 
 sudo true
 
-echo -e "\n*** LINKING *** \n"
-./link.sh
+if [ -n "$1" ]; then
+  machine = $1
+else
+  read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
+fi
 
 echo -e "\n*** REBUILDING SYSTEM ***\n"
-sudo nixos-rebuild switch
+sudo nixos-rebuild switch --flake .#$machine
 
 if [[ $? != 0 ]]; then
     exit 1

@@ -17,38 +17,32 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-#    plasma-manager = {
-#      url = "github:pjones/plasma-manager"; # Add "inputs.plasma-manager.homeManagerModules.plasma-manager" to the home-manager.users.${user}.imports
-#      inputs.nixpkgs.follows = "nixpkgs";
-#      inputs.home-manager.follows = "home-manager";
-#    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
-#    plasma-manager,
     ...
   }:
   let
     lib = nixpkgs.lib;
 
     importConfiguration = directory: {
-      nixosConfigurations.${builtins.baseNameOf directory} = lib.nixosSystem {
+      nixosConfigurations.${builtins.baseNameOf directory} =
+      let
+        hostPlatform = import (directory + "/platform.nix");
+      in
+      lib.nixosSystem {
         specialArgs = {
-          inherit lib; # plasma-manager;
+          inherit lib;
 
           pkgs = import nixpkgs {
+            system = hostPlatform;
             config.allowUnfree = true;
           };
 
-          homeManagerConfiguration = attrs:
-          let
-            userName = import (directory + "username.nix");
-          in
-          {
-            home-manager.users.${userName} = attrs;
+          homeManagerConfiguration = attrs: {
+            home-manager.users.${import (directory + "/username.nix")} = attrs;
           };
         };
 
@@ -56,6 +50,7 @@
           directory
           {
             networking.hostName = builtins.baseNameOf directory;
+            nixpkgs.hostPlatform = hostPlatform;
           }
 
           home-manager.nixosModules.home-manager
