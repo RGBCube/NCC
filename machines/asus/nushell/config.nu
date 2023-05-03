@@ -189,7 +189,7 @@ let-env config = {
   }
 
   cursor_shape: {
-    vi_insert: block
+    vi_insert: line
     vi_normal: underscore
   }
 
