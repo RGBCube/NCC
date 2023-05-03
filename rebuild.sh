@@ -19,7 +19,6 @@ else
   read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
 fi
 
-echo -e "\n*** REBUILDING SYSTEM ***\n"
 sudo nixos-rebuild switch --flake .#$machine
 
 if [[ $? != 0 ]]; then
