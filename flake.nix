@@ -34,28 +34,28 @@
   let
     lib = nixpkgs.lib;
 
-    importConfiguration = directory: lib.nixosSystem {
-      specialArgs = {
-        inherit lib; # plasma-manager;
+    importConfiguration = directory: {
+      nixosConfigurations.${builtins.baseNameOf directory} = lib.nixosSystem {
+        specialArgs = {
+          inherit lib; # plasma-manager;
 
-        pkgs = import nixpkgs {
-          config.allowUnfree = true;
+          pkgs = import nixpkgs {
+            config.allowUnfree = true;
+          };
+
+          homeManagerConfiguration = attrs:
+          let
+            userName = import (directory + "username.nix");
+          in
+          {
+            home-manager.users.${userName} = attrs;
+          };
         };
 
-        homeManagerConfiguration = attrs:
-        let
-          userName = import (directory + "user-name.nix");
-        in
-        {
-          home-manager.users.${userName} = attrs;
-        };
-      };
-
-      nixosConfigurations.${basename directory} = {
         modules = [
           directory
           {
-            networking.hostName = basename directory;
+            networking.hostName = builtins.baseNameOf directory;
           }
 
           home-manager.nixosModules.home-manager
@@ -67,5 +67,7 @@
       };
     };
   in
-  builtins.foldl lib.recursiveUpdate (builtins.map importConfiguration (builtins.readDir ./machines));
+  builtins.foldl' lib.recursiveUpdate {} (builtins.map importConfiguration [
+    ./machines/asus # HACK: Use a function to list the directory.
+  ]);
 }
