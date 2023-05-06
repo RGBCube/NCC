@@ -1,4 +1,4 @@
-{ pkgs, fenix, ... }: with pkgs; []
+pkgs: with pkgs; []
 
 ++ [ # APPLICATIONS
   firefox

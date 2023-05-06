@@ -1,6 +1,6 @@
-{ pkgs, fenix, ... } @ args:
+{ pkgs, ... }:
 
 {
-  environment.systemPackages = import ./packages.nix args;
-  fonts.fonts = import ./fonts.nix args;
+  environment.systemPackages = import ./packages.nix pkgs;
+  fonts.fonts = import ./fonts.nix pkgs;
 }

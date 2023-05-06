@@ -43,19 +43,19 @@
     {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          lib = nixpkgs.lib;
-
           pkgs = import nixpkgs {
             system = hostPlatform;
             config.allowUnfree = true;
+
+            overlays = [
+              fenix.overlays.default
+            ];
           };
 
           # Helper function for DRY.
           homeManagerConfiguration = attrs: {
             home-manager.users.${userName} = attrs;
           };
-
-          inherit fenix;
         };
 
         modules = [
@@ -64,11 +64,7 @@
 
           {
             networking.hostName = builtins.baseNameOf directory;
-
             nixpkgs.hostPlatform = hostPlatform;
-            nixpkgs.overlays = [
-              fenix.overlays.default
-            ];
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
