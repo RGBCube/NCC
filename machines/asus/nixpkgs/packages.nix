@@ -53,13 +53,15 @@ pkgs: with pkgs; []
   poetry
 ]
 
-++ [ (fenix.complete.withComponents [ # RUST
-  "rustc"
-  "rust-src"
-  "cargo"
-  "rustfmt"
-  "clippy"
-]) ]
+++ [ # RUST
+  (fenix.complete.withComponents [
+    "rustc"
+    "rust-src"
+    "cargo"
+    "rustfmt"
+    "clippy"
+  ])
+]
 
 ++ [ # SHELLS
   # nushell # Declared in nushell/.

@@ -7,7 +7,7 @@ homeManagerConfiguration {
     envFile.source = ./env.nu;
 
     shellAliases = {
-      g  = "git";
+      g = "git";
       ga = "git add";
       gb = "git branch";
       gc = "git commit -m";

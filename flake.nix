@@ -6,6 +6,7 @@
       nix-command
       flakes
     '';
+
     extra-substituters = "https://nix-community.cachix.org";
     extra-trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
   };
@@ -24,21 +25,16 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    fenix,
-    ...
-  }:
+  outputs = { nixpkgs, home-manager, fenix, ... }:
 
-  let
-    importConfiguration = directory:
-    let
-      hostPlatform = import (directory + "/platform.nix");
-      # The folder name is the host name of the machine.
-      hostName = builtins.baseNameOf directory;
-      userName = import (directory + "/username.nix");
-    in
+  with {
+    importConfiguration = configDirectory:
+    with {
+      hostName = builtins.baseNameOf configDirectory;
+      hostPlatform = import (configDirectory + "/platform.nix");
+      userName = import (configDirectory + "/username.nix");
+    };
+
     {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -46,9 +42,7 @@
             system = hostPlatform;
             config.allowUnfree = true;
 
-            overlays = [
-              fenix.overlays.default
-            ];
+            overlays = [fenix.overlays.default];
           };
 
           # Helper function for DRY.
@@ -58,7 +52,7 @@
         };
 
         modules = [
-          directory
+          configDirectory
           home-manager.nixosModules.home-manager
 
           {
@@ -67,7 +61,7 @@
               "flakes"
             ];
 
-            networking.hostName = builtins.baseNameOf directory;
+            networking.hostName = hostName;
             nixpkgs.hostPlatform = hostPlatform;
 
             home-manager.useGlobalPkgs = true;
@@ -76,8 +70,8 @@
         ];
       };
     };
-  in
-  # Basically imports all machines in ./machines/.
+  };
+
   builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.map importConfiguration [
     ./machines/asus # HACK: Use a function to list the directory.
   ]);
