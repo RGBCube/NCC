@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [[ $1 = "--help" ]] || [[ $1 = "-h" ]]; then
+if [[ $1 == "--help" || $1 == "-h" ]]; then
     echo "Usage: rebuild.sh [-h | --help] [-c | --clean-garbage] [machine]"
     exit
 fi
