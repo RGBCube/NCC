@@ -8,7 +8,7 @@
 
 //
 
-(homeManagerConfiguration {
+(homeManagerConfiguration "nixos" {
   programs.neovim.enable = true;
   programs.neovim = {
     defaultEditor = true;

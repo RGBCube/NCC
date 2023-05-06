@@ -32,7 +32,6 @@
     with {
       hostName = builtins.baseNameOf configDirectory;
       hostPlatform = import (configDirectory + "/platform.nix");
-      userName = import (configDirectory + "/username.nix");
     };
 
     {
@@ -46,7 +45,7 @@
           };
 
           # Helper function for DRY.
-          homeManagerConfiguration = attrs: {
+          homeManagerConfiguration = userName: attrs: {
             home-manager.users.${userName} = attrs;
           };
         };

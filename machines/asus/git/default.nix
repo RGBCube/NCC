@@ -1,6 +1,6 @@
 { homeManagerConfiguration, ... }:
 
-homeManagerConfiguration {
+homeManagerConfiguration "nixos" {
   programs.git.enable = true;
   programs.git = {
     userName = "RGBCube";

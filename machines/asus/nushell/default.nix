@@ -1,6 +1,6 @@
 { homeManagerConfiguration, ... }:
 
-homeManagerConfiguration {
+homeManagerConfiguration "nixos" {
   programs.nushell.enable = true;
   programs.nushell = {
     configFile.source = ./config.nu;

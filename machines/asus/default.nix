@@ -19,6 +19,6 @@
 
  //
 
-(homeManagerConfiguration {
+(homeManagerConfiguration "nixos" {
   home.stateVersion = "22.11";
 })
