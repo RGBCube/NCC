@@ -62,6 +62,11 @@
           home-manager.nixosModules.home-manager
 
           {
+            nix.settings.experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
+
             networking.hostName = builtins.baseNameOf directory;
             nixpkgs.hostPlatform = hostPlatform;
 
