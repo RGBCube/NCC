@@ -38,8 +38,16 @@ pkgs: with pkgs; []
   lightly-qt
 ]
 
-++ [ # PROGRAMMING LANGUAGES
+++ [ # COMPILERS & TOOLING
+  gcc
   go
+  (fenix.complete.withComponents [
+    "rustc"
+    "rust-src"
+    "cargo"
+    "rustfmt"
+    "clippy"
+  ])
 ]
 
 ++ [ # PYTHON
@@ -49,16 +57,6 @@ pkgs: with pkgs; []
   ]))
   virtualenv
   poetry
-]
-
-++ [ # RUST
-  (fenix.complete.withComponents [
-    "rustc"
-    "rust-src"
-    "cargo"
-    "rustfmt"
-    "clippy"
-  ])
 ]
 
 ++ [ # SHELLS
