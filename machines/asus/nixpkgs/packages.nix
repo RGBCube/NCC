@@ -1,4 +1,4 @@
-{ pkgs, ... }: with pkgs; []
+{ pkgs, fenix, ... }: with pkgs; []
 
 ++ [ # APPLICATIONS
   firefox
@@ -52,6 +52,14 @@
   virtualenv
   poetry
 ]
+
+++ [ (fenix.complete.withComponents [ # RUST
+  "rustc"
+  "rust-src"
+  "cargo"
+  "rustfmt"
+  "clippy"
+]) ]
 
 ++ [ # SHELLS
   # nushell # Declared in nushell/.

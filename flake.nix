@@ -17,27 +17,33 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     home-manager,
+    fenix,
     ...
   }:
+
   let
     importConfiguration = directory:
 
     let
-     hostPlatform = import (directory + "/platform.nix");
-     # The folder name is the host name of the machine.
-     hostName = builtins.baseNameOf directory;
-     userName = import (directory + "/username.nix");
+      hostPlatform = import (directory + "/platform.nix");
+      # The folder name is the host name of the machine.
+      hostName = builtins.baseNameOf directory;
+      userName = import (directory + "/username.nix");
     in
-
     {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
-          lib =  nixpkgs.lib;
+          lib = nixpkgs.lib;
 
           pkgs = import nixpkgs {
             system = hostPlatform;
@@ -48,16 +54,21 @@
           homeManagerConfiguration = attrs: {
             home-manager.users.${userName} = attrs;
           };
+
+          inherit fenix;
         };
 
         modules = [
           directory
           home-manager.nixosModules.home-manager
 
-          # Extra configuration derived from the metadata.
           {
             networking.hostName = builtins.baseNameOf directory;
+
             nixpkgs.hostPlatform = hostPlatform;
+            nixpkgs.overlays = [
+              fenix.overlays.default
+            ];
 
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;

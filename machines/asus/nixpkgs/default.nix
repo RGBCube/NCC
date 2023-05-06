@@ -1,4 +1,4 @@
-{ pkgs, ... } @ args:
+{ pkgs, fenix, ... } @ args:
 
 {
   environment.systemPackages = import ./packages.nix args;
