@@ -37,6 +37,8 @@
     {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
+          lib = nixpkgs.lib;
+
           pkgs = import nixpkgs {
             system = hostPlatform;
             config.allowUnfree = true;

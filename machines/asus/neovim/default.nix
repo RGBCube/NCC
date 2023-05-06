@@ -1,4 +1,4 @@
-{ homeManagerConfiguration, ... }:
+{ pkgs, lib, homeManagerConfiguration, ... }:
 
 {
   # Nuking nano out of orbit.
@@ -19,5 +19,17 @@
     plugins = [
       # lunarVim
     ];
+  };
+
+  # NvChad
+  home.file.".config/nvim" = {
+    source = pkgs.callPackage ../../../packages/nvchad {};
+    recursive = true;
+  };
+
+  home.file.".config/nvim/lua/custom" = {
+    source = ./config;
+    recursive = true;
+    force = true;
   };
 })
