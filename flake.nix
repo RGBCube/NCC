@@ -13,7 +13,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager = {
+    homeManager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -21,20 +21,20 @@
 
   outputs = {
     nixpkgs,
-    home-manager,
+    homeManager,
     ...
   }:
   let
     importConfiguration = directory:
 
-     let
-       hostPlatform = import (directory + "/platform.nix");
-       # The folder name is the host name of the machine.
-       hostName = builtins.baseNameOf directory;
-       userName = import (directory + "/username.nix");
-     in
+    let
+     hostPlatform = import (directory + "/platform.nix");
+     # The folder name is the host name of the machine.
+     hostName = builtins.baseNameOf directory;
+     userName = import (directory + "/username.nix");
+    in
 
-     {
+    {
       nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
           lib =  nixpkgs.lib;
@@ -52,7 +52,7 @@
 
         modules = [
           directory
-          home-manager.nixosModules.home-manager
+          homeManager.nixosModules.home-manager
 
           # Extra configuration derived from the metadata.
           {

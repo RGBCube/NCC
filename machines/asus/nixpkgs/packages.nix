@@ -1,4 +1,4 @@
-pkgs: with pkgs; []
+{ pkgs, ... }: with pkgs; []
 
 ++ [ # APPLICATIONS
   firefox
@@ -38,6 +38,10 @@ pkgs: with pkgs; []
 
 ++ [ # PLASMA THEMES
   lightly-qt
+]
+
+++ [ # PROGRAMMING LANGUAGES
+  go
 ]
 
 ++ [ # PYTHON
