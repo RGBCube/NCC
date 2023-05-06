@@ -7,12 +7,10 @@ pkgs: with pkgs; []
 ]
 
 ++ [ # DEVELOPMENT TOOLS
-  # docker # Declared in docker/.
   bat
 ]
 
 ++ [ # EDITORS
-  # neovim # Declared in neovim/.
   neovim-qt
   jetbrains.idea-ultimate
 ]
@@ -64,10 +62,5 @@ pkgs: with pkgs; []
 ]
 
 ++ [ # SHELLS
-  # nushell # Declared in nushell/.
   starship
-]
-
-++ [ # VERSION CONTROL
-  # git # Declared in git/.
 ]
