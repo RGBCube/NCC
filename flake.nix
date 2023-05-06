@@ -33,7 +33,6 @@
 
   let
     importConfiguration = directory:
-
     let
       hostPlatform = import (directory + "/platform.nix");
       # The folder name is the host name of the machine.
