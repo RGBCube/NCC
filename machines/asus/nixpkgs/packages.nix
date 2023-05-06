@@ -1,18 +1,9 @@
 pkgs: with pkgs; []
 
-++ [ # EDITORS
-  # neovim # Declared in neovim/.
-  neovim-qt
-  jetbrains.idea-ultimate
-]
-
-++ [ # VERSION CONTROL
-  # git # Declared in git/.
-]
-
-++ [ # SHELLS
-  # nushell # Declared in nushell/.
-  starship
+++ [ # APPLICATIONS
+  firefox
+  discord
+  qbittorrent
 ]
 
 ++ [ # DEVELOPMENT TOOLS
@@ -20,19 +11,33 @@ pkgs: with pkgs; []
   bat
 ]
 
+++ [ # EDITORS
+  # neovim # Declared in neovim/.
+  neovim-qt
+  jetbrains.idea-ultimate
+]
+
+++ [ # EMULATION
+  wine
+]
+
+++ [ # GAMES
+  openttd
+]
+
+++ [ # LIBREOFFICE
+  libreoffice
+  hunspellDicts.en_US
+  hunspellDicts.en_GB-ize
+]
+
 ++ [ # MISCELLANEOUS
   htop
   neofetch
 ]
 
-++ [ # APPLICATIONS
-  firefox
-  discord
-  qbittorrent
-]
-
-++ [ # GAMES
-  openttd
+++ [ # PLASMA THEMES
+  lightly-qt
 ]
 
 ++ [ # PYTHON
@@ -44,16 +49,11 @@ pkgs: with pkgs; []
   poetry
 ]
 
-++ [ # LIBREOFFICE
-  libreoffice
-  hunspellDicts.en_US
-  hunspellDicts.en_GB-ize
+++ [ # SHELLS
+  # nushell # Declared in nushell/.
+  starship
 ]
 
-++ [ # PLASMA THEMES
-  lightly-qt
-]
-
-++ [ # EMULATION
-  wine
+++ [ # VERSION CONTROL
+  # git # Declared in git/.
 ]
