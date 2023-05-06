@@ -15,10 +15,6 @@
 
     viAlias = true;
     vimAlias = true;
-
-    plugins = [
-      # lunarVim
-    ];
   };
 
   # NvChad
