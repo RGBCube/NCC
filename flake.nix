@@ -13,7 +13,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    homeManager = {
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -21,7 +21,7 @@
 
   outputs = {
     nixpkgs,
-    homeManager,
+    home-manager,
     ...
   }:
   let
@@ -52,7 +52,7 @@
 
         modules = [
           directory
-          homeManager.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
 
           # Extra configuration derived from the metadata.
           {
