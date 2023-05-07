@@ -58,7 +58,3 @@ pkgs: with pkgs; []
   virtualenv
   poetry
 ]
-
-++ [ # SHELLS
-  starship
-]

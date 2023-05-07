@@ -1,6 +1,8 @@
 { homeManagerConfiguration, ... }:
 
 homeManagerConfiguration "nixos" {
+  programs.starship.enable = true;
+
   programs.nushell.enable = true;
   programs.nushell = {
     configFile.source = ./config.nu;
