@@ -8,21 +8,18 @@ homeManagerConfiguration "nixos" {
 
     shellAliases = {
       g = "git";
-      ga = "git add";
-      gb = "git branch";
+      ga = "git add .";
+      gb = "git rebase -i";
       gc = "git commit -m";
       gca = "git commit --amend";
       gcl = "git clone";
       gp = "git push";
-      grb = "git rebase -i";
-      grba = "git rebase --abort";
-      gs = "git switch";
-      gsm = "git switch master";
+      gs = "git status";
 
       la = "ls -a";
       sl = "ls";
 
-      n = "neovim";
+      e = "neovim";
       p = "python3";
     };
   };
