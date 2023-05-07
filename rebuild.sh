@@ -29,8 +29,8 @@ if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
     read -p "Clean garbage? [Y/N]: " clean_garbage
 
     if [[ $clean_garbage =~ ^[Yy]$ ]]; then
-        nix-collect-garbage -d
+        sudo nix-collect-garbage -d
     fi
 else
-    nix-collect-garbage -d
+    sudo nix-collect-garbage -d
 fi
