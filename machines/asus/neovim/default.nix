@@ -1,4 +1,4 @@
-{ pkgs, lib, homeManagerConfiguration, ... }:
+{ pkgs, lib, homeManagerConfigurationWithArgs, projectPath, ... }:
 
 {
   # Nuking nano out of orbit.
@@ -8,7 +8,7 @@
 
 //
 
-(homeManagerConfiguration "nixos" {
+(homeManagerConfigurationWithArgs "nixos" ({ config, ... }: {
   programs.neovim.enable = true;
   programs.neovim = {
     defaultEditor = true;
@@ -19,13 +19,6 @@
 
   # NvChad
   home.file.".config/nvim" = {
-    source = pkgs.callPackage ../../../packages/nvchad {};
-    recursive = true;
+    source = config.lib.file.mkOutOfStoreSymlink projectPath + "/machines/asus/neovim/nvchad";
   };
-
-  home.file.".config/nvim/lua/custom" = {
-    source = ./config;
-    recursive = true;
-    force = true;
-  };
-})
+}))

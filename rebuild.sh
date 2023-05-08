@@ -19,11 +19,16 @@ else
   read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
 fi
 
-sudo nixos-rebuild switch --flake .#$machine
+sed -ie "s|@pwd@|$PWD|g" flake.nix
 
+sudo nixos-rebuild switch --impure --flake .#$machine
 if [[ $? != 0 ]]; then
     exit 1
 fi
+
+sed -ie "s|$PWD|@pwd@|g" flake.nix
+# No clue how to prevent sed from outputting this.
+rm flake.nixe
 
 if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
     read -p "Clean garbage? [Y/N]: " clean_garbage

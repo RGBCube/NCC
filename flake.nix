@@ -46,10 +46,26 @@
             overlays = [fenix.overlays.default];
           };
 
-          # Helper function for DRY.
+          # Helper functiona for DRY.
           homeManagerConfiguration = userName: attrs: {
             home-manager.users.${userName} = attrs;
           };
+
+          homeManagerConfigurationWithArgs = userName: attrsFunc: {
+            home-manager.users.${userName} = args: attrsFunc args;
+          };
+
+          # Q: Can't we just do "./foo" ?
+          # A: When configuring our system with flakes, Nix copies them to the
+          # Nix store to run them. So we can't use relative paths as they will refer
+          # to a file which is in the Nix store, and is immutable because it is in
+          # the Nix store, which beats the point of abusing Home Managers
+          # mkOutOfStoreSymlink to create symlinks to mutable files.
+          # To avoid this, we must give an absolute path to a file,
+          # so we do this. The $PWD is replaced by the rebuild script
+          # with the working directory, then changed back after the build.
+          # And yes, this is a major hack.
+          projectPath = "@pwd@";
         };
 
         modules = [

@@ -6,6 +6,7 @@
 !machines/asus/git/
 !machines/asus/neovim/
 !machines/asus/neovim/config/
+!machines/asus/neovim/nvchad/
 !machines/asus/networkmanager/
 !machines/asus/nixpkgs/
 !machines/asus/nushell/
