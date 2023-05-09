@@ -11,7 +11,8 @@
 (homeManagerConfigurationWithArgs "nixos" ({ config, ... }: {
   programs.neovim.enable = true;
   programs.neovim = {
-    defaultEditor = true;
+    # Does not work with Nushell for some reason, I just set it manually.
+    # defaultEditor = true;
 
     viAlias = true;
     vimAlias = true;

@@ -12,6 +12,10 @@ homeManagerConfiguration "nixos" {
     configFile.source = ./config.nu;
     envFile.source = ./env.nu;
 
+    environmentVariables = {
+      EDITOR = "nvim";
+    };
+
     shellAliases = {
       g = "git";
       ga = "git add ./";
