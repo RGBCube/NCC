@@ -30,6 +30,7 @@ pkgs: with pkgs; []
 ]
 
 ++ [ # MISCELLANEOUS
+  gnupg
   htop
   neofetch
 ]
