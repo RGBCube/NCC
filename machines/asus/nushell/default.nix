@@ -31,7 +31,7 @@ homeManagerConfiguration "nixos" {
       la = "ls -a";
       sl = "ls";
 
-      e = "neovim";
+      n = "nvim";
       p = "python3";
     };
   };
