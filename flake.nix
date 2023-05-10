@@ -37,7 +37,7 @@
 
     importConfiguration = configurationDirectory: let
       hostName = builtins.baseNameOf configurationDirectory;
-      hostPlatform = import configurationDirectory + "/platform.nix";
+      hostPlatform = import (configurationDirectory + "/platform.nix");
     in {
       nixosConfigurations.${hostName} = nixosSystem {
         lib = nixpkgs.lib;
@@ -54,24 +54,24 @@
         # Helper functions for readability & DRY.
         systemConfiguration = attributes: attributes;
 
-        homeConfiguration = userName: attributes: systemConfiguration {
+        homeConfiguration = userName: attributes: {
           home-manager.users.${userName} = attributes;
         };
 
-        imports = importPaths: systemConfiguration {
+        imports = importPaths: {
           imports = importPaths;
         };
 
-        packages = packages: systemConfiguration {
+        packages = packages: {
           environment.systemPackages = packages;
         };
 
-        fonts = fonts: systemConfiguration {
-          fonts.fonts = packages;
+        fonts = fonts: {
+          fonts.fonts = fonts;
         };
 
         enabled = attributes: attributes // {
-          enabled = true;
+          enable = true;
         };
 
         normalUser = attributes: attributes // {

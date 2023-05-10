@@ -3,13 +3,13 @@
 if [[ $1 == "-h" || $1 == "--help" ]]; then
     echo "Usage: $0 [-h | --help] [-c | --clean-garbage] [machine]"
     exit
-fi<
+fi
 
-if [[ -n $1 ]]; then
+if [[ $1 != "" ]]; then
   if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
-    machine = $1
-  elif [[ -n $2 ]]; then
-    machine = $1
+    machine=$1
+  elif [[ $2 != "" ]]; then
+    machine=$2
   else
     read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
   fi
