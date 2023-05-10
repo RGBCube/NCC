@@ -1,14 +1,18 @@
-{ pkgs, lib, homeManagerConfigurationWithArgs, projectPath, ... }:
+{ pkgs, lib, homeManagerConfiguration, projectPath, ... }:
 
 {
   # Nuking nano out of orbit.
   environment.defaultPackages = [];
   programs.nano.syntaxHighlight = false;
+
+  environment.systemPackages = with pkgs; [
+    neovim-qt
+  ];
 }
 
 //
 
-(homeManagerConfigurationWithArgs "nixos" ({ config, ... }: {
+(homeManagerConfiguration "nixos" ({ config, ... }: {
   programs.neovim.enable = true;
   programs.neovim = {
     # Does not work with Nushell for some reason, I just set it manually.

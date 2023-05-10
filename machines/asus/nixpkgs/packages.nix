@@ -11,12 +11,15 @@ pkgs: with pkgs; []
 ]
 
 ++ [ # EDITORS
-  neovim-qt
   jetbrains.idea-ultimate
 ]
 
 ++ [ # EMULATION
   wine
+]
+
+++ [ # FIRMWARE
+  linux-firmware
 ]
 
 ++ [ # GAMES

@@ -5,7 +5,6 @@
 !machines/asus/docker/
 !machines/asus/git/
 !machines/asus/neovim/
-!machines/asus/neovim/config/
 !machines/asus/neovim/nvchad/
 !machines/asus/networkmanager/
 !machines/asus/nixpkgs/
@@ -14,9 +13,6 @@
 !machines/asus/users/
 !machines/asus/system/
 !machines/asus/xserver/
-
-!packages/
-!packages/nvchad/
 
 !flake.lock
 !.editorconfig

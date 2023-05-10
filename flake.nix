@@ -43,26 +43,24 @@
             system = hostPlatform;
             config.allowUnfree = true;
 
-            overlays = [fenix.overlays.default];
+            overlays = [
+              fenix.overlays.default
+            ];
           };
 
-          # Helper functiona for DRY.
+          # Helper function for DRY.
           homeManagerConfiguration = userName: attrs: {
             home-manager.users.${userName} = attrs;
           };
 
-          homeManagerConfigurationWithArgs = userName: attrsFunc: {
-            home-manager.users.${userName} = args: attrsFunc args;
-          };
-
-          # Q: Can't we just do "./foo" ?
+          # Q: Can't we just do supply a relative path "./foo" ?
           # A: When configuring our system with flakes, Nix copies them to the
           # Nix store to run them. So we can't use relative paths as they will refer
           # to a file which is in the Nix store, and is immutable because it is in
           # the Nix store, which beats the point of abusing Home Managers
           # mkOutOfStoreSymlink to create symlinks to mutable files.
           # To avoid this, we must give an absolute path to a file,
-          # so we do this. The $PWD is replaced by the rebuild script
+          # so we do this. The @pwd@ here is replaced by the rebuild script
           # with the working directory, then changed back after the build.
           # And yes, this is a major hack.
           projectPath = "@pwd@";
@@ -90,6 +88,6 @@
   };
 
   builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.map importConfiguration [
-    ./machines/asus # HACK: Use a function to list the directory.
+    ./machines/asus
   ]);
 }
