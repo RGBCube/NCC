@@ -1,16 +1,22 @@
-{ homeManagerConfiguration, ... }:
+{ pkgs, systemConfiguration, homeConfiguration, enabled, ... }:
 
-homeManagerConfiguration "nixos" {
-  programs.starship.enable = true;
-  programs.starship.settings.character = {
-    success_symbol = "";
-    error_symbol = "";
+(systemConfiguration {
+  users.defaultUserShell = pkgs.nushell;
+})
+
+//
+
+(homeConfiguration "nixos" {
+  programs.starship = enabled {
+    settings.character = {
+      success_symbol = "";
+      error_symbol = "";
+    };
   };
 
-  programs.nushell.enable = true;
-  programs.nushell = {
-    configFile.source = ./config.nu;
-    envFile.source = ./env.nu;
+  programs.nushell = enabled {
+    configFile.source = ./configuration.nu;
+    envFile.source = ./environment.nu;
 
     environmentVariables = {
       EDITOR = "nvim";
@@ -35,4 +41,4 @@ homeManagerConfiguration "nixos" {
       p = "python3";
     };
   };
-}
+})

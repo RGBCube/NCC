@@ -1,11 +1,9 @@
 #!/bin/sh
 
-if [[ $1 == "--help" || $1 == "-h" ]]; then
-    echo "Usage: rebuild.sh [-h | --help] [-c | --clean-garbage] [machine]"
+if [[ $1 == "-h" || $1 == "--help" ]]; then
+    echo "Usage: $0 [-h | --help] [-c | --clean-garbage] [machine]"
     exit
-fi
-
-sudo true
+fi<
 
 if [[ -n $1 ]]; then
   if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
@@ -18,6 +16,8 @@ if [[ -n $1 ]]; then
 else
   read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
 fi
+
+sudo true
 
 sed -ie "s|@pwd@|$PWD|g" flake.nix
 

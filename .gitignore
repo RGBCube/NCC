@@ -2,16 +2,19 @@
 
 !machines/
 !machines/asus/
+!machines/asus/discord/
 !machines/asus/docker/
+!machines/asus/firefox/
 !machines/asus/git/
+!machines/asus/intellij/
+!machines/asus/libreoffice/
 !machines/asus/neovim/
-!machines/asus/neovim/nvchad/
 !machines/asus/networkmanager/
-!machines/asus/nixpkgs/
 !machines/asus/nushell/
+!machines/asus/openttd/
 !machines/asus/pipewire/
-!machines/asus/users/
-!machines/asus/system/
+!machines/asus/qbittorrent/
+!machines/asus/wine/
 !machines/asus/xserver/
 
 !flake.lock

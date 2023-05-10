@@ -1,5 +1,5 @@
-{ ... }:
+{ systemConfiguration, enabled, ... }:
 
-{
-  networking.networkmanager.enable = true;
+systemConfiguration {
+  networking.networkmanager = enabled {};
 }

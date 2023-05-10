@@ -1,6 +1,6 @@
-{ ... }:
+{ systemConfiguration, ... }:
 
-{
+systemConfiguration {
   services.xserver.layout = "tr";
   console.keyMap = "trq";
 

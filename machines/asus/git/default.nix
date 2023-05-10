@@ -1,8 +1,7 @@
-{ homeManagerConfiguration, ... }:
+{ homeConfiguration, enabled, ... }:
 
-homeManagerConfiguration "nixos" {
-  programs.git.enable = true;
-  programs.git = {
+homeConfiguration "nixos" {
+  programs.git = enabled {
     userName = "RGBCube";
     userEmail = "RGBCube@users.noreply.github.com";
 

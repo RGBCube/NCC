@@ -1,14 +1,14 @@
-{ ... }:
+{ systemConfiguration, enabled, ... }:
 
-{
-  sound.enable = true;
-  services.pipewire.enable = true;
-  services.pipewire = {
-    pulse.enable = true;
+systemConfiguration {
+  security.rtkit = enabled {};
+  sound = enabled {};
 
-    alsa.enable = true;
-    alsa.support32Bit = true;
+  services.pipewire = enabled {
+    pulse = enabled {};
+
+    alsa = enabled {
+      support32Bit = true;
+    };
   };
-
-  security.rtkit.enable = true; # Needed for PulseAudio.
 }

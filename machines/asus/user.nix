@@ -1,9 +1,8 @@
-{ ... }:
+{ systemConfiguration, normalUser, ... }:
 
-{
-  users.users.nixos = {
+systemConfiguration {
+  users.users.nixos = normalUser {
     description = "NixOS";
-    isNormalUser = true;
 
     extraGroups = [
       "wheel"

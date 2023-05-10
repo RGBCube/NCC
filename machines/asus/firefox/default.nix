@@ -1,5 +1,5 @@
 { systemConfiguration, enabled, ... }:
 
 systemConfiguration {
-  virtualisation.docker = enabled {};
+  programs.firefox = enabled {};
 }
