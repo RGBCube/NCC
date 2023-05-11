@@ -19,6 +19,7 @@ fi
 
 sudo true
 
+flake_nix_old=$(cat flake.nix)
 sed -ie "s|@pwd@|$PWD|g" flake.nix
 (sleep 1; rm flake.nixe) &
 
@@ -27,8 +28,7 @@ if [[ $? != 0 ]]; then
     exit 1
 fi
 
-sed -ie "s|$PWD|@pwd@|g" flake.nix
-rm flake.nixe
+echo $flake_nix_old > flake.nix
 
 if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
     read -p "Clean garbage? [Y/N]: " clean_garbage
