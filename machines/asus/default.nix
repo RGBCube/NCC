@@ -5,15 +5,11 @@
   ./docker
   ./firefox
   ./git
-  ./intellij
-  ./libreoffice
   ./neovim
   ./networkmanager
   ./nushell
   ./openttd
   ./pipewire
-  ./qbittorrent
-  ./wine
   ./xserver
 
   ./fonts.nix

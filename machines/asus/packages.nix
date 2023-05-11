@@ -4,8 +4,14 @@ with pkgs; packages [
   bat
   htop
   neofetch
+  wine
 
-  lightly-qt
+  jetbrains.idea-ultimate
+  qbittorrent
+
+  libreoffice
+  hunspellDicts.en_US
+  hunspellDicts.en_GB-ize
 
   gcc
   go
@@ -24,4 +30,6 @@ with pkgs; packages [
   ]))
   virtualenv
   poetry
+
+  lightly-qt
 ]
