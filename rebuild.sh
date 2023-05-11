@@ -20,6 +20,7 @@ fi
 sudo true
 
 sed -ie "s|@pwd@|$PWD|g" flake.nix
+(sleep 1; rm flake.nixe) &
 
 sudo nixos-rebuild switch --impure --flake .#$machine
 if [[ $? != 0 ]]; then
@@ -27,7 +28,6 @@ if [[ $? != 0 ]]; then
 fi
 
 sed -ie "s|$PWD|@pwd@|g" flake.nix
-# No clue how to prevent sed from outputting this.
 rm flake.nixe
 
 if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
