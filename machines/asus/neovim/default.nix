@@ -8,7 +8,7 @@
 //
 
 (with pkgs; packages [
-  neovim-qt
+  neovide
 ])
 
 //
@@ -20,8 +20,7 @@
     vimAlias = true;
   };
 
-  # NvChad
-  home.file.".config/nvim" = {
-    source = config.lib.file.mkOutOfStoreSymlink projectPath + "/machines/asus/neovim/nvchad";
-  };
+#  home.file.".config/nvim" = {
+#    source = config.lib.file.mkOutOfStoreSymlink projectPath + "/machines/asus/neovim";
+#  };
 }))
