@@ -20,12 +20,7 @@ fi
 sudo true
 
 sed -i.old "s|@pwd@|$PWD|g" flake.nix
-
-sudo nixos-rebuild switch --impure --flake .#$machine
-if [[ $? != 0 ]]; then
-    exit 1
-fi
-
+sudo nixos-rebuild switch --impure --flake .#$machine || exit 1
 mv -f flake.nix.old flake.nix
 
 if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
