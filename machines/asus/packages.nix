@@ -4,6 +4,7 @@ with pkgs; packages [
   bat
   htop
   neofetch
+  thefuck
   wine
 
   jetbrains.idea-ultimate
