@@ -6,7 +6,6 @@
   ./firefox
   ./git
   ./helix
-  ./neovim
   ./networkmanager
   ./nushell
   ./openttd
