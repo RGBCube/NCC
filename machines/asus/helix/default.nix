@@ -10,9 +10,6 @@ homeConfiguration "nixos" {
       cursor-shape.normal = "bar";
       cursorline = true;
       file-picker.hidden = false;
-      indent-guides.render = true;
-      indent-guides.character = "▏";
-      indent-guides.skip-levels = 1;
       line-number = "relative";
       shell = [ "nu" "-c" ];
       text-width = 100;
