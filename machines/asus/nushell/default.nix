@@ -33,7 +33,6 @@
       la = "ls -a";
       sl = "ls";
 
-      n = "nvim";
       p = "python3";
     };
   };

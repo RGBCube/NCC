@@ -1,6 +1,16 @@
 { homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
+  programs.nushell = {
+    environmentVariables = {
+      EDITOR = "hx";
+    };
+
+    shellAliases = {
+      e = "hx";
+    };
+  };
+
   programs.helix = enabled {
     settings.theme = "gruvbox";
 
