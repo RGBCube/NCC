@@ -18,7 +18,7 @@ homeConfiguration "nixos" {
       text-width = 100;
       whitespace.render.space = "all";
       whitespace.render.tab = "all";
-      whitespace.characters.space = "p";
+      whitespace.characters.space = "·";
       whitespace.characters.tab = "→";
     };
   };
