@@ -18,10 +18,6 @@
     configFile.source = ./configuration.nu;
     envFile.source = ./environment.nu;
 
-    environmentVariables = {
-      EDITOR = "nvim";
-    };
-
     shellAliases = {
       g = "git";
       ga = "git add ./";

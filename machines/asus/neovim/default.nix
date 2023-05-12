@@ -14,6 +14,10 @@
 //
 
 (homeConfiguration "nixos" ({ config, ... }: {
+  programs.nushell.environmentVariables = {
+    EDITOR = "nvim";
+  };
+
   programs.neovim = enabled {
     defaultEditor = true;
     viAlias = true;
