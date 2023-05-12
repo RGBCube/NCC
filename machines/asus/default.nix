@@ -5,6 +5,7 @@
   ./docker
   ./firefox
   ./git
+  ./helix
   ./neovim
   ./networkmanager
   ./nushell
