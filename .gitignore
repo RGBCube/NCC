@@ -6,6 +6,7 @@
 !machines/asus/docker/
 !machines/asus/firefox/
 !machines/asus/git/
+!machines/asus/helix/
 !machines/asus/intellij/
 !machines/asus/libreoffice/
 !machines/asus/neovim/
