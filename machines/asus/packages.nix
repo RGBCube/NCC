@@ -8,6 +8,7 @@ with pkgs; packages [
   wine
 
   jetbrains.idea-ultimate
+  obs-studio
   qbittorrent
 
   libreoffice
