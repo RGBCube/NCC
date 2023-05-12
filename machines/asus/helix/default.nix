@@ -2,6 +2,8 @@
 
 homeConfiguration "nixos" {
   programs.helix = enabled {
+    settings.theme = "gruvbox";
+
     settings.editor = {
       auto-pairs."<" = ">";
       auto-pairs."`" = "`";
