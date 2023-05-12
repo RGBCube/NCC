@@ -1,4 +1,4 @@
-{ lib, pkgs, systemConfiguration, homeConfiguration, packages, enabled, projectPath, ... }:
+{ homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.helix = enabled {
