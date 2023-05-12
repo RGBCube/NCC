@@ -1,4 +1,4 @@
-{ lib, pkgs, systemConfiguration, homeConfiguration, packages, enabled, projectPath, ... }:
+{ pkgs, systemConfiguration, homeConfiguration, packages, enabled, projectPath, ... }:
 
 (systemConfiguration {
   environment.defaultPackages = [];
