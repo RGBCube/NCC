@@ -21,8 +21,6 @@
     shellAliases = {
       la = "ls -a";
       sl = "ls";
-
-      p = "python3";
     };
   };
 })
