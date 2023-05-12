@@ -25,9 +25,7 @@ homeConfiguration "nixos" {
       line-number = "relative";
       shell = [ "nu" "-c" ];
       text-width = 100;
-      whitespace.render.space = "all";
       whitespace.render.tab = "all";
-      whitespace.characters.space = "·";
       whitespace.characters.tab = "→";
     };
   };
