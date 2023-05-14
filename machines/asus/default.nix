@@ -1,5 +1,17 @@
 { systemConfiguration, homeConfiguration, imports, ... }:
 
+(systemConfiguration {
+  system.stateVersion = "22.11";
+})
+
+//
+
+(homeConfiguration "nixos" {
+  home.stateVersion = "22.11";
+})
+
+//
+
 (imports [
   ./discord
   ./docker
@@ -19,15 +31,3 @@
   ./packages.nix
   ./user.nix
 ])
-
-//
-
-(systemConfiguration {
-  system.stateVersion = "22.11";
-})
-
-//
-
-(homeConfiguration "nixos" {
-  home.stateVersion = "22.11";
-})
