@@ -9,6 +9,7 @@
 
   llvmPackages_16.clang-unwrapped
   go
+  zig
 
   (fenix.complete.withComponents [
     "rustc"
