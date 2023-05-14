@@ -12,7 +12,7 @@
   };
 
   programs.helix = enabled {
-    settings.theme = "base16_terminal";
+    settings.theme = "catpucchin_mocha";
 
     settings.editor = {
       auto-pairs."<" = ">";
