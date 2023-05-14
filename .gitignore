@@ -11,6 +11,7 @@
 !machines/asus/nushell/
 !machines/asus/openttd/
 !machines/asus/pipewire/
+!machines/asus/python/
 !machines/asus/xserver/
 
 !flake.lock

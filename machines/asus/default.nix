@@ -10,6 +10,7 @@
   ./nushell
   ./openttd
   ./pipewire
+  ./python
   ./xserver
 
   ./fonts.nix

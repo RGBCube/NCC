@@ -26,12 +26,5 @@ with pkgs; packages [
     "clippy"
   ])
 
-  (python311.withPackages (pkgs: with pkgs; [
-    pip
-    requests
-  ]))
-  virtualenv
-  poetry
-
   lightly-qt
 ]
