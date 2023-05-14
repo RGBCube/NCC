@@ -61,13 +61,35 @@
           args = [ "--stdio" ];
         };
       }
-    ] ++ builtins.map (language: {
-        name = language;
+      {
+        name = "js";
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
         };
-      }) [ "javascript" "jsx" "typescript" "tsx" ];
+      }
+      {
+        name = "jsx";
+        language-server = {
+          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+          args = [ "--stdio" ];
+        };
+      }
+      {
+        name = "typescript";
+        language-server = {
+          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+          args = [ "--stdio" ];
+        };
+      }
+      {
+        name = "tsx";
+        language-server = {
+          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+          args = [ "--stdio" ];
+        };
+      }
+    ];
   };
 })
 
