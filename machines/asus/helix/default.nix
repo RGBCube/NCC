@@ -12,12 +12,11 @@
   };
 
   programs.helix = enabled {
-    settings.theme = "base16_transparent";
+    settings.theme = "base16_terminal";
 
     settings.editor = {
       auto-pairs."<" = ">";
       auto-pairs."`" = "`";
-      auto-save = true;
       color-modes = true;
       cursor-shape.normal = "bar";
       cursorline = true;
