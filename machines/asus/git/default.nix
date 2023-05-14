@@ -5,6 +5,7 @@ homeConfiguration "nixos" {
     g = "git";
     ga = "git add ./";
     gb = "git rebase -i";
+    gba = "git rebase --abort";
     gc = "git commit -m";
     gca = "git commit --amend";
     gcl = "git clone";
