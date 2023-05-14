@@ -1,6 +1,6 @@
-{ pkgs, packages, ... }:
+{ pkgs, systemPackages, ... }:
 
-with pkgs; packages [
+with pkgs; systemPackages [
   bat
   htop
   neofetch

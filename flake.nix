@@ -51,23 +51,29 @@
           ];
         };
 
-        # Helper functions for readability & DRY.
+        # SYSTEM
         systemConfiguration = attributes: attributes;
 
-        homeConfiguration = userName: attributes: {
-          home-manager.users.${userName} = attributes;
-        };
-
-        imports = importPaths: {
-          imports = importPaths;
-        };
-
-        packages = packages: {
+        systemPackages = packages: systemConfiguration {
           environment.systemPackages = packages;
         };
 
-        fonts = fonts: {
+        systemFonts = fonts: systemConfiguration {
           fonts.fonts = fonts;
+        };
+
+        # HOME
+        homeConfiguration = userName: attributes: systemConfiguration {
+          home-manager.users.${userName} = attributes;
+        };
+
+        homePackages = userName: packages: homeConfiguration userName {
+          home.packages = packages;
+        };
+
+        # GENERAL
+        imports = importPaths: {
+          imports = importPaths;
         };
 
         enabled = attributes: attributes // {

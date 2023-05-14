@@ -1,6 +1,6 @@
-{ pkgs, fonts, ... }:
+{ pkgs, systemFonts, ... }:
 
-with pkgs; fonts [
+with pkgs; systemFonts [
   (nerdfonts.override {
     fonts = [
       "JetBrainsMono"
