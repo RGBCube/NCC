@@ -1,5 +1,5 @@
-{ systemConfiguration, enabled, ... }:
+{ homeConfiguration, enabled, ... }:
 
-systemConfiguration {
+homeConfiguration "nixos" {
   programs.firefox = enabled {};
 }

@@ -1,19 +1,11 @@
-{ pkgs, systemPackages, ... }:
+{ pkgs, systemPackages, homePackages, ... }:
 
-with pkgs; systemPackages [
+(with pkgs; systemPackages [
   bat
   htop
   neofetch
   thefuck
   wine
-
-  jetbrains.idea-ultimate
-  obs-studio
-  qbittorrent
-
-  libreoffice
-  hunspellDicts.en_US
-  hunspellDicts.en_GB-ize
 
   gcc
   go
@@ -27,4 +19,16 @@ with pkgs; systemPackages [
   ])
 
   lightly-qt
-]
+])
+
+//
+
+(with pkgs; homePackages "nixos" [
+  jetbrains.idea-ultimate
+  obs-studio
+  qbittorrent
+
+  libreoffice
+  hunspellDicts.en_US
+  hunspellDicts.en_GB-ize
+])

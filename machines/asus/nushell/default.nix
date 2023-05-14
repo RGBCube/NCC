@@ -1,7 +1,7 @@
 { pkgs, systemConfiguration, homeConfiguration, enabled, ... }:
 
 (systemConfiguration {
-  users.defaultUserShell = pkgs.nushell;
+  users.users.nixos.shell = pkgs.nushell;
 })
 
 //

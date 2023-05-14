@@ -1,5 +1,5 @@
-{ pkgs, systemPackages, ... }:
+{ pkgs, homePackages, ... }:
 
-with pkgs; systemPackages [
+with pkgs; homePackages "nixos" [
     openttd
 ]
