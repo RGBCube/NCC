@@ -28,6 +28,7 @@
   jetbrains.idea-ultimate
   obs-studio
   qbittorrent
+  vscodium-fhs
 
   libreoffice
   hunspellDicts.en_US
