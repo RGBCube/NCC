@@ -7,14 +7,10 @@
 !machines/asus/firefox/
 !machines/asus/git/
 !machines/asus/helix/
-!machines/asus/intellij/
-!machines/asus/libreoffice/
 !machines/asus/networkmanager/
 !machines/asus/nushell/
 !machines/asus/openttd/
 !machines/asus/pipewire/
-!machines/asus/qbittorrent/
-!machines/asus/wine/
 !machines/asus/xserver/
 
 !flake.lock
