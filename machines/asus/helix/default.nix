@@ -1,4 +1,4 @@
-{ homeConfiguration, imports, enabled, ... }:
+{ pkgs, homeConfiguration, imports, enabled, ... }:
 
 (homeConfiguration "nixos" {
   programs.nushell = {
