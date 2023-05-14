@@ -45,7 +45,6 @@
         name = "python";
         roots = [ "pyproject.toml" ];
         config = {};
-        auto-format = true;
         formatter = {
           command = "black";
           args = [ "-" "--quiet" ];
@@ -57,11 +56,17 @@
       }
       {
         name = "yaml";
-        language-server.command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+        language-server = {
+          command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+          args = [ "--stdio" ];
+        };
       }
     ] ++ builtins.map (language: {
         name = language;
-        language-server.command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+        language-server = {
+          command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+          args = [ "--stdio" ];
+        };
       }) [ "javascript" "jsx" "typescript" "tsx" ];
   };
 })
