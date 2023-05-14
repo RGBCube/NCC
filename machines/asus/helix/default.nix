@@ -1,6 +1,6 @@
-{ homeConfiguration, enabled, ... }:
+{ pkgs, homeConfiguration, homePackages, enabled, ... }:
 
-homeConfiguration "nixos" {
+(homeConfiguration "nixos" {
   programs.nushell = {
     environmentVariables = {
       EDITOR = "hx";
@@ -28,5 +28,77 @@ homeConfiguration "nixos" {
       whitespace.render.tab = "all";
       whitespace.characters.tab = "→";
     };
+
+    settings.languages = [
+      {
+        name = "bash";
+        language-server.command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
+      }
+      {
+        name = "python";
+        roots = [ "pyproject.toml" ];
+        config = {};
+        auto-format = true;
+        formatter = {
+          command = "black";
+          args = [ "-" "--quiet" ];
+        };
+        language-server = {
+          command = "${pkgs.nodePackages.pyright}/bin/pyright-langserver";
+          args = [ "--stdio" ];
+        };
+      }
+      {
+        name = "yaml";
+        language-server.command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
+      }
+    ] ++ builtins.map (language: {
+        name = language;
+        language-server.command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
+      }) [ "javascript" "jsx" "typescript" "tsx" ];
   };
-}
+})
+
+//
+
+(with pkgs; homePackages "nixos" [
+  # BASH
+  nodePackages.bash-language-server
+
+  # CMAKE
+  cmake-language-server
+
+  # GO
+  gopls
+
+  # KOTLIN
+  kotlin-language-server
+
+  # PYTHON
+  nodePackages.pyright
+  black
+
+  # JAVASCRIPT/TYPESCRIPT
+  nodePackages.typescript-language-server
+
+  # LATEX
+  texlab
+
+  # LUA
+  lua-language-server
+
+  # MARKDOWN
+  marksman
+
+  # NIX
+  nil
+
+  # RUST
+  rust-analyzer
+
+  # YAML
+  nodePackages.yaml-language-server
+
+  # ZIG
+  zls
+])

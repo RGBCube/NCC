@@ -7,7 +7,7 @@
   thefuck
   wine
 
-  gcc
+  llvmPackages_16.clang-unwrapped
   go
 
   (fenix.complete.withComponents [
