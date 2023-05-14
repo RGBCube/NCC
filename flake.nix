@@ -54,21 +54,21 @@
         # SYSTEM
         systemConfiguration = attributes: attributes;
 
-        systemPackages = packages: systemConfiguration {
+        systemPackages = packages: {
           environment.systemPackages = packages;
         };
 
-        systemFonts = fonts: systemConfiguration {
+        systemFonts = fonts: {
           fonts.fonts = fonts;
         };
 
         # HOME
-        homeConfiguration = userName: attributes: systemConfiguration {
+        homeConfiguration = userName: attributes: {
           home-manager.users.${userName} = attributes;
         };
 
-        homePackages = userName: packages: homeConfiguration userName {
-          home.packages = packages;
+        homePackages = userName: packages: {
+          home-manager.users.${userName}.home.packages = packages;
         };
 
         # GENERAL
