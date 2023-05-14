@@ -1,6 +1,48 @@
-# My NixOS Configuration
+# My NixOS Configurations
 
+This repository contains my NixOS configurations for all my machines.
 
+## Bootstrapping
+
+Here is the script you need to run to get this working:
+
+```sh
+# Remove old configuration as it is not used.
+sudo rm -rf /etc/nixos
+
+nix-shell -p git
+
+git clone https://github.com/RGBCube/NixOSConfiguration
+cd NixOSConfiguration
+
+chmod +x rebuild.sh
+./rebuild.sh --clean-garbage <machine-name>
+```
+
+`machine-name` is a machine selected from the machines in the `machines` directory.
+
+## Applying Changes
+
+Lets say you have changed the configuration and want to apply the changes
+to your system. You would have to run the rebuild script:
+
+```sh
+./rebuild.sh
+```
+
+This runs the script interactively.
+
+You can also check how the script is used:
+
+```sh
+./rebuild.sh --help
+```
+
+This outputs:
+
+```
+Usage: ./rebuild.sh [-h | --help] [-c | --clean-garbage] [machine]
+```
 
 ## License
 
