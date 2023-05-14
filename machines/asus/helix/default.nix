@@ -12,7 +12,7 @@
   };
 
   programs.helix = enabled {
-    settings.theme = "gruvbox";
+    settings.theme = "base16_transparent";
 
     settings.editor = {
       auto-pairs."<" = ">";
