@@ -12,7 +12,7 @@
   };
 
   programs.helix = enabled {
-    settings.theme = "catppucchin_mocha";
+    settings.theme = "catppuccin_mocha";
 
     settings.editor = {
       auto-pairs."<" = ">";
