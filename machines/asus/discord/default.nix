@@ -1,5 +1,7 @@
 { pkgs, homePackages, ... }:
 
 with pkgs; homePackages "nixos" [
-    discord
+    (discord.override {
+      withOpenASAR = true;
+    })
 ]
