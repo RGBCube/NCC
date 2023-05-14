@@ -15,8 +15,6 @@
     settings.theme = "catppuccin_mocha";
 
     settings.editor = {
-      auto-pairs."<" = ">";
-      auto-pairs."`" = "`";
       color-modes = true;
       cursor-shape.normal = "bar";
       cursorline = true;
@@ -26,6 +24,16 @@
       text-width = 100;
       whitespace.render.tab = "all";
       whitespace.characters.tab = "→";
+    };
+
+    settings.editor.auto-pairs = {
+      "(" = ")";
+      "{" = "}";
+      "[" = "]";
+      "\"" = "\"";
+      "'" = "'";
+      "<" = ">";
+      "`" = "`";
     };
 
     languages = [
