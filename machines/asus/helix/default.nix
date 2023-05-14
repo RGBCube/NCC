@@ -29,7 +29,7 @@
       whitespace.characters.tab = "→";
     };
 
-    settings.languages = [
+    languages = [
       {
         name = "bash";
         language-server.command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
