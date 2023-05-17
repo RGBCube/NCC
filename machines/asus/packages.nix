@@ -26,6 +26,7 @@
 
 (with pkgs; homePackages "nixos" [
   jetbrains.idea-ultimate
+  kazam
   obs-studio
   qbittorrent
   vscode-fhs
