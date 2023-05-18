@@ -7,8 +7,10 @@
   thefuck
   wine
 
-  llvmPackages_16.clang-unwrapped
   go
+  llvmPackages_16.clang-unwrapped
+  maven
+  temurin-bin-18
   zig
 
   (fenix.complete.withComponents [
@@ -27,6 +29,7 @@
 (with pkgs; homePackages "nixos" [
   jetbrains.idea-ultimate
   kazam
+  krita
   obs-studio
   qbittorrent
   vscode-fhs
