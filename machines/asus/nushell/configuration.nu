@@ -174,7 +174,7 @@ let-env config = {
     case_sensitive: false
     quick: true
     partial: true
-    algorithm: "fuzzy"
+    algorithm: "prefix"
 
     external: {
       enable: true
