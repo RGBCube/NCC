@@ -11,6 +11,7 @@
   go
   jdk
   maven
+  vlang
   zig
 
   (fenix.complete.withComponents [
