@@ -28,6 +28,7 @@
 //
 
 (with pkgs; homePackages "nixos" [
+  heroic
   jetbrains.idea-ultimate
   kazam
   krita
