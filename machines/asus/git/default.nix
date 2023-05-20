@@ -4,15 +4,16 @@ homeConfiguration "nixos" {
   programs.nushell.shellAliases = {
     g = "git";
     ga = "git add ./";
-    gb = "git rebase -i";
-    gba = "git rebase --abort";
+    grb = "git rebase -i";
+    grba = "git rebase --abort";
     gc = "git commit -m";
     gca = "git commit --amend";
     gcl = "git clone";
     gd = "git diff";
     gds = "git diff --staged";
     gp = "git push";
-    gs = "git status";
+    gs = "git stash";
+    gss = "git status";
   };
 
   programs.git = enabled {
