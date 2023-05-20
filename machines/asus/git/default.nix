@@ -23,7 +23,8 @@ homeConfiguration "nixos" {
       init.defaultBranch = "master";
 
       gpg.format = "ssh";
-      user.signingkey = "~/.ssh/id_rsa";
+      user.signingKey = "~/.ssh/id_rsa";
+      commit.gpgSign = true;
     };
   };
 }
