@@ -8,9 +8,9 @@
   wine
 
   go
+  jdk
   llvmPackages_16.clang-unwrapped
   maven
-  temurin-bin-18
   zig
 
   (fenix.complete.withComponents [
