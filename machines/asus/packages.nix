@@ -7,9 +7,9 @@
   thefuck
   wine
 
+  gcc
   go
   jdk
-  llvmPackages_16.clang-unwrapped
   maven
   zig
 
