@@ -34,6 +34,7 @@
   krita
   obs-studio
   qbittorrent
+  steam
   vscode-fhs
 
   libreoffice
