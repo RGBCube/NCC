@@ -19,6 +19,11 @@ homeConfiguration "nixos" {
     userName = "RGBCube";
     userEmail = "RGBCube@users.noreply.github.com";
 
-    extraConfig.init.defaultBranch = "master";
+    extraConfig = {
+      init.defaultBranch = "master";
+
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_rsa";
+    };
   };
 }
