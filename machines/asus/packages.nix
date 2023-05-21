@@ -28,10 +28,10 @@
 //
 
 (with pkgs; homePackages "nixos" [
+  heroic
   jetbrains.idea-ultimate
   kazam
   krita
-  lutris
   obs-studio
   qbittorrent
   steam
