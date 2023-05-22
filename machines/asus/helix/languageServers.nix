@@ -10,9 +10,6 @@ with pkgs; homePackages "nixos" [
   # KOTLIN
   kotlin-language-server
 
-  # PYTHON
-  pylsp
-
   # LATEX
   texlab
 
