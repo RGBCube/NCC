@@ -36,11 +36,13 @@
       {
         name = "bash";
         scope = "scope.sh";
+        file-types = [ "sh" "bash" ];
         language-server.command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
       }
       {
         name = "python";
         scope = "scope.py";
+        file-types = [ "py" ];
         roots = [ "pyproject.toml" ];
         config = {};
         formatter = {
@@ -55,6 +57,7 @@
       {
         name = "yaml";
         scope = "scope.yml";
+        file-types = [ "yml" "yaml" ];
         language-server = {
           command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
           args = [ "--stdio" ];
@@ -63,6 +66,7 @@
       {
         name = "js";
         scope = "scope.js";
+        file-types = [ "js" ];
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
@@ -71,6 +75,7 @@
       {
         name = "jsx";
         scope = "scope.jsx";
+        file-types = [ "jsx" ];
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
@@ -79,6 +84,7 @@
       {
         name = "typescript";
         scope = "scope.ts";
+        file-types = [ "ts" ];
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
@@ -87,6 +93,7 @@
       {
         name = "tsx";
         scope = "scope.tsx";
+        file-types = [ "tsx" ];
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
