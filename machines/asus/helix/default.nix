@@ -5,10 +5,6 @@
     environmentVariables = {
       EDITOR = "hx";
     };
-
-    shellAliases = {
-      e = "hx";
-    };
   };
 
   programs.helix = enabled {
@@ -39,10 +35,12 @@
     languages = [
       {
         name = "bash";
+        scope = "scope.sh";
         language-server.command = "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server";
       }
       {
         name = "python";
+        scope = "scope.py";
         roots = [ "pyproject.toml" ];
         config = {};
         formatter = {
@@ -56,6 +54,7 @@
       }
       {
         name = "yaml";
+        scope = "scope.yml";
         language-server = {
           command = "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server";
           args = [ "--stdio" ];
@@ -63,6 +62,7 @@
       }
       {
         name = "js";
+        scope = "scope.js";
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
@@ -70,6 +70,7 @@
       }
       {
         name = "jsx";
+        scope = "scope.jsx";
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
@@ -77,6 +78,7 @@
       }
       {
         name = "typescript";
+        scope = "scope.ts";
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
@@ -84,6 +86,7 @@
       }
       {
         name = "tsx";
+        scope = "scope.tsx";
         language-server = {
           command = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server";
           args = [ "--stdio" ];
