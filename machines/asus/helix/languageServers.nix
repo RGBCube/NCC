@@ -1,9 +1,6 @@
 { pkgs, homePackages, ... }:
 
 with pkgs; homePackages "nixos" [
-  # BASH
-  nodePackages.bash-language-server
-
   # CMAKE
   cmake-language-server
 
@@ -14,11 +11,7 @@ with pkgs; homePackages "nixos" [
   kotlin-language-server
 
   # PYTHON
-  nodePackages.pyright
-  black
-
-  # JAVASCRIPT/TYPESCRIPT
-  nodePackages.typescript-language-server
+  pylsp
 
   # LATEX
   texlab
@@ -34,9 +27,6 @@ with pkgs; homePackages "nixos" [
 
   # RUST
   rust-analyzer
-
-  # YAML
-  nodePackages.yaml-language-server
 
   # ZIG
   zls
