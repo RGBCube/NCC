@@ -1,5 +1,10 @@
 { systemConfiguration, enabled, ... }:
 
 systemConfiguration {
-  networking.networkmanager = enabled {};
+  networking = {
+    wireless.iwd = enabled {};
+    networkmanager = enabled {
+      wifi.backend = "iwd";
+    };
+  };
 }

@@ -1,4 +1,4 @@
-{ systemConfiguration, ... }:
+{ systemConfiguration, enabled, ... }:
 
 systemConfiguration {
   powerManagement.cpuFreqGovernor = "performance";
@@ -17,7 +17,7 @@ systemConfiguration {
   ];
 
   boot.loader = {
-    systemd-boot.enable = true;
+    systemd-boot = enabled {};
     efi.canTouchEfiVariables = true;
     efi.efiSysMountPoint = "/boot/efi";
   };
