@@ -14,6 +14,8 @@
   console = {
     earlySetup = true;
     font = "Lat2-Terminus16";
-    packages = [ pkgs.terminus-nerdfont ];
+    packages = with pkgs; [
+      terminus-nerdfont
+    ];
   };
 })
