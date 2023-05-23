@@ -26,6 +26,7 @@ homeConfiguration "nixos" {
       gpg.format = "ssh";
       user.signingKey = "~/.ssh/id_rsa";
       commit.gpgSign = true;
+      url."ssh://git@github.com/".insteadOf = "https://github.com/";
     };
   };
 }
