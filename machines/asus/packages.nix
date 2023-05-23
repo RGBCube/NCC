@@ -5,6 +5,7 @@
   htop
   neofetch
   thefuck
+  tree
   wine
 
   gcc
