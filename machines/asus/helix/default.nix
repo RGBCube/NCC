@@ -18,8 +18,6 @@
 
     settings.editor = {
       color-modes = true;
-      cursor-shape.normal = "bar";
-      cursor-shape.insert = "bar";
       cursorline = true;
       file-picker.hidden = false;
       line-number = "relative";
@@ -27,12 +25,7 @@
         "nu"
         "-c"
       ];
-      statusline.mode.normal = "NORMAL";
-      statusline.mode.insert = "INSERT";
-      statusline.mode.select = "SELECT";
       text-width = 100;
-      whitespace.render.tab = "all";
-      whitespace.characters.tab = "→";
     };
 
     settings.editor.auto-pairs = {
@@ -43,6 +36,22 @@
       "'" = "'";
       "<" = ">";
       "`" = "`";
+    };
+
+    settings.editor.cursor-shape = {
+      normal = "bar";
+      insert = "bar";
+    };
+
+    settings.editor.mode = {
+      normal = "NORMAL";
+      insert = "INSERT";
+      select = "SELECT";
+    };
+
+    settings.editor.whitespace = {
+      render.tab = "all";
+      characters.tab = "→";
     };
   };
 })
