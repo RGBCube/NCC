@@ -39,7 +39,7 @@
       "`" = "`";
     };
 
-    settings.editor.mode = {
+    settings.editor.statusline.mode = {
       normal = "NORMAL";
       insert = "INSERT";
       select = "SELECT";
