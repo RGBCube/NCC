@@ -2,6 +2,7 @@
 
 !machines/
 !machines/asus/
+!machines/asus/bat/
 !machines/asus/discord/
 !machines/asus/docker/
 !machines/asus/firefox/

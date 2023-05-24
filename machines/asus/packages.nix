@@ -1,11 +1,14 @@
 { pkgs, systemPackages, homePackages, ... }:
 
 (with pkgs; systemPackages [
-  bat
+  fd
+  fzf
   htop
   neofetch
+  ripgrep
   thefuck
   tree
+
   wine
 
   gcc

@@ -13,6 +13,7 @@
 //
 
 (imports [
+  ./bat
   ./discord
   ./docker
   ./firefox
