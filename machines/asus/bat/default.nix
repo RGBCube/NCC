@@ -6,7 +6,7 @@
 
 (homeConfiguration "nixos" {
   programs.nushell.environmentVariables = {
-    PAGER = "bat --plain";
-    MANPAGER = "sh -c 'col --spaces --no-backspaces | bat --plain --language man'";
+    PAGER = "\"bat --plain\"";
+    MANPAGER = "\"sh -c 'col --spaces --no-backspaces | bat --plain --language man'\"";
   };
 })
