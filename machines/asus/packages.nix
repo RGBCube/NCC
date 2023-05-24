@@ -1,4 +1,4 @@
-{ pkgs, systemPackages, homePackages, ... }:
+{ lib, pkgs, systemPackages, homePackages, ... }: lib.recursiveUpdate
 
 (with pkgs; systemPackages [
   fd
@@ -28,8 +28,6 @@
 
   lightly-qt
 ])
-
-//
 
 (with pkgs; homePackages "nixos" [
   heroic

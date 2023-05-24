@@ -1,4 +1,4 @@
-{ pkgs, systemConfiguration, systemFonts, ... }:
+{ lib, pkgs, systemConfiguration, systemFonts, ... }: lib.recursiveUpdate
 
 (systemConfiguration {
   console = {
@@ -9,8 +9,6 @@
     ];
   };
 })
-
-//
 
 (with pkgs; systemFonts [
   (nerdfonts.override {

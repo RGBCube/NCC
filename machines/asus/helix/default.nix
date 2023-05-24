@@ -1,10 +1,8 @@
-{ pkgs, systemPackages, homeConfiguration, imports, enabled, ... }:
+{ lib, pkgs, systemPackages, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
 
 (with pkgs; systemPackages [
   xclip
 ])
-
-//
 
 (homeConfiguration "nixos" {
   programs.nushell.environmentVariables = {
@@ -50,8 +48,31 @@
   };
 })
 
-//
+(with pkgs; homePackages "nixos" [
+  # CMAKE
+  cmake-language-server
 
-(imports [
-  ./languageServers.nix
+  # GO
+  gopls
+
+  # KOTLIN
+  kotlin-language-server
+
+  # LATEX
+  texlab
+
+  # LUA
+  lua-language-server
+
+  # MARKDOWN
+  marksman
+
+  # NIX
+  nil
+
+  # RUST
+  rust-analyzer
+
+  # ZIG
+  zls
 ])

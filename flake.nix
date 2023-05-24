@@ -40,7 +40,9 @@
       hostPlatform = import (configurationDirectory + "/platform.nix");
     in {
       nixosConfigurations.${hostName} = nixosSystem {
-        lib = nixpkgs.lib;
+        lib = nixpkgs.lib // {
+          recursiveUpdate3 = x: y: z: nixpkgs.lib.recursiveUpdate x (nixpkgs.lib.recursiveUpdate y z);
+        };
 
         pkgs = import nixpkgs {
           system = hostPlatform;

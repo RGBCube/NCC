@@ -1,10 +1,8 @@
-{ pkgs, systemConfiguration, homeConfiguration, enabled, ... }:
+{ lib, pkgs, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
 
 (systemConfiguration {
   users.users.nixos.shell = pkgs.nushell;
 })
-
-//
 
 (homeConfiguration "nixos" {
   programs.starship = enabled {

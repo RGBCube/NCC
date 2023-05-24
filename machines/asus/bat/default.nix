@@ -1,14 +1,12 @@
-{ pkgs, systemConfiguration, systemPackages, ... }:
+{ lib, pkgs, systemConfiguration, systemPackages, ... }: lib.recursiveUpdate
 
 (with pkgs; systemPackages [
   bat
 ])
 
-//
-
 (systemConfiguration {
-  environment.variables = {
+  environment.sessionVariables = {
     PAGER = "bat --plain";
-    MANPAGER = "col --spaces --no-backspaces | bat --plain --language man";
+    MANPAGER = "sh -c 'col --spaces --no-backspaces | bat --plain --language man'";
   };
 })
