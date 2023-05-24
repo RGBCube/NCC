@@ -13,6 +13,6 @@
 
 (homeConfiguration "nixos" {
   programs.nushell.shellAliases = {
-    vv = "virtualenv venv";
+    venv = "virtualenv venv";
   };
 })
