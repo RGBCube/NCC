@@ -23,13 +23,13 @@
       cursorline = true;
       file-picker.hidden = false;
       line-number = "relative";
-      mode.normal = "NORMAL";
-      mode.insert = "INSERT";
-      mode.select = "SELECT";
       shell = [
         "nu"
         "-c"
       ];
+      statusline.mode.normal = "NORMAL";
+      statusline.mode.insert = "INSERT";
+      statusline.mode.select = "SELECT";
       text-width = 100;
       whitespace.render.tab = "all";
       whitespace.characters.tab = "→";
