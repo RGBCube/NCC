@@ -18,6 +18,7 @@
 
     settings.editor = {
       color-modes = true;
+      cursor-shape.insert = "bar";
       cursorline = true;
       file-picker.hidden = false;
       line-number = "relative";
@@ -36,11 +37,6 @@
       "'" = "'";
       "<" = ">";
       "`" = "`";
-    };
-
-    settings.editor.cursor-shape = {
-      normal = "bar";
-      insert = "bar";
     };
 
     settings.editor.mode = {
