@@ -17,9 +17,9 @@ systemConfiguration {
   ];
 
   boot.loader = {
-    systemd-boot = enabled {};
+    systemd-boot             = enabled {};
     efi.canTouchEfiVariables = true;
-    efi.efiSysMountPoint = "/boot/efi";
+    efi.efiSysMountPoint     = "/boot/efi";
   };
 
   fileSystems."/" = {

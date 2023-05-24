@@ -2,7 +2,7 @@
 
 systemConfiguration {
   security.rtkit = enabled {};
-  sound = enabled {};
+  sound          = enabled {};
 
   services.pipewire = enabled {
     pulse = enabled {};

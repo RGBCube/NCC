@@ -8,13 +8,13 @@
   programs.starship = enabled {
     settings.character = {
       success_symbol = "";
-      error_symbol = "";
+      error_symbol   = "";
     };
   };
 
   programs.nushell = enabled {
     configFile.source = ./configuration.nu;
-    envFile.source = ./environment.nu;
+    envFile.source    = ./environment.nu;
 
     shellAliases = {
       la = "ls --all";

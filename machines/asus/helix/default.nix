@@ -13,16 +13,13 @@
     settings.theme = "catppuccin_mocha";
 
     settings.editor = {
-      color-modes = true;
+      color-modes         = true;
       cursor-shape.insert = "bar";
-      cursorline = true;
-      file-picker.hidden = false;
-      line-number = "relative";
-      shell = [
-        "nu"
-        "-c"
-      ];
-      text-width = 100;
+      cursorline          = true;
+      file-picker.hidden  = false;
+      line-number         = "relative";
+      shell               = [ "nu" "-c" ];
+      text-width          = 100;
     };
 
     settings.editor.auto-pairs = {
@@ -42,7 +39,7 @@
     };
 
     settings.editor.whitespace = {
-      render.tab = "all";
+      render.tab     = "all";
       characters.tab = "→";
     };
   };
