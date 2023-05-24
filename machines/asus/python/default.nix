@@ -1,4 +1,4 @@
-{ pkgs, homeConfiguration, systemPackages, enabled, ... }:
+{ pkgs, systemPackages, homeConfiguration, enabled, ... }:
 
 (with pkgs; systemPackages [
   (python311.withPackages (pkgs: with pkgs; [

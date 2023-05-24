@@ -1,15 +1,5 @@
 { pkgs, systemConfiguration, systemFonts, ... }:
 
-(with pkgs; systemFonts [
-  (nerdfonts.override {
-    fonts = [
-      "JetBrainsMono"
-    ];
-  })
-])
-
-//
-
 (systemConfiguration {
   console = {
     earlySetup = true;
@@ -19,3 +9,13 @@
     ];
   };
 })
+
+//
+
+(with pkgs; systemFonts [
+  (nerdfonts.override {
+    fonts = [
+      "JetBrainsMono"
+    ];
+  })
+])

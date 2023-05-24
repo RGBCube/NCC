@@ -1,4 +1,4 @@
-{ pkgs, homeConfiguration, systemPackages, imports, enabled, ... }:
+{ pkgs, systemPackages, homeConfiguration, imports, enabled, ... }:
 
 (with pkgs; systemPackages [
   xclip
@@ -7,10 +7,8 @@
 //
 
 (homeConfiguration "nixos" {
-  programs.nushell = {
-    environmentVariables = {
-      EDITOR = "hx";
-    };
+  programs.nushell.environmentVariables = {
+    EDITOR = "hx";
   };
 
   programs.helix = enabled {
