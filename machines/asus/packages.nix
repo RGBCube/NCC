@@ -37,6 +37,7 @@
   obs-studio
   qbittorrent
   steam
+  thunderbird
   vscode-fhs
 
   libreoffice
