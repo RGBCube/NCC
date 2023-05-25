@@ -4,6 +4,7 @@
   fd
   fzf
   htop
+  jq
   neofetch
   ripgrep
   thefuck
