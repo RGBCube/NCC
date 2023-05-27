@@ -21,7 +21,7 @@ if [[ $machine == "" ]]; then
   read -p "What machine would you like to build? (Possible options: $available_machines): " machine
 fi
 
-if [[ $1 == "-c" && $1 == "--clean-garbage" ]]; then
+if [[ $1 == "-c" || $1 == "--clean-garbage" ]]; then
   clean_garbage=y
 else
   read -p "Clean garbage? [Y/N]: " clean_garbage
