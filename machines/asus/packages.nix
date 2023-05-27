@@ -20,11 +20,11 @@
   zig
 
   (fenix.complete.withComponents [
-    "rustc"
-    "rust-src"
     "cargo"
-    "rustfmt"
     "clippy"
+    "rust-src"
+    "rustc"
+    "rustfmt"
   ])
 
   lightly-qt
