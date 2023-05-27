@@ -31,6 +31,7 @@
 ])
 
 (with pkgs; homePackages "nixos" [
+  graphviz
   heroic
   jetbrains.idea-ultimate
   kazam
