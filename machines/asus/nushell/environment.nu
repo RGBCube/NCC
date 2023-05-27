@@ -24,8 +24,3 @@ let-env NU_PLUGIN_DIRS = [
      | path dirname
      | path join 'plugins')
 ]
-
-def venv [] {
-  virtualenv venv
-  source ./venv/bin/activate.nu
-}
