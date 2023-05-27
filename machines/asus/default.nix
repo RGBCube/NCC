@@ -20,6 +20,7 @@
   ./openttd
   ./pipewire
   ./python
+  ./steam
   ./xserver
 
   ./fonts.nix

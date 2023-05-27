@@ -37,7 +37,4 @@ systemConfiguration {
       device = "/dev/disk/by-uuid/10bfe7d8-1daf-4c65-a5a6-cf3c9a085478";
     }
   ];
-
-  # Steam uses 32-bit drivers for some unholy fucking reason.
-  hardware.opengl.driSupport32Bit = true;
 }

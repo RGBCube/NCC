@@ -13,6 +13,7 @@
 !machines/asus/openttd/
 !machines/asus/pipewire/
 !machines/asus/python/
+!machines/asus/steam/
 !machines/asus/xserver/
 
 !flake.lock
