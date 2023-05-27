@@ -26,5 +26,5 @@
   ./hardware.nix
   ./localisation.nix
   ./packages.nix
-  ./user.nix
+  ./users.nix
 ])
