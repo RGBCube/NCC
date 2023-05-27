@@ -5,28 +5,30 @@ if [[ $1 == "-h" || $1 == "--help" ]]; then
     exit
 fi
 
+machine=
 if [[ $1 != "" ]]; then
   if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
+    # Use the first argument if it exists and is not clean-garbage.
     machine=$1
   elif [[ $2 != "" ]]; then
+    # Use the second argument if the first argument is clean-garbage and the second argument exists.
     machine=$2
-  else
-    read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
   fi
-else
-  read -p "What machine would you want to build? [$(ls --format=commas machines)]: " machine
 fi
 
-sudo true
+if [[ $machine == "" ]]; then
+  available_machines=$(ls --format=commas machines)
+  read -p "What machine would you like to build? (Possible options: $available_machines): " machine
+fi
+
+if [[ $1 == "-c" && $1 == "--clean-garbage" ]]; then
+  clean_garbage=y
+else
+  read -p "Clean garbage? [Y/N]: " clean_garbage
+fi
 
 sudo nixos-rebuild switch --impure --flake .#$machine || exit 1
 
-if [[ $1 != "-c" && $1 != "--clean-garbage" ]]; then
-    read -p "Clean garbage? [Y/N]: " clean_garbage
-
-    if [[ $clean_garbage =~ ^[Yy]$ ]]; then
-        sudo nix-collect-garbage -d
-    fi
-else
+if [[ $clean_garbage =~ ^[Yy]$ ]]; then
     sudo nix-collect-garbage -d
 fi
