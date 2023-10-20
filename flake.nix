@@ -95,7 +95,7 @@
             "flakes"
           ];
 
-          networking.hostNamev = hostName;
+          networking.hostName = hostName;
           nixpkgs.hostPlatform = hostPlatform;
 
           home-manager.useGlobalPkgs   = true;
