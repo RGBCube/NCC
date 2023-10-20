@@ -5,12 +5,7 @@
 })
 
 (homeConfiguration "nixos" {
-  programs.starship = enabled {
-    settings.character = {
-      success_symbol = "";
-      error_symbol   = "";
-    };
-  };
+  program.starship = enabled {};
 
   programs.nushell = enabled {
     configFile.source = ./configuration.nu;
