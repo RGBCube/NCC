@@ -1,11 +1,11 @@
 { lib, systemConfiguration, homeConfiguration, imports, ... }: lib.recursiveUpdate3
 
 (systemConfiguration {
-  system.stateVersion = "22.11";
+  system.stateVersion = "23.05";
 })
 
 (homeConfiguration "nixos" {
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 })
 
 (imports [
