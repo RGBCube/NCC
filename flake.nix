@@ -7,7 +7,7 @@
       flakes
     '';
 
-    extra-substituters = "https://nix-community.cachix.org";
+    extra-substituters        = "https://nix-community.cachix.org";
     extra-trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
   };
 
@@ -15,12 +15,12 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url                    = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     fenix = {
-      url = "github:nix-community/fenix";
+      url                    = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -32,11 +32,11 @@
 
     nixosSystem = arguments: modules: nixpkgs.lib.nixosSystem {
       specialArgs = arguments;
-      modules = modules;
+      modules     = modules;
     };
 
     importConfiguration = configurationDirectory: let
-      hostName = builtins.baseNameOf configurationDirectory;
+      hostName     = builtins.baseNameOf configurationDirectory;
       hostPlatform = import (configurationDirectory + "/platform.nix");
     in {
       nixosConfigurations.${hostName} = nixosSystem {
@@ -45,7 +45,7 @@
         };
 
         pkgs = import nixpkgs {
-          system = hostPlatform;
+          system             = hostPlatform;
           config.allowUnfree = true;
 
           overlays = [
@@ -61,7 +61,7 @@
         };
 
         systemFonts = fonts: {
-          fonts.fonts = fonts;
+          fonts.packages = fonts;
         };
 
         # HOME
@@ -95,10 +95,10 @@
             "flakes"
           ];
 
-          networking.hostName = hostName;
+          networking.hostNamev = hostName;
           nixpkgs.hostPlatform = hostPlatform;
 
-          home-manager.useGlobalPkgs = true;
+          home-manager.useGlobalPkgs   = true;
           home-manager.useUserPackages = true;
         }
       ];
