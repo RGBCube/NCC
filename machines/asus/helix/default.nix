@@ -5,11 +5,9 @@
 ])
 
 (homeConfiguration "nixos" {
-  programs.nushell.environmentVariables = {
-    EDITOR = "hx";
-  };
-
   programs.helix = enabled {
+    defaultEditor = true;
+
     settings.theme = "catppuccin_mocha";
 
     settings.editor = {
@@ -23,13 +21,13 @@
     };
 
     settings.editor.auto-pairs = {
-      "(" = ")";
-      "{" = "}";
-      "[" = "]";
+      "("  = ")";
+      "{"  = "}";
+      "["  = "]";
       "\"" = "\"";
-      "'" = "'";
-      "<" = ">";
-      "`" = "`";
+      "'"  = "'";
+      "<"  = ">";
+      "`"  = "`";
     };
 
     settings.editor.statusline.mode = {
