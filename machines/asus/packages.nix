@@ -12,7 +12,7 @@
 
   wine
 
-  gcc
+  # TODO: add clang package that has everything
   go
   jdk
   maven
