@@ -27,7 +27,7 @@
 
   outputs = { nixpkgs, home-manager, fenix, ... }: let
     machines = [
-      ./machines/asus
+      ./machines/enka
     ];
 
     nixosSystem = arguments: modules: nixpkgs.lib.nixosSystem {
