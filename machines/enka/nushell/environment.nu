@@ -13,13 +13,13 @@ let-env ENV_CONVERSIONS = {
   }
 }
 
-let-env NU_LIB_DIRS = [
+$env.NU_LIB_DIRS = [
     ($nu.config-path
      | path dirname
      | path join 'scripts')
 ]
 
-let-env NU_PLUGIN_DIRS = [
+$env.NU_PLUGIN_DIRS = [
     ($nu.config-path
      | path dirname
      | path join 'plugins')
