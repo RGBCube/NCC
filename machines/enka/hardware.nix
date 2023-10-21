@@ -8,7 +8,7 @@ systemConfiguration {
     "rtsx_pci_sdmmc"
     "sd_mod"
     "sr_mod"
-    "usbhid"
+    "usb_storage"
     "xhci_pci"
   ];
 
