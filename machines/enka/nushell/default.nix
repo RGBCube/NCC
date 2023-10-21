@@ -5,7 +5,7 @@
 })
 
 (homeConfiguration "nixos" {
-  program.starship = enabled {};
+  programs.starship = enabled {};
 
   programs.nushell = enabled {
     configFile.source = ./configuration.nu;
