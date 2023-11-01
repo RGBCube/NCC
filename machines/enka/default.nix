@@ -13,15 +13,17 @@
   ./discord
   ./docker
   ./firefox
+  ./fuzzel
   ./git
+  ./gtk
   ./helix
+  ./hyprland
   ./networkmanager
   ./nushell
   ./openttd
   ./pipewire
   ./python
-  # ./steam
-  ./xserver
+   ./steam
 
   ./fonts.nix
   ./hardware.nix
