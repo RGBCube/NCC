@@ -12,7 +12,7 @@
 
   wine
 
-  # TODO: add clang package that has everything
+  clang-tools_16
   go
   jdk
   maven
@@ -31,15 +31,19 @@
 ])
 
 (with pkgs; homePackages "nixos" [
+  jetbrains.idea-ultimate
+  vscode-fhs
+
   graphviz
   heroic
-  jetbrains.idea-ultimate
+  qbittorrent
+  thunderbird
+
+  grim
   kazam
   krita
   obs-studio
-  qbittorrent
-  thunderbird
-  vscode-fhs
+  slurp
 
   libreoffice
   hunspellDicts.en_US
