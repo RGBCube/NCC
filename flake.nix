@@ -30,14 +30,17 @@
       ./machines/enka
     ];
 
+    architectures = [
+      "x86_64-linux"
+    ];
+
     nixosSystem = arguments: modules: nixpkgs.lib.nixosSystem {
       specialArgs = arguments;
       modules     = modules;
     };
 
-    importConfiguration = configurationDirectory: let
-      hostName     = builtins.baseNameOf configurationDirectory;
-      hostPlatform = import (configurationDirectory + "/platform.nix");
+    importConfiguration = configurationDirectory: hostPlatform: let
+      hostName = builtins.baseNameOf configurationDirectory;
     in {
       nixosConfigurations.${hostName} = nixosSystem {
         lib = nixpkgs.lib // {
@@ -103,5 +106,5 @@
         }
       ];
     };
-  in builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.map importConfiguration machines);
+  in builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.map (builtins.map importConfiguration machines) architectures);
 }
