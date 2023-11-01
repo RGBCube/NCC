@@ -22,9 +22,9 @@ if [[ $machine == "" ]]; then
 fi
 
 if [[ $1 == "-c" || $1 == "--clean-garbage" ]]; then
-  clean_garbage=y
+  clean_garbage=Y
 else
-  read -p "Clean garbage? [Y/N]: " clean_garbage
+  read -p "Clean garbage? [y/N]: " clean_garbage
 fi
 
 sudo nixos-rebuild switch --impure --flake .#$machine || exit 1
