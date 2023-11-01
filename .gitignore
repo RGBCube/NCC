@@ -6,7 +6,9 @@
 !machines/enka/discord/
 !machines/enka/docker/
 !machines/enka/firefox/
+!machines/enka/fuzzel/
 !machines/enka/git/
+!machines/enka/gtk/
 !machines/enka/helix/
 !machines/enka/networkmanager/
 !machines/enka/nushell/
@@ -14,7 +16,7 @@
 !machines/enka/pipewire/
 !machines/enka/python/
 !machines/enka/steam/
-!machines/enka/xserver/
+!machines/enka/hyprland/
 
 !flake.lock
 !.editorconfig
