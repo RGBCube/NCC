@@ -53,6 +53,7 @@ homeConfiguration "nixos" {
       bind = SUPER,       F, fullscreen
       bind = SUPER+SHIFT, F, togglefloating
 
+      bind = SUPER,  , exec, fuzzel
       bind = SUPER, T, exec, kitty
       bind = SUPER, W, exec, firefox
       bind = SUPER, D, exec, discord
