@@ -9,8 +9,8 @@ homeConfiguration "nixos" {
 
     font = {
       package = pkgs.jetbrains-mono;
-      name = "JetBrainsMono";
-      size = 11;
+      name    = "JetBrainsMono";
+      size    = 11;
     };
 
     iconTheme = {
