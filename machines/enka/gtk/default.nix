@@ -1,6 +1,10 @@
-{ pkgs, homeConfiguration, enabled, ... }:
+{ lib, pkgs, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
 
-homeConfiguration "nixos" {
+(systemConfiguration {
+  programs.dconf = enabled {};
+})
+
+(homeConfiguration "nixos" {
   gtk = enabled {
     cursorTheme = {
       package = pkgs.capitaine-cursors-themed;
@@ -23,5 +27,5 @@ homeConfiguration "nixos" {
       name    = "Gruvbox-Dark-BL";
     };
   };
-}
+})
 
