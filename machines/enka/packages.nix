@@ -35,7 +35,7 @@
   vscode-fhs
 
   graphviz
-  heroic
+  # heroic
   qbittorrent
   thunderbird
 
