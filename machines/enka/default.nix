@@ -23,7 +23,7 @@
   ./openttd
   ./pipewire
   ./python
-   ./steam
+  ./steam
 
   ./fonts.nix
   ./hardware.nix
