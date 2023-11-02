@@ -7,25 +7,34 @@
       flakes
     '';
 
-    extra-substituters        = "https://nix-community.cachix.org";
-    extra-trusted-public-keys = "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=";
+    extra-substituters       = ''
+      https://nix-community.cachix.org/
+      https://hyprland.cachix.org/
+    '';
+
+    extra-trusted-public-keys = ''
+      nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+      hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+    '';
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    fenix = {
+      url                    = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url                    = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    fenix = {
-      url                    = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { nixpkgs, home-manager, fenix, ... }: let
+  outputs = { fenix, home-manager, hyprland, nixpkgs, ... }: let
     machines = [
       ./machines/enka
     ];
@@ -53,6 +62,7 @@
 
           overlays = [
             fenix.overlays.default
+            hyprland.overlays.default
           ];
         };
 
@@ -106,5 +116,5 @@
         }
       ];
     };
-  in builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.map (builtins.map importConfiguration machines) architectures);
+  in builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.concatMap (architecture: builtins.map (configuration: importConfiguration configuration architecture) machines) architectures);
 }
