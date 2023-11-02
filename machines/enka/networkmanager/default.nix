@@ -1,11 +1,6 @@
-{ lib, pkgs, systemConfiguration, systemPackages, enabled, ... }: lib.recursiveUpdate
+{ systemConfiguration, enabled, ... }:
 
-(systemConfiguration {
+systemConfiguration {
   networking.networkmanager = enabled {};
-})
-
-(with pkgs; systemPackages [
-  nmcli
-  nmtui
-])
-
+  systemd.network = enabled {};
+}
