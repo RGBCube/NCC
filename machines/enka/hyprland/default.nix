@@ -74,7 +74,7 @@ homeConfiguration "nixos" {
         col.inactive_border = $inactive_color
         col.nogroup_border  = $inactive_color
 
-        no_focus_fallback = tru#e
+        no_focus_fallback = true
         no_cursor_warps = true
 
         resize_on_border = true
