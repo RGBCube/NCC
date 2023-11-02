@@ -8,7 +8,7 @@
   programs.helix = enabled {
     defaultEditor = true;
 
-    settings.theme = "catppuccin_mocha";
+    settings.theme = "gruvbox_dark_hard";
 
     settings.editor = {
       color-modes         = true;
