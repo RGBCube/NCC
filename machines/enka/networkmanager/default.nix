@@ -2,5 +2,5 @@
 
 systemConfiguration {
   networking.networkmanager = enabled {};
-  systemd.network = enabled {};
+  systemd.network           = enabled {};
 }
