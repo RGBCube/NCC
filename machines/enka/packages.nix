@@ -39,11 +39,9 @@
   qbittorrent
   thunderbird
 
-  grim
   kazam
   krita
   obs-studio
-  slurp
 
   libreoffice
   hunspellDicts.en_US
