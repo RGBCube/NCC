@@ -1,6 +1,6 @@
-{ homeConfiguration, enabled, ... }:
+{ lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
-homeConfiguration "nixos" {
+(homeConfiguration "nixos" {
   wayland.windowManager.hyprland = enabled {
     extraConfig = ''
       monitor = , preferred, auto, 1
@@ -61,12 +61,12 @@ homeConfiguration "nixos" {
       bind =      , Print, exec, grim -g "$(slurp)" - | wl-copy
       bind = SHIFT, Print, exec, kazam
 
+      $active_color   = 0xD79921
+      $inactive_color = 0x928374
+
       general {
         gaps_in  = 5
         gaps_out = 5
-
-        $active_color   = 0xD79921
-        $inactive_color = 0x928374
 
         col.active_border         = $active_color
         col.nogroup_border_active = $active_color
@@ -113,5 +113,12 @@ homeConfiguration "nixos" {
       }
     '';
   };
-}
+})
 
+(with pkgs; homePackages [
+  grim
+  slurp
+
+  wl-copy
+  wl-paste
+])

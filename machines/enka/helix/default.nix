@@ -1,8 +1,4 @@
-{ lib, pkgs, systemPackages, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
-
-(with pkgs; systemPackages [
-  xclip
-])
+{ lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
 (homeConfiguration "nixos" {
   programs.helix = enabled {
