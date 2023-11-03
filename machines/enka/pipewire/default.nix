@@ -6,8 +6,7 @@ systemConfiguration {
 
   services.pipewire = enabled {
     pulse = enabled {};
-
-    alsa = enabled {
+    alsa  = enabled {
       support32Bit = true;
     };
   };
