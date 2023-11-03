@@ -27,8 +27,8 @@ else
   read -p "Clean garbage? [y/N]: " clean_garbage
 fi
 
-nix-shell -p git --command "sudo nixos-rebuild switch --flake .#$machine" || exit 1
+nix-shell --packages git --command "sudo nixos-rebuild switch --flake .#$machine" || exit 1
 
 if [[ $clean_garbage =~ ^[Yy]$ ]]; then
-    sudo nix-collect-garbage -d
+    sudo nix-collect-garbage --delete-old
 fi
