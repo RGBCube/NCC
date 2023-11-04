@@ -62,9 +62,10 @@
 
           overlays = [
             fenix.overlays.default
-            hyprland.overlays.default
           ];
         };
+
+        hyprland = hyprland.packages.${hostPlatform}.hyprland;
 
         # SYSTEM
         systemConfiguration = attributes: attributes;

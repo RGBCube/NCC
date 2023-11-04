@@ -1,7 +1,9 @@
-{ lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
+{ lib, pkgs, hyprland, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
 (homeConfiguration "nixos" {
   wayland.windowManager.hyprland = enabled {
+    package = hyprland;
+
     extraConfig = ''
       monitor = , preferred, auto, 1
 
@@ -115,10 +117,8 @@
   };
 })
 
-(with pkgs; homePackages [
+(with pkgs; homePackages "nixos" [
   grim
   slurp
-
-  wl-copy
-  wl-paste
+  wl-clipboard
 ])
