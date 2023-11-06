@@ -24,6 +24,7 @@
   ./pipewire
   ./python
   ./steam
+  ./steck
 
   ./fonts.nix
   ./hardware.nix

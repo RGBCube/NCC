@@ -2,6 +2,12 @@
 
 (systemConfiguration {
   users.users.nixos.shell = pkgs.nushell;
+
+  environment.shellAliases = {
+    la  = "ls --all";
+    lla = "ls --long --all";
+    sl  = "ls";
+  };
 })
 
 (homeConfiguration "nixos" {
@@ -10,12 +16,6 @@
   programs.nushell = enabled {
     configFile.source = ./configuration.nu;
     envFile.source    = ./environment.nu;
-
-    shellAliases = {
-      la  = "ls --all";
-      lla = "ls --long --all";
-      sl  = "ls";
-    };
   };
 })
 

@@ -10,13 +10,14 @@
 !machines/enka/git/
 !machines/enka/gtk/
 !machines/enka/helix/
+!machines/enka/hyprland/
 !machines/enka/networkmanager/
 !machines/enka/nushell/
 !machines/enka/openttd/
 !machines/enka/pipewire/
 !machines/enka/python/
 !machines/enka/steam/
-!machines/enka/hyprland/
+!machines/enka/steck/
 
 !flake.lock
 !.editorconfig
