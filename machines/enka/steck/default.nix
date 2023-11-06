@@ -1,9 +1,9 @@
-{ lib, pkgs, systemConfiguration, systemPackages, ... }: lib.recursiveUpdate3
-
-(systemConfiguration {
-  environment.shellAliases.share = "steck paste";
-})
+{ lib, pkgs, systemPackages, homeConfiguration, ... }: lib.recursiveUpdate
 
 (with pkgs; systemPackages [
   steck
 ])
+
+(homeConfiguration "nixos" {
+  programs.nushell.shellAliases = "steck paste";
+})
