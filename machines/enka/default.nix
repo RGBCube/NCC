@@ -12,6 +12,7 @@
   ./bat
   ./discord
   ./docker
+  ./dunst
   ./firefox
   ./fuzzel
   ./git
