@@ -12,8 +12,9 @@
     envFile.source    = ./environment.nu;
 
     shellAliases = {
-      la = "ls --all";
-      sl = "ls";
+      la  = "ls --all";
+      lla = "ls --long --all";
+      sl  = "ls";
     };
   };
 })
