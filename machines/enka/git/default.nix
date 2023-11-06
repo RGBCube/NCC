@@ -27,9 +27,9 @@ homeConfiguration "nixos" {
     extraConfig = {
       init.defaultBranch = "master";
 
+      commit.gpgSign  = true;
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id_rsa";
-      commit.gpgSign  = true;
 
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
     };

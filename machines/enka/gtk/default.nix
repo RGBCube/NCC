@@ -7,24 +7,24 @@
 (homeConfiguration "nixos" {
   gtk = enabled {
     cursorTheme = {
-      package = pkgs.capitaine-cursors-themed;
       name    = "Gruvbox";
+      package = pkgs.capitaine-cursors-themed;
     };
 
     font = {
-      package = pkgs.jetbrains-mono;
       name    = "JetBrainsMono";
+      package = pkgs.jetbrains-mono;
       size    = 11;
     };
 
     iconTheme = {
-      package = pkgs.gruvbox-dark-icons-gtk;
       name    = "gruvbox-dark";
+      package = pkgs.gruvbox-dark-icons-gtk;
     };
 
     theme = {
-      package = pkgs.gruvbox-gtk-theme;
       name    = "Gruvbox-Dark-BL";
+      package = pkgs.gruvbox-gtk-theme;
     };
   };
 })

@@ -13,8 +13,8 @@ systemConfiguration {
   ];
 
   boot.loader = {
-    systemd-boot             = enabled {};
     efi.canTouchEfiVariables = true;
+    systemd-boot             = enabled {};
   };
 
   fileSystems."/" = {

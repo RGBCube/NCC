@@ -3,7 +3,7 @@ let theme = {
     leading_trailing_space_bg:  { attr: n }
     header:                     green_bold
     empty:                      blue
-    bool:                       {|| if $in { light_cyan } else { light_red }}
+    bool:                       {|| if $in { "light_cyan" } else { "light_red" }}
     int:                        white
     filesize:                   cyan
     duration:                   white

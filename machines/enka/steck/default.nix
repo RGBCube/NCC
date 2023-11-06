@@ -5,5 +5,5 @@
 ])
 
 (homeConfiguration "nixos" {
-  programs.nushell.shellAliases = "steck paste";
+  programs.nushell.shellAliases.share = "steck paste";
 })

@@ -5,9 +5,9 @@ systemConfiguration {
     description = "NixOS";
 
     extraGroups = [
-      "wheel"
-      "networkmanager"
       "docker"
+      "networkmanager"
+      "wheel"
     ];
   };
 }

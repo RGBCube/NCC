@@ -13,6 +13,7 @@
 
     shellAliases = {
       la  = "ls --all";
+      ll  = "ls --long";
       lla = "ls --long --all";
       sl  = "ls";
     };
