@@ -1,4 +1,4 @@
-{ lib, pkgs, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
+{ lib, pkgs, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
 
 (systemConfiguration {
   users.users.nixos.shell = pkgs.nushell;
@@ -17,3 +17,7 @@
     };
   };
 })
+
+(with pkgs; homePackages "nixos" [
+  carapace
+])
