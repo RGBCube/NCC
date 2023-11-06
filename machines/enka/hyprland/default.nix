@@ -23,8 +23,8 @@
 
       ##################################################
 
-      bind = SUPER, mouse:272, movewindow
-      bind = SUPER, mouse:273, resizewindow
+      bindm = SUPER, mouse:272, movewindow
+      bindm = SUPER, mouse:273, resizewindow
 
       ##################################################
 
