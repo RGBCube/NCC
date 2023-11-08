@@ -10,10 +10,6 @@
     PAGER    = "'bat --plain'";
   };
 
-  programs.nushell.shellAliases = {
-    "'git diff'" = "sh -c 'git diff --name-only --relative --diff-filter=d | xargs bat --diff'";
-  };
-
   programs.bat = enabled {
     config.theme = "gruvbox-dark";
   };
