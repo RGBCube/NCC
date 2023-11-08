@@ -12,8 +12,10 @@ homeConfiguration "nixos" {
     theme     = "Gruvbox Dark";
 
     settings = {
-      focus_follows_mouse = true;
-      mouse_hide_wait     = 0;
+      confirm_os_window_close = 0;
+      focus_follows_mouse     = true;
+      mouse_hide_wait         = 0;
+      window_padding_width    = 10;
 
       scrollback_lines = 100000;
       scrollback_pager = "bat --chop-long-lines";
