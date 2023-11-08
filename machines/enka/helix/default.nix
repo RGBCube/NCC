@@ -12,18 +12,13 @@
       cursorline          = true;
       file-picker.hidden  = false;
       line-number         = "relative";
-      shell               = [ "nu" "-c" ];
+      shell               = [ "nu" "--commands" ];
       text-width          = 100;
     };
 
-    settings.editor.auto-pairs = {
-      "("  = ")";
-      "{"  = "}";
-      "["  = "]";
-      "\"" = "\"";
-      "'"  = "'";
-      "<"  = ">";
-      "`"  = "`";
+    settings.editor.indent-guides = {
+      character = "▏";
+      render = true;
     };
 
     settings.editor.statusline.mode = {
@@ -36,6 +31,8 @@
       render.tab     = "all";
       characters.tab = "→";
     };
+
+    settings.keys.normal.D = "extend_to_line_end";
   };
 })
 
