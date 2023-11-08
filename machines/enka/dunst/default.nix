@@ -18,7 +18,7 @@ homeConfiguration "nixos" {
       background = "#" + theme.background;
       foreground = "#" + theme.foreground;
 
-      alignment = "left";
+      alignment = "center";
       font      = "OpenSans 12";
 
       origin = "top-center";
