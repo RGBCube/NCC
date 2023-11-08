@@ -5,6 +5,8 @@
 })
 
 (homeConfiguration "nixos" {
+  home.file.".config/hypr/volume.sh".source = ./volume.sh;
+
   wayland.windowManager.hyprland = enabled {
     package = hyprland;
 
@@ -67,6 +69,13 @@
       bind =      , PRINT, exec, grim -g "$(slurp)" - | wl-copy
       bind = SHIFT, PRINT, exec, grim - | wl-copy
       bind = CTRL,  PRINT, exec, kazam
+
+      binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
+      binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-; /home/nixos/.config/hypr/volume.sh
+
+
+      binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
+      binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
 
       decoration {
         drop_shadow = false
@@ -133,6 +142,7 @@
 })
 
 (with pkgs; homePackages "nixos" [
+  brightnessctl
   grim
   slurp
   wl-clipboard
