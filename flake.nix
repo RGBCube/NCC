@@ -104,12 +104,15 @@
         home-manager.nixosModules.home-manager
 
         {
+          nix.gc.automatic                   = true;
           nix.settings.experimental-features = [
             "nix-command"
             "flakes"
           ];
 
-          networking.hostName = hostName;
+          boot.tmp.cleanOnBoot = true;
+
+          networking.hostName  = hostName;
           nixpkgs.hostPlatform = hostPlatform;
 
           home-manager.useGlobalPkgs   = true;
