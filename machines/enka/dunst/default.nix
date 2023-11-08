@@ -20,6 +20,9 @@ homeConfiguration "nixos" {
 
       alignment = "left";
       font      = "OpenSans 12";
+
+      origin = "top-center";
+      offset = "0x20";
     };
 
     settings.urgency_low = {

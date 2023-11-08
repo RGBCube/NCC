@@ -9,5 +9,5 @@
 
   low    = "94A6FF";
   medium = "FAA41A";
-  high   = "F15D22";
+  high   = "AC1800";
 }
