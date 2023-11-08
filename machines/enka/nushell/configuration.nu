@@ -529,7 +529,7 @@ $env.config = {
             name:     move_left
             modifier: none
             keycode:  backspace
-            mode:     v i_norma l
+            mode:     vi_normal
             event:    { edit: moveleft }
         }
         {
