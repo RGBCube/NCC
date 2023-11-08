@@ -1,4 +1,8 @@
-{ lib, pkgs, hyprland, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
+{ lib, pkgs, hyprland, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
+
+(systemConfiguration {
+  hardware.opengl = enabled {};
+})
 
 (homeConfiguration "nixos" {
   wayland.windowManager.hyprland = enabled {
@@ -55,7 +59,7 @@
       bind = SUPER,       F, fullscreen
       bind = SUPER+SHIFT, F, togglefloating
 
-      bind = SUPER,  , exec, fuzzel
+      bind = SUPER, C, exec, fuzzel
       bind = SUPER, T, exec, kitty
       bind = SUPER, W, exec, firefox
       bind = SUPER, D, exec, discord
@@ -110,8 +114,6 @@
 
         animate_manual_resizes       = true
         animate_mouse_windowdragging = true
-
-        disable_autoreload = true
       }
     '';
   };
