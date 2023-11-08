@@ -65,7 +65,8 @@
       bind = SUPER, D,     exec, discord
 
       bind =      , PRINT, exec, grim -g "$(slurp)" - | wl-copy
-      bind = SUPER, PRINT, exec, kazam
+      bind = SHIFT, PRINT, exec, grim - | wl-copy
+      bind = CTRL,  PRINT, exec, kazam
 
       decoration {
         drop_shadow = false
