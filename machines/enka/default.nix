@@ -19,6 +19,7 @@
   ./gtk
   ./helix
   ./hyprland
+  ./kitty
   ./networkmanager
   ./nushell
   ./openttd

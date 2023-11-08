@@ -64,7 +64,7 @@
       bind = SUPER, W, exec, firefox
       bind = SUPER, D, exec, discord
 
-      bind =      , Print, exec, grim -g "$(slurp)" - | wl-copy
+      bind =      , Print, exec, sh -c 'grim -g "$(slurp)" - | wl-copy'
       bind = SHIFT, Print, exec, kazam
 
       $active_color   = 0xD79921
@@ -72,7 +72,7 @@
 
       general {
         gaps_in  = 5
-        gaps_out = 5
+        gaps_out = 10
 
         col.active_border         = $active_color
         col.nogroup_border_active = $active_color

@@ -4,7 +4,7 @@ homeConfiguration "nixos" {
   programs.fuzzel = enabled {
     settings.main = {
       font   = "JetBrainsMono:size=12";
-      prompt = "❯ ";
+      prompt = ''"❯ "'';
 
       terminal = "kitty";
 
@@ -12,16 +12,21 @@ homeConfiguration "nixos" {
 
       horizontal-pad = 10;
       vertical-pad   = 10;
-      inner-pad      = 5;
-
-      background-color = "1D2021";
-      text             = "DDC7A1";
-      match            = "D79921";
-      selection        = "DDC7A1";
-      selection-text   = "1D2021";
-      border           = "D79921";
+      inner-pad      = 10;
     };
 
-    settings.border.radius = 0;
+    settings.colors = {
+      background     = "1D2021FF";
+      text           = "DDC7A1FF";
+      match          = "D79921FF";
+      selection      = "DDC7A1FF";
+      selection-text = "1D2021FF";
+      border         = "D79921FF";
+    };
+
+    settings.border = {
+      radius = 0;
+      width = 3;
+    };
   };
 }
