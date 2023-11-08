@@ -152,7 +152,7 @@ $env.config = {
                             $choice
                         }
                     }
-                } else if ($completions | where value =~ '^.*ERR$' | is-empty) {
+                } else if ($completions | where value =~ "^.*ERR$" | is-empty) {
                     $completions
                 } else {
                     null
