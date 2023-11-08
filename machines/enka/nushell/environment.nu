@@ -9,3 +9,7 @@ $env.ENV_CONVERSIONS = {
         to_string: { |v| $v | path expand --no-symlink | str join (char esep) }
     }
 }
+
+if (tty) == /dev/tty1 {
+    Hyprland
+}
