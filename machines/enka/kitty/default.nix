@@ -46,21 +46,21 @@ homeConfiguration "nixos" {
       inactive_tab_background = "#" + theme.backgroundLight;
       inactive_tab_foreground = "#" + theme.foreground;
 
-      color0  = "665C54";
-      color2  = "98971A";
-      color3  = "D79921";
-      color4  = "458588";
-      color5  = "B16286";
-      color6  = "689D6A";
-      color7  = "A89984";
-      color8  = "7C6F64";
-      color9  = "FB4934";
-      color10 = "B8BB26";
-      color11 = "FABD2F";
-      color12 = "83A598";
-      color13 = "D3869B";
-      color14 = "8EC07C";
-      color15 = "BDAE93";
+      color0  = "#665C54";
+      color2  = "#98971A";
+      color3  = "#D79921";
+      color4  = "#458588";
+      color5  = "#B16286";
+      color6  = "#689D6A";
+      color7  = "#A89984";
+      color8  = "#7C6F64";
+      color9  = "#FB4934";
+      color10 = "#B8BB26";
+      color11 = "#FABD2F";
+      color12 = "#83A598";
+      color13 = "#D3869B";
+      color14 = "#8EC07C";
+      color15 = "#BDAE93";
     };
   };
 }
