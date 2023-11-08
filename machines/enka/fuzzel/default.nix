@@ -3,7 +3,7 @@
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
     settings.main = {
-      font   = "JetBrainsMono:size=12";
+      font   = "OpenSans:size=12";
       prompt = ''"❯ "'';
 
       terminal = "kitty";

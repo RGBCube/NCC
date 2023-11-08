@@ -16,4 +16,5 @@
       "JetBrainsMono"
     ];
   })
+  open-sans
 ])

@@ -3,7 +3,7 @@
 homeConfiguration "nixos" {
   services.dunst = enabled {
     iconTheme = {
-      name    = "gruvbox-dark";
+      name    = "Gruvbox-Dark";
       package = pkgs.gruvbox-dark-icons-gtk;
     };
 
@@ -19,7 +19,7 @@ homeConfiguration "nixos" {
       foreground = "#" + theme.foreground;
 
       alignment = "left";
-      font      = "JetBrainsMono 12";
+      font      = "OpenSans 12";
     };
 
     settings.urgency_low = {

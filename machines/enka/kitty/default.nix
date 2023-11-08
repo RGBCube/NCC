@@ -1,8 +1,13 @@
-{ homeConfiguration, enabled, ... }:
+{ pkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.kitty = enabled {
-    font.name = "JetBrainsMono Nerd Font";
+    font.name    = "JetBrainsMono Nerd Font";
+    font.package = (pkgs.nerdfonts.override {
+      fonts = [
+        "JetBrainsMono"
+      ];
+    });
     font.size = 12;
     theme     = "Gruvbox Dark";
 
