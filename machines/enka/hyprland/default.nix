@@ -67,6 +67,15 @@
       bind =      , Print, exec, grim -g "$(slurp)" - | wl-copy
       bind = SHIFT, Print, exec, kazam
 
+      decoration {
+        drop_shadow = false
+        rounding    = 0
+
+        blur {
+          enabled = false
+        }
+      }
+
       general {
         gaps_in     = 5
         gaps_out    = 10
@@ -78,42 +87,47 @@
         col.inactive_border = 0x${theme.transparency}${theme.inactiveHighlight}
         col.nogroup_border  = 0x${theme.transparency}${theme.inactiveHighlight}
 
-        no_focus_fallback = true
         no_cursor_warps = true
 
         resize_on_border = true
       }
 
-      decoration {
-        drop_shadow = false
-        rounding    = 0
-
-        blur {
-          enabled = false
-        }
-      }
-
       input {
+        # The window under the mouse will always be in focus.
+        follow_mouse = 1
+
         kb_layout = tr
 
         repeat_delay = 400
         repeat_rate  = 60
 
-        # The window under the mouse will always be in focus.
-        follow_mouse = 1
+        touchpad {
+          drag_lock = true
+
+          natural_scroll = true
+          scroll_factor  = 0.7
+        }
       }
 
       misc {
+        animate_manual_resizes       = true
+        animate_mouse_windowdragging = true
+
         disable_hyprland_logo    = true
         disable_splash_rendering = true
 
         key_press_enables_dpms  = true
         mouse_move_enables_dpms = true
-
-        animate_manual_resizes       = true
-        animate_mouse_windowdragging = true
       }
     '';
+  };
+
+  programs.wpaperd = enabled {
+    settings.default = {
+      duration = "10m";
+      path     = "/home/nixos/Pictures/Wallpapers";
+      sorting  = "ascending";
+    };
   };
 })
 
