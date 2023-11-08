@@ -1,4 +1,4 @@
-{ pkgs, homeConfiguration, enabled, ... }:
+{ pkgs, theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   services.dunst = enabled {
@@ -11,29 +11,29 @@ homeConfiguration "nixos" {
       horizontal_padding = 10;
       padding            = 10;
 
-      frame_color     = "#D79921";
-      frame_width     = 1;
+      frame_color     = "#" + theme.activeHighlight;
+      frame_width     = 2;
       seperator_color = "frame";
 
-      background = "#1D2021";
-      foreground = "#DDC7A1";
+      background = "#" + theme.background;
+      foreground = "#" + theme.foreground;
 
       alignment = "left";
       font      = "JetBrainsMono 12";
     };
 
     settings.urgency_low = {
-      frame_color = "#94A6FF";
+      frame_color = "#" + theme.low;
       timeout     = 5;
     };
 
     settings.urgency_normal = {
-      frame_color = "#FAA41A";
+      frame_color = "#" + theme.medium;
       timeout     = 10;
     };
 
     settings.urgency_critical = {
-      frame_color = "#F15D22";
+      frame_color = "#" + theme.high;
       timeout     = 15;
     };
   };

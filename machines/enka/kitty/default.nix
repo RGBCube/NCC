@@ -1,4 +1,4 @@
-{ pkgs, homeConfiguration, enabled, ... }:
+{ homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.kitty = enabled {
@@ -9,6 +9,6 @@ homeConfiguration "nixos" {
     settings = {
       scrollback_lines = 100000;
       mouse_hide_wait  = 0;
-    }
+    };
   };
 }

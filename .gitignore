@@ -21,6 +21,8 @@
 !machines/enka/steam/
 !machines/enka/steck/
 
+!themes/
+
 !flake.lock
 !.editorconfig
 !.gitignore

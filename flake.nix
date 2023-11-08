@@ -67,6 +67,8 @@
 
         hyprland = hyprland.packages.${hostPlatform}.hyprland;
 
+        theme = import ./themes/gruvbox.nix;
+
         # SYSTEM
         systemConfiguration = attributes: attributes;
 

@@ -1,4 +1,4 @@
-{ lib, pkgs, hyprland, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
+{ lib, pkgs, hyprland, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
 
 (systemConfiguration {
   hardware.opengl = enabled {};
@@ -35,15 +35,15 @@
       bind   = SUPER, A, submap, fastedit
       submap =                   fastedit
 
-      bind = , left,  movefocus, l
-      bind = , right, movefocus, t
-      bind = , up,    movefocus, u
-      bind = , down,  movefocus, d
+      binde = , left,  movefocus, l
+      binde = , right, movefocus, t
+      binde = , up,    movefocus, u
+      binde = , down,  movefocus, d
 
-      bind = CTRL, right, resizeactive, 10 0
-      bind = CTRL, left,  resizeactive, -10 0
-      bind = CTRL, up,    resizeactive, 0 -10
-      bind = CTRL, down,  resizeactive, 0 10
+      binde = CTRL, right, resizeactive, 10 0
+      binde = CTRL, left,  resizeactive, -10 0
+      binde = CTRL, up,    resizeactive, 0 -10
+      binde = CTRL, down,  resizeactive, 0 10
 
       bind = SHIFT, left,  movewindow, l
       bind = SHIFT, right, movewindow, r
@@ -64,21 +64,19 @@
       bind = SUPER, W, exec, firefox
       bind = SUPER, D, exec, discord
 
-      bind =      , Print, exec, sh -c 'grim -g "$(slurp)" - | wl-copy'
+      bind =      , Print, exec, grim -g "$(slurp)" - | wl-copy
       bind = SHIFT, Print, exec, kazam
 
-      $active_color   = 0xD79921
-      $inactive_color = 0x928374
-
       general {
-        gaps_in  = 5
-        gaps_out = 10
+        gaps_in     = 5
+        gaps_out    = 10
+        border_size = 2
 
-        col.active_border         = $active_color
-        col.nogroup_border_active = $active_color
+        col.active_border         = 0x${theme.transparency}${theme.activeHighlight}
+        col.nogroup_border_active = 0x${theme.transparency}${theme.activeHighlight}
 
-        col.inactive_border = $inactive_color
-        col.nogroup_border  = $inactive_color
+        col.inactive_border = 0x${theme.transparency}${theme.inactiveHighlight}
+        col.nogroup_border  = 0x${theme.transparency}${theme.inactiveHighlight}
 
         no_focus_fallback = true
         no_cursor_warps = true

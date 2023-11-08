@@ -1,4 +1,4 @@
-{ homeConfiguration, enabled, ... }:
+{ theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
@@ -16,17 +16,17 @@ homeConfiguration "nixos" {
     };
 
     settings.colors = {
-      background     = "1D2021FF";
-      text           = "DDC7A1FF";
-      match          = "D79921FF";
-      selection      = "DDC7A1FF";
-      selection-text = "1D2021FF";
-      border         = "D79921FF";
+      background     = theme.background      + theme.transparency;
+      text           = theme.foreground      + theme.transparency;
+      match          = theme.activeHighlight + theme.transparency;
+      selection      = theme.text            + theme.transparency;
+      selection-text = theme.background      + theme.transparency;
+      border         = theme.activeHighlight + theme.transparency;
     };
 
     settings.border = {
       radius = 0;
-      width = 3;
+      width = 2;
     };
   };
 }
