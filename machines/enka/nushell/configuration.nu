@@ -188,56 +188,56 @@ $env.config = {
         pre_prompt:        []
         pre_execution:     []
         env_change:        {}
-        display_output:    "if (term size).columns >= 100 { table -e } else { table }"
+        display_output:    "if (term size).columns >= 100 { table --expand } else { table }"
         command_not_found: {}
     }
 
     menus: [
         {
-            name: completion_menu
+            name:                   completion_menu
             only_buffer_difference: false
-            marker: "| "
+            marker:                 "| "
             type: {
-                layout: columnar
-                columns: 4
-                col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
+                layout:      columnar
+                columns:     4
+                col_width:   20
                 col_padding: 2
             }
             style: {
-                text: green
-                selected_text: green_reverse
+                text:             green
+                selected_text:    green_reverse
                 description_text: yellow
             }
         }
         {
-            name: history_menu
+            name:                   history_menu
             only_buffer_difference: true
-            marker: "? "
+            marker:                 "? "
             type: {
-                layout: list
+                layout:    list
                 page_size: 10
             }
             style: {
-                text: green
-                selected_text: green_reverse
+                text:             green
+                selected_text:    green_reverse
                 description_text: yellow
             }
         }
         {
-            name: help_menu
+            name:                   help_menu
             only_buffer_difference: true
-            marker: "? "
+            marker:                 "? "
             type: {
-                layout: description
-                columns: 4
-                col_width: 20     # Optional value. If missing all the screen width is used to calculate column width
-                col_padding: 2
-                selection_rows: 4
+                layout:           description
+                columns:          4
+                col_width:        20
+                col_padding:      2
+                selection_rows:   4
                 description_rows: 10
             }
             style: {
-                text: green
-                selected_text: green_reverse
+                text:             green
+                selected_text:    green_reverse
                 description_text: yellow
             }
         }
@@ -245,11 +245,11 @@ $env.config = {
 
     keybindings: [
         {
-            name: completion_menu
+            name:     completion_menu
             modifier: none
-            keycode: tab
-            mode: [emacs vi_normal vi_insert]
-            event: {
+            keycode:  tab
+            mode:     [ emacs vi_normal vi_insert ]
+            event:    {
                 until: [
                     { send: menu name: completion_menu }
                     { send: menunext }
@@ -258,39 +258,39 @@ $env.config = {
             }
         }
         {
-            name: history_menu
+            name:     history_menu
             modifier: control
-            keycode: char_r
-            mode: [emacs, vi_insert, vi_normal]
-            event: { send: menu name: history_menu }
+            keycode:  char_r
+            mode:     [ emacs, vi_insert, vi_normal ]
+            event:    { send: menu name: history_menu }
         }
         {
-            name: help_menu
+            name:     help_menu
             modifier: none
-            keycode: f1
-            mode: [emacs, vi_insert, vi_normal]
-            event: { send: menu name: help_menu }
+            keycode:  f1
+            mode:     [ emacs, vi_insert, vi_normal ]
+            event:    { send: menu name: help_menu }
         }
         {
-            name: completion_previous_menu
+            name:     completion_previous_menu
             modifier: shift
-            keycode: backtab
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: menuprevious }
+            keycode:  backtab
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: menuprevious }
         }
         {
-            name: next_page_menu
+            name:     next_page_menu
             modifier: control
-            keycode: char_x
-            mode: emacs
-            event: { send: menupagenext }
+            keycode:  char_x
+            mode:     emacs
+            event:    { send: menupagenext }
         }
         {
-            name: undo_or_previous_page_menu
+            name:     undo_or_previous_page_menu
             modifier: control
-            keycode: char_z
-            mode: emacs
-            event: {
+            keycode:  char_z
+            mode:     emacs
+            event:    {
                 until: [
                     { send: menupageprevious }
                     { edit: undo }
@@ -298,407 +298,407 @@ $env.config = {
             }
         }
         {
-            name: escape
+            name:     escape
             modifier: none
-            keycode: escape
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: esc }    # NOTE: does not appear to work
+            keycode:  escape
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: esc }
         }
         {
-            name: cancel_command
+            name:     cancel_command
             modifier: control
-            keycode: char_c
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: ctrlc }
+            keycode:  char_c
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: ctrlc }
         }
         {
-            name: quit_shell
+            name:     quit_shell
             modifier: control
-            keycode: char_d
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: ctrld }
+            keycode:  char_d
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: ctrld }
         }
         {
-            name: clear_screen
+            name:     clear_screen
             modifier: control
-            keycode: char_l
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: clearscreen }
+            keycode:  char_l
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: clearscreen }
         }
         {
-            name: search_history
+            name:     search_history
             modifier: control
-            keycode: char_q
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: searchhistory }
+            keycode:  char_q
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: searchhistory }
         }
         {
-            name: open_command_editor
+            name:     open_command_editor
             modifier: control
-            keycode: char_o
-            mode: [emacs, vi_normal, vi_insert]
-            event: { send: openeditor }
+            keycode:  char_o
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { send: openeditor }
         }
         {
-            name: move_up
+            name:     move_up
             modifier: none
-            keycode: up
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  up
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: menuup}
-                    {send: up}
+                    { send: menuup }
+                    { send: up }
                 ]
             }
         }
         {
-            name: move_down
+            name:     move_down
             modifier: none
-            keycode: down
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  down
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: menudown}
-                    {send: down}
+                    { send: menudown }
+                    { send: down }
                 ]
             }
         }
         {
-            name: move_left
+            name:     move_left
             modifier: none
-            keycode: left
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  left
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: menuleft}
-                    {send: left}
+                    { send: menuleft }
+                    { send: left }
                 ]
             }
         }
         {
-            name: move_right_or_take_history_hint
+            name:     move_right_or_take_history_hint
             modifier: none
-            keycode: right
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  right
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: historyhintcomplete}
-                    {send: menuright}
-                    {send: right}
+                    { send: historyhintcomplete }
+                    { send: menuright }
+                    { send: right }
                 ]
             }
         }
         {
-            name: move_one_word_left
+            name:     move_one_word_left
             modifier: control
-            keycode: left
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movewordleft}
+            keycode:  left
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { edit: movewordleft }
         }
         {
-            name: move_one_word_right_or_take_history_hint
+            name:     move_one_word_right_or_take_history_hint
             modifier: control
-            keycode: right
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  right
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: historyhintwordcomplete}
-                    {edit: movewordright}
+                    { send: historyhintwordcomplete }
+                    { edit: movewordright }
                 ]
             }
         }
         {
-            name: move_to_line_start
+            name:     move_to_line_start
             modifier: none
-            keycode: home
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolinestart}
+            keycode:  home
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { edit: movetolinestart }
         }
         {
-            name: move_to_line_start
+            name:     move_to_line_start
             modifier: control
-            keycode: char_a
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolinestart}
+            keycode:  char_a
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { edit: movetolinestart }
         }
         {
-            name: move_to_line_end_or_take_history_hint
+            name:     move_to_line_end_or_take_history_hint
             modifier: none
-            keycode: end
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  end
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: historyhintcomplete}
-                    {edit: movetolineend}
+                    { send: historyhintcomplete }
+                    { edit: movetolineend }
                 ]
             }
         }
         {
-            name: move_to_line_end_or_take_history_hint
+            name:     move_to_line_end_or_take_history_hint
             modifier: control
-            keycode: char_e
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  char_e
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: historyhintcomplete}
-                    {edit: movetolineend}
+                    { send: historyhintcomplete }
+                    { edit: movetolineend }
                 ]
             }
         }
         {
-            name: move_to_line_start
+            name:     move_to_line_start
             modifier: control
-            keycode: home
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolinestart}
+            keycode:  home
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { edit: movetolinestart }
         }
         {
-            name: move_to_line_end
+            name:     move_to_line_end
             modifier: control
-            keycode: end
-            mode: [emacs, vi_normal, vi_insert]
-            event: {edit: movetolineend}
+            keycode:  end
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    { edit: movetolineend }
         }
         {
-            name: move_up
+            name:     move_up
             modifier: control
-            keycode: char_p
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  char_p
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: menuup}
-                    {send: up}
+                    { send: menuup }
+                    { send: up }
                 ]
             }
         }
         {
-            name: move_down
+            name:     move_down
             modifier: control
-            keycode: char_t
-            mode: [emacs, vi_normal, vi_insert]
-            event: {
+            keycode:  char_t
+            mode:     [ emacs, vi_normal, vi_insert ]
+            event:    {
                 until: [
-                    {send: menudown}
-                    {send: down}
+                    { send: menudown }
+                    { send: down }
                 ]
             }
         }
         {
-            name: delete_one_character_backward
+            name:     delete_one_character_backward
             modifier: none
-            keycode: backspace
-            mode: [emacs, vi_insert]
-            event: {edit: backspace}
+            keycode:  backspace
+            mode:     [ emacs, vi_insert ]
+            event:    { edit: backspace }
         }
         {
-            name: delete_one_word_backward
+            name:     delete_one_word_backward
             modifier: control
-            keycode: backspace
-            mode: [emacs, vi_insert]
-            event: {edit: backspaceword}
+            keycode:  backspace
+            mode:     [ emacs, vi_insert ]
+            event:    { edit: backspaceword }
         }
         {
-            name: delete_one_character_forward
+            name:     delete_one_character_forward
             modifier: none
-            keycode: delete
-            mode: [emacs, vi_insert]
-            event: {edit: delete}
+            keycode:  delete
+            mode:     [ emacs, vi_insert ]
+            event:    { edit: delete }
         }
         {
-            name: delete_one_character_forward
+            name:     delete_one_character_forward
             modifier: control
-            keycode: delete
-            mode: [emacs, vi_insert]
-            event: {edit: delete}
+            keycode:  delete
+            mode:     [ emacs, vi_insert ]
+            event:    { edit: delete }
         }
         {
-            name: delete_one_character_forward
+            name:     delete_one_character_forward
             modifier: control
-            keycode: char_h
-            mode: [emacs, vi_insert]
-            event: {edit: backspace}
+            keycode:  char_h
+            mode:     [ emacs, vi_insert ]
+            event:    { edit: backspace }
         }
         {
-            name: delete_one_word_backward
+            name:     delete_one_word_backward
             modifier: control
-            keycode: char_w
-            mode: [emacs, vi_insert]
-            event: {edit: backspaceword}
+            keycode:  char_w
+            mode:     [ emacs, vi_insert ]
+            event:    { edit: backspaceword }
         }
         {
-            name: move_left
+            name:     move_left
             modifier: none
-            keycode: backspace
-            mode: vi_normal
-            event: {edit: moveleft}
+            keycode:  backspace
+            mode:     v i_norma l
+            event:    { edit: moveleft }
         }
         {
-            name: newline_or_run_command
+            name:     newline_or_run_command
             modifier: none
-            keycode: enter
-            mode: emacs
-            event: {send: enter}
+            keycode:  enter
+            mode:     emacs
+            event:    { send: enter }
         }
         {
-            name: move_left
+            name:     move_left
             modifier: control
-            keycode: char_b
-            mode: emacs
-            event: {
+            keycode:  char_b
+            mode:     emacs
+            event:    {
                 until: [
-                    {send: menuleft}
-                    {send: left}
+                    { send: menuleft }
+                    { send: left }
                 ]
             }
         }
         {
-            name: move_right_or_take_history_hint
+            name:     move_right_or_take_history_hint
             modifier: control
-            keycode: char_f
-            mode: emacs
-            event: {
+            keycode:  char_f
+            mode:     emacs
+            event:    {
                 until: [
-                    {send: historyhintcomplete}
-                    {send: menuright}
-                    {send: right}
+                    { send: historyhintcomplete }
+                    { send: menuright }
+                    { send: right }
                 ]
             }
         }
         {
-            name: redo_change
+            name:     redo_change
             modifier: control
-            keycode: char_g
-            mode: emacs
-            event: {edit: redo}
+            keycode:  char_g
+            mode:     emacs
+            event:    { edit: redo }
         }
         {
-            name: undo_change
+            name:     undo_change
             modifier: control
-            keycode: char_z
-            mode: emacs
-            event: {edit: undo}
+            keycode:  char_z
+            mode:     emacs
+            event:    { edit: undo }
         }
         {
-            name: paste_before
+            name:     paste_before
             modifier: control
-            keycode: char_y
-            mode: emacs
-            event: {edit: pastecutbufferbefore}
+            keycode:  char_y
+            mode:     emacs
+            event:    { edit: pastecutbufferbefore }
         }
         {
-            name: cut_word_left
+            name:     cut_word_left
             modifier: control
-            keycode: char_w
-            mode: emacs
-            event: {edit: cutwordleft}
+            keycode:  char_w
+            mode:     emacs
+            event:    { edit: cutwordleft }
         }
         {
-            name: cut_line_to_end
+            name:     cut_line_to_end
             modifier: control
-            keycode: char_k
-            mode: emacs
-            event: {edit: cuttoend}
+            keycode:  char_k
+            mode:     emacs
+            event:    { edit: cuttoend }
         }
         {
-            name: cut_line_from_start
+            name:     cut_line_from_start
             modifier: control
-            keycode: char_u
-            mode: emacs
-            event: {edit: cutfromstart}
+            keycode:  char_u
+            mode:     emacs
+            event:    { edit: cutfromstart }
         }
         {
-            name: swap_graphemes
+            name:     swap_graphemes
             modifier: control
-            keycode: char_t
-            mode: emacs
-            event: {edit: swapgraphemes}
+            keycode:  char_t
+            mode:     emacs
+            event:    { edit: swapgraphemes }
         }
         {
-            name: move_one_word_left
+            name:     move_one_word_left
             modifier: alt
-            keycode: left
-            mode: emacs
-            event: {edit: movewordleft}
+            keycode:  left
+            mode:     emacs
+            event:    { edit: movewordleft }
         }
         {
-            name: move_one_word_right_or_take_history_hint
+            name:     move_one_word_right_or_take_history_hint
             modifier: alt
-            keycode: right
-            mode: emacs
-            event: {
+            keycode:  right
+            mode:     emacs
+            event:    {
                 until: [
-                    {send: historyhintwordcomplete}
-                    {edit: movewordright}
+                    { send: historyhintwordcomplete }
+                    { edit: movewordright }
                 ]
             }
         }
         {
-            name: move_one_word_left
+            name:     move_one_word_left
             modifier: alt
-            keycode: char_b
-            mode: emacs
-            event: {edit: movewordleft}
+            keycode:  char_b
+            mode:     emacs
+            event:    { edit: movewordleft }
         }
         {
-            name: move_one_word_right_or_take_history_hint
+            name:     move_one_word_right_or_take_history_hint
             modifier: alt
-            keycode: char_f
-            mode: emacs
-            event: {
+            keycode:  char_f
+            mode:     emacs
+            event:    {
                 until: [
-                    {send: historyhintwordcomplete}
-                    {edit: movewordright}
+                    { send: historyhintwordcomplete }
+                    { edit: movewordright }
                 ]
             }
         }
         {
-            name: delete_one_word_forward
+            name:     delete_one_word_forward
             modifier: alt
-            keycode: delete
-            mode: emacs
-            event: {edit: deleteword}
+            keycode:  delete
+            mode:     emacs
+            event:    { edit: deleteword }
         }
         {
-            name: delete_one_word_backward
+            name:     delete_one_word_backward
             modifier: alt
-            keycode: backspace
-            mode: emacs
-            event: {edit: backspaceword}
+            keycode:  backspace
+            mode:     emacs
+            event:    { edit: backspaceword }
         }
         {
-            name: delete_one_word_backward
+            name:     delete_one_word_backward
             modifier: alt
-            keycode: char_m
-            mode: emacs
-            event: {edit: backspaceword}
+            keycode:  char_m
+            mode:     emacs
+            event:    { edit: backspaceword }
         }
         {
-            name: cut_word_to_right
+            name:     cut_word_to_right
             modifier: alt
-            keycode: char_d
-            mode: emacs
-            event: {edit: cutwordright}
+            keycode:  char_d
+            mode:     emacs
+            event:    { edit: cutwordright }
         }
         {
-            name: upper_case_word
+            name:     upper_case_word
             modifier: alt
-            keycode: char_u
-            mode: emacs
-            event: {edit: uppercaseword}
+            keycode:  char_u
+            mode:     emacs
+            event:    { edit: uppercaseword }
         }
         {
-            name: lower_case_word
+            name:     lower_case_word
             modifier: alt
-            keycode: char_l
-            mode: emacs
-            event: {edit: lowercaseword}
+            keycode:  char_l
+            mode:     emacs
+            event:    { edit: lowercaseword }
         }
         {
-            name: capitalize_char
+            name:     capitalize_char
             modifier: alt
-            keycode: char_c
-            mode: emacs
-            event: {edit: capitalizechar}
+            keycode:  char_c
+            mode:     emacs
+            event:    { edit: capitalizechar }
         }
     ]
 }
