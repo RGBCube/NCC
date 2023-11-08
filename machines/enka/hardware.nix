@@ -1,6 +1,7 @@
 { systemConfiguration, enabled, ... }:
 
 systemConfiguration {
+  hardware.enableAllFirmware      = true;
   powerManagement.cpuFreqGovernor = "performance";
 
   boot.initrd.availableKernelModules = [
