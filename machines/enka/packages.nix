@@ -6,6 +6,7 @@
   htop
   jq
   neofetch
+  pciutils
   ripgrep
   thefuck
   tree
