@@ -60,9 +60,9 @@
       bind = SUPER+SHIFT, F, togglefloating
 
       bind = SUPER, SPACE, exec, fuzzel
-      bind = SUPER, ENTER, exec, kitty
-      bind = SUPER, W, exec, firefox
-      bind = SUPER, D, exec, discord
+      bind = SUPER+ENTER,, exec, kitty
+      bind = SUPER, W,     exec, firefox
+      bind = SUPER, D,     exec, discord
 
       bind =      , Print, exec, grim -g "$(slurp)" - | wl-copy
       bind = SUPER, Print, exec, kazam
