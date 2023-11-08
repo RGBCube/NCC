@@ -135,13 +135,9 @@ $env.config = {
                     let path = $tokens | last
                     ls $"($path)*" | each {|it|
                         let choice = if ($path | str ends-with "/") {
-                            $path | path join ($it.name | path dbasen
-                            
-                heavyame)
+                            $path | path join ($it.name | path basename)
                         } else {
-                            $path | path dirname | path join ($it.name | path dbasen
-                            
-                heavyame)
+                            $path | path dirname | path join ($it.name | path basename)
                         }
                         
                         let choice = if ($it.type == "dir") and (not ($choice | str ends-with "/")) {
@@ -172,7 +168,7 @@ $env.config = {
 
     cursor_shape: {
         emacs:     line
-        vi_insert: blink_underscore
+        vi_insert: line
         vi_normal: block
     }
 
