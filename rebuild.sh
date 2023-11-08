@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [[ $1 == "-h" || $1 == "--help" ]]; then
-    echo "Usage: $0 [-h | --help] [machine]"
+    echo "Usage: $0 [-h | --help] [machine-name]"
     exit
 fi
 

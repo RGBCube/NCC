@@ -16,7 +16,7 @@ git clone https://github.com/RGBCube/NixOSConfiguration
 cd NixOSConfiguration
 
 chmod +x rebuild.sh
-./rebuild.sh --clean-garbage <machine-name>
+./rebuild.sh <machine-name>
 ```
 
 `machine-name` is a machine selected from the machines in the `machines` directory.
@@ -41,7 +41,7 @@ You can also check how the script is used:
 This outputs:
 
 ```
-Usage: ./rebuild.sh [-h | --help] [-c | --clean-garbage] [machine]
+Usage: ./rebuild.sh [-h | --help] [machine-name]
 ```
 
 ## License
