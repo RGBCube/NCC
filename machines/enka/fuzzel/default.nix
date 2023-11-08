@@ -19,7 +19,7 @@ homeConfiguration "nixos" {
       background     = theme.background      + theme.transparency;
       text           = theme.foreground      + theme.transparency;
       match          = theme.activeHighlight + theme.transparency;
-      selection      = theme.text            + theme.transparency;
+      selection      = theme.foreground      + theme.transparency;
       selection-text = theme.background      + theme.transparency;
       border         = theme.activeHighlight + theme.transparency;
     };
