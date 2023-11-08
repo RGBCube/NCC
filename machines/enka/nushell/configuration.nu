@@ -70,7 +70,7 @@ $env.config = {
     }
 
     table: {
-        mode:       basic
+        mode:       heavy
         index_mode: always
         show_empty: true
         padding:    { left: 1, right: 1 }
@@ -135,9 +135,13 @@ $env.config = {
                     let path = $tokens | last
                     ls $"($path)*" | each {|it|
                         let choice = if ($path | str ends-with "/") {
-                            $path | path join ($it.name | path basename)
+                            $path | path join ($it.name | path dbasen
+                            
+                heavyame)
                         } else {
-                            $path | path dirname | path join ($it.name | path basename)
+                            $path | path dirname | path join ($it.name | path dbasen
+                            
+                heavyame)
                         }
                         
                         let choice = if ($it.type == "dir") and (not ($choice | str ends-with "/")) {
