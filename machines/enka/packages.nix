@@ -2,13 +2,9 @@
 
 (with pkgs; systemPackages [
   fd
-  fzf
   htop
-  jq
   neofetch
-  pciutils
   ripgrep
-  thefuck
   tree
 
   wine
@@ -27,8 +23,6 @@
     "rustc"
     "rustfmt"
   ])
-
-  lightly-qt
 ])
 
 (with pkgs; homePackages "nixos" [
