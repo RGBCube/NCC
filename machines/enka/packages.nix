@@ -27,7 +27,6 @@
 
 (with pkgs; homePackages "nixos" [
   jetbrains.idea-ultimate
-  vscode-fhs
 
   graphviz
   # heroic
