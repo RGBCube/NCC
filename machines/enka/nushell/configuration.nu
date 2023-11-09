@@ -114,7 +114,7 @@ $env.config = {
         case_sensitive: false
         quick:          true
         partial:        true
-        algorithm:      prefix
+        algorithm:      fuzzy
         external: {
             enable:      true
             max_results: 100
