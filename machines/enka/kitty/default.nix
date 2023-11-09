@@ -12,6 +12,7 @@ homeConfiguration "nixos" {
     theme     = "Gruvbox Dark";
 
     settings = {
+      allow_remote_control    = true;
       confirm_os_window_close = 0;
       focus_follows_mouse     = true;
       mouse_hide_wait         = 0;
