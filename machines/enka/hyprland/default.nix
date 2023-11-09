@@ -48,10 +48,10 @@
       binde = , up,    movefocus, u
       binde = , down,  movefocus, d
 
-      binde = CTRL, right, resizeactive,  10   0
-      binde = CTRL, left,  resizeactive, -10   0
-      binde = CTRL, up,    resizeactive,   0 -10
-      binde = CTRL, down,  resizeactive,   0  10
+      binde = CTRL, right, resizeactive, 10 0
+      binde = CTRL, left,  resizeactive, -10 0
+      binde = CTRL, up,    resizeactive, 0 -10
+      binde = CTRL, down,  resizeactive, 0 10
 
       bind = SHIFT, left,  movewindow, l
       bind = SHIFT, right, movewindow, r
