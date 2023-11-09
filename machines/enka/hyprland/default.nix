@@ -29,6 +29,12 @@
       bind = SUPER+SHIFT, 4, movetoworkspacesilent, 4
       bind = SUPER+SHIFT, 5, movetoworkspacesilent, 5
 
+      bind = SUPER+CTRL, 1, movewindow, mon:1
+      bind = SUPER+CTRL, 2, movewindow, mon:2
+      bind = SUPER+CTRL, 3, movewindow, mon:3
+      bind = SUPER+CTRL, 4, movewindow, mon:4
+      bind = SUPER+CTRL, 5, movewindow, mon:5
+
       ##################################################
 
       bindm = SUPER, mouse:272, movewindow

@@ -30,8 +30,7 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
-
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url  = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
   outputs = { fenix, home-manager, hyprland, nixpkgs, ... }: let
