@@ -41,7 +41,8 @@ homeConfiguration "nixos" {
       selection_background = "#" + theme.foreground;
       selection_foreground = "#" + theme.background;
 
-      tab_bar_edge = "top";
+      tab_bar_edge  = "top";
+      tab_bar_style = "slant";
 
       active_tab_background = "#" + theme.background;
       active_tab_foreground = "#" + theme.foreground;
