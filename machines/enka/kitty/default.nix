@@ -42,7 +42,7 @@ homeConfiguration "nixos" {
       selection_foreground = "#" + theme.background;
 
       tab_bar_edge  = "top";
-      tab_bar_style = "slant";
+      tab_bar_style = "powerline";
 
       active_tab_background = "#" + theme.background;
       active_tab_foreground = "#" + theme.foreground;
