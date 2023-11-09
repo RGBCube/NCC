@@ -17,4 +17,5 @@
     ];
   })
   open-sans
+  noto-emoji
 ])
