@@ -32,8 +32,6 @@
       bind = SUPER+CTRL, 1, movewindow, mon:1
       bind = SUPER+CTRL, 2, movewindow, mon:2
       bind = SUPER+CTRL, 3, movewindow, mon:3
-      bind = SUPER+CTRL, 4, movewindow, mon:4
-      bind = SUPER+CTRL, 5, movewindow, mon:5
 
       ##################################################
 
@@ -74,8 +72,8 @@
       bind = SUPER, W,      exec, firefox
       bind = SUPER, D,      exec, discord
 
-      bind =      , PRINT, exec, grim -g "$(slurp -c '#00000000')" - | wl-copy --type image/png
-      bind = SHIFT, PRINT, exec, grim                              - | wl-copy --type image/png
+      bind =      , PRINT, exec, grim -g "$(slurp -c 00000000)" - | wl-copy --type image/png
+      bind = SHIFT, PRINT, exec, grim                           - | wl-copy --type image/png
       bind = CTRL,  PRINT, exec, kazam
 
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
