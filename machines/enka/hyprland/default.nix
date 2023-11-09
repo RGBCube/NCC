@@ -44,10 +44,10 @@
       binde = , up,    movefocus, u
       binde = , down,  movefocus, d
 
-      binde = CTRL, right, resizeactive, 10 0
-      binde = CTRL, left,  resizeactive, -10 0
-      binde = CTRL, up,    resizeactive, 0 -10
-      binde = CTRL, down,  resizeactive, 0 10
+      binde = CTRL, right, resizeactive,  10   0
+      binde = CTRL, left,  resizeactive, -10   0
+      binde = CTRL, up,    resizeactive,   0 -10
+      binde = CTRL, down,  resizeactive,   0  10
 
       bind = SHIFT, left,  movewindow, l
       bind = SHIFT, right, movewindow, r
@@ -63,20 +63,20 @@
       bind = SUPER,       F, fullscreen
       bind = SUPER+SHIFT, F, togglefloating
 
-      bind = SUPER, SPACE, exec, fuzzel
+      bind = SUPER, SPACE,  exec, fuzzel
       bind = SUPER, RETURN, exec, kitty
-      bind = SUPER, W,     exec, firefox
-      bind = SUPER, D,     exec, discord
+      bind = SUPER, W,      exec, firefox
+      bind = SUPER, D,      exec, discord
 
-      bind =      , PRINT, exec, grim -g "$(slurp)" - | wl-copy
-      bind = SHIFT, PRINT, exec, grim - | wl-copy
+      bind =      , PRINT, exec, grim -g "$(slurp)" - | wl-copy --type image/png
+      bind = SHIFT, PRINT, exec, grim               - | wl-copy --type image/png
       bind = CTRL,  PRINT, exec, kazam
 
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
       binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-; /home/nixos/.config/hypr/volume.sh
 
-      binde = , XF86AudioMute,    exec, wpctl set-sink-mute   @DEFAULT_AUDIO_SINK@ toggle; dunstctl close-all; dunstify --timeout 1000 Speaker Mute Toggled
-      binde = , XF86AudioMicMute, exec, wpctl set-source-mute @DEFAULT_AUDIO_SINK@ toggle; dunstctl close-all; dunstify --timeout 1000 Microphone Mute Toggled
+      binde = , XF86AudioMute,    exec, wpctl set-sink-mute   @DEFAULT_AUDIO_SINK@ toggle; dunstctl close-all; dunstify --timeout 1000 Speakers "Mute Status Toggled"
+      binde = , XF86AudioMicMute, exec, wpctl set-source-mute @DEFAULT_AUDIO_SINK@ toggle; dunstctl close-all; dunstify --timeout Microphones "Mute Status Toggled"
 
       binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
       binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
