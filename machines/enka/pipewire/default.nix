@@ -5,9 +5,9 @@ systemConfiguration {
   sound          = enabled {};
 
   services.pipewire = enabled {
-    pulse = enabled {};
     alsa  = enabled {
       support32Bit = true;
     };
+    pulse = enabled {};
   };
 }

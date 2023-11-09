@@ -1,7 +1,7 @@
 { systemConfiguration, ... }:
 
 systemConfiguration {
-  console.keyMap          = "trq";
+  console.keyMap = "trq";
 
   time.timeZone = "Europe/Istanbul";
 

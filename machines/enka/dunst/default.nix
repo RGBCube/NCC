@@ -21,8 +21,8 @@ homeConfiguration "nixos" {
       alignment = "center";
       font      = "OpenSans 12";
 
-      origin = "top-center";
       offset = "0x20";
+      origin = "top-center";
     };
 
     settings.urgency_low = {

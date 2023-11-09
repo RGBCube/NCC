@@ -7,7 +7,6 @@
   };
 
   programs.helix = enabled {
-
     settings.theme = "gruvbox_dark_hard";
 
     settings.editor = {
@@ -26,14 +25,14 @@
     };
 
     settings.editor.statusline.mode = {
-      normal = "NORMAL";
       insert = "INSERT";
+      normal = "NORMAL";
       select = "SELECT";
     };
 
     settings.editor.whitespace = {
-      render.tab     = "all";
       characters.tab = "→";
+      render.tab     = "all";
     };
 
     settings.keys.normal.D = "extend_to_line_end";
