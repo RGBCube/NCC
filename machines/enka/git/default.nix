@@ -26,6 +26,7 @@ homeConfiguration "nixos" {
 
     extraConfig = {
       init.defaultBranch = "master";
+      push.autoSetupRemote = true;
 
       commit.gpgSign  = true;
       gpg.format      = "ssh";
