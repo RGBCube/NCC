@@ -9,6 +9,7 @@
 
   wine
 
+  clang_16
   clang-tools_16
   go
   jdk
