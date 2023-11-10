@@ -23,9 +23,9 @@
 
 !themes/
 
-!flake.lock
 !.editorconfig
 !.gitignore
+!flake.lock
 
 !*.lua
 !*.md
