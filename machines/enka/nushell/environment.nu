@@ -19,7 +19,3 @@ def hx [...arguments] {
 
     kitty @ set-spacing padding=10
 }
-
-if (tty) == /dev/tty1 {
-    Hyprland
-}
