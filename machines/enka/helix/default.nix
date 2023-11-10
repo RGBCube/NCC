@@ -3,7 +3,6 @@
 (homeConfiguration "nixos" {
   programs.nushell = {
     environmentVariables.EDITOR = "hx";
-    shellAliases.hx = "sh -c '_hx() { kitty @ set-spacing padding=0; hx $@; kitty @ set-spacing padding=10; }; _hx'";
   };
 
   programs.helix = enabled {
