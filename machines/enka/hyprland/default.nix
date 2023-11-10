@@ -66,8 +66,8 @@
       bind = SUPER, W,      exec, firefox
       bind = SUPER, D,      exec, discord
 
-      bind =      , PRINT, exec, grim -g "$(slurp -c 00000000)" - | wl-copy --type image/png
-      bind = SHIFT, PRINT, exec, grim                           - | wl-copy --type image/png
+      bind =      , PRINT, exec, grim -g "$(slurp -c 00000000)" - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
+      bind = SHIFT, PRINT, exec, grim                           - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
       bind = CTRL,  PRINT, exec, kazam
 
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
