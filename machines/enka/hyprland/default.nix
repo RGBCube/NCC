@@ -29,37 +29,31 @@
       bind = SUPER+SHIFT, 4, movetoworkspacesilent, 4
       bind = SUPER+SHIFT, 5, movetoworkspacesilent, 5
 
+      ##################################################
+
       bind = SUPER+CTRL, 1, movewindow, mon:1
       bind = SUPER+CTRL, 2, movewindow, mon:2
       bind = SUPER+CTRL, 3, movewindow, mon:3
-
-      ##################################################
 
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
 
       ##################################################
 
-      bind   = SUPER, A, submap, fastedit
-      submap =                   fastedit
+      binde = SUPER, left,  movefocus, l
+      binde = SUPER, right, movefocus, t
+      binde = SUPER, up,    movefocus, u
+      binde = SUPER, down,  movefocus, d
 
-      binde = , left,  movefocus, l
-      binde = , right, movefocus, t
-      binde = , up,    movefocus, u
-      binde = , down,  movefocus, d
+      binde = SUPER+CTRL, right, resizeactive, 10 0
+      binde = SUPER+CTRL, left,  resizeactive, -10 0
+      binde = SUPER+CTRL, up,    resizeactive, 0 -10
+      binde = SUPER+CTRL, down,  resizeactive, 0 10
 
-      binde = CTRL, right, resizeactive, 10 0
-      binde = CTRL, left,  resizeactive, -10 0
-      binde = CTRL, up,    resizeactive, 0 -10
-      binde = CTRL, down,  resizeactive, 0 10
-
-      bind = SHIFT, left,  movewindow, l
-      bind = SHIFT, right, movewindow, r
-      bind = SHIFT, up,    movewindow, u
-      bind = SHIFT, down,  movewindow, d
-
-      bind   = , escape, submap, reset
-      submap =                   reset
+      bind = SUPER+SHIFT, left,  movewindow, l
+      bind = SUPER+SHIFT, right, movewindow, r
+      bind = SUPER+SHIFT, up,    movewindow, u
+      bind = SUPER+SHIFT, down,  movewindow, d
 
       ##################################################
 
