@@ -44,8 +44,8 @@
 
       C-left  = "move_prev_word_start";
       C-right = "move_next_word_end";
-      C-up = "move_visual_line_up";
-      C-down = "move_visual_line_down";
+      C-up    = "move_visual_line_up";
+      C-down  = "move_visual_line_down";
     }; }) [ "insert" "normal" "select" ]))
 
     (builtins.foldl' (x: y: lib.recursiveUpdate x y) {} (builtins.map (mode: {
