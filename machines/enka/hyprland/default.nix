@@ -99,7 +99,8 @@
         col.inactive_border = 0x${theme.transparency}${theme.inactiveHighlight}
         col.nogroup_border  = 0x${theme.transparency}${theme.inactiveHighlight}
 
-        no_cursor_warps = true
+        cursor_inactive_timeout = 10
+        no_cursor_warps         = true
 
         resize_on_border = true
       }
