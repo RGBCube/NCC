@@ -6,8 +6,8 @@
 
 (homeConfiguration "nixos" {
   programs.nushell.environmentVariables = {
-  # MANPAGER = ''"sh -c 'bat --plain --language man'"'';
-  # PAGER    = ''"sh -c 'bat --plain'"'';
+    MANPAGER = "bat --plain --language man";
+    PAGER    = "bat --plain";
   };
 
   programs.bat = enabled {
