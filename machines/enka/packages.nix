@@ -12,6 +12,7 @@
   clang-tools_16
   go
   jdk
+  lld
   maven
   vlang
   zig
