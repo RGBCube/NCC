@@ -34,7 +34,23 @@
       render.tab     = "all";
     };
 
-    settings.keys.normal.D = "extend_to_line_end";
+    settings.keys = lib.recursiveUpdate
+
+    (builtins.foldl' (x: y: lib.recursiveUpdate x y) {} (builtins.map (mode: { ${mode} = {
+      C-h = "move_prev_word_start";
+      C-l = "move_next_word_end";
+      C-k = "move_visual_line_up";
+      C-j = "move_visual_line_down";
+
+      C-left  = "move_prev_word_start";
+      C-right = "move_next_word_end";
+      C-up = "move_visual_line_up";
+      C-down = "move_visual_line_down";
+    }; }) [ "insert" "normal" "select" ]))
+
+    (builtins.foldl' (x: y: lib.recursiveUpdate x y) {} (builtins.map (mode: {
+      ${mode}.D = "extend_to_line_end";
+    }) [ "normal" "select" ]));
   };
 })
 
