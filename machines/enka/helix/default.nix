@@ -9,13 +9,15 @@
     settings.theme = "gruvbox_dark_hard";
 
     settings.editor = {
-      color-modes         = true;
-      cursor-shape.insert = "bar";
-      cursorline          = true;
-      file-picker.hidden  = false;
-      line-number         = "relative";
-      shell               = [ "nu" "--commands" ];
-      text-width          = 100;
+      color-modes            = true;
+      completion-trigger-len = 0;
+      cursor-shape.insert    = "bar";
+      cursorline             = true;
+      idle-timeout           = 0;
+      file-picker.hidden     = false;
+      line-number            = "relative";
+      shell                  = [ "nu" "--commands" ];
+      text-width             = 100;
     };
 
     settings.editor.indent-guides = {
