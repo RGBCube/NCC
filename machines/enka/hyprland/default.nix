@@ -76,8 +76,8 @@
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
       binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-; /home/nixos/.config/hypr/volume.sh
 
-      binde = , XF86AudioMute,    exec, wpctl set-sink-mute   @DEFAULT_AUDIO_SINK@ toggle; dunstctl close-all; dunstify --timeout 1000 Speakers "Mute Status Toggled"
-      binde = , XF86AudioMicMute, exec, wpctl set-source-mute @DEFAULT_AUDIO_SINK@ toggle; dunstctl close-all; dunstify --timeout Microphones "Mute Status Toggled"
+      binde = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle; dunstctl close-all; dunstify --timeout 1000 Speakers "Mute Status Toggled"
+      binde = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; dunstctl close-all; dunstify --timeout 1000 Microphones "Mute Status Toggled"
 
       binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
       binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
