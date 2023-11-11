@@ -6,17 +6,14 @@ This repository contains my NixOS configurations for all my machines.
 
 Here is the script you need to run to get this working:
 
+> [!IMPORTANT]
+> You **WILL NEED** `/etc/nixos/hardware-configuration.nix`, as this configuration
+> imports it, so you will need to run `sudo nixos-generate-config` if you've deleted them.
+
 ```sh
-# Remove old configuration as it is not used.
-sudo rm -rf /etc/nixos
+nix-shell -p git --command "git clone https://github.com/RGBCube/NixOSConfiguration && cd NixOSConfiguration"
 
-nix-shell -p git
-
-git clone https://github.com/RGBCube/NixOSConfiguration
-cd NixOSConfiguration
-
-chmod +x rebuild.sh
-./rebuild.sh <machine-name>
+./rebuild.sh
 ```
 
 `machine-name` is a machine selected from the machines in the `machines` directory.

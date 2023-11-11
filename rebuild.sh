@@ -12,4 +12,4 @@ if [[ $machine == "" ]]; then
   read -p "What machine would you like to build? (Possible options: $available_machines): " machine
 fi
 
-nix-shell --packages git --command "sudo nixos-rebuild switch --flake .#$machine"
+nix-shell --packages git --command "sudo nixos-rebuild switch --impure --flake .#$machine"
