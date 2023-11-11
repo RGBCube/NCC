@@ -25,7 +25,7 @@ homeConfiguration "nixos" {
     userEmail = "RGBCube@users.noreply.github.com";
 
     extraConfig = {
-      init.defaultBranch = "master";
+      init.defaultBranch   = "master";
       push.autoSetupRemote = true;
 
       commit.gpgSign  = true;

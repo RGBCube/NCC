@@ -36,16 +36,12 @@
       bind = SUPER+SHIFT, 4, movetoworkspacesilent, 4
       bind = SUPER+SHIFT, 5, movetoworkspacesilent, 5
 
-      ##################################################
-
       bind = SUPER+CTRL, 1, movewindow, mon:1
       bind = SUPER+CTRL, 2, movewindow, mon:2
       bind = SUPER+CTRL, 3, movewindow, mon:3
 
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
-
-      ##################################################
 
       binde = SUPER, left,  movefocus, l
       binde = SUPER, right, movefocus, t
@@ -61,8 +57,6 @@
       bind = SUPER+SHIFT, right, movewindow, r
       bind = SUPER+SHIFT, up,    movewindow, u
       bind = SUPER+SHIFT, down,  movewindow, d
-
-      ##################################################
 
       bind = SUPER,       Q, killactive
       bind = SUPER,       F, fullscreen

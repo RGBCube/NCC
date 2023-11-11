@@ -5,9 +5,9 @@ if (tty) == /dev/tty1 {
 $env.config = {
     bracketed_paste:                  true
     buffer_editor:                    ""
-    datetime_format: {}
+    datetime_format:                  {}
     edit_mode:                        vi
-    error_style: "fancy"
+    error_style:                      fancy
     float_precision:                  2
     footer_mode:                      25
     render_right_prompt_on_last_line: false
@@ -100,8 +100,8 @@ $env.config.table = {
 }
 
 $env.config.explore = {
-    command_bar_text:      { fg: "#C4C9C6" }
-    highlight:             { fg: black, bg: yellow }
+    command_bar_text: { fg: "#C4C9C6" }
+    highlight:        { fg: black, bg: yellow }
     status: {
         error: { fg: white, bg: red }
         warn:  {}
