@@ -1,9 +1,7 @@
 { lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
 (homeConfiguration "nixos" {
-  programs.nushell = {
-    environmentVariables.EDITOR = "hx";
-  };
+  programs.nushell.environmentVariables.EDITOR = "hx";
 
   programs.helix = enabled {
     settings.theme = "gruvbox_dark_hard";
