@@ -120,7 +120,6 @@
           boot.tmp.cleanOnBoot = true;
 
           networking.hostName  = hostName;
-          nixpkgs.hostPlatform = hostPlatform;
 
           home-manager.useGlobalPkgs   = true;
           home-manager.useUserPackages = true;
