@@ -34,6 +34,7 @@
   ./python
   ./steam
   ./steck
+  ./waybar
 
   ./fonts.nix
   ./localisation.nix
