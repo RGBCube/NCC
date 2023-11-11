@@ -71,7 +71,6 @@
 
       bind =      , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
       bind = SHIFT, PRINT, exec, grim                    - | swappy -f -o - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
-      bind = CTRL,  PRINT, exec, kazam
 
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
       binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-; /home/nixos/.config/hypr/volume.sh

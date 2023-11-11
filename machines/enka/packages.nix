@@ -35,7 +35,6 @@
   qbittorrent
   thunderbird
 
-  kazam
   krita
   obs-studio
 
