@@ -8,6 +8,8 @@ homeConfiguration "nixos" {
     };
 
     settings.global = {
+      width = "(300, 900)";
+
       horizontal_padding = 10;
       padding            = 10;
 
@@ -20,6 +22,8 @@ homeConfiguration "nixos" {
 
       alignment = "center";
       font      = "OpenSans 12";
+
+      min_icon_size = 48;
 
       offset = "0x20";
       origin = "top-center";
