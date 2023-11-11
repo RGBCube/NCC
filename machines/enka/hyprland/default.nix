@@ -15,7 +15,8 @@
 
       exec-once = wpaperd
 
-      bind = SUPER, TAB, workspace, e+1
+      exec-once = wl-paste --type text  --watch cliphist store
+      exec-once = wl-paste --type image --watch cliphist store
 
       bind = SUPER, 1, workspace, 1
       bind = SUPER, 2, workspace, 2
@@ -61,10 +62,12 @@
       bind = SUPER,       F, fullscreen
       bind = SUPER+SHIFT, F, togglefloating
 
-      bind = SUPER, SPACE,  exec, fuzzel
       bind = SUPER, RETURN, exec, kitty
       bind = SUPER, W,      exec, firefox
       bind = SUPER, D,      exec, discord
+
+      bind = SUPER, SPACE,  exec, pkill fuzzel; fuzzel
+      bind = SUPER, V,      exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
       bind =      , PRINT, exec, grim -g "$(slurp -c 00000000)" - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
       bind = SHIFT, PRINT, exec, grim                           - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
@@ -145,6 +148,7 @@
 })
 
 (with pkgs; homePackages "nixos" [
+  cliphist
   brightnessctl
   grim
   slurp
