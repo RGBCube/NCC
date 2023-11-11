@@ -3,10 +3,11 @@
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
     settings.main = {
-      font   = "OpenSans:size=12";
-      prompt = ''"❯ "'';
+      font      = "OpenSans:size=18";
+      dpi-aware = false;
+      prompt    = ''"❯ "'';
 
-      terminal = "kitty";
+      terminal = "kitty --detach --hold";
 
       tabs = 4;
 
