@@ -10,6 +10,7 @@
 
 (imports [
   ./bat
+  ./blueman
   ./discord
   ./docker
   ./dunst

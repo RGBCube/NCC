@@ -3,6 +3,7 @@
 !machines/
 !machines/enka/
 !machines/enka/bat/
+!machines/enka/blueman/
 !machines/enka/discord/
 !machines/enka/docker/
 !machines/enka/dunst/
