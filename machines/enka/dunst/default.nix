@@ -23,7 +23,7 @@ homeConfiguration "nixos" {
       alignment = "center";
       font      = "OpenSans 12";
 
-      min_icon_size = 48;
+      min_icon_size = 64;
 
       offset = "0x20";
       origin = "top-center";
