@@ -151,4 +151,5 @@
   slurp
   swappy
   wl-clipboard
+  xdg-utils
 ])
