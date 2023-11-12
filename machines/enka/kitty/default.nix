@@ -3,12 +3,13 @@
 homeConfiguration "nixos" {
   programs.kitty = enabled {
     font.name    = "JetBrainsMono Nerd Font";
+    font.size    = 12;
     font.package = (pkgs.nerdfonts.override {
       fonts = [
         "JetBrainsMono"
       ];
     });
-    font.size = 12;
+
     theme     = "Gruvbox Dark";
 
     settings = {
