@@ -33,7 +33,7 @@
     nixpkgs.url  = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { fenix, home-manager, hyprland, nixpkgs, ... }: let
+  outputs = { fenix, home-manager, nixpkgs, ... } @ inputs: let
     machines = [
       ./machines/enka
     ];
@@ -42,89 +42,94 @@
       "x86_64-linux"
     ];
 
-    nixosSystem = arguments: modules: nixpkgs.lib.nixosSystem {
-      specialArgs = arguments;
-      modules     = modules;
+    lib = nixpkgs.lib // {
+       recursiveUpdate3 = x: y: z: nixpkgs.lib.recursiveUpdate x (nixpkgs.lib.recursiveUpdate y z);
+    };
+
+    theme = import ./themes/gruvbox.nix;
+
+    # GENERAL
+    imports = importPaths: {
+      imports = importPaths;
+    };
+
+    enabled = attributes: attributes // {
+      enable = true;
+    };
+
+    normalUser = attributes: attributes // {
+      isNormalUser = true;
+    };
+
+    # SYSTEM
+    systemConfiguration = attributes: attributes;
+
+    systemPackages = packages: systemConfiguration {
+      environment.systemPackages = packages;
+    };
+
+    systemFonts = fonts: systemConfiguration {
+      fonts.packages = fonts;
+    };
+
+    # HOME
+    homeConfiguration = userName: attributes: systemConfiguration {
+      home-manager.users.${userName} = attributes;
+    };
+
+    homePackages = userName: packages: homeConfiguration userName {
+      home.packages = packages;
     };
 
     importConfiguration = configurationDirectory: hostPlatform: let
       hostName = builtins.baseNameOf configurationDirectory;
-    in {
-      nixosConfigurations.${hostName} = nixosSystem {
-        lib = nixpkgs.lib // {
-          recursiveUpdate3 = x: y: z: nixpkgs.lib.recursiveUpdate x (nixpkgs.lib.recursiveUpdate y z);
+
+      pkgs = import nixpkgs {
+        system             = hostPlatform;
+        config.allowUnfree = true;
+
+        overlays = [
+          fenix.overlays.default
+        ];
+      };
+
+      hyprland = inputs.hyprland.packages.${hostPlatform}.hyprland;
+
+      arguments = {
+        inherit lib pkgs hyprland theme systemConfiguration systemPackages homeConfiguration systemFonts homePackages imports enabled normalUser;
+      };
+
+      defaultConfiguration = {
+        nix.gc = {
+            automatic  = true;
+            dates      = "daily";
+            options    = "--delete-older-than 1w";
+            persistent = true;
         };
 
-        pkgs = import nixpkgs {
-          system             = hostPlatform;
-          config.allowUnfree = true;
+        nix.settings.experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
 
-          overlays = [
-            fenix.overlays.default
-          ];
-        };
+        boot.tmp.cleanOnBoot = true;
 
-        hyprland = hyprland.packages.${hostPlatform}.hyprland;
+        networking.hostName  = hostName;
 
-        theme = import ./themes/gruvbox.nix;
+        home-manager.useGlobalPkgs   = true;
+        home-manager.useUserPackages = true;
+      };
 
-        # SYSTEM
-        systemConfiguration = attributes: attributes;
-
-        systemPackages = packages: {
-          environment.systemPackages = packages;
-        };
-
-        systemFonts = fonts: {
-          fonts.packages = fonts;
-        };
-
-        # HOME
-        homeConfiguration = userName: attributes: {
-          home-manager.users.${userName} = attributes;
-        };
-
-        homePackages = userName: packages: {
-          home-manager.users.${userName}.home.packages = packages;
-        };
-
-        # GENERAL
-        imports = importPaths: {
-          imports = importPaths;
-        };
-
-        enabled = attributes: attributes // {
-          enable = true;
-        };
-
-        normalUser = attributes: attributes // {
-          isNormalUser = true;
-        };
-      } [
-        configurationDirectory
+      modules = [
         home-manager.nixosModules.home-manager
-
-        {
-          nix.gc = {
-              automatic  = true;
-              dates      = "daily";
-              options    = "--delete-older-than 1w";
-              persistent = true;
-          };
-
-          nix.settings.experimental-features = [
-            "nix-command"
-            "flakes"
-          ];
-
-          boot.tmp.cleanOnBoot = true;
-
-          networking.hostName  = hostName;
-
-          home-manager.useGlobalPkgs   = true;
-          home-manager.useUserPackages = true;
-        }
+        defaultConfiguration
+        configurationDirectory
       ];
+    in {
+      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
+        specialArgs = arguments;
+        modules = modules;
+      };
     };
   in builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.concatMap (architecture: builtins.map (configuration: importConfiguration configuration architecture) machines) architectures);
 }
