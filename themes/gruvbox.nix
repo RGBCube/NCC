@@ -2,7 +2,7 @@
   transparency = "FF"; # OPAQUE
 
   background       = "1D2021";
-  backgroundLight = "282828";
+  backgroundLight  = "282828";
   foreground       = "DDC7A1";
 
   activeHighlight   = "D79921";
