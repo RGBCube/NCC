@@ -30,8 +30,6 @@
 (with pkgs; homePackages "nixos" [
   jetbrains.idea-ultimate
 
-  graphviz
-  # heroic
   qbittorrent
   thunderbird
 
