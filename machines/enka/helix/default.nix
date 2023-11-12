@@ -8,10 +8,12 @@
 
     settings.editor = {
       color-modes            = true;
+      completion-replace     = true;
       completion-trigger-len = 0;
       cursor-shape.insert    = "bar";
       cursorline             = true;
-      idle-timeout           = 0;
+      bufferline             = "multiple";
+      idle-timeout           = 100;
       file-picker.hidden     = false;
       line-number            = "relative";
       shell                  = [ "nu" "--commands" ];
