@@ -152,4 +152,5 @@
   swappy
   wl-clipboard
   xdg-utils
+  xwaylandvideobridge
 ])
