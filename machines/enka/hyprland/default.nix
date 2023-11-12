@@ -11,8 +11,6 @@
 })
 
 (homeConfiguration "nixos" {
-  home.file.".config/hypr/volume.sh".source = ./volume.sh;
-
   wayland.windowManager.hyprland = enabled {
     package = hyprland;
 
@@ -69,17 +67,17 @@
       bind = SUPER, SPACE,  exec, pkill fuzzel; fuzzel
       bind = SUPER, V,      exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
-      bind =      , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
-      bind = SHIFT, PRINT, exec, grim                    - | swappy -f -o - | wl-copy --type image/png; dunstify --timeout 1000 "Screenshot Copied To Clipboard"
+      bind =      , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
+      bind = SHIFT, PRINT, exec, grim                    - | swappy -f -o - | wl-copy --type image/png
 
-      binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+; /home/nixos/.config/hypr/volume.sh
-      binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-; /home/nixos/.config/hypr/volume.sh
+      binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+      binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-
 
-      binde = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle; dunstctl close-all; dunstify --timeout 1000 Speakers "Mute Status Toggled"
-      binde = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle; dunstctl close-all; dunstify --timeout 1000 Microphones "Mute Status Toggled"
+      binde = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle
+      binde = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-      binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
-      binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-; dunstctl close-all; dunstify --timeout 1000 $(brightnessctl -m | cut -d, -f4)
+      binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
+      binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
 
       decoration {
         drop_shadow = false
