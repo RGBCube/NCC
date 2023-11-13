@@ -1,6 +1,6 @@
 { lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
-(homeConfiguration "nixos" {
+(homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables.EDITOR = "hx";
 
   programs.helix = enabled {
@@ -38,7 +38,7 @@
 
     settings.keys = lib.recursiveUpdate
 
-    (builtins.foldl' (x: y: lib.recursiveUpdate x y) {} (builtins.map (mode: { ${mode} = {
+    (builtins.foldl' lib.recursiveUpdate {} (builtins.map (mode: { ${mode} = {
       C-h = "move_prev_word_start";
       C-l = "move_next_word_end";
       C-k = "move_visual_line_up";
@@ -50,7 +50,7 @@
       C-down  = "move_visual_line_down";
     }; }) [ "insert" "normal" "select" ]))
 
-    (builtins.foldl' (x: y: lib.recursiveUpdate x y) {} (builtins.map (mode: {
+    (builtins.foldl' lib.recursiveUpdate {} (builtins.map (mode: {
       ${mode}.D = "extend_to_line_end";
     }) [ "normal" "select" ]));
   };

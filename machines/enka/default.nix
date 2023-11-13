@@ -10,7 +10,7 @@
   system.stateVersion = "23.05";
 })
 
-(homeConfiguration "nixos" {
+(homeConfiguration [ "nixos" "root" ] {
   home.stateVersion = "23.05";
 })
 

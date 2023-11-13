@@ -9,7 +9,7 @@
   poetry
 ])
 
-(homeConfiguration "nixos" {
+(homeConfiguration [ "nixos" "root" ] {
   programs.nushell.shellAliases = {
     venv = "virtualenv venv";
   };

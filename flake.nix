@@ -19,21 +19,22 @@
   };
 
   inputs = {
-    fenix = {
-      url                    = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url                    = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    fenix = {
+      url                    = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url = "github:hyprwm/Hyprland";
-    nixpkgs.url  = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { fenix, home-manager, nixpkgs, ... } @ inputs: let
+  outputs = { nixpkgs, home-manager, fenix, ... } @ inputs: let
     machines = [
       ./machines/enka
     ];
@@ -74,7 +75,9 @@
 
     # HOME
     homeConfiguration = userName: attributes: systemConfiguration {
-      home-manager.users.${userName} = attributes;
+      home-manager.users = builtins.foldl' lib.recursiveUpdate {} (builtins.map (userName: {
+        ${userName} = attributes;
+      }) (if builtins.isList userName then userName else [ userName ]));
     };
 
     homePackages = userName: packages: homeConfiguration userName {

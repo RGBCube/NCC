@@ -1,6 +1,6 @@
 { homeConfiguration, enabled, ... }:
 
-homeConfiguration "nixos" {
+homeConfiguration [ "nixos" "root" ] {
   programs.nushell.shellAliases = {
     g    = "git";
     ga   = "git add";

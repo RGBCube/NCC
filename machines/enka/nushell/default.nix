@@ -4,7 +4,7 @@
   users.users.nixos.shell = pkgs.nushell;
 })
 
-(homeConfiguration "nixos" {
+(homeConfiguration [ "nixos" "root" ] {
   programs.starship = enabled {};
 
   programs.nushell = enabled {

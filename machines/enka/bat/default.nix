@@ -4,7 +4,7 @@
   bat
 ])
 
-(homeConfiguration "nixos" {
+(homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables = {
     MANPAGER = ''"bat --plain --language man"'';
     PAGER    = ''"bat --plain"'';

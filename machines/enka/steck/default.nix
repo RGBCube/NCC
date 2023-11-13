@@ -4,6 +4,6 @@
   steck
 ])
 
-(homeConfiguration "nixos" {
+(homeConfiguration [ "nixos" "root" ] {
   programs.nushell.shellAliases.share = "steck paste";
 })
