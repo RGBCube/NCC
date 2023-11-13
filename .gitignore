@@ -25,12 +25,11 @@
 
 !themes/
 
-!.editorconfig
 !.gitignore
 !flake.lock
 
 !*.lua
 !*.md
-!*.nu
 !*.nix
+!*.nu
 !*.sh
