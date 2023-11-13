@@ -13,9 +13,9 @@ $env.ENV_CONVERSIONS.PATH = {
 }
 
 def hx [...arguments] {
-    runuser --user nixos kitty @ set-spacing padding=0
+    kitty @ set-spacing padding=0
 
     ^hx $arguments
 
-    runuser --user nixos kitty @ set-spacing padding=10
+    kitty @ set-spacing padding=10
 }
