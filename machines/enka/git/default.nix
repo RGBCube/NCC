@@ -3,23 +3,33 @@
 homeConfiguration [ "nixos" "root" ] {
   programs.nushell.shellAliases = {
     g    = "git";
+
     ga   = "git add";
     gaa  = "git add ./";
-    grs  = "git reset";
-    grsh = "git reset --hard";
-    grb  = "git rebase";
-    grbi = "git rebase --interactive";
-    grba = "git rebase --abort";
-    grl  = "git reflog";
+
     gc   = "git commit";
-    gcm  = "git commit --message";
     gca  = "git commit --amend --no-edit";
+    gcm  = "git commit --message";
+
     gcl  = "git clone";
+
     gd   = "git diff";
     gds  = "git diff --staged";
+
     gp   = "git push";
+
+    grb  = "git rebase";
+    grba = "git rebase --abort";
+    grbi = "git rebase --interactive";
+
+    grl  = "git reflog";
+
+    grs  = "git reset";
+    grsh = "git reset --hard";
+
     gs   = "git stash";
     gsp  = "git stash pop";
+
     gst  = "git status";
   };
 

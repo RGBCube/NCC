@@ -10,7 +10,7 @@ homeConfiguration "nixos" {
       ];
     });
 
-    theme     = "Gruvbox Dark";
+    theme = "Gruvbox Dark";
 
     settings = {
       allow_remote_control    = true;

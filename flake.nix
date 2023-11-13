@@ -19,10 +19,17 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
 
     home-manager = {
       url                    = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nh = {
+      url                    = "github:viperML/nh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -31,7 +38,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+    };
   };
 
   outputs = { nixpkgs, home-manager, fenix, ... } @ inputs: let
@@ -44,7 +53,7 @@
     ];
 
     lib = nixpkgs.lib // {
-       recursiveUpdate3 = x: y: z: nixpkgs.lib.recursiveUpdate x (nixpkgs.lib.recursiveUpdate y z);
+       recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
     };
 
     theme = import ./themes/gruvbox.nix;
@@ -129,10 +138,10 @@
         configurationDirectory
       ];
     in {
-      nixosConfigurations.${hostName} = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${hostName} = lib.nixosSystem {
         specialArgs = arguments;
         modules = modules;
       };
     };
-  in builtins.foldl' nixpkgs.lib.recursiveUpdate {} (builtins.concatMap (architecture: builtins.map (configuration: importConfiguration configuration architecture) machines) architectures);
+  in builtins.foldl' lib.recursiveUpdate {} (builtins.concatMap (architecture: builtins.map (configuration: importConfiguration configuration architecture) machines) architectures);
 }
