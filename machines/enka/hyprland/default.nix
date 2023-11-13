@@ -68,7 +68,7 @@
       bind = SUPER, V,      exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
       bind =      , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
-      bind = SHIFT, PRINT, exec, grim                    - | swappy -f -o - | wl-copy --type image/png
+      bind = SHIFT, PRINT, exec, grim                    - | swappy -f - -o - | wl-copy --type image/png
 
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+
       binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-
