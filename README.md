@@ -13,7 +13,7 @@ Here is the script you need to run to get this working:
 ```sh
 nix-shell -p git --command "git clone https://github.com/RGBCube/NixOSConfiguration && cd NixOSConfiguration"
 
-./rebuild.sh
+nix-shell -p nu --command "nu rebuild.nu"
 ```
 
 `machine-name` is a machine selected from the machines in the `machines` directory.
@@ -24,7 +24,7 @@ Lets say you have changed the configuration and want to apply the changes
 to your system. You would have to run the rebuild script:
 
 ```sh
-./rebuild.sh
+./rebuild.nu
 ```
 
 This runs the script interactively.
@@ -38,7 +38,15 @@ You can also check how the script is used:
 This outputs:
 
 ```
-Usage: ./rebuild.sh [-h | --help] [machine-name]
+Usage:
+  > rebuild.nu (machine) ...(arguments)
+
+Flags:
+  -h, --help - Display the help message for this command
+
+Parameters:
+  machine <string>: The machine to build. (optional, default: '')
+  ...arguments <any>: Extra arguments to pass to nixos-rebuild.
 ```
 
 ## License
