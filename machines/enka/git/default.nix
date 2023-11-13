@@ -5,9 +5,12 @@ homeConfiguration [ "nixos" "root" ] {
     g    = "git";
     ga   = "git add";
     gaa  = "git add ./";
+    grs  = "git reset";
+    grsh = "git reset --hard";
     grb  = "git rebase";
     grbi = "git rebase --interactive";
     grba = "git rebase --abort";
+    grl  = "git reflog";
     gc   = "git commit";
     gcm  = "git commit --message";
     gca  = "git commit --amend --no-edit";
