@@ -7,7 +7,7 @@ homeConfiguration "nixos" {
       dpi-aware = false;
       prompt    = ''"❯ "'';
 
-      terminal = "kitty --detach --hold";
+      terminal = "kitty";
 
       tabs = 4;
 
