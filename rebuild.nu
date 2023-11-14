@@ -9,7 +9,7 @@ def main [
   let valid_machines = ls machines | where type == dir | get name | each { $in | str replace "machines/" "" }
 
   if ($machine_ | is-empty) {
-    $machine_ = (input $"Select machine to build [($valid_machines | str join ', ')]: ")
+    $machine_ = (input $"machine to build [($valid_machines | str join ', ')]: ")
 
     if ($machine_ | is-empty) and ($valid_machines | length) == 1 {
       $machine_ = ($valid_machines | get 0)
@@ -25,7 +25,7 @@ def main [
   }
 
   sudo --validate
-  nix-shell --packages git --command $"sudo nixos-rebuild switch --impure --flake .#($machine) ($arguments | str join ' ')"
+  nix-shell --packages git nix-output-monitor --command $"sudo nixos-rebuild switch --log-format internal-json --impure --flake .#($machine) ($arguments | str join ' ') |& nom --json"
 }
 
 
