@@ -1,9 +1,9 @@
 { lib, pkgs, systemPackages, homePackages, ... }: lib.recursiveUpdate
 
 (with pkgs; systemPackages [
+  fastfetch
   fd
   gotop
-  neofetch
   ripgrep
   tree
 
