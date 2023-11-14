@@ -1,5 +1,5 @@
 {
-  description = "My NixOS configuration.";
+  description = "My NixOS configurations.";
 
   nixConfig = {
     extra-experimental-features = ''
