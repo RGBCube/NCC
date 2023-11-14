@@ -2,7 +2,7 @@
 
 (with pkgs; systemPackages [
   fd
-  htop
+  gotop
   neofetch
   ripgrep
   tree
