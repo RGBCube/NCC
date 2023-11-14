@@ -6,6 +6,8 @@ homeConfiguration [ "nixos" "root" ] {
     PAGER    = ''"bat --plain"'';
   };
 
+  programs.nushell.shellAliases.cat = "bat";
+
   programs.bat = enabled {
     config.theme = "gruvbox-dark";
   };
