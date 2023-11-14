@@ -131,7 +131,7 @@ $env.config.completions = {
     external: {
         enable:      true
         max_results: 100
-        completer:   {|tokens|
+        completer:   {|tokens: list<string>|
             let expanded_alias = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
 
             let tokens = if $expanded_alias != null  {
