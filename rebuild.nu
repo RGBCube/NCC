@@ -24,6 +24,7 @@ def main [
     exit
   }
 
+  sudo --validate
   nix-shell --packages git --command $"sudo nixos-rebuild switch --impure --flake .#($machine) ($arguments | str join ' ')"
 }
 
