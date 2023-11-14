@@ -3,6 +3,7 @@
 (with pkgs; systemPackages [
   fastfetch
   fd
+  hyperfine
   gotop
   ripgrep
   tree
