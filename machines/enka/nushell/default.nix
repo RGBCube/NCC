@@ -16,6 +16,8 @@
       ll  = "ls --long";
       lla = "ls --long --all";
       sl  = "ls";
+
+      tree = "^tree -C";
     };
   };
 })
