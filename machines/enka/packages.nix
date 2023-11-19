@@ -33,6 +33,7 @@
 
   qbittorrent
   thunderbird
+  whatsapp-for-linux
 
   krita
   obs-studio
