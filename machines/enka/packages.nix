@@ -3,8 +3,9 @@
 (with pkgs; systemPackages [
   fastfetch
   fd
-  hyperfine
   gotop
+  hyperfine
+  nix-output-monitor
   ripgrep
   tree
 
