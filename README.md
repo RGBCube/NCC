@@ -13,7 +13,7 @@ Here is the script you need to run to get this working:
 ```sh
 nix-shell -p git --command "git clone https://github.com/RGBCube/NixOSConfiguration && cd NixOSConfiguration"
 
-nix-shell -p nu --command "nu rebuild.nu"
+nix-shell -p git nix-output-monitor nu --command "nu rebuild.nu"
 ```
 
 `machine-name` is a machine selected from the machines in the `machines` directory.

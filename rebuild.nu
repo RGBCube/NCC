@@ -24,8 +24,5 @@ def main [
     exit
   }
 
-  sudo --validate
-  nix-shell --packages git nix-output-monitor --command $"sudo nixos-rebuild switch --log-format internal-json --impure --flake .#($machine) ($arguments | str join ' ') |& nom --json"
+  sudo nixos-rebuild switch --log-format internal-json --impure --flake (".#" + $machine) ($arguments | str join ' ') | nom --json
 }
-
-
