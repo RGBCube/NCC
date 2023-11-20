@@ -7,6 +7,7 @@
   hyperfine
   nix-output-monitor
   ripgrep
+  strace
   tree
 
   wine

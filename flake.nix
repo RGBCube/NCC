@@ -121,9 +121,11 @@
           "flakes"
         ];
 
+        environment.defaultPackages = [];
+
         boot.tmp.cleanOnBoot = true;
 
-        networking.hostName  = hostName;
+        networking.hostName = hostName;
 
         home-manager.useGlobalPkgs   = true;
         home-manager.useUserPackages = true;
