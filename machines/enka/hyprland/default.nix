@@ -14,14 +14,19 @@
   wayland.windowManager.hyprland = enabled {
     package = hyprland;
 
-    extraConfig = ''
+    extraConfig =
+    ''
       monitor = , preferred, auto, 1
-
+    ''
+    +
+    ''
       exec-once = wpaperd
 
       exec-once = wl-paste --type text  --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
-
+    ''
+    +
+    ''
       bind = SUPER, 1, workspace, 1
       bind = SUPER, 2, workspace, 2
       bind = SUPER, 3, workspace, 3
@@ -34,28 +39,51 @@
       bind = SUPER+SHIFT, 4, movetoworkspacesilent, 4
       bind = SUPER+SHIFT, 5, movetoworkspacesilent, 5
 
-      bind = SUPER+CTRL, 1, movewindow, mon:1
-      bind = SUPER+CTRL, 2, movewindow, mon:2
-      bind = SUPER+CTRL, 3, movewindow, mon:3
+      bind = SUPER+CTRL, 1, movewindow, mon:DP-1
+      bind = SUPER+CTRL, 2, movewindow, mon:DP-2
+      bind = SUPER+CTRL, 3, movewindow, mon:DP-3
 
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
-
+    ''
+    +
+    ''
       binde = SUPER, left,  movefocus, l
-      binde = SUPER, right, movefocus, t
       binde = SUPER, up,    movefocus, u
       binde = SUPER, down,  movefocus, d
+      binde = SUPER, right, movefocus, r
 
-      binde = SUPER+CTRL, right, resizeactive, 10 0
+      binde = SUPER, h, movefocus, l
+      binde = SUPER, k, movefocus, u
+      binde = SUPER, j, movefocus, d
+      binde = SUPER, l, movefocus, r
+    ''
+    +
+    ''
       binde = SUPER+CTRL, left,  resizeactive, -10 0
       binde = SUPER+CTRL, up,    resizeactive, 0 -10
       binde = SUPER+CTRL, down,  resizeactive, 0 10
+      binde = SUPER+CTRL, right, resizeactive, 10 0
 
+      binde = SUPER+CTRL, h, resizeactive, -10 0
+      binde = SUPER+CTRL, j, resizeactive, 0 10
+      binde = SUPER+CTRL, k, resizeactive, 0 -10
+      binde = SUPER+CTRL, l, resizeactive, 10 0
+    ''
+    +
+    ''
       bind = SUPER+SHIFT, left,  movewindow, l
-      bind = SUPER+SHIFT, right, movewindow, r
       bind = SUPER+SHIFT, up,    movewindow, u
       bind = SUPER+SHIFT, down,  movewindow, d
+      bind = SUPER+SHIFT, right, movewindow, r
 
+      bind = SUPER+SHIFT, h, movewindow, l
+      bind = SUPER+SHIFT, j, movewindow, u
+      bind = SUPER+SHIFT, k, movewindow, d
+      bind = SUPER+SHIFT, l, movewindow, r
+    ''
+    +
+    ''
       bind = SUPER,       Q, killactive
       bind = SUPER,       F, fullscreen
       bind = SUPER+SHIFT, F, togglefloating
@@ -69,7 +97,9 @@
 
       bind =      , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
       bind = SHIFT, PRINT, exec, grim                    - | swappy -f - -o - | wl-copy --type image/png
-
+    ''
+    +
+    ''
       binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+
       binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-
 
@@ -78,7 +108,9 @@
 
       binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
       binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
-
+    ''
+    +
+    ''
       decoration {
         drop_shadow = false
         rounding    = 0
@@ -87,7 +119,9 @@
           enabled = false
         }
       }
-
+    ''
+    +
+    ''
       general {
         gaps_in     = 5
         gaps_out    = 10
@@ -104,9 +138,16 @@
 
         resize_on_border = true
       }
-
+    ''
+    +
+    ''
+      gestures {
+        workspace_swipe = true
+      }
+    ''
+    +
+    ''
       input {
-        # The window under the mouse will always be in focus.
         follow_mouse = 1
 
         kb_layout = tr
@@ -121,7 +162,9 @@
           scroll_factor  = 0.8
         }
       }
-
+    ''
+    +
+    ''
       misc {
         animate_manual_resizes       = true
         animate_mouse_windowdragging = true
