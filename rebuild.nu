@@ -2,7 +2,6 @@
 
 def main [
   machine: string = "" # The machine to build.
-  ...arguments         # Extra arguments to pass to nixos-rebuild.
 ] {
   mut machine_ = $machine
 
@@ -14,15 +13,16 @@ def main [
     if ($machine_ | is-empty) and ($valid_machines | length) == 1 {
       $machine_ = ($valid_machines | get 0)
     } else {
-      main "" ($arguments | str join " ")
+      main ""
       exit
     }
   }
 
   if not ($machine_ in $valid_machines) {
-    main "" ($arguments | str join " ")
+    main ""
     exit
   }
 
-  sudo nixos-rebuild switch --log-format internal-json --impure --flake (".#" + $machine) ($arguments | str join ' ') | nom --json
+  sudo --validate
+  sh -c $"sudo nixos-rebuild switch --log-format internal-json --impure --flake ('.#' + $machine) |& nom --json"
 }
