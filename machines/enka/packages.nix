@@ -14,6 +14,7 @@
 
   clang_16
   clang-tools_16
+  gh
   go
   jdk
   lld
