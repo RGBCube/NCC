@@ -12,7 +12,7 @@ $env.config = {
     footer_mode:                      25
     render_right_prompt_on_last_line: false
     shell_integration:                false
-    show_banner: false
+    show_banner:                      false
     use_ansi_coloring:                true
     use_grid_icons:                   true
     use_kitty_protocol:               false
