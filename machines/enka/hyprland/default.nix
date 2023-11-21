@@ -41,10 +41,6 @@
       bind = SUPER+SHIFT, 4, movetoworkspacesilent, 4
       bind = SUPER+SHIFT, 5, movetoworkspacesilent, 5
 
-      bind = SUPER+CTRL, 1, movewindow, mon:DP-1
-      bind = SUPER+CTRL, 2, movewindow, mon:DP-2
-      bind = SUPER+CTRL, 3, movewindow, mon:DP-3
-
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
     ''
