@@ -26,7 +26,12 @@ homeConfiguration "nixos" {
         "hyprland/window"
       ];
 
-      "hyprland/window".seperate-outputs = true;
+      "hyprland/window" = {
+        seperate-outputs = true;
+
+        rewrite."(.*) — Mozilla Firefox" = "󰖟 $1";
+        rewrite."(.*) - nu"              = " $1";
+      };
 
       modules-right = [
         "tray"
@@ -40,10 +45,10 @@ homeConfiguration "nixos" {
       ];
 
       pulseaudio = {
-        format                 = "{volume}% {icon} {format_source}";
-        format-bluetooth       = "{volume}% {icon}󰂯 {format_source}";
-        format-bluetooth-muted = "󰝟 {icon}󰂯 {format_source}";
-        format-muted           = "󰝟 {format_source}";
+        format                 = "{format_source} {icon} {volume}%";
+        format-bluetooth       = "{format_source} {icon}󰂯 {volume}%";
+        format-bluetooth-muted = "{format_source} 󰝟 {icon}󰂯";
+        format-muted           = "{format_source} 󰝟";
         format-source          = "󰍬";
         format-source-muted    = "󰍭";
 
@@ -57,7 +62,7 @@ homeConfiguration "nixos" {
       };
 
       backlight =  {
-        format       = "{percent}% {icon}";
+        format       = "{icon} {percent}%";
         format-icons = [
           ""
           ""
@@ -71,20 +76,20 @@ homeConfiguration "nixos" {
         ];
       };
 
-      cpu.format    = "{usage}% ";
-      memory.format = "{}% ";
+      cpu.format    = " {usage}%";
+      memory.format = " {}%";
 
       network = {
         format-disconnected = "󰤮";
-        format-ethernet     = "{ipaddr}/{cidr} 󰈀";
-        format-linked       = "{ifname} (No IP) ";
-        format-wifi         = "{essid} {signalStrength}% ";
+        format-ethernet     = "󰈀 {ipaddr}/{cidr}";
+        format-linked       = " {ifname} (No IP)";
+        format-wifi         = "{essid}  {signalStrength}%";
       };
 
       battery = {
-        format          = "{capacity}% {icon}";
-        format-charging = "{capacity}% 󰂄";
-        format-plugged  = "{capacity}% 󰂄";
+        format          = "{icon} {capacity}%";
+        format-charging = "󰂄 {capacity}%";
+        format-plugged  = "󰂄 {capacity}%";
 
         format-icons = [
           "󰁺"

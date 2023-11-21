@@ -188,7 +188,17 @@ $env.config.hooks = {
     command_not_found: {}
     display_output:    "if (term size).columns >= 100 { table --expand } else { table }"
     env_change:        {}
-    pre_execution:     []
+    pre_execution:     [
+        {
+            let prompt = (commandline) | str trim
+
+            if ($prompt | is-empty) {
+                return
+            }
+
+            echo $"(ansi title)($prompt) - nu(char bel)"
+        }
+    ]
     pre_prompt:        []
 }
 
