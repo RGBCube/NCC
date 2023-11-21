@@ -27,6 +27,8 @@
     ''
     +
     ''
+      bind = SUPER, TAB, workspace, e+1
+
       bind = SUPER, 1, workspace, 1
       bind = SUPER, 2, workspace, 2
       bind = SUPER, 3, workspace, 3
