@@ -71,15 +71,14 @@ homeConfiguration "nixos" {
         ];
       };
 
-      cpu.format    = "{usage}% 󰻠";
-      memory.format = "{}% 󰍛";
+      cpu.format    = "{usage}% ";
+      memory.format = "{}% ";
 
       network = {
-        format-alt          = "{ifname}: {ipaddr}/{cidr}";
         format-disconnected = "󰤮";
         format-ethernet     = "{ipaddr}/{cidr} 󰈀";
-        format-linked       = "{ifname} (No IP) ";
-        format-wifi         = "{essid} ({signalStrength}%) ";
+        format-linked       = "{ifname} (No IP) ";
+        format-wifi         = "{essid} {signalStrength}% ";
       };
 
       battery = {
