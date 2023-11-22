@@ -8,6 +8,7 @@
   nix-index
   nix-output-monitor
   pstree
+  ranger
   ripgrep
   strace
   timg
