@@ -17,6 +17,7 @@ homeConfiguration [ "nixos" "root" ] {
     gds  = "git diff --staged";
 
     gp   = "git push";
+    gpf  = "git push --force";
 
     grb  = "git rebase";
     grba = "git rebase --abort";
@@ -29,6 +30,8 @@ homeConfiguration [ "nixos" "root" ] {
 
     gs   = "git stash";
     gsp  = "git stash pop";
+
+    gsh  = "git show";
 
     gst  = "git status";
   };
