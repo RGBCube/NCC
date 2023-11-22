@@ -10,6 +10,7 @@
   pstree
   ripgrep
   strace
+  timg
   tree
 
   wine
