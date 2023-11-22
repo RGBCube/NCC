@@ -114,6 +114,9 @@
             persistent = true;
         };
 
+        nix.nixPath                = [ "nixpkgs=${nixpkgs}" ];
+        nix.registry.nixpkgs.flake = nixpkgs;
+
         nix.optimise.automatic = true;
 
         nix.settings.experimental-features = [
