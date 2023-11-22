@@ -196,7 +196,7 @@ $env.config.hooks = {
                 return
             }
 
-            echo $"(ansi title)($prompt) - nu(char bel)"
+            echo $"(ansi title)($prompt) — nu(char bel)"
         }
     ]
     pre_prompt:        []

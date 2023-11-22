@@ -29,8 +29,9 @@ homeConfiguration "nixos" {
       "hyprland/window" = {
         seperate-outputs = true;
 
+        rewrite."(.*) - Discord"         = "󰙯 $1";
         rewrite."(.*) — Mozilla Firefox" = "󰖟 $1";
-        rewrite."(.*) - nu"              = " $1";
+        rewrite."(.*) — nu"              = " $1";
       };
 
       modules-right = [
