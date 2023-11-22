@@ -5,6 +5,7 @@
   fd
   gotop
   hyperfine
+  nix-index
   nix-output-monitor
   pstree
   ripgrep

@@ -12,6 +12,8 @@
     envFile.source    = ./environment.nu;
 
     shellAliases = {
+      cdtmp = "cd (mktemp --directory)";
+
       la  = "ls --all";
       ll  = "ls --long";
       lla = "ls --long --all";
