@@ -17,7 +17,8 @@
       lla = "ls --long --all";
       sl  = "ls";
 
-      tree = "^tree -C";
+      pstree = "pstree -g 2";
+      tree = "tree -C";
     };
   };
 })

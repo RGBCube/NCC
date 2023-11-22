@@ -6,6 +6,7 @@
   gotop
   hyperfine
   nix-output-monitor
+  pstree
   ripgrep
   strace
   tree
