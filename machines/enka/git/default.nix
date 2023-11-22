@@ -1,4 +1,4 @@
-{ homeConfiguration, enabled, ... }:
+{ pkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration [ "nixos" "root" ] {
   programs.nushell.shellAliases = {
@@ -37,6 +37,8 @@ homeConfiguration [ "nixos" "root" ] {
   };
 
   programs.git = enabled {
+    package = pkgs.gitFull;
+
     userName  = "RGBCube";
     userEmail = "RGBCube@users.noreply.github.com";
 
