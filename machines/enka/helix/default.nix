@@ -2,6 +2,7 @@
 
 (homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables.EDITOR = "hx";
+  programs.nushell.shellAliases.x              = "hx";
 
   programs.helix = enabled {
     settings.theme = "gruvbox_dark_hard";
