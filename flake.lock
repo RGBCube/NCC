@@ -125,7 +125,8 @@
         "fenix": "fenix",
         "homeManager": "homeManager",
         "hyprland": "hyprland",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_2",
+        "tools": "tools"
       }
     },
     "rust-analyzer-src": {
@@ -157,6 +158,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tools": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700770129,
+        "narHash": "sha256-fmpMWS4EkK5ZMHGJeKPrO9c1+REATJJrdlseOaaSHwM=",
+        "owner": "RGBCube",
+        "repo": "FlakeTools",
+        "rev": "e8b3ae0ddf49200a0e7fdb8d48e2d46219cbc71d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RGBCube",
+        "repo": "FlakeTools",
         "type": "github"
       }
     },
