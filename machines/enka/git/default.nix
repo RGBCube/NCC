@@ -2,38 +2,46 @@
 
 homeConfiguration [ "nixos" "root" ] {
   programs.nushell.shellAliases = {
-    g    = "git";
+    g = "git";
 
-    ga   = "git add";
-    gaa  = "git add ./";
+    ga  = "git add";
+    gaa = "git add ./";
 
-    gc   = "git commit";
-    gca  = "git commit --amend --no-edit";
-    gcm  = "git commit --message";
+    gc  = "git commit";
+    gca = "git commit --amend --no-edit";
+    gcm = "git commit --message";
 
-    gcl  = "git clone";
+    gcl = "git clone";
 
-    gd   = "git diff";
-    gds  = "git diff --staged";
+    gd  = "git diff";
+    gds = "git diff --staged";
 
-    gp   = "git push";
-    gpf  = "git push --force";
+    gp  = "git push";
+    gpf = "git push --force";
+
+    gl  = "git log";
+    glo = "git log --oneline";
+
+    gpl      = "git pull";
+    gplr     = "git pull --rebase";
+    gplforce = "git pull --force";
+    gplff    = "git pull --ff-only";
 
     grb  = "git rebase";
     grba = "git rebase --abort";
     grbi = "git rebase --interactive";
 
-    grl  = "git reflog";
+    grl = "git reflog";
 
     grs  = "git reset";
     grsh = "git reset --hard";
 
-    gs   = "git stash";
-    gsp  = "git stash pop";
+    gs  = "git stash";
+    gsp = "git stash pop";
 
-    gsh  = "git show";
+    gsh = "git show";
 
-    gst  = "git status";
+    gst = "git status";
   };
 
   programs.git = enabled {
