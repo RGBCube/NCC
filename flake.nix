@@ -43,7 +43,7 @@
     ulib = rec {
       recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
 
-      imports = paths: {
+      importAll = paths: {
         imports = paths;
       };
 

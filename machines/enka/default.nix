@@ -1,4 +1,4 @@
-{ recursiveUpdate3, systemConfiguration, homeConfiguration, imports, ... }: recursiveUpdate3
+{ recursiveUpdate3, systemConfiguration, homeConfiguration, importAll, ... }: recursiveUpdate3
 
 (systemConfiguration {
   boot.loader = {
@@ -14,7 +14,7 @@
   home.stateVersion = "23.05";
 })
 
-(imports [
+(importAll [
   ./bat
   ./blueman
   ./discord
