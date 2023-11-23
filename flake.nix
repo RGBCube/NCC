@@ -110,8 +110,8 @@
       home-manager.useUserPackages = true;
     };
 
-    specialArgs = {
-      inherit ulib theme hyprland;
+    specialArgs = ulib // {
+      inherit theme hyprland;
     };
 
     importConfiguration = host: lib.nixosSystem {
