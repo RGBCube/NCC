@@ -8,7 +8,6 @@
     settings.theme = "gruvbox_dark_hard";
 
     settings.editor = {
-      auto-completion     = false;
       color-modes         = true;
       completion-replace  = true;
       cursor-shape.insert = "bar";
@@ -62,6 +61,9 @@
 
   # GO
   gopls
+
+  # HTML
+  vscode-langservers-extracted
 
   # KOTLIN
   kotlin-language-server
