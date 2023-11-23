@@ -37,7 +37,7 @@
     };
   };
 
-  outputs = { nixpkgs, homeManager, utils, fenix, hyprland, ... }: utils.lib.eachDefaultSystem (system: let
+  outputs = { nixpkgs, homeManager, utils, fenix, ... } @ inputs: utils.lib.eachDefaultSystem (system: let
     lib = nixpkgs.lib;
 
     ulib = rec {
@@ -76,6 +76,10 @@
       };
     };
 
+    theme = import ./themes/gruvbox.nix;
+
+    hyprland = inputs.hyprland.packages.${system}.default;
+
     defaultConfiguration = host: ulib.systemConfiguration {
       nix.gc = {
           automatic  = true;
@@ -95,10 +99,7 @@
       ];
 
       nixpkgs.config.allowUnfree = true;
-      nixpkgs.overlays           = [
-        fenix.overlays.default
-        hyprland.overlays.default
-      ];
+      nixpkgs.overlays           = [ fenix.overlays.default ];
 
       environment.defaultPackages = [];
 
@@ -109,7 +110,9 @@
       home-manager.useUserPackages = true;
     };
 
-    specialArgs = ulib;
+    specialArgs = {
+      inherit ulib theme hyprland;
+    };
 
     importConfiguration = host: lib.nixosSystem {
       inherit specialArgs;
