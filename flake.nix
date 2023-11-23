@@ -109,18 +109,22 @@
       home-manager.useUserPackages = true;
     };
 
-    specialArgs = {
-      inherit ulib;
-    };
-  in {
-    nixosConfigurations.enka = lib.nixosSystem {
-      inherit specialArgs;
+    specialArgs = ulib;
 
-      modules = [
-        homeManager.nixosModules.default
-        (defaultConfiguration "enka")
-        ./machines/enka
-      ];
-    };
+    importConfigurations = hosts: builtins.concatMap (host: {
+      ${host} = lib.nixosSystem {
+        inherit specialArgs;
+
+        modules = [
+          homeManager.nixosModules.default
+          (defaultConfiguration host)
+          ./machines/${host}
+        ];
+      };
+    }) hosts;
+  in {
+    nixosConfigurations = importConfigurations [
+      "enka"
+    ];
   });
 }
