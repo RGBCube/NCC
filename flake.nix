@@ -2,11 +2,6 @@
   description = "My NixOS configurations.";
 
   nixConfig = {
-    extra-experimental-features = ''
-      nix-command
-      flakes
-    '';
-
     extra-substituters          = ''
       https://nix-community.cachix.org/
       https://hyprland.cachix.org/
@@ -28,6 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    utils = {
+      url = "github:numtide/flake-utils";
+    };
+
     fenix = {
       url                    = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,112 +37,90 @@
     };
   };
 
-  outputs = { nixpkgs, homeManager, fenix, ... } @ inputs: let
-    machines = [
-      ./machines/enka
-    ];
+  outputs = { nixpkgs, homeManager, utils, fenix, hyprland, ... }: utils.lib.eachDefaultSystem (system: let
+    lib = nixpkgs.lib;
 
-    architectures = [
-      "x86_64-linux"
-    ];
+    ulib = rec {
+      recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
 
-    lib = nixpkgs.lib // {
-       recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
-    };
-
-    theme = import ./themes/gruvbox.nix;
-
-    # GENERAL
-    imports = importPaths: {
-      imports = importPaths;
-    };
-
-    enabled = attributes: attributes // {
-      enable = true;
-    };
-
-    normalUser = attributes: attributes // {
-      isNormalUser = true;
-    };
-
-    # SYSTEM
-    systemConfiguration = attributes: attributes;
-
-    systemPackages = packages: systemConfiguration {
-      environment.systemPackages = packages;
-    };
-
-    systemFonts = fonts: systemConfiguration {
-      fonts.packages = fonts;
-    };
-
-    # HOME
-    homeConfiguration = userName: attributes: systemConfiguration {
-      home-manager.users = builtins.foldl' lib.recursiveUpdate {} (builtins.map (userName: {
-        ${userName} = attributes;
-      }) (if builtins.isList userName then userName else [ userName ]));
-    };
-
-    homePackages = userName: packages: homeConfiguration userName {
-      home.packages = packages;
-    };
-
-    importConfiguration = configurationDirectory: hostPlatform: let
-      hostName = builtins.baseNameOf configurationDirectory;
-
-      pkgs = import nixpkgs {
-        system             = hostPlatform;
-        config.allowUnfree = true;
-
-        overlays = [
-          fenix.overlays.default
-        ];
+      imports = paths: {
+        imports = paths;
       };
 
-      hyprland = inputs.hyprland.packages.${hostPlatform}.hyprland;
-
-      arguments = {
-        inherit lib pkgs hyprland theme systemConfiguration systemPackages homeConfiguration systemFonts homePackages imports enabled normalUser;
+      enabled = attributes: attributes // {
+        enable = true;
       };
 
-      defaultConfiguration = {
-        nix.gc = {
-            automatic  = true;
-            dates      = "daily";
-            options    = "--delete-older-than 3d";
-            persistent = true;
-        };
-
-        nix.nixPath                = [ "nixpkgs=${nixpkgs}" ];
-        nix.registry.nixpkgs.flake = nixpkgs;
-
-        nix.optimise.automatic = true;
-
-        nix.settings.experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
-
-        environment.defaultPackages = [];
-
-        boot.tmp.cleanOnBoot = true;
-
-        networking.hostName = hostName;
-
-        home-manager.useGlobalPkgs   = true;
-        home-manager.useUserPackages = true;
+      normalUser = attributes: attributes // {
+        isNormalUser = true;
       };
+
+      systemConfiguration = attributes: attributes;
+
+      systemPackages = packages: systemConfiguration {
+        environment.systemPackages = packages;
+      };
+
+      systemFonts = fonts: systemConfiguration {
+        fonts.packages = fonts;
+      };
+
+      homeConfiguration = user: attributes: systemConfiguration {
+        home-manager.users = builtins.foldl' lib.recursiveUpdate {} (builtins.map (user: {
+          ${user} = attributes;
+        }) (if builtins.isList user then user else [ user ]));
+      };
+
+      homePackages = user: packages: homeConfiguration user {
+        home.packages = packages;
+      };
+    };
+
+    defaultConfiguration = host: ulib.systemConfiguration {
+      nix.gc = {
+          automatic  = true;
+          dates      = "daily";
+          options    = "--delete-older-than 3d";
+          persistent = true;
+      };
+
+      nix.nixPath                = [ "nixpkgs=${nixpkgs}" ];
+      nix.registry.nixpkgs.flake = nixpkgs;
+
+      nix.optimise.automatic = true;
+
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+      nixpkgs.config.allowUnfree = true;
+      nixpkgs.overlays           = [
+        fenix.overlays.default
+        hyprland.overlays.default
+      ];
+
+      environment.defaultPackages = [];
+
+      boot.tmp.cleanOnBoot = true;
+
+      networking.hostName = host;
+      home-manager.useGlobalPkgs   = true;
+      home-manager.useUserPackages = true;
+    };
+
+    specialArgs = {
+      inherit ulib;
+    };
+  in {
+    nixosConfigurations.enka = lib.nixosSystem {
+      inherit specialArgs;
 
       modules = [
         homeManager.nixosModules.default
-        defaultConfiguration
-        configurationDirectory
+        (defaultConfiguration "enka")
+        ./machines/enka
       ];
-    in {
-      nixosConfigurations.${hostName} = lib.nixosSystem {
-        specialArgs = arguments;
-        modules = modules;
-      };
     };
-  in builtins.foldl' lib.recursiveUpdate {} (builtins.concatMap (architecture: builtins.map (configuration: importConfiguration configuration architecture) machines) architectures);
+  });
 }
