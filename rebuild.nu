@@ -1,7 +1,8 @@
 #!/usr/bin/env nu
 
 def main [
-  machine: string = "" # The machine to build.
+  machine: string = ""     # The machine to build.
+  --no-trace: bool = false # Wheter to not show the full trace.
 ] {
   mut machine_ = $machine
 
@@ -24,5 +25,5 @@ def main [
   }
 
   sudo --validate
-  sh -c $"sudo nixos-rebuild switch --log-format internal-json --impure --flake ('.#' + $machine) |& nom --json"
+  sh -c $"sudo nixos-rebuild switch (if not $no_trace { --show-trace } else {}) --log-format internal-json --impure --flake ('.#' + $machine) |& nom --json"
 }
