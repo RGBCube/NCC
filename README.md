@@ -32,7 +32,7 @@ This runs the script interactively.
 You can also check how the script is used:
 
 ```sh
-./rebuild.sh --help
+./rebuild.nu --help
 ```
 
 This outputs:
