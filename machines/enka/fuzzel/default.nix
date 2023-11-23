@@ -1,4 +1,4 @@
-{ theme, homeConfiguration, enabled, ... }:
+{ upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
@@ -16,7 +16,9 @@ homeConfiguration "nixos" {
       inner-pad      = 10;
     };
 
-    settings.colors = {
+    settings.colors = let
+      inherit (upkgs) theme;
+    in {
       background     = theme.background      + theme.transparency;
       text           = theme.foreground      + theme.transparency;
       match          = theme.activeHighlight + theme.transparency;

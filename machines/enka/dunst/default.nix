@@ -1,7 +1,9 @@
-{ pkgs, theme, homeConfiguration, enabled, ... }:
+{ pkgs, upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  services.dunst = enabled {
+  services.dunst = let
+    inherit (upkgs) theme;
+  in enabled {
     iconTheme = {
       name    = "Gruvbox-Dark";
       package = pkgs.gruvbox-dark-icons-gtk;

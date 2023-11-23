@@ -1,4 +1,4 @@
-{ pkgs, theme, homeConfiguration, enabled, ... }:
+{ pkgs, upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.kitty = enabled {
@@ -12,7 +12,9 @@ homeConfiguration "nixos" {
 
     theme = "Gruvbox Dark";
 
-    settings = {
+    settings = let
+      inherit (upkgs) theme;
+    in {
       allow_remote_control    = true;
       confirm_os_window_close = 0;
       focus_follows_mouse     = true;

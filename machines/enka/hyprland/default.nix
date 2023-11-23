@@ -1,4 +1,4 @@
-{ pkgs, recursiveUpdate3, hyprland, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: recursiveUpdate3
+{ pkgs, upkgs, ulib, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   hardware.opengl = enabled {};
@@ -12,9 +12,11 @@
 
 (homeConfiguration "nixos" {
   wayland.windowManager.hyprland = enabled {
-    package = hyprland;
+    package = upkgs.hyprland;
 
-    extraConfig =
+    extraConfig = let
+      inherit (upkgs) theme;
+    in
     ''
       monitor = , preferred, auto, 1
     ''

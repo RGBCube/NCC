@@ -1,4 +1,4 @@
-{ recursiveUpdate3, systemConfiguration, homeConfiguration, importAll, ... }: recursiveUpdate3
+{ ulib, systemConfiguration, homeConfiguration, importAll, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   boot.loader = {

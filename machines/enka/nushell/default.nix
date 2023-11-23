@@ -1,4 +1,4 @@
-{ pkgs, recursiveUpdate3, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: recursiveUpdate3
+{ pkgs, ulib, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   users.defaultUserShell = pkgs.nushell;

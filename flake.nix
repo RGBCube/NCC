@@ -23,8 +23,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    utils = {
-      url = "github:numtide/flake-utils";
+    tools = {
+      url                    = "github:RGBCube/FlakeTools";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     fenix = {
@@ -37,12 +38,22 @@
     };
   };
 
-  outputs = { nixpkgs, homeManager, utils, fenix, ... } @ inputs: utils.lib.eachDefaultSystem (system: let
+  outputs = { nixpkgs, homeManager, tools, fenix, ... } @ inputs: tools.eachDefaultArch (system: let
+    upkgs = {
+      theme = import ./themes/gruvbox.nix;
+
+      hyprland = inputs.hyprland.packages.${system}.default;
+    };
+
     lib = nixpkgs.lib;
 
-    ulib = rec {
-      recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
+    ulib = {
+      inherit (tools) recursiveUpdateMap;
 
+      recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
+    };
+
+    abstractions = rec {
       importAll = paths: {
         imports = paths;
       };
@@ -76,10 +87,6 @@
       };
     };
 
-    theme = import ./themes/gruvbox.nix;
-
-    hyprland = inputs.hyprland.packages.${system}.default;
-
     defaultConfiguration = host: ulib.systemConfiguration {
       nix.gc = {
           automatic  = true;
@@ -110,8 +117,8 @@
       home-manager.useUserPackages = true;
     };
 
-    specialArgs = ulib // {
-      inherit theme hyprland;
+    specialArgs = abstractions // {
+      inherit upkgs ulib;
     };
 
     importConfiguration = host: lib.nixosSystem {
