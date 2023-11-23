@@ -23,7 +23,7 @@
       url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
-    home-manager = {
+    homeManager = {
       url                    = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -38,7 +38,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, fenix, ... } @ inputs: let
+  outputs = { nixpkgs, homeManager, fenix, ... } @ inputs: let
     machines = [
       ./machines/enka
     ];
@@ -135,7 +135,7 @@
       };
 
       modules = [
-        home-manager.nixosModules.home-manager
+        homeManager.nixosModules.default
         defaultConfiguration
         configurationDirectory
       ];
