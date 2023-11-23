@@ -168,11 +168,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700770129,
-        "narHash": "sha256-fmpMWS4EkK5ZMHGJeKPrO9c1+REATJJrdlseOaaSHwM=",
+        "lastModified": 1700770982,
+        "narHash": "sha256-S5aUrhSKFK0g5r92g646hFc/CUl4sZzY2K0t2YkmgdY=",
         "owner": "RGBCube",
         "repo": "FlakeTools",
-        "rev": "e8b3ae0ddf49200a0e7fdb8d48e2d46219cbc71d",
+        "rev": "f17c0afee69a6df19b5add11c5ce9b156fb11406",
         "type": "github"
       },
       "original": {

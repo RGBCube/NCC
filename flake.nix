@@ -38,7 +38,7 @@
     };
   };
 
-  outputs = { nixpkgs, homeManager, tools, fenix, ... } @ inputs: tools.eachDefaultArch (system: let
+  outputs = { nixpkgs, homeManager, tools, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
     upkgs = {
       theme = import ./themes/gruvbox.nix;
 
@@ -87,7 +87,7 @@
       };
     };
 
-    defaultConfiguration = host: ulib.systemConfiguration {
+    defaultConfiguration = host: abstractions.systemConfiguration {
       nix.gc = {
           automatic  = true;
           dates      = "daily";
@@ -121,16 +121,18 @@
       inherit upkgs ulib;
     };
 
-    importConfiguration = host: lib.nixosSystem {
-      inherit specialArgs;
+    importConfigurations = tools.recursiveUpdateMap (host: {
+      nixosConfigurations.${host} = lib.nixosSystem {
+        inherit specialArgs;
 
-      modules = [
-        homeManager.nixosModules.default
-        (defaultConfiguration host)
-        ./machines/${host}
-      ];
-    };
-  in {
-    nixosConfigurations.enka = importConfiguration "enka";
-  });
+        modules = [
+          homeManager.nixosModules.default
+          (defaultConfiguration host)
+          ./machines/${host}
+        ];
+      };
+    });
+  in importConfigurations [
+    "enka"
+  ]);
 }
