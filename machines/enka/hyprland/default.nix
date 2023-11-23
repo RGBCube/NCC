@@ -1,4 +1,4 @@
-{ lib, pkgs, hyprland, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate3
+{ pkgs, recursiveUpdate3, hyprland, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: recursiveUpdate3
 
 (systemConfiguration {
   hardware.opengl = enabled {};

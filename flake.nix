@@ -111,20 +111,16 @@
 
     specialArgs = ulib;
 
-    importConfigurations = hosts: builtins.concatMap (host: {
-      ${host} = lib.nixosSystem {
-        inherit specialArgs;
+    importConfiguration = host: lib.nixosSystem {
+      inherit specialArgs;
 
-        modules = [
-          homeManager.nixosModules.default
-          (defaultConfiguration host)
-          ./machines/${host}
-        ];
-      };
-    }) hosts;
+      modules = [
+        homeManager.nixosModules.default
+        (defaultConfiguration host)
+        ./machines/${host}
+      ];
+    };
   in {
-    nixosConfigurations = importConfigurations [
-      "enka"
-    ];
+    nixosConfigurations.enka = importConfiguration "enka";
   });
 }
