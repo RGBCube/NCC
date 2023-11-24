@@ -1,4 +1,4 @@
-{ lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
+{ lib, ulib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
 (homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables.EDITOR = "hx";
@@ -37,7 +37,7 @@
 
     settings.keys = lib.recursiveUpdate
 
-    (builtins.foldl' lib.recursiveUpdate {} (builtins.map (mode: { ${mode} = {
+    (ulib.recursiveUpdateMap (mode: { ${mode} = {
       C-h = "move_prev_word_start";
       C-l = "move_next_word_end";
       C-k = "move_visual_line_up";
@@ -47,11 +47,11 @@
       C-right = "move_next_word_end";
       C-up    = "move_visual_line_up";
       C-down  = "move_visual_line_down";
-    }; }) [ "insert" "normal" "select" ]))
+    }; }) [ "insert" "normal" "select" ])
 
-    (builtins.foldl' lib.recursiveUpdate {} (builtins.map (mode: {
+    (ulib.recursiveUpdateMap (mode: {
       ${mode}.D = "extend_to_line_end";
-    }) [ "normal" "select" ]));
+    }) [ "normal" "select" ]);
   };
 })
 
