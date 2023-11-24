@@ -2,7 +2,7 @@
 
 with pkgs; homePackages "nixos" [
   (discord.override {
-    withOpenASAR = true;
+    # withOpenASAR = true;
     withVencord  = true;
   })
 ]
