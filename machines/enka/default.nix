@@ -27,6 +27,7 @@
   ./helix
   ./hyprland
   ./kitty
+  ./logind
   ./networkmanager
   ./nushell
   ./openttd
