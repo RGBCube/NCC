@@ -1,13 +1,7 @@
-{ pkgs, upkgs, ulib, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
+{ pkgs, upkgs, ulib, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   hardware.opengl = enabled {};
-
-  xdg.portal = enabled {
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-    ];
-  };
 })
 
 (homeConfiguration "nixos" {
