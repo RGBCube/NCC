@@ -30,6 +30,7 @@ homeConfiguration [ "nixos" "root" ] {
     grb  = "git rebase";
     grba = "git rebase --abort";
     grbi = "git rebase --interactive";
+    grbm = "git rebase master";
 
     grl = "git reflog";
 
