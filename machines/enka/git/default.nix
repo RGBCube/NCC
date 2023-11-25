@@ -39,6 +39,9 @@ homeConfiguration [ "nixos" "root" ] {
     gs  = "git stash";
     gsp = "git stash pop";
 
+    gsw  = "git switch";
+    gswm = "git switch master";
+
     gsh = "git show";
 
     gst = "git status";
