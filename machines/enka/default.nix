@@ -1,7 +1,8 @@
-{ ulib, systemConfiguration, homeConfiguration, importAll, ... }: ulib.recursiveUpdate3
+{ pkgs, ulib, systemConfiguration, homeConfiguration, importAll, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
-  boot.loader = {
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader         = {
     efi.canTouchEfiVariables = true;
     systemd-boot.enable      = true;
     systemd-boot.editor      = false;
