@@ -100,10 +100,17 @@
 
       nix.optimise.automatic = true;
 
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      nix.settings = {
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
+
+        trusted-users = [
+          "root"
+          "@wheel"
+        ];
+      };
 
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays           = [ fenix.overlays.default ];

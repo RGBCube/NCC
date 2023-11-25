@@ -8,11 +8,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1700720546,
-        "narHash": "sha256-p31fe4lp2KBCyUf58mgai1xYjMLl5S0PQiSvv9+1j/Y=",
+        "lastModified": 1700893250,
+        "narHash": "sha256-Dj+UarvFkqQyykEgPYLIB9U4Tyc4bsTkRgIZWmnZQwc=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "5ade7808d45671b545f3516adf61bc9a604a6246",
+        "rev": "4ef52d5432c4b1aff96c7c62349e63a1b04c934e",
         "type": "github"
       },
       "original": {
@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700695018,
-        "narHash": "sha256-MAiPLgBF4GLzSOlhnPCDWkWW5CDx4i7ApIYaR+TwTVg=",
+        "lastModified": 1700847865,
+        "narHash": "sha256-uWaOIemGl9LF813MW0AEgCBpKwFo2t1Wv3BZc6e5Frw=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "134deb46abd5d0889d913b8509413f6f38b0811e",
+        "rev": "8cedd63eede4c22deb192f1721dd67e7460e1ebe",
         "type": "github"
       },
       "original": {
@@ -50,11 +50,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1700876704,
-        "narHash": "sha256-V3Z1SYEpi5baifNxvIOgBWWy9J0m0hZ8arAMS4XpbZk=",
+        "lastModified": 1700923972,
+        "narHash": "sha256-aQD72u4hGotpO6kR656VEyKELHMwEve9bfNNG3Dc4ys=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "512a59731b2e579b66325d0e9ce770919eecd685",
+        "rev": "3fe6162af1904f15fc5526c179c06a48265bdbff",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1700642897,
-        "narHash": "sha256-LoyZRcl0bBuSnV9SVqrf+vUxN1u9FeYk4vgQS/kyCOI=",
+        "lastModified": 1700846068,
+        "narHash": "sha256-Pei4FtSmhZkkP5PUHMFToPbhLV5TpiZOOclJGBTH3gE=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "7ceefc7ee981f7dd9de4cfdd070696e48b4ab43e",
+        "rev": "34cffbf1d75fb6b5cb6bc68a9854b20dc74f135d",
         "type": "github"
       },
       "original": {
@@ -168,11 +168,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1700770982,
-        "narHash": "sha256-S5aUrhSKFK0g5r92g646hFc/CUl4sZzY2K0t2YkmgdY=",
+        "lastModified": 1700815030,
+        "narHash": "sha256-x24obS8VMX5tmf8MkJMyjG7UxxJxSiH+k063Xwyfzqg=",
         "owner": "RGBCube",
         "repo": "FlakeTools",
-        "rev": "f17c0afee69a6df19b5add11c5ce9b156fb11406",
+        "rev": "7fd62102ff360783e0fcd1f4eb434d90d06694c8",
         "type": "github"
       },
       "original": {
