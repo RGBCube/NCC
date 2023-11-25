@@ -140,12 +140,13 @@ $env.config.completions = {
                 $tokens
             }
 
-            let cmd = $tokens.0 | str trim --left --char "^"
+            let command = $tokens.0 | str trim --left --char "^"
 
-            let completions = ^carapace $cmd nushell $tokens | from json | default []
+            let completions = carapace $command nushell $tokens | from json | default []
 
             if ($completions | is-empty) {
                 let path = $tokens | last
+
                 ls $"($path)*" | each {|it|
                     let choice = if ($path | str ends-with "/") {
                         $path | path join ($it.name | path basename)
