@@ -12,6 +12,7 @@
   strace
   timg
   tree
+  yt-dlp
 
   wine
 
