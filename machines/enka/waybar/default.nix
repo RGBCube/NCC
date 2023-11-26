@@ -1,4 +1,4 @@
-{ homeConfiguration, enabled, ... }:
+{ upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.waybar = enabled {
@@ -113,5 +113,20 @@ homeConfiguration "nixos" {
         tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
     }];
+
+    style = let
+      inherit (upkgs) theme;
+    in ''
+      * {
+        border: none;
+        border-radius: 0;
+        font-family: "OpenSans";
+      }
+
+      window#waybar {
+        background: #${theme.background};
+        color: #${theme.foreground};
+      }
+    '';
   };
 }
