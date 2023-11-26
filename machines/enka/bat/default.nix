@@ -1,4 +1,4 @@
-{ homeConfiguration, enabled, ... }:
+{ upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables = {
@@ -12,6 +12,7 @@ homeConfiguration [ "nixos" "root" ] {
   };
 
   programs.bat = enabled {
-    config.theme = "gruvbox-dark";
+    config.theme = "gruvbox-dark-hard";
+    themes.gruvbox-dark-hard = upkgs.theme.tmTheme;
   };
 }
