@@ -8,7 +8,7 @@
   wayland.windowManager.hyprland = enabled {
     package = upkgs.hyprland;
 
-    extraConfig = with upkgs.theme;
+    extraConfig =
     ''
       monitor = , preferred, auto, 1
     ''
@@ -115,7 +115,7 @@
       }
     ''
     +
-    ''
+    (with upkgs.theme; ''
       general {
         gaps_in     = 5
         gaps_out    = 10
@@ -132,7 +132,7 @@
 
         resize_on_border = true
       }
-    ''
+    '')
     +
     ''
       gestures {
