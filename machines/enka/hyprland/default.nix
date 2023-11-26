@@ -155,7 +155,7 @@
           drag_lock = true
 
           natural_scroll = true
-          scroll_factor  = 0.8
+          scroll_factor  = 0.7
         }
       }
     ''
