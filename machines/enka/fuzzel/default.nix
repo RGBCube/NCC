@@ -16,15 +16,13 @@ homeConfiguration "nixos" {
       inner-pad      = 10;
     };
 
-    settings.colors = let
-      inherit (upkgs) theme;
-    in {
-      background     = theme.background      + theme.transparency;
-      text           = theme.foreground      + theme.transparency;
-      match          = theme.activeHighlight + theme.transparency;
-      selection      = theme.foreground      + theme.transparency;
-      selection-text = theme.background      + theme.transparency;
-      border         = theme.activeHighlight + theme.transparency;
+    settings.colors = with upkgs.theme; {
+      background     = background      + "FF";
+      text           = lightForeground + "FF";
+      match          = base0A          + "FF";
+      selection      = lightForeground + "FF";
+      selection-text = background      + "FF";
+      border         = base0A          + "FF";
     };
 
     settings.border = {

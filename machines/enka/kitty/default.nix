@@ -12,9 +12,7 @@ homeConfiguration "nixos" {
 
     theme = "Gruvbox Dark";
 
-    settings = let
-      inherit (upkgs) theme;
-    in {
+    settings = with upkgs.theme.withHashtag; {
       allow_remote_control    = true;
       confirm_os_window_close = 0;
       focus_follows_mouse     = true;
@@ -24,50 +22,51 @@ homeConfiguration "nixos" {
       scrollback_lines = 100000;
       scrollback_pager = "bat --chop-long-lines";
 
-      cursor             = "#" + theme.foreground;
-      cursor_theme_color = "#" + theme.background;
+      cursor             = lightForeground;
+      cursor_theme_color = background;
       cursor_shape       = "beam";
 
-      url_color = "#" + theme.low;
+      url_color = base0D;
 
       strip_trailing_spaces = "always";
 
       enable_audio_bell = false;
 
-      active_border_color   = "#" + theme.activeHighlight;
-      inactive_border_color = "#" + theme.inactiveHighlight;
+      active_border_color   = base0A;
+      inactive_border_color = base01;
       window_border_width   = "0pt";
 
-      background = "#" + theme.background;
-      foreground = "#" + theme.foreground;
+      background = background;
+      foreground = lightForeground;
       
-      selection_background = "#" + theme.foreground;
-      selection_foreground = "#" + theme.background;
+      selection_background = lightForeground;
+      selection_foreground = background;
 
       tab_bar_edge  = "top";
       tab_bar_style = "powerline";
 
-      active_tab_background = "#" + theme.background;
-      active_tab_foreground = "#" + theme.foreground;
+      active_tab_background = background;
+      active_tab_foreground = lightForeground;
 
-      inactive_tab_background = "#" + theme.backgroundLight;
-      inactive_tab_foreground = "#" + theme.foreground;
+      inactive_tab_background = lightBackground;
+      inactive_tab_foreground = lightForeground;
 
-      color0  = "#665C54";
-      color2  = "#98971A";
-      color3  = "#D79921";
-      color4  = "#458588";
-      color5  = "#B16286";
-      color6  = "#689D6A";
-      color7  = "#A89984";
-      color8  = "#7C6F64";
-      color9  = "#FB4934";
-      color10 = "#B8BB26";
-      color11 = "#FABD2F";
-      color12 = "#83A598";
-      color13 = "#D3869B";
-      color14 = "#8EC07C";
-      color15 = "#BDAE93";
+      color0  = base00;
+      color1  = base01;
+      color2  = base02;
+      color3  = base03;
+      color4  = base04;
+      color5  = base05;
+      color6  = base06;
+      color7  = base07;
+      color8  = base08;
+      color9  = base09;
+      color10 = base0A;
+      color11 = base0B;
+      color12 = base0C;
+      color13 = base0D;
+      color14 = base0E;
+      color15 = base0F;
     };
   };
 }

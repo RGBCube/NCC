@@ -8,9 +8,7 @@
   wayland.windowManager.hyprland = enabled {
     package = upkgs.hyprland;
 
-    extraConfig = let
-      inherit (upkgs) theme;
-    in
+    extraConfig = with upkgs.theme;
     ''
       monitor = , preferred, auto, 1
     ''
@@ -123,11 +121,11 @@
         gaps_out    = 10
         border_size = 2
 
-        col.active_border         = 0x${theme.transparency}${theme.activeHighlight}
-        col.nogroup_border_active = 0x${theme.transparency}${theme.activeHighlight}
+        col.active_border         = 0xFF${base0A}
+        col.nogroup_border_active = 0xFF${base0A}
 
-        col.inactive_border = 0x${theme.transparency}${theme.inactiveHighlight}
-        col.nogroup_border  = 0x${theme.transparency}${theme.inactiveHighlight}
+        col.inactive_border = 0xFF${base01}
+        col.nogroup_border  = 0xFF${base01}
 
         cursor_inactive_timeout = 10
         no_cursor_warps         = true

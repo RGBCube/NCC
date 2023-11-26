@@ -126,6 +126,7 @@
         "homeManager": "homeManager",
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
+        "themes": "themes",
         "tools": "tools"
       }
     },
@@ -158,6 +159,21 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "themes": {
+      "locked": {
+        "lastModified": 1701027224,
+        "narHash": "sha256-w47uhqWQhYTMi6yHtKloY/BLfnmQBdLYUOPmcPswnos=",
+        "owner": "RGBCube",
+        "repo": "ThemeNix",
+        "rev": "8dad0349c43f1b1d95a6d70145d1bc351fe80f99",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RGBCube",
+        "repo": "ThemeNix",
         "type": "github"
       }
     },

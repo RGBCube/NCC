@@ -114,18 +114,41 @@ homeConfiguration "nixos" {
       };
     }];
 
-    style = let
-      inherit (upkgs) theme;
-    in ''
+    style = with upkgs.theme.withHashtag; ''
       * {
         border: none;
         border-radius: 0;
         font-family: "OpenSans";
       }
 
-      window#waybar {
-        background: #${theme.background};
-        color: #${theme.foreground};
+      #waybar {
+        background: ${background};
+        color: ${lightForeground};
+      }
+
+      #waybar:hover {
+        border: 3px;
+        border-color: ${base0A};
+      }
+
+      #workspace-1 {
+        color: ${base08};
+      }
+
+      #workspace-2 {
+        color: ${base09};
+      }
+
+      #workspace-3 {
+        color: ${base0A};
+      }
+
+      #workspace-4 {
+        color: ${base0B};
+      }
+
+      #workspace-5 {
+        color: ${base0C};
       }
     '';
   };

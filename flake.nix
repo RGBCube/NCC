@@ -28,6 +28,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    themes = {
+      url = "github:RGBCube/ThemeNix";
+    };
+
     fenix = {
       url                    = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -38,9 +42,9 @@
     };
   };
 
-  outputs = { nixpkgs, homeManager, tools, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
+  outputs = { nixpkgs, homeManager, tools, themes, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
     upkgs = {
-      theme = import ./themes/gruvbox.nix;
+      theme = themes.gruvbox-dark-hard;
 
       hyprland = inputs.hyprland.packages.${system}.default;
     };
