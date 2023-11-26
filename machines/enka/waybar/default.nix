@@ -20,6 +20,8 @@ homeConfiguration "nixos" {
         format               = "{icon}";
         format-icons.default = "";
         format-icons.active  = "";
+
+        persistent-workspaces."*" = 5;
       };
 
       modules-center = [
