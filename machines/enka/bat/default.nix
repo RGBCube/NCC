@@ -11,8 +11,8 @@ homeConfiguration [ "nixos" "root" ] {
     less = "bat --plain";
   };
 
-  programs.bat = enabled {
-    config.theme = "gruvbox-dark-hard";
-    themes.gruvbox-dark-hard = upkgs.theme.tmTheme;
+  programs.bat = with upkgs.theme; enabled {
+    config.theme   = slug;
+    themes.${slug} = tmTheme;
   };
 }
