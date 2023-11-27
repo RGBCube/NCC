@@ -5,7 +5,7 @@
   programs.nushell.shellAliases.x              = "hx";
 
   programs.helix = enabled {
-    settings.theme = "gruvbox_dark_hard";
+    settings.theme = "base16_transparent";
 
     settings.editor = {
       color-modes         = true;
