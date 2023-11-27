@@ -29,11 +29,11 @@
       bind = SUPER, 4, workspace, 4
       bind = SUPER, 5, workspace, 5
 
-      bind = SUPER+SHIFT, 1, movetoworkspacesilent, 1
-      bind = SUPER+SHIFT, 2, movetoworkspacesilent, 2
-      bind = SUPER+SHIFT, 3, movetoworkspacesilent, 3
-      bind = SUPER+SHIFT, 4, movetoworkspacesilent, 4
-      bind = SUPER+SHIFT, 5, movetoworkspacesilent, 5
+      bind = SUPER+ALT, 1, movetoworkspacesilent, 1
+      bind = SUPER+ALT, 2, movetoworkspacesilent, 2
+      bind = SUPER+ALT, 3, movetoworkspacesilent, 3
+      bind = SUPER+ALT, 4, movetoworkspacesilent, 4
+      bind = SUPER+ALT, 5, movetoworkspacesilent, 5
 
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:273, resizewindow
@@ -64,21 +64,21 @@
     ''
     +
     ''
-      bind = SUPER+SHIFT, left,  movewindow, l
-      bind = SUPER+SHIFT, up,    movewindow, u
-      bind = SUPER+SHIFT, down,  movewindow, d
-      bind = SUPER+SHIFT, right, movewindow, r
+      bind = SUPER+ALT, left,  movewindow, l
+      bind = SUPER+ALT, up,    movewindow, u
+      bind = SUPER+ALT, down,  movewindow, d
+      bind = SUPER+ALT, right, movewindow, r
 
-      bind = SUPER+SHIFT, h, movewindow, l
-      bind = SUPER+SHIFT, j, movewindow, u
-      bind = SUPER+SHIFT, k, movewindow, d
-      bind = SUPER+SHIFT, l, movewindow, r
+      bind = SUPER+ALT, h, movewindow, l
+      bind = SUPER+ALT, j, movewindow, u
+      bind = SUPER+ALT, k, movewindow, d
+      bind = SUPER+ALT, l, movewindow, r
     ''
     +
     ''
       bind = SUPER,       Q, killactive
       bind = SUPER,       F, fullscreen
-      bind = SUPER+SHIFT, F, togglefloating
+      bind = SUPER+ALT, F, togglefloating
 
       bind = SUPER, RETURN, exec, kitty
       bind = SUPER, W,      exec, firefox
@@ -89,8 +89,8 @@
       bind = SUPER, SPACE,  exec, pkill fuzzel; fuzzel
       bind = SUPER, V,      exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
-      bind =      , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
-      bind = SHIFT, PRINT, exec, grim                    - | swappy -f - -o - | wl-copy --type image/png
+      bind =    , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
+      bind = ALT, PRINT, exec, grim                    - | swappy -f - -o - | wl-copy --type image/png
     ''
     +
     ''
