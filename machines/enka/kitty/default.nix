@@ -22,8 +22,8 @@ homeConfiguration "nixos" {
       scrollback_lines = 100000;
       scrollback_pager = "bat --chop-long-lines";
 
-      cursor             = lightForeground;
-      cursor_theme_color = background;
+      cursor             = base05;
+      cursor_theme_color = base00;
       cursor_shape       = "beam";
 
       url_color = base0D;
@@ -36,20 +36,20 @@ homeConfiguration "nixos" {
       inactive_border_color = base01;
       window_border_width   = "0pt";
 
-      background = background;
-      foreground = lightForeground;
+      background = base00;
+      foreground = base05;
       
-      selection_background = lightForeground;
-      selection_foreground = background;
+      selection_background = base02;
+      selection_foreground = base00;
 
       tab_bar_edge  = "top";
       tab_bar_style = "powerline";
 
-      active_tab_background = background;
-      active_tab_foreground = lightForeground;
+      active_tab_background = base00;
+      active_tab_foreground = base05;
 
-      inactive_tab_background = lighterBackground;
-      inactive_tab_foreground = lightForeground;
+      inactive_tab_background = base01;
+      inactive_tab_foreground = base05;
 
       color0  = base00;
       color1  = base08;

@@ -124,8 +124,8 @@ homeConfiguration "nixos" {
       }
 
       #waybar {
-        background: ${background};
-        color: ${lightForeground};
+        background: ${base00};
+        color: ${base05};
       }
 
       #waybar:hover {

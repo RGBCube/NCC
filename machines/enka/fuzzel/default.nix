@@ -17,12 +17,12 @@ homeConfiguration "nixos" {
     };
 
     settings.colors = with upkgs.theme; {
-      background     = background      + "FF";
-      text           = lightForeground + "FF";
-      match          = base0A          + "FF";
-      selection      = lightForeground + "FF";
-      selection-text = background      + "FF";
-      border         = base0A          + "FF";
+      background     = base00 + "FF";
+      text           = base05 + "FF";
+      match          = base0A + "FF";
+      selection      = base05 + "FF";
+      selection-text = base00 + "FF";
+      border         = base0A + "FF";
     };
 
     settings.border = {

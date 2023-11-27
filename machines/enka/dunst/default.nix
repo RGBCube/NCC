@@ -17,8 +17,8 @@ homeConfiguration "nixos" {
       frame_width     = 2;
       seperator_color = "frame";
 
-      background = background;
-      foreground = lightForeground;
+      background = base00;
+      foreground = base05;
 
       alignment = "center";
       font      = "OpenSans 12";

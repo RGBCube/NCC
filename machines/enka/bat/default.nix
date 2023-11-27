@@ -12,7 +12,7 @@ homeConfiguration [ "nixos" "root" ] {
   };
 
   programs.bat = with upkgs.theme; enabled {
-    config.theme   = slug;
-    themes.${slug} = tmTheme;
+    config.theme   = "default";
+    themes.default = tmTheme;
   };
 }

@@ -41,20 +41,20 @@
     +
     ''
       binde = SUPER, left,  movefocus, l
-      binde = SUPER, up,    movefocus, u
       binde = SUPER, down,  movefocus, d
+      binde = SUPER, up,    movefocus, u
       binde = SUPER, right, movefocus, r
 
       binde = SUPER, h, movefocus, l
-      binde = SUPER, k, movefocus, u
       binde = SUPER, j, movefocus, d
+      binde = SUPER, k, movefocus, u
       binde = SUPER, l, movefocus, r
     ''
     +
     ''
       binde = SUPER+CTRL, left,  resizeactive, -10 0
-      binde = SUPER+CTRL, up,    resizeactive, 0 -10
       binde = SUPER+CTRL, down,  resizeactive, 0 10
+      binde = SUPER+CTRL, up,    resizeactive, 0 -10
       binde = SUPER+CTRL, right, resizeactive, 10 0
 
       binde = SUPER+CTRL, h, resizeactive, -10 0
@@ -65,13 +65,13 @@
     +
     ''
       bind = SUPER+ALT, left,  movewindow, l
-      bind = SUPER+ALT, up,    movewindow, u
       bind = SUPER+ALT, down,  movewindow, d
+      bind = SUPER+ALT, up,    movewindow, u
       bind = SUPER+ALT, right, movewindow, r
 
       bind = SUPER+ALT, h, movewindow, l
-      bind = SUPER+ALT, j, movewindow, u
-      bind = SUPER+ALT, k, movewindow, d
+      bind = SUPER+ALT, j, movewindow, d
+      bind = SUPER+ALT, k, movewindow, u
       bind = SUPER+ALT, l, movewindow, r
     ''
     +

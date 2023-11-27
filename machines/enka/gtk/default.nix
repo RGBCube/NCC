@@ -1,4 +1,4 @@
-{ lib, pkgs, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
+{ lib, pkgs, upkgs, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
 
 (systemConfiguration {
   programs.dconf = enabled {};
@@ -18,9 +18,14 @@
     };
 
     theme = {
-      name    = "Gruvbox-Dark-BL";
-      package = pkgs.gruvbox-gtk-theme;
+      name    = "Adwaita-Dark";
+      package = pkgs.gnome-themes-extra;
     };
+  };
+
+  xdg.configFile = {
+    "gtk-3.0/gtk.css".text = upkgs.theme.adwaitaGtkCss;
+    "gtk-4.0/gtk.css".text = upkgs.theme.adwaitaGtkCss;
   };
 })
 
