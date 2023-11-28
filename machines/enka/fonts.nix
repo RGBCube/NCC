@@ -13,11 +13,12 @@
 (with pkgs; systemFonts [
   (nerdfonts.override {
     fonts = [
-      "JetBrainsMono"
+      "SpaceMono"
     ];
   })
-  open-sans
+  lexend
   noto-fonts
   noto-fonts-cjk-sans
+  noto-fonts-lgc-plus
   noto-fonts-emoji
 ])

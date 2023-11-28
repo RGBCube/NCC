@@ -3,8 +3,9 @@
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
     settings.main = {
-      font      = "OpenSans:size=18";
+      font      = "Lexend:size=18";
       dpi-aware = false;
+      layer     = "overlay";
       prompt    = ''"❯ "'';
 
       terminal = "kitty";
@@ -26,7 +27,7 @@ homeConfiguration "nixos" {
     };
 
     settings.border = {
-      radius = 0;
+      radius = 16;
       width = 2;
     };
   };
