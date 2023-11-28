@@ -110,7 +110,7 @@
     ''
       decoration {
         drop_shadow = false
-        rounding    = 0
+        rounding    = 16
 
         blur {
           enabled = false
@@ -155,7 +155,8 @@
         repeat_rate  = 60
 
         touchpad {
-          drag_lock = true
+          clickfinger_behaviour = true
+          drag_lock             = true
 
           natural_scroll = true
           scroll_factor  = 0.7
@@ -165,7 +166,8 @@
     +
     ''
       dwindle {
-        no_gaps_when_only = 0
+        preserve_split = true
+        smart_resizing = false
       }
     ''
     +
