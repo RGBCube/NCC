@@ -43,14 +43,12 @@
       bind = SUPER, 3, workspace, 3
       bind = SUPER, 4, workspace, 4
       bind = SUPER, 5, workspace, 5
-      bind = SUPER, S, togglespecialworkspace
 
       bind = SUPER+ALT, 1, movetoworkspacesilent, 1
       bind = SUPER+ALT, 2, movetoworkspacesilent, 2
       bind = SUPER+ALT, 3, movetoworkspacesilent, 3
       bind = SUPER+ALT, 4, movetoworkspacesilent, 4
       bind = SUPER+ALT, 5, movetoworkspacesilent, 5
-      bind = SUPER+ALT, S, movetoworkspacesilent, special
 
       bindm = SUPER, mouse:272, movewindow
       bindm = SUPER, mouse:274, movewindow
