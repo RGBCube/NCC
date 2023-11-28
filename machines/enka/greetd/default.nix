@@ -4,13 +4,17 @@ let
   hyprlandBin = "${upkgs.hyprland}/bin";
 
   hyprlandConfig = pkgs.writeText "hyprland.conf" ''
-    misc {
-      force_default_wallpaper = 0
-    }
-
     animations {
       enabled                = 0
       first_launch_animation = 0
+    }
+
+    input {
+      kb_layout = tr
+    }
+
+    misc {
+      force_default_wallpaper = 0
     }
 
     workspace = 1, default: true, gapsout: 0, gapsin: 0, border: false, decorate: false
@@ -31,5 +35,8 @@ in systemConfiguration {
 
   environment.etc."greetd/environments".text = ''
     Hyprland
+    bash
+    nu
+    sh
   '';
 }
