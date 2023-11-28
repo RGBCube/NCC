@@ -21,6 +21,18 @@
     ''
     +
     ''
+      binde = SUPER, left,  movefocus, l
+      binde = SUPER, down,  movefocus, d
+      binde = SUPER, up,    movefocus, u
+      binde = SUPER, right, movefocus, r
+
+      binde = SUPER, h, movefocus, l
+      binde = SUPER, j, movefocus, d
+      binde = SUPER, k, movefocus, u
+      binde = SUPER, l, movefocus, r
+    ''
+    +
+    ''
       bind = SUPER, TAB, workspace, e+1
 
       bind = SUPER, 1, workspace, 1
@@ -36,19 +48,6 @@
       bind = SUPER+ALT, 5, movetoworkspacesilent, 5
 
       bindm = SUPER, mouse:272, movewindow
-      bindm = SUPER, mouse:273, resizewindow
-    ''
-    +
-    ''
-      binde = SUPER, left,  movefocus, l
-      binde = SUPER, down,  movefocus, d
-      binde = SUPER, up,    movefocus, u
-      binde = SUPER, right, movefocus, r
-
-      binde = SUPER, h, movefocus, l
-      binde = SUPER, j, movefocus, d
-      binde = SUPER, k, movefocus, u
-      binde = SUPER, l, movefocus, r
     ''
     +
     ''
@@ -61,6 +60,8 @@
       binde = SUPER+CTRL, j, resizeactive, 0 10
       binde = SUPER+CTRL, k, resizeactive, 0 -10
       binde = SUPER+CTRL, l, resizeactive, 10 0
+
+      bindm = SUPER, mouse:273, resizewindow
     ''
     +
     ''
@@ -100,8 +101,10 @@
       binde = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle
       binde = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-      binde = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
-      binde = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
+      bindle = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
+      bindle = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
+
+      bindle = , XF86PowerOff, exec, pkill fuzzel; echo -e "Suspend\nHibernate\nPower Off\nReboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | xargs systemctl
     ''
     +
     ''
