@@ -8,15 +8,16 @@
     settings.theme = "base16_transparent";
 
     settings.editor = {
-      color-modes         = true;
-      completion-replace  = true;
-      cursor-shape.insert = "bar";
-      cursorline          = true;
-      bufferline          = "multiple";
-      file-picker.hidden  = false;
-      line-number         = "relative";
-      shell               = [ "nu" "--commands" ];
-      text-width          = 100;
+      color-modes            = true;
+      completion-replace     = true;
+      completion-trigger-len = 0;
+      cursor-shape.insert    = "bar";
+      cursorline             = true;
+      bufferline             = "multiple";
+      file-picker.hidden     = false;
+      line-number            = "relative";
+      shell                  = [ "nu" "--commands" ];
+      text-width             = 100;
     };
 
     settings.editor.indent-guides = {
