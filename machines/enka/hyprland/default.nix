@@ -84,6 +84,7 @@
       bind = SUPER, RETURN, exec, kitty
       bind = SUPER, W,      exec, firefox
       bind = SUPER, D,      exec, discord
+      bind = SUPER, C,      exec, hyprpicker --autocopy
 
       bind = SUPER, B, exec, pkill --signal SIGUSR1 waybar
 
@@ -105,6 +106,24 @@
       bindle = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
 
       bindle = , XF86PowerOff, exec, pkill fuzzel; echo -e "Suspend\nHibernate\nPower Off\nReboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | xargs systemctl
+    ''
+    +
+    ''
+      animations { 
+          bezier = md3_standard,  0.2,  0,   0,    1
+          bezier = md3_decel,     0.05, 0.7, 0.1,  1
+          bezier = md3_accel,     0.3,  0,   0.8,  0.15
+          bezier = overshot,      0.05, 0.9, 0.1,  1.1
+          bezier = crazyshot,     0.1,  1.5, 0.76, 0.92 
+          bezier = hyprnostretch, 0.05, 0.9, 0.1,  1.0
+          bezier = fluent_decel,  0.1,  1,   0,    1
+
+          animation = windows,          1, 2,  md3_decel, popin 80%
+          animation = border,           1, 10, default
+          animation = fade,             1, 2,  default
+          animation = workspaces,       1, 3,  md3_decel
+          animation = specialWorkspace, 1, 3,  md3_decel, slidevert
+      }
     ''
     +
     ''
@@ -155,8 +174,8 @@
         repeat_rate  = 60
 
         touchpad {
-          clickfinger_behaviour = true
-          drag_lock             = true
+          clickfinger_behavior = true
+          drag_lock            = true
 
           natural_scroll = true
           scroll_factor  = 0.7
@@ -173,9 +192,6 @@
     +
     ''
       misc {
-        animate_manual_resizes       = true
-        animate_mouse_windowdragging = true
-
         disable_hyprland_logo    = true
         disable_splash_rendering = true
 
@@ -198,6 +214,7 @@
   brightnessctl
   cliphist
   grim
+  hyprpicker
   slurp
   swappy
   wl-clipboard
