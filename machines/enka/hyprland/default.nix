@@ -35,6 +35,9 @@
     ''
       bind = SUPER, TAB, workspace, e+1
 
+      bind = SUPER, mouse_up,   e+1
+      bind = SUPER, mouse_down, e-1
+
       bind = SUPER, 1, workspace, 1
       bind = SUPER, 2, workspace, 2
       bind = SUPER, 3, workspace, 3
@@ -48,6 +51,7 @@
       bind = SUPER+ALT, 5, movetoworkspacesilent, 5
 
       bindm = SUPER, mouse:272, movewindow
+      bindm = SUPER, mouse:274, movewindow
     ''
     +
     ''
@@ -79,7 +83,7 @@
     ''
       bind = SUPER,       Q, killactive
       bind = SUPER,       F, fullscreen
-      bind = SUPER+ALT, F, togglefloating
+      bind = SUPER+ALT,   F, togglefloating
 
       bind = SUPER, RETURN, exec, kitty
       bind = SUPER, W,      exec, firefox
@@ -96,25 +100,25 @@
     ''
     +
     ''
-      binde = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+
-      binde = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-
+      bindle = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+
+      bindle = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-
 
-      binde = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle
-      binde = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+      bindle = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle
+      bindle = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
       bindle = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
       bindle = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
 
-      bindle = , XF86PowerOff, exec, pkill fuzzel; echo -e "Suspend\nHibernate\nPower Off\nReboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | xargs systemctl
+      bindl = , XF86PowerOff, exec, pkill fuzzel; echo -e "Suspend\nHibernate\nPower Off\nReboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | xargs systemctl
     ''
     +
     ''
-      animations { 
+      animations {
           bezier = md3_standard,  0.2,  0,   0,    1
           bezier = md3_decel,     0.05, 0.7, 0.1,  1
           bezier = md3_accel,     0.3,  0,   0.8,  0.15
           bezier = overshot,      0.05, 0.9, 0.1,  1.1
-          bezier = crazyshot,     0.1,  1.5, 0.76, 0.92 
+          bezier = crazyshot,     0.1,  1.5, 0.76, 0.92
           bezier = hyprnostretch, 0.05, 0.9, 0.1,  1.0
           bezier = fluent_decel,  0.1,  1,   0,    1
 
@@ -171,7 +175,7 @@
         kb_layout = tr
 
         repeat_delay = 400
-        repeat_rate  = 60
+        repeat_rate  = 100
 
         touchpad {
           clickfinger_behavior = true
