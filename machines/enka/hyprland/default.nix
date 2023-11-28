@@ -35,7 +35,7 @@
     ''
       bind = SUPER, TAB, workspace, e+1
 
-      bind = SUPER, mouse_up,  workspace, e+1
+      bind = SUPER, mouse_up,   workspace, e+1
       bind = SUPER, mouse_down, workspace, e-1
 
       bind = SUPER, 1, workspace, 1
@@ -112,19 +112,12 @@
     +
     ''
       animations {
-          bezier = md3_standard,  0.2,  0,   0,    1
-          bezier = md3_decel,     0.05, 0.7, 0.1,  1
-          bezier = md3_accel,     0.3,  0,   0.8,  0.15
-          bezier = overshot,      0.05, 0.9, 0.1,  1.1
-          bezier = crazyshot,     0.1,  1.5, 0.76, 0.92
-          bezier = hyprnostretch, 0.05, 0.9, 0.1,  1.0
-          bezier = fluent_decel,  0.1,  1,   0,    1
+          bezier = material_decelerate, 0.05, 0.7, 0.1,  1
 
-          animation = windows,          1, 2,  md3_decel, popin 80%
+          animation = windows,          1, 2,  material_decelerate, popin 80%
           animation = border,           1, 10, default
           animation = fade,             1, 2,  default
-          animation = workspaces,       1, 3,  md3_decel
-          animation = specialWorkspace, 1, 3,  md3_decel, slidevert
+          animation = workspaces,       1, 3,  material_decelerate
       }
     ''
     +
