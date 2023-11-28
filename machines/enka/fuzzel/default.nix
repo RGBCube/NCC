@@ -28,7 +28,7 @@ homeConfiguration "nixos" {
 
     settings.border = {
       radius = 16;
-      width = 2;
+      width = 3;
     };
   };
 }

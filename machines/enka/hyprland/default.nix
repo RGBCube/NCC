@@ -120,9 +120,11 @@
     +
     (with upkgs.theme; ''
       general {
+        max_fps = 60
+
         gaps_in     = 5
         gaps_out    = 10
-        border_size = 2
+        border_size = 3
 
         col.active_border         = 0xFF${base0A}
         col.nogroup_border_active = 0xFF${base0A}
@@ -158,6 +160,12 @@
           natural_scroll = true
           scroll_factor  = 0.7
         }
+      }
+    ''
+    +
+    ''
+      dwindle {
+        no_gaps_when_only = 0
       }
     ''
     +
