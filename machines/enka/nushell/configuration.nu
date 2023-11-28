@@ -1,7 +1,3 @@
-if (tty) == /dev/tty1 {
-    Hyprland
-}
-
 $env.config = {
     bracketed_paste:                  true
     buffer_editor:                    ""

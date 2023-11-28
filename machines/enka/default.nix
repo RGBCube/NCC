@@ -24,6 +24,7 @@
   ./firefox
   ./fuzzel
   ./git
+  ./greetd
   ./gtk
   ./helix
   ./hyprland

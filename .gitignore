@@ -10,6 +10,7 @@
 !machines/enka/firefox/
 !machines/enka/fuzzel/
 !machines/enka/git/
+!machines/enka/greetd/
 !machines/enka/gtk/
 !machines/enka/helix/
 !machines/enka/hyprland/
