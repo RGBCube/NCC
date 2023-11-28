@@ -21,6 +21,7 @@
   ./discord
   ./docker
   ./dunst
+  ./eww
   ./firefox
   ./fuzzel
   ./git
@@ -37,7 +38,6 @@
   ./python
   ./steam
   ./steck
-  ./waybar
 
   ./fonts.nix
   ./localisation.nix

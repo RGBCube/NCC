@@ -7,6 +7,7 @@
 !machines/enka/discord/
 !machines/enka/docker/
 !machines/enka/dunst/
+!machines/enka/eww/
 !machines/enka/firefox/
 !machines/enka/fuzzel/
 !machines/enka/git/
@@ -23,7 +24,6 @@
 !machines/enka/python/
 !machines/enka/steam/
 !machines/enka/steck/
-!machines/enka/waybar/
 
 !themes/
 

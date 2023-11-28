@@ -19,8 +19,6 @@ let
 
     workspace = 1, default: true, gapsout: 0, gapsin: 0, border: false, decorate: false
 
-    exec-once = systemctl --user stop waybar.service
-
     exec-once = [workspace 1; fullscreen; noanim] ${pkgs.greetd.gtkgreet}/bin/gtkgreet --layer-shell --command Hyprland; ${hyprlandBin}}/bin/hyprctl dispatch exit
 
     exec-once = ${hyprlandBin}/bin/hyprctl dispatch focuswindow gtkgreet

@@ -90,8 +90,6 @@
       bind = SUPER, D,      exec, discord
       bind = SUPER, C,      exec, hyprpicker --autocopy
 
-      bind = SUPER, B, exec, pkill --signal SIGUSR1 waybar
-
       bind = SUPER, SPACE,  exec, pkill fuzzel; fuzzel
       bind = SUPER, V,      exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
