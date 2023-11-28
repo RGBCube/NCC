@@ -2,7 +2,8 @@
 
 homeConfiguration "nixos" {
   qt = enabled {
-    style.name    = "Adwaita-dark";
+    platformTheme = "gnome";
+    style.name    = "adwaita-dark";
     style.package = pkgs.adwaita-qt;
   };
 }
