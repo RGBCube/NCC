@@ -13,7 +13,7 @@
 (with pkgs; systemFonts [
   (nerdfonts.override {
     fonts = [
-      "SpaceMono"
+      "RobotoMono"
     ];
   })
   lexend

@@ -2,11 +2,11 @@
 
 homeConfiguration "nixos" {
   programs.kitty = enabled {
-    font.name    = "SpaceMono Nerd Font";
+    font.name    = "RobotoMono Nerd Font";
     font.size    = 12;
     font.package = (pkgs.nerdfonts.override {
       fonts = [
-        "SpaceMono"
+        "RobotoMono"
       ];
     });
 
