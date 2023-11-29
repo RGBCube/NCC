@@ -19,7 +19,7 @@ homeConfiguration "nixos" {
 
       frame_color     = base0A;
       frame_width     = 3;
-      seperator_color = "frame";
+      separator_color = "frame";
 
       background = base00;
       foreground = base05;
