@@ -7,8 +7,8 @@
 (homeConfiguration "nixos" {
   gtk = enabled {
     font = {
-      name    = "OpenSans";
-      package = pkgs.open-sans;
+      name    = "Lexend";
+      package = pkgs.lexend;
       size    = 12;
     };
 
