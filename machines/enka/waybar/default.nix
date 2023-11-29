@@ -6,7 +6,7 @@ homeConfiguration "nixos" {
 
     settings = [{
       layer  = "top";
-      height = 30;
+      height = 32;
 
       margin-right = 10;
       margin-left  = 10;
@@ -120,17 +120,13 @@ homeConfiguration "nixos" {
       * {
         border: none;
         border-radius: 0;
-        font-family: "OpenSans";
+        font-family: "Lexend";
       }
 
       #waybar {
         background: ${base00};
         color: ${base05};
-      }
-
-      #waybar:hover {
-        border: 3px;
-        border-color: ${base0A};
+        border-radius: 16px;
       }
 
       #workspace-1 {
