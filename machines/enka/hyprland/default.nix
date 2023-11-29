@@ -211,9 +211,9 @@
   brightnessctl
   cliphist
   grim
-  hyprpicker
   slurp
   swappy
+  upkgs.hyprpicker
   wl-clipboard
   xdg-utils
   xwaylandvideobridge

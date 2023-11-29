@@ -40,6 +40,10 @@
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
+
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+    };
   };
 
   outputs = { nixpkgs, homeManager, tools, themes, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
@@ -47,6 +51,7 @@
       theme = themes.gruvbox-dark-hard;
 
       hyprland = inputs.hyprland.packages.${system}.default;
+      hyprpicker = inputs.hyprpicker.packages.${system}.default;
     };
 
     lib = nixpkgs.lib;
