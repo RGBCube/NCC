@@ -10,11 +10,15 @@ homeConfiguration "nixos" {
     settings.global = {
       width = "(300, 900)";
 
+      dmenu = "fuzzel --dmenu";
+
+      corner_radius      = 16;
+      gap_size           = 10;
       horizontal_padding = 10;
       padding            = 10;
 
       frame_color     = base0A;
-      frame_width     = 2;
+      frame_width     = 3;
       seperator_color = "frame";
 
       background = base00;
