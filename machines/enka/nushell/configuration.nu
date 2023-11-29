@@ -85,7 +85,7 @@ $env.config.rm = {
 $env.config.table = {
     header_on_separator: false
     index_mode: always
-    mode:       heavy
+    mode:       rounded
     padding:    { left: 1, right: 1 }
     show_empty: true
     trim: {
