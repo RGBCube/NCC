@@ -21,7 +21,6 @@
   ./discord
   ./docker
   ./dunst
-  ./eww
   ./firefox
   ./fuzzel
   ./git
