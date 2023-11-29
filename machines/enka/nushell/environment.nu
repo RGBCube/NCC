@@ -12,10 +12,6 @@ $env.ENV_CONVERSIONS.PATH = {
     }
 }
 
-def nix-find [thing: string] {
-    nix-locate ("bin/" + $thing) | grep --invert-match "^\\(" | grep ($thing + "\\$")
-}
-
 def hx [...arguments] {
     kitty @ set-spacing padding=0
 
