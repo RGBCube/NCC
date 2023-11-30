@@ -87,6 +87,7 @@
 
       bind = SUPER, RETURN, exec, kitty
       bind = SUPER, W,      exec, firefox
+      bind = SUPER, T,      exec, thunderbird
       bind = SUPER, D,      exec, discord
       bind = SUPER, C,      exec, hyprpicker --autocopy
 
