@@ -19,8 +19,6 @@
       exec-once = wl-paste --type text  --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
 
-      exec-once = hyprctl sercursor material_dark_cursors ${toString font.size.big}
-
       exec = pkill --signal SIGUSR2 waybar
     ''
     +
@@ -219,7 +217,6 @@
   slurp
   swappy
   upkgs.hyprpicker
-  upkgs.material-cursors
   wl-clipboard
   xdg-utils
   xwaylandvideobridge
