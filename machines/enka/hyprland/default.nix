@@ -18,6 +18,8 @@
 
       exec-once = wl-paste --type text  --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
+
+      exec = pkill --signal SIGUSR2 waybar
     ''
     +
     ''
