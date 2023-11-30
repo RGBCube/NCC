@@ -1,4 +1,4 @@
-{ stdenvNoCC, fetchFromGitHub }:
+{ lib, stdenvNoCC, fetchFromGitHub }:
 
 stdenvNoCC.mkDerivation {
   pname   = "gruvbox-plus-icons";
@@ -19,4 +19,14 @@ stdenvNoCC.mkDerivation {
 
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "Gruvbox Plus icon pack for Linux desktops based on the Gruvbox color theme.";
+    homepage    = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
+    license     = licenses.gpl3;
+    platforms   = platforms.linux;
+    maintainers = with maintainers; [
+      RGBCube
+    ];
+  };
 }

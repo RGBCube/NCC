@@ -1,4 +1,4 @@
-{ pkgs, stdenvNoCC, fetchFromGitHub }:
+{ lib, pkgs, stdenvNoCC, fetchFromGitHub }:
 
 stdenvNoCC.mkDerivation {
   pname   = "material-cursors";
@@ -27,9 +27,19 @@ stdenvNoCC.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/icons/material-cursors
-    cp -r dist/* $out/share/icons/material-cursors
+    mkdir -p $out/share/icons
+    cp -r dist/* $out/share/icons/
 
     runHook postInstall
   '';
+
+  meta = with lib; {
+    description = "Material cursors for Linux";
+    homepage    = "https://github.com/varlesh/material-cursors";
+    license     = licenses.gpl3;
+    platforms   = platforms.linux;
+    maintainers = with maintainers; [
+      RGBCube
+    ];
+  };
 }
