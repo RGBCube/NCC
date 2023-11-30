@@ -5,7 +5,7 @@
 })
 
 (homeConfiguration "nixos" {
-  wayland.windowManager.hyprland = enabled {
+  wayland.windowManager.hyprland = with upkgs.theme; enabled {
     package = upkgs.hyprland;
 
     extraConfig =
@@ -126,7 +126,7 @@
     ''
       decoration {
         drop_shadow = false
-        rounding    = 16
+        rounding    = ${toString corner-radius}
 
         blur {
           enabled = false
@@ -134,13 +134,13 @@
       }
     ''
     +
-    (with upkgs.theme; ''
+    ''
       general {
         max_fps = 60
 
         gaps_in     = 5
         gaps_out    = 10
-        border_size = 3
+        border_size = ${toString border-width}
 
         col.active_border         = 0xFF${base0A}
         col.nogroup_border_active = 0xFF${base0A}
@@ -153,7 +153,7 @@
 
         resize_on_border = true
       }
-    '')
+    ''
     +
     ''
       gestures {

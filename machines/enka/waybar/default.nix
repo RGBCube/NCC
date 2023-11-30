@@ -6,7 +6,7 @@ homeConfiguration "nixos" {
 
     settings = [{
       layer  = "top";
-      height = 32;
+      height = 2 * upkgs.theme.corner-radius;
 
       margin-right = 10;
       margin-left  = 10;
@@ -116,17 +116,16 @@ homeConfiguration "nixos" {
       };
     }];
 
-    style = with upkgs.theme.withHashtag; ''
+    style = with upkgs.theme; with withHashtag; ''
       * {
         border: none;
-        border-radius: 0;
-        font-family: "Lexend";
+        border-radius: ${toString corner-radius}px;
+        font-family: "${font.sans.name}";
       }
 
       #waybar {
         background: ${base00};
         color: ${base05};
-        border-radius: 16px;
       }
 
       #workspace-1 {

@@ -2,8 +2,8 @@
 
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
-    settings.main = {
-      font      = "Lexend:size=18";
+    settings.main = with upkgs.theme.font; {
+      font      = "${sans.name}:size=${toString size.big}";
       dpi-aware = false;
       layer     = "overlay";
       prompt    = ''"❯ "'';
@@ -26,9 +26,9 @@ homeConfiguration "nixos" {
       border         = base0A + "FF";
     };
 
-    settings.border = {
-      radius = 16;
-      width = 3;
+    settings.border = with upkgs.theme; {
+      radius = corner-radius;
+      width  = border-width;
     };
   };
 }

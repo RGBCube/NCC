@@ -7,25 +7,25 @@ homeConfiguration "nixos" {
       package = pkgs.gruvbox-dark-icons-gtk;
     };
 
-    settings.global = {
+    settings.global = with upkgs.theme; {
       width = "(300, 900)";
 
       dmenu = "fuzzel --dmenu";
 
-      corner_radius      = 16;
+      corner_radius      = corner-radius;
       gap_size           = 10;
       horizontal_padding = 10;
       padding            = 10;
 
       frame_color     = base0A;
-      frame_width     = 3;
+      frame_width     = border-width;
       separator_color = "frame";
 
       background = base00;
       foreground = base05;
 
       alignment = "center";
-      font      = "OpenSans 12";
+      font      = "${font.sans.name} ${toString font.size.normal}";
 
       min_icon_size = 64;
 

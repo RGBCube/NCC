@@ -6,10 +6,10 @@
 
 (homeConfiguration "nixos" {
   gtk = enabled {
-    font = {
-      name    = "Lexend";
-      package = pkgs.lexend;
-      size    = 12;
+    font = with upkgs.theme.font; {
+      inherit (sans) name package;
+
+      size = size.normal;
     };
 
     iconTheme = {

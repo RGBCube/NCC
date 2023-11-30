@@ -47,8 +47,26 @@
   };
 
   outputs = { nixpkgs, homeManager, tools, themes, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
+    pkgs = nixpkgs.legacyPackages.${system};
+
     upkgs = {
-      theme = themes.gruvbox-dark-hard;
+      theme = themes.custom (themes.raw.gruvbox-dark-hard // {
+        corner-radius = 16;
+        border-width  = 3;
+
+        font.size.normal = 12;
+        font.size.big    = 18;
+
+        font.sans.name    = "Lexend";
+        font.sans.package = pkgs.lexend;
+
+        font.mono.name    = "RobotoMono Nerd Font";
+        font.mono.package = (pkgs.nerdfonts.override {
+          fonts = [
+            "RobotoMono"
+          ];
+        });
+      });
 
       hyprland = inputs.hyprland.packages.${system}.default;
       hyprpicker = inputs.hyprpicker.packages.${system}.default;

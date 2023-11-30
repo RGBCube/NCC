@@ -1,14 +1,12 @@
-{ pkgs, upkgs, homeConfiguration, enabled, ... }:
+{ upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   programs.kitty = enabled {
-    font.name    = "RobotoMono Nerd Font";
-    font.size    = 12;
-    font.package = (pkgs.nerdfonts.override {
-      fonts = [
-        "RobotoMono"
-      ];
-    });
+    font = with upkgs.theme.font; {
+      inherit (mono) name package;
+
+      size = size.normal;
+    };
 
     theme = "Gruvbox Dark";
 

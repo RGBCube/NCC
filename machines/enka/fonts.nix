@@ -1,4 +1,4 @@
-{ lib, pkgs, systemConfiguration, systemFonts, ... }: lib.recursiveUpdate
+{ lib, pkgs, upkgs, systemConfiguration, systemFonts, ... }: lib.recursiveUpdate
 
 (systemConfiguration {
   console = {
@@ -11,12 +11,9 @@
 })
 
 (with pkgs; systemFonts [
-  (nerdfonts.override {
-    fonts = [
-      "RobotoMono"
-    ];
-  })
-  lexend
+  upkgs.theme.font.sans.package
+  upkgs.theme.font.mono.package
+
   noto-fonts
   noto-fonts-cjk-sans
   noto-fonts-lgc-plus
