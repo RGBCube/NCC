@@ -2,9 +2,11 @@
 
 homeConfiguration "nixos" {
   programs.fuzzel = enabled {
-    settings.main = with upkgs.theme.font; {
-      font      = "${sans.name}:size=${toString size.big}";
-      dpi-aware = false;
+    settings.main = with upkgs.theme; {
+      dpi-aware  = false;
+      font       = "${font.sans.name}:size=${toString font.size.big}";
+      icon-theme = icons.name;
+
       layer     = "overlay";
       prompt    = ''"❯ "'';
 

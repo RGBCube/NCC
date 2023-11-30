@@ -1,5 +1,7 @@
 *
 
+!devirations/
+
 !machines/
 !machines/enka/
 !machines/enka/bat/
@@ -25,8 +27,6 @@
 !machines/enka/steam/
 !machines/enka/steck/
 !machines/enka/waybar/
-
-!themes/
 
 !.gitignore
 !flake.lock

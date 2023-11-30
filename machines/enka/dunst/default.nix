@@ -1,11 +1,8 @@
-{ pkgs, upkgs, homeConfiguration, enabled, ... }:
+{ upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
   services.dunst = with upkgs.theme.withHashtag; enabled {
-    iconTheme = {
-      name    = "Gruvbox-Dark";
-      package = pkgs.gruvbox-dark-icons-gtk;
-    };
+    iconTheme = upkgs.theme.icons;
 
     settings.global = with upkgs.theme; {
       width = "(300, 900)";

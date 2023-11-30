@@ -12,10 +12,7 @@
       size = size.normal;
     };
 
-    iconTheme = {
-      name    = "Gruvbox-Dark";
-      package = pkgs.gruvbox-dark-icons-gtk;
-    };
+    iconTheme = upkgs.theme.icons;
 
     theme = {
       name    = "Adwaita-dark";

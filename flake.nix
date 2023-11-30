@@ -66,7 +66,12 @@
             "RobotoMono"
           ];
         });
+
+        icons.name    = "Gruvbox-Plus-Dark";
+        icons.package = pkgs.callPackage (import ./devirations/gruvbox-icons.nix) {};
       });
+
+      material-cursors = pkgs.callPackage (import ./devirations/material-cursors.nix) {};
 
       hyprland = inputs.hyprland.packages.${system}.default;
       hyprpicker = inputs.hyprpicker.packages.${system}.default;
