@@ -83,10 +83,10 @@ homeConfiguration "nixos" {
       memory.format = " {}%";
 
       network = {
-        format-disconnected = "󰤮";
+        format-disconnected = "󰤮 ";
         format-ethernet     = "󰈀 {ipaddr}/{cidr}";
         format-linked       = " {ifname} (No IP)";
-        format-wifi         = "{essid}  {signalStrength}%";
+        format-wifi         = " {signalStrength}%";
       };
 
       battery = {
@@ -123,29 +123,38 @@ homeConfiguration "nixos" {
         font-family: "${font.sans.name}";
       }
 
+      .modules-right {
+        margin-right: 10px;
+
+      }
+
       #waybar {
         background: ${base00};
         color: ${base05};
       }
 
-      #workspace-1 {
+      #workspaces button:nth-child(1) {
         color: ${base08};
       }
 
-      #workspace-2 {
+      #workspaces button:nth-child(2) {
         color: ${base09};
       }
 
-      #workspace-3 {
+      #workspaces button:nth-child(3) {
         color: ${base0A};
       }
 
-      #workspace-4 {
+      #workspaces button:nth-child(4) {
         color: ${base0B};
       }
 
-      #workspace-5 {
+      #workspaces button:nth-child(5) {
         color: ${base0C};
+      }
+
+      #tray, #pulseaudio, #backlight, #cpu, #memory, #network, #battery, #clock {
+        margin-left: 20px;
       }
     '';
   };
