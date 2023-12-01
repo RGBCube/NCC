@@ -67,6 +67,9 @@
   # NIX
   nil
 
+  # PYTHON
+  python311Packages.python-lsp-server
+
   # RUST
   rust-analyzer
 
