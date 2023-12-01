@@ -19,7 +19,6 @@
   ./bat
   ./blueman
   ./discord
-  ./docker
   ./dunst
   ./firefox
   ./fuzzel
