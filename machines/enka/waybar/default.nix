@@ -47,6 +47,11 @@ homeConfiguration "nixos" {
         "clock"
       ];
 
+      tray = {
+        reverse-direction = true;
+        spacing           = 5;
+      };
+
       pulseaudio = {
         format                 = "{format_source} {icon} {volume}%";
         format-bluetooth       = "{format_source} {icon}󰂯 {volume}%";
