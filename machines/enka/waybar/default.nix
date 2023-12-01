@@ -1,12 +1,12 @@
 { upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  programs.waybar = enabled {
+  programs.waybar = with upkgs.theme.withHashtag; enabled {
     systemd = enabled {};
 
     settings = [{
       layer  = "top";
-      height = 2 * upkgs.theme.corner-radius;
+      height = 2 * corner-radius;
 
       margin-right = 10;
       margin-left  = 10;
@@ -121,7 +121,7 @@ homeConfiguration "nixos" {
       };
     }];
 
-    style = with upkgs.theme; with withHashtag; ''
+    style = ''
       * {
         border: none;
         border-radius: ${toString corner-radius}px;

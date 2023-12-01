@@ -1,8 +1,8 @@
 { upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  programs.fuzzel = enabled {
-    settings.main = with upkgs.theme; {
+  programs.fuzzel = with upkgs.theme; enabled {
+    settings.main = {
       dpi-aware  = false;
       font       = "${font.sans.name}:size=${toString font.size.big}";
       icon-theme = icons.name;
@@ -19,7 +19,7 @@ homeConfiguration "nixos" {
       inner-pad      = 10;
     };
 
-    settings.colors = with upkgs.theme; {
+    settings.colors = {
       background     = base00 + "FF";
       text           = base05 + "FF";
       match          = base0A + "FF";
@@ -28,7 +28,7 @@ homeConfiguration "nixos" {
       border         = base0A + "FF";
     };
 
-    settings.border = with upkgs.theme; {
+    settings.border = {
       radius = corner-radius;
       width  = border-width;
     };

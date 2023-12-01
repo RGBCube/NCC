@@ -1,8 +1,8 @@
 { upkgs, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  programs.kitty = enabled {
-    font = with upkgs.theme.font; {
+  programs.kitty = with upkgs.theme.withHashtag; enabled {
+    font = with font; {
       inherit (mono) name package;
 
       size = size.normal;
@@ -10,7 +10,7 @@ homeConfiguration "nixos" {
 
     theme = "Gruvbox Dark";
 
-    settings = with upkgs.theme.withHashtag; {
+    settings = {
       allow_remote_control    = true;
       confirm_os_window_close = 0;
       focus_follows_mouse     = true;
