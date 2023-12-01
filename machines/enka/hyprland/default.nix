@@ -118,7 +118,7 @@
       bindle = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
       bindle = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
 
-      bindl = , XF86PowerOff, exec, pkill fuzzel; echo -en "Suspend\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-suspend-hibernate-alt2\nPower Off\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | xargs systemctl
+      bindl = , XF86PowerOff, exec, pkill fuzzel; echo -en "Suspend\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-suspend-hibernate-alt2\nPower Off\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | ifne xargs systemctl
     ''
     +
     ''

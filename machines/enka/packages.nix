@@ -5,6 +5,7 @@
   fd
   gotop
   hyperfine
+  moreutils
   nix-index
   nix-output-monitor
   pstree
