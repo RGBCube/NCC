@@ -2,6 +2,12 @@
 
 (systemConfiguration {
   hardware.opengl = enabled {};
+
+  xdg.portal = enabled {
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+    ];
+  };
 })
 
 (homeConfiguration "nixos" {
