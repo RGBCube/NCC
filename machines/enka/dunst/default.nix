@@ -2,9 +2,9 @@
 
 homeConfiguration "nixos" {
   services.dunst = with upkgs.theme.withHashtag; enabled {
-    iconTheme = upkgs.theme.icons;
+    iconTheme = icons;
 
-    settings.global = with upkgs.theme; {
+    settings.global = {
       width = "(300, 900)";
 
       dmenu = "fuzzel --dmenu";
