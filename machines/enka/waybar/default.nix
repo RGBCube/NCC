@@ -2,8 +2,6 @@
 
 homeConfiguration "nixos" {
   programs.waybar = with upkgs.theme.withHashtag; enabled {
-    systemd = enabled {};
-
     settings = [{
       layer  = "top";
       height = 2 * corner-radius;
@@ -138,23 +136,23 @@ homeConfiguration "nixos" {
         color: ${base05};
       }
 
-      #workspaces button:nth-child(1) {
+      #workspaces button:nth-child(1) button.has-window {
         color: ${base08};
       }
 
-      #workspaces button:nth-child(2) {
+      #workspaces button:nth-child(2) button.has-window {
         color: ${base09};
       }
 
-      #workspaces button:nth-child(3) {
+      #workspaces button:nth-child(3) button.has-window {
         color: ${base0A};
       }
 
-      #workspaces button:nth-child(4) {
+      #workspaces button:nth-child(4) button.has-window {
         color: ${base0B};
       }
 
-      #workspaces button:nth-child(5) {
+      #workspaces button:nth-child(5) button.has-window {
         color: ${base0C};
       }
 
