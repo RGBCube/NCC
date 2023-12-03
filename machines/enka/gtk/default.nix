@@ -6,6 +6,9 @@
 
 (homeConfiguration "nixos" {
   gtk = enabled {
+    gtk3.extraCss = upkgs.theme.adwaitaGtkCss;
+    gtk4.extraCss = upkgs.theme.adwaitaGtkCss;
+
     font = with upkgs.theme.font; {
       inherit (sans) name package;
 
@@ -18,11 +21,6 @@
       name    = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
     };
-  };
-
-  xdg.configFile = {
-    "gtk-3.0/gtk.css".text = upkgs.theme.adwaitaGtkCss;
-    "gtk-4.0/gtk.css".text = upkgs.theme.adwaitaGtkCss;
   };
 })
 
