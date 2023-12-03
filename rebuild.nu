@@ -1,8 +1,8 @@
 #!/usr/bin/env nu
 
 def main [
-  machine: string = ""     # The machine to build.
-  --no-trace: bool = false # Wheter to not show the full trace.
+  machine: string@"ls machines" = "" # The machine to build.
+  --no-trace                         # Wheter to not show the full trace.
 ] {
   mut machine_ = $machine
 
