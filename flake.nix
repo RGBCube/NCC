@@ -50,8 +50,8 @@
     pkgs = nixpkgs.legacyPackages.${system};
 
     upkgs = {
-      theme = themes.custom (themes.raw.windows-95 // {
-        corner-radius = 16;
+      theme = themes.custom (themes.raw.gruvbox-dark-hard // {
+        corner-radius = 12;
         border-width  = 3;
 
         font.size.normal = 12;
