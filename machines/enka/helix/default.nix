@@ -15,6 +15,7 @@
       cursorline             = true;
       bufferline             = "multiple";
       file-picker.hidden     = false;
+      idle-timeout           = 200;
       line-number            = "relative";
       shell                  = [ "nu" "--commands" ];
       text-width             = 100;
