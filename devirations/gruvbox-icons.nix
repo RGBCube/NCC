@@ -25,8 +25,6 @@ stdenvNoCC.mkDerivation {
     homepage    = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
     license     = licenses.gpl3;
     platforms   = platforms.linux;
-    maintainers = with maintainers; [
-      RGBCube
-    ];
+    maintainers = with maintainers; [ RGBCube ];
   };
 }
