@@ -1,7 +1,11 @@
 #!/usr/bin/env nu
 
+def complete [] {
+  ls machines
+}
+
 def main [
-  machine: string@"ls machines" = "" # The machine to build.
+  machine: string@complete = "" # The machine to build.
   --no-trace                         # Wheter to not show the full trace.
 ] {
   mut machine_ = $machine
