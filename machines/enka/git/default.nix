@@ -21,6 +21,7 @@ homeConfiguration [ "nixos" "root" ] {
 
     gl  = "git log";
     glo = "git log --oneline";
+    glp = "git log -p --full-diff";
 
     gpl      = "git pull";
     gplr     = "git pull --rebase";
