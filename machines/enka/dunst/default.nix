@@ -31,12 +31,12 @@ homeConfiguration "nixos" {
     };
 
     settings.urgency_low = {
-      frame_color = base0D;
+      frame_color = base0A;
       timeout     = 5;
     };
 
     settings.urgency_normal = {
-      frame_color = base0E;
+      frame_color = base09;
       timeout     = 10;
     };
 
