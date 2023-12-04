@@ -121,10 +121,10 @@
 
     defaultConfiguration = host: abstractions.systemConfiguration {
       nix.gc = {
-          automatic  = true;
-          dates      = "daily";
-          options    = "--delete-older-than 3d";
-          persistent = true;
+        automatic  = true;
+        dates      = "daily";
+        options    = "--delete-older-than 3d";
+        persistent = true;
       };
 
       nix.nixPath                = [ "nixpkgs=${nixpkgs}" ];
@@ -132,17 +132,15 @@
 
       nix.optimise.automatic = true;
 
-      nix.settings = {
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
+      nix.settings.experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
-        trusted-users = [
-          "root"
-          "@wheel"
-        ];
-      };
+      nix.settings.trusted-users = [
+        "root"
+        "@wheel"
+      ];
 
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays           = [ fenix.overlays.default ];
