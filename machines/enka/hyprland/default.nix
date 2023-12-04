@@ -29,9 +29,9 @@
     ''
     +
     ''
-      binde = SUPER, left,  movefocus, l
-      binde = SUPER, down,  movefocus, d
-      binde = SUPER, up,    movefocus, u
+      binde = SUPER, left , movefocus, l
+      binde = SUPER, down , movefocus, d
+      binde = SUPER, up   , movefocus, u
       binde = SUPER, right, movefocus, r
 
       binde = SUPER, h, movefocus, l
@@ -41,7 +41,8 @@
     ''
     +
     ''
-      bind = SUPER, TAB, workspace, e+1
+      bind = SUPER    , TAB, workspace, e+1
+      bind = SUPER+ALT, TAB, workspace, e-1
 
       bind = SUPER, mouse_up,   workspace, e+1
       bind = SUPER, mouse_down, workspace, e-1
@@ -63,9 +64,9 @@
     ''
     +
     ''
-      binde = SUPER+CTRL, left,  resizeactive, -10 0
-      binde = SUPER+CTRL, down,  resizeactive, 0 10
-      binde = SUPER+CTRL, up,    resizeactive, 0 -10
+      binde = SUPER+CTRL, left , resizeactive, -10 0
+      binde = SUPER+CTRL, down , resizeactive, 0 10
+      binde = SUPER+CTRL, up   , resizeactive, 0 -10
       binde = SUPER+CTRL, right, resizeactive, 10 0
 
       binde = SUPER+CTRL, h, resizeactive, -10 0
@@ -77,9 +78,9 @@
     ''
     +
     ''
-      bind = SUPER+ALT, left,  movewindow, l
-      bind = SUPER+ALT, down,  movewindow, d
-      bind = SUPER+ALT, up,    movewindow, u
+      bind = SUPER+ALT, left , movewindow, l
+      bind = SUPER+ALT, down , movewindow, d
+      bind = SUPER+ALT, up   , movewindow, u
       bind = SUPER+ALT, right, movewindow, r
 
       bind = SUPER+ALT, h, movewindow, l
@@ -89,20 +90,20 @@
     ''
     +
     ''
-      bind = SUPER,       Q, killactive
-      bind = SUPER,       F, fullscreen
-      bind = SUPER+ALT,   F, togglefloating
+      bind = SUPER    , Q, killactive
+      bind = SUPER    , F, fullscreen
+      bind = SUPER+ALT, F, togglefloating
 
       bind = SUPER, RETURN, exec, kitty
-      bind = SUPER, W,      exec, firefox
-      bind = SUPER, T,      exec, thunderbird
-      bind = SUPER, D,      exec, discord
-      bind = SUPER, C,      exec, hyprpicker --autocopy
+      bind = SUPER, W     , exec, firefox
+      bind = SUPER, T     , exec, thunderbird
+      bind = SUPER, D     , exec, discord
+      bind = SUPER, C     , exec, hyprpicker --autocopy
 
       bind = SUPER, B, exec, pkill --signal SIGUSR1 waybar
 
-      bind = SUPER, SPACE,  exec, pkill fuzzel; fuzzel
-      bind = SUPER, V,      exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
+      bind = SUPER, SPACE, exec, pkill fuzzel; fuzzel
+      bind = SUPER, V    , exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
       bind =    , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
       bind = ALT, PRINT, exec, grim                    - | swappy -f - -o - | wl-copy --type image/png
@@ -112,10 +113,10 @@
       bindle = , XF86AudioRaiseVolume, exec, wpctl set-volume --limit 1.5 @DEFAULT_AUDIO_SINK@ 5%+
       bindle = , XF86AudioLowerVolume, exec, wpctl set-volume             @DEFAULT_AUDIO_SINK@ 5%-
 
-      bindle = , XF86AudioMute,    exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle
+      bindle = , XF86AudioMute   , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle
       bindle = , XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-      bindle = , XF86MonBrightnessUp,   exec, brightnessctl set               5%+
+      bindle = , XF86MonBrightnessUp  , exec, brightnessctl set               5%+
       bindle = , XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-
 
       bindl = , XF86PowerOff, exec, pkill fuzzel; echo -en "Suspend\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-suspend-hibernate-alt2\nPower Off\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot" | fuzzel --dmenu | tr --delete " " | tr "[:upper:]" "[:lower:]" | ifne xargs systemctl
@@ -125,10 +126,10 @@
       animations {
           bezier = material_decelerate, 0.05, 0.7, 0.1,  1
 
-          animation = windows,          1, 2,  material_decelerate, popin 80%
-          animation = border,           1, 10, default
-          animation = fade,             1, 2,  default
-          animation = workspaces,       1, 3,  material_decelerate
+          animation = windows,   1, 2 , material_decelerate, popin 80%
+          animation = border ,   1, 10, default
+          animation = fade   ,   1, 2 , default
+          animation = workspaces,1, 3 , material_decelerate
       }
     ''
     +
