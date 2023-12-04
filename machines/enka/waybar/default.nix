@@ -2,6 +2,8 @@
 
 homeConfiguration "nixos" {
   programs.waybar = with upkgs.theme.withHashtag; enabled {
+    systemd = enabled {};
+
     settings = [{
       layer  = "top";
       height = 2 * corner-radius;
