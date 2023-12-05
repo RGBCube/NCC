@@ -23,10 +23,9 @@ homeConfiguration [ "nixos" "root" ] {
     glo = "git log --oneline";
     glp = "git log -p --full-diff";
 
-    gpl      = "git pull";
-    gplr     = "git pull --rebase";
-    gplforce = "git pull --force";
-    gplff    = "git pull --ff-only";
+    gpl   = "git pull";
+    gplr  = "git pull --rebase";
+    gplff = "git pull --ff-only";
 
     grb  = "git rebase";
     grba = "git rebase --abort";
