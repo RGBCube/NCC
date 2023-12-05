@@ -167,8 +167,6 @@
         default.flake = nixpkgs;
       };
 
-      nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
       nix.settings.trusted-users = [ "root" "@wheel" ];
 
       nix.settings.warn-dirty = false;
