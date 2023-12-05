@@ -3,10 +3,6 @@
 systemConfiguration {
   users.users.nixos = normalUser {
     description = "NixOS";
-
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
+    extraGroups = [ "wheel" ];
   };
 }
