@@ -1,11 +1,10 @@
 { lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
 (homeConfiguration [ "nixos" "root" ] {
-  programs.nushell.shellAliases.x = "hx";
+  programs.nushell.environmentVariables.EDITOR = "hx";
+  programs.nushell.shellAliases.x              = "hx";
 
   programs.helix = enabled {
-    defaultEditor = true;
-
     settings.theme = "base16_transparent";
 
     settings.editor = {

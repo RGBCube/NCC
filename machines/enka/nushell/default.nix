@@ -11,7 +11,9 @@
     configFile.source = ./configuration.nu;
     envFile.source    = ./environment.nu;
 
-    environmentVariables = config.environment.variables;
+    environmentVariables = {
+      inherit (config.environment.variables) NIX_LD;
+    };
 
     shellAliases = {
       cdtmp = "cd (mktemp --directory)";
