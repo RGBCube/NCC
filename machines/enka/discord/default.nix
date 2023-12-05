@@ -5,15 +5,8 @@
 })
 
 (with pkgs; homePackages "nixos" [
-  ((discord.override {
+  (discord.override {
     withOpenASAR = true;
     withVencord  = true;
-  }).overrideAttrs (old: with pkgs; {
-    libPath = old.libPath + ":${libglvnd}/lib";
-    nativeBuildInputs = old.nativeBuildInputs ++ [ makeWrapper ];
-
-    postFixup = ''
-      wrapProgram $out/opt/Discord/Discord --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}"
-    '';
-  }))
+  })
 ])
