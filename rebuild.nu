@@ -6,7 +6,7 @@ def complete [] {
 
 def main --wrapped [
   machine: string@complete = "" # The machine to build.
-  ...arguments
+  ...arguments                  # The arguments to pass to `nix system apply`.
 ] {
   let flags = $arguments | append [
     "--option accept-flake-config true"

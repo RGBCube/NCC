@@ -11,9 +11,7 @@ Here is the script you need to run to get this working:
 > imports it, so you will need to run `sudo nixos-generate-config` if you've deleted them.
 
 ```sh
-nix-shell -p git --command "git clone https://github.com/RGBCube/NixOSConfiguration && cd NixOSConfiguration"
-
-nix-shell -p git nix-output-monitor nu --command "nu rebuild.nu <machine-name>"
+TODO
 ```
 
 `machine-name` is a machine selected from the machines in the `machines` directory.
@@ -46,7 +44,7 @@ Flags:
 
 Parameters:
   machine <string>: The machine to build. (optional, default: '')
-  ...arguments <any>: Extra arguments to pass to nixos-rebuild.
+  ...arguments <any>: The arguments to pass to `nix system apply`.
 ```
 
 ## License
