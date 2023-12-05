@@ -55,8 +55,8 @@ homeConfiguration "nixos" {
       pulseaudio = {
         format                 = "{format_source} {icon} {volume}%";
         format-bluetooth       = "{format_source} {icon}󰂯 {volume}%";
-        format-bluetooth-muted = "{format_source} 󰝟 {icon}󰂯";
-        format-muted           = "{format_source} 󰝟";
+        format-bluetooth-muted = "{format_source} 󰸈 {icon}󰂯";
+        format-muted           = "{format_source} 󰸈";
         format-source          = "󰍬";
         format-source-muted    = "󰍭";
 
@@ -85,7 +85,7 @@ homeConfiguration "nixos" {
       };
 
       cpu.format    = " {usage}%";
-      memory.format = " {}%";
+      memory.format = "󰽘 {}%";
 
       network = {
         format-disconnected = "󰤮 ";
