@@ -1,4 +1,4 @@
-{ pkgs, ulib, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
+{ config, pkgs, ulib, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   users.defaultUserShell = pkgs.nushell;
@@ -10,6 +10,10 @@
   programs.nushell = enabled {
     configFile.source = ./configuration.nu;
     envFile.source    = ./environment.nu;
+
+    environmentVariables = {
+      inherit (config.environment.variables) NIX_LD;
+    };
 
     shellAliases = {
       cdtmp = "cd (mktemp --directory)";

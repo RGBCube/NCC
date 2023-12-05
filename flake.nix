@@ -117,7 +117,7 @@
       };
     };
 
-    defaultConfiguration = host: abstractions.systemConfiguration {
+    defaultConfiguration = host: with abstractions; systemConfiguration {
       nix.gc = {
         automatic  = true;
         dates      = "daily";
@@ -142,6 +142,8 @@
 
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays           = [ fenix.overlays.default ];
+
+      programs.nix-ld = enabled {};
 
       environment.defaultPackages = [];
 
