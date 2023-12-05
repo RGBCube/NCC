@@ -68,7 +68,7 @@
         });
 
         icons.name    = "Gruvbox-Plus-Dark";
-        icons.package = pkgs.callPackage (import ./devirations/gruvbox-icons.nix) {};
+        icons.package = pkgs.callPackage (import ./derivations/gruvbox-icons.nix) {};
       });
 
       hyprland = inputs.hyprland.packages.${system}.default;
