@@ -1,33 +1,18 @@
 #!/usr/bin/env nu
 
 def complete [] {
-  ls machines
+  ls machines | get name | each { $in | str replace "machines/" "" }
 }
 
 def main --wrapped [
   machine: string@complete = "" # The machine to build.
   ...arguments
 ] {
-  mut machine_ = $machine
+  let flags = $arguments | append [
+    "--option accept-flake-config true"
+    "--log-format internal-json"
+    "--impure"
+  ]
 
-  let valid_machines = ls machines | where type == dir | get name | each { $in | str replace "machines/" "" }
-
-  if ($machine_ | is-empty) {
-    $machine_ = (input $"machine to build [($valid_machines | str join ', ')]: ")
-
-    if ($machine_ | is-empty) and ($valid_machines | length) == 1 {
-      $machine_ = ($valid_machines | get 0)
-    } else {
-      main ""
-      exit
-    }
-  }
-
-  if not ($machine_ in $valid_machines) {
-    main ""
-    exit
-  }
-
-  sudo --validate
-  sh -c $"sudo nixos-rebuild switch ($arguments | str join ' ') --log-format internal-json --impure --flake ('.#' + $machine) |& nom --json"
+  sudo sh -c $"nix system apply ('.#' + $machine) ($flags | str join ' ') |& nom --json"
 }

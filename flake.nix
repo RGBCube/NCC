@@ -1,21 +1,27 @@
 {
-  description = "My NixOS configurations.";
+  description = "All my NixOS configurations.";
 
   nixConfig = {
     extra-substituters = ''
       https://nix-community.cachix.org/
       https://hyprland.cachix.org/
+      https://cache.privatevoid.net/
     '';
 
     extra-trusted-public-keys = ''
       nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
       hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+      cache.privatevoid.net-1:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg=
     '';
   };
 
   inputs = {
     nixpkgs = {
       url = "github:NixOS/nixpkgs/nixos-unstable";
+    };
+
+    nix-super = {
+      url = "github:privatevoid-net/nix-super";
     };
 
     homeManager = {
@@ -46,7 +52,7 @@
     };
   };
 
-  outputs = { nixpkgs, homeManager, tools, themes, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
+  outputs = { nixpkgs, nix-super, homeManager, tools, themes, fenix, ... } @ inputs: tools.eachDefaultLinuxArch (system: let
     pkgs = nixpkgs.legacyPackages.${system};
 
     upkgs = {
@@ -141,7 +147,10 @@
       ];
 
       nixpkgs.config.allowUnfree = true;
-      nixpkgs.overlays           = [ fenix.overlays.default ];
+      nixpkgs.overlays           = [
+        fenix.overlays.default
+        nix-super.overlays.default
+      ];
 
       programs.nix-ld = enabled {};
 
