@@ -1,7 +1,7 @@
-{ upkgs, homeConfiguration, enabled, ... }:
+{ theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  programs.waybar = with upkgs.theme.withHashtag; enabled {
+  programs.waybar = with theme.withHashtag; enabled {
     systemd = enabled {};
 
     settings = [{

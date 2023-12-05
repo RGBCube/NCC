@@ -1,4 +1,4 @@
-{ pkgs, ulib, systemConfiguration, homeConfiguration, importAll, ... }: ulib.recursiveUpdate3
+{ pkgs, ulib, systemConfiguration, homeConfiguration, imports, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -15,7 +15,7 @@
   home.stateVersion = "23.05";
 })
 
-(importAll [
+(imports [
   ./bat
   ./blueman
   ./discord

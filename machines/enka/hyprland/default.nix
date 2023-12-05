@@ -1,4 +1,4 @@
-{ pkgs, upkgs, ulib, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
+{ pkgs, upkgs, ulib, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   hardware.opengl = enabled {};
@@ -11,7 +11,7 @@
 })
 
 (homeConfiguration "nixos" {
-  wayland.windowManager.hyprland = with upkgs.theme; enabled {
+  wayland.windowManager.hyprland = with theme; enabled {
     package = upkgs.hyprland;
 
     extraConfig =

@@ -1,7 +1,7 @@
-{ upkgs, homeConfiguration, enabled, ... }:
+{ theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  programs.kitty = with upkgs.theme.withHashtag; enabled {
+  programs.kitty = with theme.withHashtag; enabled {
     font = with font; {
       inherit (mono) name package;
 

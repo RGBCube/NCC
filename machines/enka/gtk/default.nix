@@ -1,4 +1,4 @@
-{ lib, pkgs, upkgs, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
+{ lib, pkgs, theme, systemConfiguration, homeConfiguration, enabled, ... }: lib.recursiveUpdate
 
 (systemConfiguration {
   programs.dconf = enabled {};
@@ -6,16 +6,16 @@
 
 (homeConfiguration "nixos" {
   gtk = enabled {
-    gtk3.extraCss = upkgs.theme.adwaitaGtkCss;
-    gtk4.extraCss = upkgs.theme.adwaitaGtkCss;
+    gtk3.extraCss = theme.adwaitaGtkCss;
+    gtk4.extraCss = theme.adwaitaGtkCss;
 
-    font = with upkgs.theme.font; {
+    font = with theme.font; {
       inherit (sans) name package;
 
       size = size.normal;
     };
 
-    iconTheme = upkgs.theme.icons;
+    iconTheme = theme.icons;
 
     theme = {
       name    = "Adwaita-dark";

@@ -1,4 +1,4 @@
-{ upkgs, homeConfiguration, enabled, ... }:
+{ theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables = {
@@ -11,8 +11,8 @@ homeConfiguration [ "nixos" "root" ] {
     less = "bat --plain";
   };
 
-  programs.bat = with upkgs.theme; enabled {
+  programs.bat = enabled {
     config.theme   = "default";
-    themes.default = tmTheme;
+    themes.default = theme.tmTheme;
   };
 }

@@ -1,7 +1,7 @@
-{ upkgs, homeConfiguration, enabled, ... }:
+{ theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  services.dunst = with upkgs.theme.withHashtag; enabled {
+  services.dunst = with theme.withHashtag; enabled {
     iconTheme = icons;
 
     settings.global = {

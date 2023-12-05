@@ -1,7 +1,7 @@
-{ upkgs, homeConfiguration, enabled, ... }:
+{ theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  programs.fuzzel = with upkgs.theme; enabled {
+  programs.fuzzel = with theme; enabled {
     settings.main = {
       dpi-aware  = false;
       font       = "${font.sans.name}:size=${toString font.size.big}";

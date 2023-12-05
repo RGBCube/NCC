@@ -1,4 +1,4 @@
-{ lib, pkgs, upkgs, systemConfiguration, systemFonts, ... }: lib.recursiveUpdate
+{ lib, pkgs, theme, systemConfiguration, systemFonts, ... }: lib.recursiveUpdate
 
 (systemConfiguration {
   console = {
@@ -11,8 +11,8 @@
 })
 
 (with pkgs; systemFonts [
-  upkgs.theme.font.sans.package
-  upkgs.theme.font.mono.package
+  theme.font.sans.package
+  theme.font.mono.package
 
   noto-fonts
   noto-fonts-cjk-sans

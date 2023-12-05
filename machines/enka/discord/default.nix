@@ -1,7 +1,7 @@
-{ lib, pkgs, upkgs, homeConfiguration, homePackages, ... }: lib.recursiveUpdate
+{ lib, pkgs, theme, homeConfiguration, homePackages, ... }: lib.recursiveUpdate
 
 (homeConfiguration "nixos" {
-  xdg.configFile."Vencord/settings/quickCss.css".text = upkgs.theme.discordCss;
+  xdg.configFile."Vencord/settings/quickCss.css".text = theme.discordCss;
 })
 
 (with pkgs; homePackages "nixos" [

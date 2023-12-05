@@ -154,7 +154,7 @@
         "type": "github"
       }
     },
-    "nix-super": {
+    "nixSuper": {
       "inputs": {
         "flake-compat": "flake-compat",
         "libgit2": "libgit2",
@@ -262,7 +262,7 @@
         "homeManager": "homeManager",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
-        "nix-super": "nix-super",
+        "nixSuper": "nixSuper",
         "nixpkgs": "nixpkgs_4",
         "themes": "themes",
         "tools": "tools"
