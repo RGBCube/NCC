@@ -1,7 +1,7 @@
 { theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration [ "nixos" "root" ] {
-  programs.nushell.environmentVariables = {
+  home.sessionVariables = {
     MANPAGER = ''"bat --plain --language man"'';
     PAGER    = ''"bat --plain"'';
   };
