@@ -4,9 +4,9 @@ def complete [] {
   ls machines
 }
 
-def main [
+def main --wrapped [
   machine: string@complete = "" # The machine to build.
-  --no-trace                         # Wheter to not show the full trace.
+  ...arguments
 ] {
   mut machine_ = $machine
 
@@ -29,5 +29,5 @@ def main [
   }
 
   sudo --validate
-  sh -c $"sudo nixos-rebuild switch (if not $no_trace { --show-trace } else {}) --log-format internal-json --impure --flake ('.#' + $machine) |& nom --json"
+  sh -c $"sudo nixos-rebuild switch ($arguments | str join ' ') --log-format internal-json --impure --flake ('.#' + $machine) |& nom --json"
 }

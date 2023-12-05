@@ -12,7 +12,7 @@ $env.ENV_CONVERSIONS.PATH = {
     }
 }
 
-def hx [...arguments] {
+def --wrapped hx [...arguments] {
     kitty @ set-spacing padding=0
 
     ^hx $arguments
