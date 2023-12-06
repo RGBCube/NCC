@@ -167,7 +167,12 @@
         default.flake = nixpkgs;
       };
 
-      nix.settings.experimental-features = [ "nix-command" "flakes" ];
+      nix.settings.experimental-features = [
+        "fetch-tree"
+        "flakes"
+        "nix-command"
+        "repl-flake"
+      ];
 
       nix.settings.trusted-users = [ "root" "@wheel" ];
 
