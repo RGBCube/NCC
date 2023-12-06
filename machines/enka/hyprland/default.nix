@@ -64,15 +64,15 @@
     ''
     +
     ''
-      binde = SUPER+CTRL, left , resizeactive, -10 0
-      binde = SUPER+CTRL, down , resizeactive, 0 10
-      binde = SUPER+CTRL, up   , resizeactive, 0 -10
-      binde = SUPER+CTRL, right, resizeactive, 10 0
+      binde = SUPER+CTRL, left , resizeactive, -30 0
+      binde = SUPER+CTRL, down , resizeactive, 0 30
+      binde = SUPER+CTRL, up   , resizeactive, 0 -30
+      binde = SUPER+CTRL, right, resizeactive, 30 0
 
-      binde = SUPER+CTRL, h, resizeactive, -10 0
-      binde = SUPER+CTRL, j, resizeactive, 0 10
-      binde = SUPER+CTRL, k, resizeactive, 0 -10
-      binde = SUPER+CTRL, l, resizeactive, 10 0
+      binde = SUPER+CTRL, h, resizeactive, -30 0
+      binde = SUPER+CTRL, j, resizeactive, 0 30
+      binde = SUPER+CTRL, k, resizeactive, 0 -30
+      binde = SUPER+CTRL, l, resizeactive, 30 0
 
       bindm = SUPER, mouse:273, resizewindow
     ''
