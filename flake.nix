@@ -66,6 +66,14 @@
       url = "github:hyprwm/hyprpicker";
     };
 
+    ghostty = {
+      url = "git+ssh://git@github.com/RGBCube/ghostty";
+    };
+
+    ghosttyModule = {
+      url = "github:clo4/ghostty-hm-module";
+    };
+
     fenix = {
       url                    = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -86,6 +94,7 @@
     nixSuper,
     nixpkgs,
     homeManager,
+    ghosttyModule,
     fenix,
     tools,
     themes,
@@ -95,7 +104,7 @@
 
     upkgs = tools.recursiveUpdateMap (name: {
       ${name} = inputs.${name}.packages.${system}.default;
-    }) [ "hyprland" "hyprpicker" ];
+    }) [ "hyprland" "hyprpicker" "ghostty" ];
 
     lib = nixpkgs.lib;
 
@@ -150,7 +159,7 @@
       };
     };
 
-    defaultConfiguration = host: with abstractions; systemConfiguration {
+    defaultConfiguration = host: { config, ... }: with abstractions; systemConfiguration {
       nix.gc = {
         automatic  = true;
         dates      = "daily";
@@ -197,7 +206,7 @@
     };
 
     specialArgs = abstractions // {
-      inherit upkgs ulib theme;
+      inherit upkgs ulib theme ghosttyModule;
     };
 
     importConfigurations = tools.recursiveUpdateMap (host: {

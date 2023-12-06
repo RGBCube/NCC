@@ -22,6 +22,7 @@
   ./dunst
   ./firefox
   ./fuzzel
+  ./ghostty
   ./git
   ./greetd
   ./gtk
