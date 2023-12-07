@@ -26,7 +26,7 @@ homeConfiguration "nixos" {
 
       min_icon_size = 64;
 
-      offset = "0x20";
+      offset = "0x${toString margin}";
       origin = "top-center";
     };
 
