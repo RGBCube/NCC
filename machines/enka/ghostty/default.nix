@@ -8,19 +8,19 @@ homeConfiguration "nixos" {
 
     shellIntegration.enable = false;
 
-    settings = with theme.font; {
-      font-size   = size.normal;
-      font-family = mono.name;
+    settings = with theme; {
+      font-size   = font.size.normal;
+      font-family = font.mono.name;
 
-      window-padding-x = 10;
-      window-padding-y = 10;
+      window-padding-x = padding;
+      window-padding-y = padding;
 
       confirm-close-surface = false;
 
       window-decoration = false;
 
       config-file = [
-        (toString (pkgs.writeText "base16-config" theme.ghosttyConfig))
+        (toString (pkgs.writeText "base16-config" ghosttyConfig))
       ];
     };
   };

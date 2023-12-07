@@ -14,9 +14,9 @@ homeConfiguration "nixos" {
 
       tabs = 4;
 
-      horizontal-pad = 10;
-      vertical-pad   = 10;
-      inner-pad      = 10;
+      horizontal-pad = padding;
+      vertical-pad   = padding;
+      inner-pad      = padding;
     };
 
     settings.colors = {

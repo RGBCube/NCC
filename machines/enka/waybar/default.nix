@@ -8,9 +8,9 @@ homeConfiguration "nixos" {
       layer  = "top";
       height = 2 * corner-radius;
 
-      margin-right = 10;
-      margin-left  = 10;
-      margin-top   = 10;
+      margin-right = padding;
+      margin-left  = padding;
+      margin-top   = padding;
 
       modules-left = [
         "hyprland/workspaces"
@@ -129,7 +129,7 @@ homeConfiguration "nixos" {
       }
 
       .modules-right {
-        margin-right: 10px;
+        margin-right: ${toString padding}px;
 
       }
 

@@ -1,3 +1,4 @@
+theme: ''
 $env.PROMPT_INDICATOR           = "";
 $env.PROMPT_INDICATOR_VI_INSERT = "";
 $env.PROMPT_INDICATOR_VI_NORMAL = "";
@@ -20,6 +21,7 @@ def --wrapped hx [...arguments] {
     ^hx $arguments
 
     if ($env.TERM | str contains "kitty") {
-        kitty @ set-spacing padding=10
+        kitty @ set-spacing padding=${toString theme.padding}
     }
 }
+''

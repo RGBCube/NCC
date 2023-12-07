@@ -149,8 +149,8 @@
       general {
         max_fps = 60
 
-        gaps_in     = 5
-        gaps_out    = 10
+        gaps_in     = ${toString (padding / 2)}
+        gaps_out    = ${toString padding}
         border_size = ${toString border-width}
 
         col.active_border         = 0xFF${base0A}

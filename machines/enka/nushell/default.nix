@@ -1,4 +1,4 @@
-{ config, pkgs, ulib, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
+{ config, pkgs, ulib, theme, systemConfiguration, homeConfiguration, homePackages, enabled, ... }: ulib.recursiveUpdate3
 
 (systemConfiguration {
   users.defaultUserShell = pkgs.nushell;
@@ -9,7 +9,7 @@
 
   programs.nushell = enabled {
     configFile.source = ./configuration.nu;
-    envFile.source    = ./environment.nu;
+    envFile.text = (import ./environment.nu.nix) theme;
 
     environmentVariables = {
       inherit (config.environment.variables) NIX_LD;
