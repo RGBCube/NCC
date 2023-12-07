@@ -21,7 +21,7 @@ homeConfiguration "nixos" {
       scrollback_pager = "bat --chop-long-lines";
 
       cursor             = base05;
-      cursor_text_color = base00;
+      cursor_text_color  = base00;
       cursor_shape       = "beam";
 
       url_color = base0D;
