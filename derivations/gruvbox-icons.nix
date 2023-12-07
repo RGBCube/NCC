@@ -1,30 +1,47 @@
-{ lib, stdenvNoCC, fetchFromGitHub }:
+{
+  lib
+, stdenvNoCC
+, fetchFromGitHub
+, gtk3
+, breeze-icons
+, gnome-icon-theme
+, hicolor-icon-theme
+}:
 
-stdenvNoCC.mkDerivation {
-  pname   = "gruvbox-plus-icons";
-  version = "2023-11-30";
+stdenvNoCC.mkDerivation rec {
+  pname = "gruvbox-plus-icons";
+  version = "unstable-2023-12-07";
 
   src = fetchFromGitHub {
     owner = "SylEleuth";
-    repo  = "gruvbox-plus-icon-pack";
-    rev   = "5ce3ef1ae9d8360e4aadfcf73842df9a417dd53b";
-    hash  = "sha256-xS6ijyRhc9CaZVERLjqebbNsSbPoFUVTAutOjWiOUKc=";
+    repo = "gruvbox-plus-icon-pack";
+    rev = "f3109979fe93b31ea14eb2d5c04247a895302ea0";
+    sha256 = "sha256-EijTEDkPmcDcMhCuL6fOWjU9eXFUwmeOEwfGlxadb1U=";
   };
+
+  nativeBuildInputs = [ gtk3 ];
+
+  propagatedBuildInputs = [ breeze-icons gnome-icon-theme hicolor-icon-theme ];
 
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/share/icons
     cp -r Gruvbox-Plus-Dark $out/share/icons/
+    gtk-update-icon-cache $out/share/icons/Gruvbox-Plus-Dark
 
     runHook postInstall
   '';
 
+  dontDropIconThemeCache = true;
+  dontBuild = true;
+  dontConfigure = true;
+
   meta = with lib; {
-    description = "Gruvbox Plus icon pack for Linux desktops based on the Gruvbox color theme.";
-    homepage    = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
-    license     = licenses.gpl3;
-    platforms   = platforms.linux;
-    maintainers = with maintainers; [ RGBCube ];
+    description = "Icon pack for Linux desktops based on the Gruvbox color scheme";
+    homepage = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
+    license = licenses.gpl3Only;
+    platforms = platforms.linux;
+    maintainers = with maintainers; [ eureka-cpu ];
   };
 }
