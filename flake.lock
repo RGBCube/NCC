@@ -159,17 +159,17 @@
         "zls-master": "zls-master"
       },
       "locked": {
-        "lastModified": 1701896048,
-        "narHash": "sha256-S34sh0F46ARmLNvU98iVIUDCr4/9L1n+IaE2j01H5AQ=",
+        "lastModified": 1701929240,
+        "narHash": "sha256-NEv1em2lGdHjqqm9sJWzpiDPNHvlGJbdS2Cm089qwuU=",
         "ref": "refs/heads/main",
-        "rev": "f6ce92a31aa51ee65bf43d40ca2b7da4187ea163",
-        "revCount": 4070,
+        "rev": "91fced7b05481031d9f6138aa61ffce3bea48d18",
+        "revCount": 4077,
         "type": "git",
-        "url": "ssh://git@github.com/RGBCube/ghostty"
+        "url": "ssh://git@github.com/mitchellh/ghostty"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@github.com/RGBCube/ghostty"
+        "url": "ssh://git@github.com/mitchellh/ghostty"
       }
     },
     "ghosttyModule": {
