@@ -118,8 +118,8 @@
       corner-radius = 12;
       border-width  = 3;
 
-      margin  = 10;
-      padding = 10;
+      margin  = 6;
+      padding = 8;
 
       font.size.normal = 12;
       font.size.big    = 18;

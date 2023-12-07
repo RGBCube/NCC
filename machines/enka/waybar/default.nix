@@ -129,7 +129,7 @@ homeConfiguration "nixos" {
       }
 
       .modules-right {
-        margin-right: ${toString margin}px;
+        margin-right: ${toString padding}px;
       }
 
       #waybar {
