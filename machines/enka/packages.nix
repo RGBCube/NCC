@@ -1,6 +1,7 @@
 { lib, pkgs, systemPackages, homePackages, ... }: lib.recursiveUpdate
 
 (with pkgs; systemPackages [
+  p7zip
   fastfetch
   fd
   gotop
