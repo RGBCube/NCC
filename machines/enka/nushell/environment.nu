@@ -12,12 +12,14 @@ $env.ENV_CONVERSIONS.PATH = {
     }
 }
 
-if ($env.TERM | str contains "kitty") {
-    def --wrapped hx [...arguments] {
+def --wrapped hx [...arguments] {
+    if ($env.TERM | str contains "kitty") {
         kitty @ set-spacing padding=0
+    }
 
-        ^hx $arguments
+    ^hx $arguments
 
+    if ($env.TERM | str contains "kitty") {
         kitty @ set-spacing padding=10
     }
 }
