@@ -94,12 +94,13 @@
       bind = SUPER    , F, fullscreen
       bind = SUPER+ALT, F, togglefloating
 
-      bind = SUPER, RETURN, exec, ghostty
-      bind = SUPER, W     , exec, firefox
-      bind = SUPER, D     , exec, discord
-      bind = SUPER, M     , exec, thunderbird
-      bind = SUPER, T     , exec, thunar
-      bind = SUPER, C     , exec, hyprpicker --autocopy
+      bind = SUPER+ALT, RETURN, exec, kitty
+      bind = SUPER    , RETURN, exec, ghostty
+      bind = SUPER    , W     , exec, firefox
+      bind = SUPER    , D     , exec, discord
+      bind = SUPER    , M     , exec, thunderbird
+      bind = SUPER    , T     , exec, thunar
+      bind = SUPER    , C     , exec, hyprpicker --autocopy
 
       bind = SUPER, B, exec, pkill --signal SIGUSR1 waybar
 
