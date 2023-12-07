@@ -1,8 +1,6 @@
-{ pkgs, upkgs, theme, homeConfiguration, enabled, ghosttyModule, ... }:
+{ pkgs, upkgs, theme, homeConfiguration, enabled, ... }:
 
 homeConfiguration "nixos" {
-  imports = [ ghosttyModule.homeModules.default ];
-
   programs.nushell.environmentVariables.TERMINAL = "ghostty";
 
   programs.ghostty = enabled {

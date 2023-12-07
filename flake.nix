@@ -160,7 +160,15 @@
     };
 
     defaultConfiguration = host: with abstractions; systemConfiguration {
-      nix.package = upkgs.nixSuper;
+      boot.tmp.cleanOnBoot = true;
+
+      environment.defaultPackages = [];
+
+      home-manager.sharedModules   = [ ghosttyModule.homeModules.default ];
+      home-manager.useGlobalPkgs   = true;
+      home-manager.useUserPackages = true;
+
+      networking.hostName = host;
 
       nix.gc = {
         automatic  = true;
@@ -169,9 +177,11 @@
         persistent = true;
       };
 
+      nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+
       nix.optimise.automatic = true;
 
-      nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
+      nix.package = upkgs.nixSuper;
 
       nix.registry = {
         nixpkgs.flake = nixpkgs;
@@ -186,26 +196,16 @@
       ];
 
       nix.settings.trusted-users = [ "root" "@wheel" ];
-
       nix.settings.warn-dirty = false;
 
       nixpkgs.config.allowUnfree = true;
       nixpkgs.overlays           = [ fenix.overlays.default ];
 
       programs.nix-ld = enabled {};
-
-      environment.defaultPackages = [];
-
-      boot.tmp.cleanOnBoot = true;
-
-      networking.hostName = host;
-
-      home-manager.useGlobalPkgs   = true;
-      home-manager.useUserPackages = true;
     };
 
     specialArgs = abstractions // {
-      inherit upkgs ulib theme ghosttyModule;
+      inherit upkgs ulib theme;
     };
 
     importConfigurations = tools.recursiveUpdateMap (host: {
