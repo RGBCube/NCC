@@ -10,7 +10,7 @@ homeConfiguration "nixos" {
       dmenu = "fuzzel --dmenu";
 
       corner_radius      = corner-radius;
-      gap_size           = padding;
+      gap_size           = margin;
       horizontal_padding = padding;
       padding            = padding;
 
