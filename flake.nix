@@ -104,7 +104,7 @@
 
     upkgs = tools.recursiveUpdateMap (name: {
       ${name} = inputs.${name}.packages.${system}.default;
-    }) [ "hyprland" "hyprpicker" "ghostty" ];
+    }) [ "nixSuper" "hyprland" "hyprpicker" "ghostty" ];
 
     lib = nixpkgs.lib;
 
@@ -159,7 +159,9 @@
       };
     };
 
-    defaultConfiguration = host: { config, ... }: with abstractions; systemConfiguration {
+    defaultConfiguration = host: with abstractions; systemConfiguration {
+      nix.package = upkgs.nixSuper;
+
       nix.gc = {
         automatic  = true;
         dates      = "daily";
@@ -188,10 +190,7 @@
       nix.settings.warn-dirty = false;
 
       nixpkgs.config.allowUnfree = true;
-      nixpkgs.overlays           = [
-        fenix.overlays.default
-        nixSuper.overlays.default
-      ];
+      nixpkgs.overlays           = [ fenix.overlays.default ];
 
       programs.nix-ld = enabled {};
 
