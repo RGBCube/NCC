@@ -3,6 +3,8 @@
 homeConfiguration "nixos" {
   imports = [ ghosttyModule.homeModules.default ];
 
+  programs.nushell.environmentVariables.TERMINAL = "ghostty";
+
   programs.ghostty = enabled {
     package = upkgs.ghostty;
 

@@ -94,7 +94,7 @@
       bind = SUPER    , F, fullscreen
       bind = SUPER+ALT, F, togglefloating
 
-      bind = SUPER, RETURN, exec, kitty
+      bind = SUPER, RETURN, exec, ghostty
       bind = SUPER, W     , exec, firefox
       bind = SUPER, T     , exec, thunderbird
       bind = SUPER, D     , exec, discord
