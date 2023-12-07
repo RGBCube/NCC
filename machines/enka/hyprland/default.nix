@@ -96,8 +96,9 @@
 
       bind = SUPER, RETURN, exec, ghostty
       bind = SUPER, W     , exec, firefox
-      bind = SUPER, T     , exec, thunderbird
       bind = SUPER, D     , exec, discord
+      bind = SUPER, M     , exec, thunderbird
+      bind = SUPER, T     , exec, thunar
       bind = SUPER, C     , exec, hyprpicker --autocopy
 
       bind = SUPER, B, exec, pkill --signal SIGUSR1 waybar
