@@ -1,7 +1,7 @@
 { lib, pkgs, systemPackages, homePackages, ... }: lib.recursiveUpdate
 
 (with pkgs; systemPackages [
-  p7zip
+  asciinema
   fastfetch
   fd
   gotop
@@ -9,6 +9,7 @@
   moreutils
   nix-index
   nix-output-monitor
+  p7zip
   pstree
   ripgrep
   strace
