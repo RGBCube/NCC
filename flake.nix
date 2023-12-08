@@ -81,6 +81,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zls = {
+      url                    = "github:zigtools/zls";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tools = {
       url                    = "github:RGBCube/FlakeTools";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -106,7 +111,7 @@
 
     upkgs = tools.recursiveUpdateMap (name: {
       ${name} = inputs.${name}.packages.${system}.default;
-    }) [ "nixSuper" "hyprland" "hyprpicker" "ghostty" ];
+    }) [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ];
 
     lib = nixpkgs.lib;
 

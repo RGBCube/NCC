@@ -1,4 +1,4 @@
-{ lib, pkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
+{ lib, pkgs, upkgs, homeConfiguration, homePackages, enabled, ... }: lib.recursiveUpdate
 
 (homeConfiguration [ "nixos" "root" ] {
   programs.nushell.environmentVariables.EDITOR = "hx";
@@ -75,5 +75,5 @@
   rust-analyzer
 
   # ZIG
-  zls
+  upkgs.zls
 ])
