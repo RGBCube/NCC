@@ -35,12 +35,14 @@
       https://nix-community.cachix.org/
       https://hyprland.cachix.org/
       https://cache.privatevoid.net/
+      https://cache.garnix.io/
     '';
 
     extra-trusted-public-keys = ''
       nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
       hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
       cache.privatevoid.net-1:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg=
+      cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
     '';
   };
 
@@ -67,7 +69,7 @@
     };
 
     ghostty = {
-      url = "git+ssh://git@github.com/mitchellh/ghostty";
+      url = "git+ssh://git@github.com/RGBCube/Ghostty";
     };
 
     ghosttyModule = {
