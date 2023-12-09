@@ -20,10 +20,10 @@
     ''
     +
     ''
-      exec-once = wpaperd
-
       exec-once = wl-paste --type text  --watch cliphist store
       exec-once = wl-paste --type image --watch cliphist store
+
+      exec = swaybg --image ${./wallpaper.png}
 
       exec = pkill --signal SIGUSR2 waybar
     ''
@@ -211,14 +211,6 @@
       }
     '';
   };
-
-  programs.wpaperd = enabled {
-    settings.default = {
-      duration = "10m";
-      path     = "/home/nixos/Pictures/Wallpapers";
-      sorting  = "ascending";
-    };
-  };
 })
 
 (with pkgs; homePackages "nixos" [
@@ -227,6 +219,7 @@
   grim
   slurp
   swappy
+  swaybg
   upkgs.hyprpicker
   wl-clipboard
   xdg-utils
