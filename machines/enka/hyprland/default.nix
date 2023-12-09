@@ -107,8 +107,8 @@
       bind = SUPER, SPACE, exec, pkill fuzzel; fuzzel
       bind = SUPER, V    , exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 
-      bind =    , PRINT, exec, grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
-      bind = ALT, PRINT, exec, grim                    - | swappy -f - -o - | wl-copy --type image/png
+      bind =    , PRINT, exec, pkill grim; grim -g "$(slurp -w 0)" - | swappy -f - -o - | wl-copy --type image/png
+      bind = ALT, PRINT, exec, pkill grim; grim                    - | swappy -f - -o - | wl-copy --type image/png
     ''
     +
     ''
