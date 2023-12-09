@@ -1,4 +1,4 @@
-theme: ''
+{ nuScripts, theme }: ''
 $env.PROMPT_INDICATOR           = "";
 $env.PROMPT_INDICATOR_VI_INSERT = "";
 $env.PROMPT_INDICATOR_VI_NORMAL = "";
@@ -24,4 +24,6 @@ def --wrapped hx [...arguments] {
         kitty @ set-spacing padding=${toString theme.padding}
     }
 }
+
+use ${nuScripts}/modules/background_task/task.nu
 ''

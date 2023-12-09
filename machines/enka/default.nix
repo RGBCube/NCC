@@ -34,6 +34,7 @@
   ./nushell
   ./openttd
   ./pipewire
+  ./pueue
   ./python
   ./steam
   ./steck

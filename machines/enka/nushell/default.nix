@@ -8,8 +8,11 @@
   programs.starship = enabled {};
 
   programs.nushell = enabled {
-    configFile.source = ./configuration.nu;
-    envFile.text = (import ./environment.nu.nix) theme;
+    configFile.text = import ./configuration.nix.nu;
+    envFile.text = import ./environment.nix.nu {
+      inherit (ulib) nuScripts;
+      inherit theme;
+    };
 
     environmentVariables = {
       inherit (config.environment.variables) NIX_LD;

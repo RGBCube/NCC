@@ -602,6 +602,22 @@
         "type": "github"
       }
     },
+    "nuScripts": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702127877,
+        "narHash": "sha256-W9czVqmYOmdn7G3dMdVkBYkeDzTizSLAF1X25pSB+gw=",
+        "owner": "RGBCube",
+        "repo": "nu_scripts",
+        "rev": "33fd3943d50bfac0103306c9ac800f931d199f0b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RGBCube",
+        "repo": "nu_scripts",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "fenix": "fenix",
@@ -612,6 +628,7 @@
         "hyprpicker": "hyprpicker",
         "nixSuper": "nixSuper",
         "nixpkgs": "nixpkgs_7",
+        "nuScripts": "nuScripts",
         "themes": "themes",
         "tools": "tools",
         "zls": "zls"

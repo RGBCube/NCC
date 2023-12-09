@@ -1,3 +1,4 @@
+''
 $env.config = {
   bracketed_paste:                  true
   buffer_editor:                    ""
@@ -180,8 +181,18 @@ $env.config.cursor_shape = {
 }
 
 $env.config.hooks = {
-  command_not_found: {}
-  display_output:    "if (term size).columns >= 100 { table --expand } else { table }"
+  command_not_found: {||
+    task status
+    | where label == boom
+    | get id
+    | each {|id|
+      (task kill $id)
+      task remove $id
+    }
+
+    task spawn --label boom { pw-play ${./boom.mp3} }
+  }
+  display_output:    "table --expand"
   env_change:        {}
   pre_execution:     [
     {
@@ -413,3 +424,4 @@ $env.config.keybindings = [
     event:    { send: enter }
   }
 ]
+''

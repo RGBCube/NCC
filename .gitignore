@@ -22,6 +22,7 @@
 !machines/enka/nushell/
 !machines/enka/openttd/
 !machines/enka/pipewire/
+!machines/enka/pueue/
 !machines/enka/python/
 !machines/enka/qt/
 !machines/enka/steam/
@@ -33,6 +34,7 @@
 
 !*.lua
 !*.md
+!*.mp3
 !*.nix
 !*.nu
 !*.sh

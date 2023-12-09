@@ -76,6 +76,11 @@
       url = "github:clo4/ghostty-hm-module";
     };
 
+    nuScripts = {
+      url   = "github:RGBCube/nu_scripts";
+      flake = false;
+    };
+
     fenix = {
       url                    = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -102,6 +107,7 @@
     nixpkgs,
     homeManager,
     ghosttyModule,
+    nuScripts,
     fenix,
     tools,
     themes,
@@ -117,6 +123,7 @@
 
     ulib = {
       inherit (tools) recursiveUpdateMap;
+      inherit nuScripts;
 
       recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
     };
