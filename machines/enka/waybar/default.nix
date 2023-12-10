@@ -137,23 +137,23 @@ homeConfiguration "nixos" {
         color: ${base05};
       }
 
-      #workspaces button:nth-child(1) button.has-window {
+      #workspaces button:nth-child(1) {
         color: ${base08};
       }
 
-      #workspaces button:nth-child(2) button.has-window {
+      #workspaces button:nth-child(2) {
         color: ${base09};
       }
 
-      #workspaces button:nth-child(3) button.has-window {
+      #workspaces button:nth-child(3) {
         color: ${base0A};
       }
 
-      #workspaces button:nth-child(4) button.has-window {
+      #workspaces button:nth-child(4) {
         color: ${base0B};
       }
 
-      #workspaces button:nth-child(5) button.has-window {
+      #workspaces button:nth-child(5) {
         color: ${base0C};
       }
 
