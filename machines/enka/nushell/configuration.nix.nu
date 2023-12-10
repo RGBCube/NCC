@@ -190,7 +190,7 @@ $env.config.hooks = {
       task remove $id
     }
 
-    task spawn --label boom { pw-play ${./boom.mp3} }
+    task spawn --label boom { pw-play ${./boom.opus} }
   }
   display_output:    "table --expand"
   env_change:        {}

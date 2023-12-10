@@ -34,8 +34,8 @@
 
 !*.lua
 !*.md
-!*.mp3
 !*.nix
 !*.nu
+!*.opus
 !*.png
 !*.sh
