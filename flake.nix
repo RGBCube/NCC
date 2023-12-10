@@ -18,12 +18,12 @@
   };
 
   inputs = {
-    nixpkgs = {
-      url = "github:NixOS/nixpkgs/nixos-unstable";
-    };
-
     nixSuper = {
       url = "github:privatevoid-net/nix-super";
+    };
+
+    nixpkgs = {
+      url = "github:NixOS/nixpkgs/nixos-unstable";
     };
 
     homeManager = {
@@ -72,8 +72,7 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
+  outputs = {
     nixSuper,
     nixpkgs,
     homeManager,
@@ -83,131 +82,63 @@
     tools,
     themes,
     ...
-  }: tools.eachDefaultLinuxArch (system: let
-    pkgs = nixpkgs.legacyPackages.${system};
-
-    upkgs = tools.recursiveUpdateMap (name: {
-      ${name} = inputs.${name}.packages.${system}.default;
-    }) [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ];
-
+  } @ inputs: let
     lib = nixpkgs.lib;
 
-    ulib = {
-      inherit (tools) recursiveUpdateMap;
-      inherit nuScripts;
+    ulib = import ./lib lib;
 
-      recursiveUpdate3 = x: y: z: lib.recursiveUpdate x (lib.recursiveUpdate y z);
-    };
+    configuration = host: system: let
+      pkgs = import nixpkgs { inherit system; };
 
-    theme = themes.custom (themes.raw.gruvbox-dark-hard // {
-      corner-radius = 0;
-      border-width  = 1;
+      upkgs = { inherit nuScripts; } // (lib.genAttrs
+        [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ]
+        (name: inputs.${name}.packages.${system}.default));
 
-      margin  = 0;
-      padding = 8;
+      theme = themes.custom (themes.raw.gruvbox-dark-hard // {
+        corner-radius = 0;
+        border-width  = 1;
 
-      font.size.normal = 12;
-      font.size.big    = 18;
+        margin  = 0;
+        padding = 8;
 
-      font.sans.name    = "Lexend";
-      font.sans.package = pkgs.lexend;
+        font.size.normal = 12;
+        font.size.big    = 18;
 
-      font.mono.name    = "RobotoMono Nerd Font";
-      font.mono.package = (pkgs.nerdfonts.override { fonts = [ "RobotoMono" ]; });
+        font.sans.name    = "Lexend";
+        font.sans.package = pkgs.lexend;
 
-      icons.name    = "Gruvbox-Plus-Dark";
-      icons.package = pkgs.callPackage (import ./derivations/gruvbox-icons.nix) {};
-    });
+        font.mono.name    = "RobotoMono Nerd Font";
+        font.mono.package = (pkgs.nerdfonts.override { fonts = [ "RobotoMono" ]; });
 
-    abstractions = rec {
-      imports = paths: lib.genAttrs [ "imports" ] (_: paths);
+        icons.name    = "Gruvbox-Plus-Dark";
+        icons.package = pkgs.callPackage (import ./derivations/gruvbox-icons.nix) {};
+      });
 
-      enabled = attributes: attributes // { enable = true; };
+      defaultConfiguration = {
+        environment.defaultPackages = [];
 
-      normalUser = attributes: attributes // { isNormalUser = true; };
+        home-manager.sharedModules   = [ ghosttyModule.homeModules.default ];
+        home-manager.useGlobalPkgs   = true;
+        home-manager.useUserPackages = true;
 
-      systemConfiguration = attributes: attributes;
-
-      systemPackages = packages: systemConfiguration {
-        environment.systemPackages = packages;
+        networking.hostName  = host;
+        nixpkgs.hostPlatform = system;
       };
+    in lib.nixosSystem {
+      inherit system;
 
-      systemFonts = fonts: systemConfiguration {
-        fonts.packages = fonts;
-      };
-
-      homeConfiguration = user: attributes: systemConfiguration {
-        home-manager.users = tools.recursiveUpdateMap (user: {
-          ${user} = attributes;
-        }) (if builtins.isList user then user else [ user ]);
-      };
-
-      homePackages = user: packages: homeConfiguration user {
-        home.packages = packages;
-      };
-    };
-
-    defaultConfiguration = host: with abstractions; systemConfiguration {
-      boot.tmp.cleanOnBoot = true;
-
-      environment.defaultPackages = [];
-
-      home-manager.sharedModules   = [ ghosttyModule.homeModules.default ];
-      home-manager.useGlobalPkgs   = true;
-      home-manager.useUserPackages = true;
-
-      networking.hostName = host;
-
-      nix.gc = {
-        automatic  = true;
-        dates      = "daily";
-        options    = "--delete-older-than 3d";
-        persistent = true;
-      };
-
-      nix.nixPath = [ "nixpkgs=${nixpkgs}" ];
-
-      nix.optimise.automatic = true;
-
-      nix.package = upkgs.nixSuper;
-
-      nix.registry = {
-        nixpkgs.flake = nixpkgs;
-        default.flake = nixpkgs;
-      };
-
-      nix.settings.experimental-features = [
-        "fetch-tree"
-        "flakes"
-        "nix-command"
-        "repl-flake"
+      specialArgs = { inherit inputs ulib upkgs theme; };
+      modules     = [
+        homeManager.nixosModules.default
+        defaultConfiguration
+        ./hosts/${host}.nix
       ];
-
-      nix.settings.trusted-users = [ "root" "@wheel" ];
-      nix.settings.warn-dirty = false;
-
-      nixpkgs.config.allowUnfree = true;
-      nixpkgs.overlays           = [ fenix.overlays.default ];
-
-      programs.nix-ld = enabled {};
     };
 
-    specialArgs = abstractions // {
-      inherit upkgs ulib theme;
+    configurations = builtins.mapAttrs configuration;
+  in {
+    nixosConfigurations = configurations {
+      enka = "x86_64-linux";
     };
-
-    importConfigurations = tools.recursiveUpdateMap (host: {
-      nixosConfigurations.${host} = lib.nixosSystem {
-        inherit specialArgs;
-
-        modules = [
-          homeManager.nixosModules.default
-          (defaultConfiguration host)
-          ./machines/${host}
-        ];
-      };
-    });
-  in importConfigurations [
-    "enka"
-  ]);
+  };
 }
