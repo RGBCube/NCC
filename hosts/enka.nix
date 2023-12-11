@@ -35,6 +35,7 @@
   "nix"
   "nushell"
   "openttd"
+  "packages"
   "pipewire"
   "pueue"
   "python"
@@ -43,9 +44,6 @@
   "steam"
   "steck"
   "waybar"
-
-  # TODO: Move this somewhere, IDK.
-  ../enka/packages.nix
 
   /etc/nixos/hardware-configuration.nix
 ])
