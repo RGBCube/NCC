@@ -40,7 +40,7 @@
     };
 
     ghostty = {
-      url = "git+ssh://git@github.com/RGBCube/Ghostty";
+      url = "git+ssh://git@github.com/RGBCube/GHostty";
     };
 
     ghosttyModule = {
