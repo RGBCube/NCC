@@ -30,15 +30,7 @@
   zig
 ]))
 
-<<<<<<< Updated upstream:enka/packages.nix
-])
-
-(with pkgs; graphicalPackages [
-  jetbrains.idea-ultimate
-
-=======
 (graphicalPackages (with pkgs; [
->>>>>>> Stashed changes:modules/packages/default.nix
   qbittorrent
   thunderbird
   whatsapp-for-linux
