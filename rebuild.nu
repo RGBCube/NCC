@@ -1,15 +1,15 @@
 #!/usr/bin/env nu
 
 def complete [] {
-  ls machines | get name | each { $in | str replace "machines/" "" }
+  ls hosts | get name | each { $in | str replace "hosts/" "" }
 }
 
 def main --wrapped [
-  machine: string@complete = "" # The machine to build.
+  host: string@complete = "" # The host to build.
   ...arguments                  # The arguments to pass to `nix system apply`.
 ] {
   let flags = [
-    $"--flake ('.#' + $machine)"
+    $"--flake ('.#' + $host)"
     "--option accept-flake-config true"
     "--log-format internal-json"
   ] | append $arguments

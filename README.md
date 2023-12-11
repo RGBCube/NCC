@@ -7,14 +7,19 @@ This repository contains my NixOS configurations for all my machines.
 Here is the script you need to run to get this working:
 
 > [!IMPORTANT]
-> You **WILL NEED** `/etc/nixos/hardware-configuration.nix`, as this configuration
-> imports it, so you will need to run `sudo nixos-generate-config` if you've deleted them.
+> You will need to have an SSH key to authorize GitHub with,
+> and have access to the Ghostty GitHub repository as I
+> use Ghostty and Ghostty is in private beta at the moment.
 
 ```sh
-TODO
+sudo nix-shell --packages git nu nix-output-monitor --command "
+  git clone https://github.com/RGBCube/NixOSConfiguration ~/Configuration
+  cd ~/Configuration
+  nu rebuild.nu <host>
+"
 ```
 
-`machine-name` is a machine selected from the machines in the `machines` directory.
+`host` is a host selected from the hosts in the `hosts` directory.
 
 ## Applying Changes
 
@@ -37,13 +42,13 @@ This outputs:
 
 ```
 Usage:
-  > rebuild.nu (machine) ...(arguments)
+  > rebuild.nu (host) ...(arguments)
 
 Flags:
   -h, --help - Display the help message for this command
 
 Parameters:
-  machine <string>: The machine to build. (optional, default: '')
+  host <string>: The host to build. (optional, default: '')
   ...arguments <any>: The arguments to pass to `nix system apply`.
 ```
 
