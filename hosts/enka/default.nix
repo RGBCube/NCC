@@ -14,6 +14,8 @@
 })
 
 (importModules [
+  ./hardware.nix
+
   "bat"
   "blueman"
   "boot"
@@ -44,6 +46,4 @@
   "steam"
   "steck"
   "waybar"
-
-  /etc/nixos/hardware-configuration.nix
 ])

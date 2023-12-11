@@ -8,11 +8,11 @@ def main --wrapped [
   machine: string@complete = "" # The machine to build.
   ...arguments                  # The arguments to pass to `nix system apply`.
 ] {
-  let flags = $arguments | append [
+  let flags = [
+    $"--flake ('.#' + $machine)"
     "--option accept-flake-config true"
     "--log-format internal-json"
-    "--impure"
-  ]
+  ] | append $arguments
 
-  sudo sh -c $"nix system apply ('.#' + $machine) ($flags | str join ' ') |& nom --json"
+  sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
 }

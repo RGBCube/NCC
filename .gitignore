@@ -3,6 +3,7 @@
 !derivations/
 
 !hosts/
+!hosts/enka/
 
 !modules/
 !modules/bat/

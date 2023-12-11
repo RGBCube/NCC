@@ -131,7 +131,7 @@
       modules     = [
         homeManager.nixosModules.default
         defaultConfiguration
-        ./hosts/${host}.nix
+        ./hosts/${host}
       ];
     };
 
