@@ -1,10 +1,11 @@
-{ config, ulib, pkgs, upkgs, theme, ... }: with ulib; merge3
+{ config, ulib, pkgs, upkgs, theme, ... }: with ulib; merge
 
 (systemConfiguration {
   users.defaultUserShell = pkgs.nushell;
 })
 
 (homeConfiguration {
+  programs.carapace = enabled {};
   programs.starship = enabled {};
 
   programs.nushell = enabled {
@@ -31,7 +32,3 @@
     };
   };
 })
-
-(homePackages (with pkgs; [
-  carapace
-]))
