@@ -15,6 +15,7 @@
   strace
   timg
   tree
+  usbutils
   yt-dlp
 
   wine
