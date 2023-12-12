@@ -190,11 +190,11 @@
     },
     "ghosttyModule": {
       "locked": {
-        "lastModified": 1695482156,
-        "narHash": "sha256-PFyViLT7eCi/jN6fZ9kFUZF4mYye9Mplm/SEwhUvCDM=",
+        "lastModified": 1702368251,
+        "narHash": "sha256-hafrDmzGplzm+vdIo+LkOjRfA4qRcy5JmpGGksnht5c=",
         "owner": "clo4",
         "repo": "ghostty-hm-module",
-        "rev": "3ccb4b02eb84316e7ccbf007a6e29495f7e6bee4",
+        "rev": "887e13a6e7acf5ffaab0119d96e476d84db90904",
         "type": "github"
       },
       "original": {

@@ -6,6 +6,8 @@ graphicalConfiguration {
   programs.ghostty = enabled {
     package = upkgs.ghostty;
 
+    clearDefaultKeybindings = true;
+
     keybindings = (lib.mapAttrs' (name: value: lib.nameValuePair "ctrl+shift+${name}" value) {
       c = "copy_to_clipboard";
       v = "paste_from_clipboard";
@@ -55,8 +57,6 @@ graphicalConfiguration {
       confirm-close-surface = false;
 
       window-decoration = false;
-
-      keybind = "clear";
 
       config-file = [
         (toString (pkgs.writeText "base16-config" ghosttyConfig))
