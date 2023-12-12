@@ -5,6 +5,18 @@
   programs.nushell.shellAliases.x              = "hx";
 
   programs.helix = enabled {
+    languages.language = [{
+      name = "nix";
+
+      auto-format       = false;
+      formatter.command = "alejandra";
+      formatter.args    = [ "-" ];
+
+      language-servers = [ "nixd" ];
+    }];
+
+    languages.language-server.nixd.command = "nixd";
+
     settings.theme = "base16_transparent";
 
     settings.editor = {
@@ -66,7 +78,8 @@
   marksman
 
   # NIX
-  nil
+  alejandra
+  nixd
 
   # PYTHON
   python311Packages.python-lsp-server
