@@ -2,6 +2,9 @@
 
 - QT theme doesn't work.
 
+- Nushell custom prompt title does not work, as it gets
+  overriden by the shell integration in a split second.
+
 - Nix Super errors, saying it expected an attrset and got a
   trunk when evaluating the non-outputs section. This should
   work, as it is an advertised feature (And it does! Don't get

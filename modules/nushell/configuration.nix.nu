@@ -8,7 +8,7 @@ $env.config = {
   float_precision:                  2
   footer_mode:                      25
   render_right_prompt_on_last_line: false
-  shell_integration:                false
+  shell_integration:                true
   show_banner:                      false
   use_ansi_coloring:                true
   use_grid_icons:                   true
