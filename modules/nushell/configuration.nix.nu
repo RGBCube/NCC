@@ -186,8 +186,8 @@ $env.config.hooks = {
     | where label == boom
     | get id
     | each {|id|
-      (task kill $id)
-      task remove $id
+      task kill $id | null
+      task remove $id | null
     }
 
     task spawn --label boom { pw-play ${./boom.opus} }
