@@ -18,6 +18,7 @@
 
   "bat"
   "blueman"
+  "btop"
   "boot"
   "discord"
   "dunst"

@@ -4,7 +4,6 @@
   asciinema
   fastfetch
   fd
-  gotop
   hyperfine
   moreutils
   nix-index

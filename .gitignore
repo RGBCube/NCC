@@ -8,6 +8,7 @@
 !modules/
 !modules/bat/
 !modules/blueman/
+!modules/btop/
 !modules/boot/
 !modules/discord/
 !modules/dunst/
