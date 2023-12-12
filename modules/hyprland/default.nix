@@ -4,6 +4,8 @@
   hardware.opengl = enabled {};
 
   xdg.portal = enabled {
+    config.common.default = "*";
+
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
     ];
