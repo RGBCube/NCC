@@ -45,5 +45,6 @@
   "rust"
   "steam"
   "steck"
+  "sudo"
   "waybar"
 ])

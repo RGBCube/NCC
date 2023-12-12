@@ -35,6 +35,7 @@
 !modules/rust/
 !modules/steam/
 !modules/steck/
+!modules/sudo/
 !modules/waybar/
 
 !lib/
