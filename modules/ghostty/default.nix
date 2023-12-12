@@ -12,37 +12,40 @@ graphicalConfiguration {
       c = "copy_to_clipboard";
       v = "paste_from_clipboard";
 
-      # z = "scroll_to_prompt:-1";
-      # x = "scroll_to_prompt:1";
+      z = "jump_to_prompt:-2";
+      x = "jump_to_prompt:2";
 
-      down = "scroll_page_lines:1";
-      j    = "scroll_page_lines:1";
+      page_down = "scroll_page_down";
+      down      = "scroll_page_lines:1";
+      j         = "scroll_page_lines:1";
 
-      up = "scroll_page_lines:-1";
-      k  = "scroll_page_lines:-1";
+      page_up = "scroll_page_up";
+      up      = "scroll_page_lines:-1";
+      k       = "scroll_page_lines:-1";
 
       home = "scroll_to_top";
       end  = "scroll_to_bottom";
 
-      # plus  = "increase_font_size:2";
-      minus = "decrease_font_size:2";
+      "physical:kp_enter"    = "reset_font_size";
+      "physical:kp_add"      = "increase_font_size:1";
+      "physical:kp_subtract" = "decrease_font_size:1";
 
       t = "new_tab";
       q = "close_surface";
 
-      # "1" = "goto_tab:1";
-      # "2" = "goto_tab:2";
-      # "3" = "goto_tab:3";
-      # "4" = "goto_tab:4";
-      # "5" = "goto_tab:5";
-      # "6" = "goto_tab:6";
-      # "7" = "goto_tab:7";
-      # "8" = "goto_tab:8";
-      # "9" = "goto_tab:9";
-      # "0" = "goto_tab:10";
+      "physical:one"   = "goto_tab:1";
+      "physical:two"   = "goto_tab:2";
+      "physical:three" = "goto_tab:3";
+      "physical:four"  = "goto_tab:4";
+      "physical:five"  = "goto_tab:5";
+      "physical:six"   = "goto_tab:6";
+      "physical:seven" = "goto_tab:7";
+      "physical:eight" = "goto_tab:8";
+      "physical:nine"  = "goto_tab:9";
+      "physical:zero"  = "goto_tab:10";
     }) // (lib.mapAttrs' (name: value: lib.nameValuePair "ctrl+${name}" value) {
-      tab = "next_tab";
-      "shift+tab" = "previous_tab";
+      "physical:tab"         = "next_tab";
+      "shift+physical:tab" = "previous_tab";
     });
 
     shellIntegration.enable = false;
