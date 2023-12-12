@@ -1,4 +1,4 @@
-{ ulib, theme, ... }: with ulib;
+{ ulib, pkgs, theme, ... }: with ulib;
 
 homeConfiguration {
   programs.nushell.environmentVariables = {
@@ -13,6 +13,6 @@ homeConfiguration {
 
   programs.bat = enabled {
     config.theme  = "base16";
-    themes.base16 = theme.tmTheme;
+    themes.base16.src = pkgs.writeText "base16.tmTheme" theme.tmTheme;
   };
 }
