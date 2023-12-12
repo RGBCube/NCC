@@ -21,5 +21,6 @@
     { device = "/dev/disk/by-uuid/f3a15cd2-9897-4867-9414-d4a8c3e71caf"; }
   ];
 
+  hardware.enableAllFirmware         = true;
   hardware.cpu.intel.updateMicrocode = true;
 }
