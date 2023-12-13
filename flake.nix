@@ -1,23 +1,5 @@
-{
-  description = "All my NixOS configurations.";
-
-  nixConfig = {
-    extra-substituters = ''
-      https://nix-community.cachix.org/
-      https://hyprland.cachix.org/
-      https://cache.privatevoid.net/
-      https://cache.garnix.io/
-    '';
-
-    extra-trusted-public-keys = ''
-      nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-      hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
-      cache.privatevoid.net-1:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg=
-      cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
-    '';
-  };
-
-  inputs = {
+let
+  inputsRaw = {
     nixSuper = {
       url = "github:privatevoid-net/nix-super";
     };
@@ -71,6 +53,26 @@
       url = "github:RGBCube/ThemeNix";
     };
   };
+in {
+  description = "All my NixOS configurations.";
+
+  nixConfig = {
+    extra-substituters = ''
+      https://nix-community.cachix.org/
+      https://hyprland.cachix.org/
+      https://cache.privatevoid.net/
+      https://cache.garnix.io/
+    '';
+
+    extra-trusted-public-keys = ''
+      nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
+      hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
+      cache.privatevoid.net-1:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg=
+      cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
+    '';
+  };
+
+  inputs = inputsRaw;
 
   outputs = {
     nixSuper,
@@ -127,7 +129,7 @@
     in lib.nixosSystem {
       inherit system;
 
-      specialArgs = { inherit inputs ulib upkgs theme; };
+      specialArgs = { inherit inputsRaw inputs ulib upkgs theme; };
       modules     = [
         homeManager.nixosModules.default
         defaultConfiguration

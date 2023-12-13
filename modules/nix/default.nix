@@ -1,4 +1,4 @@
-{ inputs, ulib, upkgs, ... }: with ulib;
+{ inputsRaw, inputs, lib, ulib, upkgs, ... }: with ulib;
 
 systemConfiguration {
   nix = {
@@ -15,10 +15,12 @@ systemConfiguration {
 
     package = upkgs.nixSuper;
 
-    registry = {
-      nixpkgs.flake = inputs.nixpkgs;
-      default.flake = inputs.nixpkgs;
-    };
+    registry = (lib.filterAttrs
+      (name: value: value != {})
+      (builtins.mapAttrs
+        (name: value: lib.mkIf value.flake or true {
+          flake = inputs.${name};
+        }) inputsRaw)) // { default.flake = inputs.nixpkgs; };
 
     settings.experimental-features = [
       "fetch-tree"
