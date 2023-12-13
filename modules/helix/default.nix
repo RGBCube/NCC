@@ -29,7 +29,7 @@
       file-picker.hidden     = false;
       idle-timeout           = 200;
       line-number            = "relative";
-      shell                  = [ "nu" "--commands" ];
+      shell                  = [ "bash" "-c" ];
       text-width             = 100;
     };
 
