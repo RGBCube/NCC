@@ -26,8 +26,12 @@
       lla = "ls --long --all";
       sl  = "ls";
 
+      cp = "cp --verbose --progress";
+      mk = "mkdir";
+      mv = "mv --verbose";
+
       pstree = "pstree -g 2";
-      tree = "tree -C";
+      tree = "tree -CF --dirsfirst";
     };
   };
 })
