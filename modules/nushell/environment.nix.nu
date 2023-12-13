@@ -13,7 +13,7 @@ $env.ENV_CONVERSIONS.PATH = {
     }
 }
 
-def mc [path: directory] {
+def --env mc [path: path] {
     mkdir $path
     cd $path
 }
