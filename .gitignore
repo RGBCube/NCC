@@ -22,6 +22,7 @@
 !modules/helix/
 !modules/hyprland/
 !modules/kitty/
+!modules/kmscon/
 !modules/localisation/
 !modules/logind/
 !modules/networkmanager/

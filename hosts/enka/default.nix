@@ -32,6 +32,7 @@
   "helix"
   "hyprland"
   "kitty"
+  "kmscon"
   "localisation"
   "logind"
   "networkmanager"
