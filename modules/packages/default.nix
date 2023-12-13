@@ -10,7 +10,6 @@
   nix-output-monitor
   p7zip
   pstree
-  ripgrep
   strace
   timg
   tree

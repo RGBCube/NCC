@@ -8,8 +8,8 @@
 !modules/
 !modules/bat/
 !modules/blueman/
-!modules/btop/
 !modules/boot/
+!modules/btop/
 !modules/discord/
 !modules/dunst/
 !modules/firefox/
@@ -33,6 +33,7 @@
 !modules/pueue/
 !modules/python/
 !modules/qt/
+!modules/ripgrep/
 !modules/rust/
 !modules/steam/
 !modules/steck/

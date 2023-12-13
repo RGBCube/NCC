@@ -18,8 +18,8 @@
 
   "bat"
   "blueman"
-  "btop"
   "boot"
+  "btop"
   "discord"
   "dunst"
   "firefox"
@@ -43,6 +43,7 @@
   "pueue"
   "python"
   "qt"
+  "ripgrep"
   "rust"
   "steam"
   "steck"
