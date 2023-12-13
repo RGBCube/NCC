@@ -109,8 +109,8 @@ in {
         font.sans.name    = "Lexend";
         font.sans.package = pkgs.lexend;
 
-        font.mono.name    = "RobotoMono Nerd Font";
-        font.mono.package = (pkgs.nerdfonts.override { fonts = [ "RobotoMono" ]; });
+        font.mono.name    = "JetBrainsMono Nerd Font";
+        font.mono.package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
 
         icons.name    = "Gruvbox-Plus-Dark";
         icons.package = pkgs.callPackage (import ./derivations/gruvbox-icons.nix) {};
