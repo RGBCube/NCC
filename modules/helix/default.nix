@@ -27,7 +27,7 @@
       cursorline             = true;
       bufferline             = "multiple";
       file-picker.hidden     = false;
-      idle-timeout           = 200;
+      idle-timeout           = 300;
       line-number            = "relative";
       shell                  = [ "bash" "-c" ];
       text-width             = 100;
