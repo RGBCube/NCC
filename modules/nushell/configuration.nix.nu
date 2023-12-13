@@ -127,10 +127,10 @@ $env.config.completions = {
     enable:      true
     max_results: 100
     completer:   {|tokens: list<string>|
-      let expanded_alias = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
+      let expanded_alias = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0 | split row " "
 
       let tokens = if $expanded_alias != null  {
-        $expanded_alias | split row " " | append ($tokens | skip 1)
+        $tokens | skip 1 | prepend $expanded_alias.0
       } else {
         $tokens
       }
@@ -139,7 +139,7 @@ $env.config.completions = {
 
       let completions = carapace $command nushell $tokens | from json | default []
 
-     if ($completions | is-empty) {
+      if ($completions | is-empty) {
         let path = $tokens | last
 
         ls $"($path)*" | each {|it|
