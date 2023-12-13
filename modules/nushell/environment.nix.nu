@@ -13,6 +13,11 @@ $env.ENV_CONVERSIONS.PATH = {
     }
 }
 
+def mc [path: directory] {
+    mkdir $path
+    cd $path
+}
+
 def --wrapped hx [...arguments] {
     if ($env.TERM | str contains "kitty") {
         kitty @ set-spacing padding=0
