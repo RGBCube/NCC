@@ -175,11 +175,11 @@
         "zls": "zls"
       },
       "locked": {
-        "lastModified": 1702326940,
-        "narHash": "sha256-qu7+FJN++kPY2EyvGDGEWOh9HR8I7u9ZDXd0tGB2rj4=",
+        "lastModified": 1702533450,
+        "narHash": "sha256-cE1MkavhUvmlBWIJ/3pT2uaBHr/HgOevql83u30OSQ4=",
         "ref": "refs/heads/main",
-        "rev": "d659b12fb9b9fb210270c204effad969c1b630b8",
-        "revCount": 4129,
+        "rev": "2cda1e0514dc16b37e980d4d755ee760da5c65b6",
+        "revCount": 4196,
         "type": "git",
         "url": "ssh://git@github.com/RGBCube/GHostty"
       },
