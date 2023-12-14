@@ -48,7 +48,7 @@
     };
 
     nuScripts = {
-      url   = "github:RGBCube/nu_scripts";
+      url   = "github:nushell/nu_scripts";
       flake = false;
     };
 

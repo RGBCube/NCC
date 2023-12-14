@@ -540,15 +540,15 @@
     "nuScripts": {
       "flake": false,
       "locked": {
-        "lastModified": 1702127877,
-        "narHash": "sha256-W9czVqmYOmdn7G3dMdVkBYkeDzTizSLAF1X25pSB+gw=",
-        "owner": "RGBCube",
+        "lastModified": 1702507399,
+        "narHash": "sha256-RGM1UutSbjLyW6JpJEf2kJ7DfYT1LJyDP/+dBAREvFc=",
+        "owner": "nushell",
         "repo": "nu_scripts",
-        "rev": "33fd3943d50bfac0103306c9ac800f931d199f0b",
+        "rev": "af92dca52083ab56f9322b92b151e3a7f6691f0c",
         "type": "github"
       },
       "original": {
-        "owner": "RGBCube",
+        "owner": "nushell",
         "repo": "nu_scripts",
         "type": "github"
       }
