@@ -100,7 +100,7 @@ in {
         corner-radius = 8;
         border-width  = 2;
 
-        margin  = 4;
+        margin  = 6;
         padding = 8;
 
         font.size.normal = 12;
