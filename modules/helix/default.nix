@@ -49,7 +49,7 @@
       render.tab     = "all";
     };
 
-    settings.keys = lib.genAttrs [ "normal" "select" ] (_: {
+    settings.keys = lib.genAttrs [ "normal" "select" ] (name: {
       D = "extend_to_line_end";
     });
   };

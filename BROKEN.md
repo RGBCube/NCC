@@ -13,7 +13,7 @@
   put the soon-to-be attributes here, so I don't forget.
 
   ```nix
-  nixConfig = with builtins; mapAttrs (_: concatStringsSep " ") {
+  nixConfig = with builtins; mapAttrs (name: concatStringsSep " ") {
     extra-substituters = [
       "https://nix-community.cachix.org/"
       "https://hyprland.cachix.org/"
