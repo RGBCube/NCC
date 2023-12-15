@@ -15,6 +15,8 @@ graphicalConfiguration {
       z = "jump_to_prompt:-2";
       x = "jump_to_prompt:2";
 
+      h = "write_scrollback_file";
+
       page_down = "scroll_page_down";
       down      = "scroll_page_lines:1";
       j         = "scroll_page_lines:1";
