@@ -1,4 +1,4 @@
-{ lib, ulib, pkgs, upkgs, theme, ... }: with ulib;
+{ lib, ulib, pkgs, upkgs, theme, ... }:
 
 graphicalConfiguration {
   programs.nushell.environmentVariables.TERMINAL = "ghostty";
