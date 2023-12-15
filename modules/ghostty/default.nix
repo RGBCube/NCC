@@ -16,12 +16,13 @@ graphicalConfiguration {
       x = "jump_to_prompt:2";
 
       h = "write_scrollback_file";
+      i = "inspector:toggle";
 
-      page_down = "scroll_page_down";
+      page_down = "scroll_page_fractional:0.33";
       down      = "scroll_page_lines:1";
       j         = "scroll_page_lines:1";
 
-      page_up = "scroll_page_up";
+      page_up = "scroll_page_fractional:-0.33";
       up      = "scroll_page_lines:-1";
       k       = "scroll_page_lines:-1";
 
