@@ -160,6 +160,21 @@ graphicalConfiguration {
       #tray, #pulseaudio, #backlight, #cpu, #memory, #network, #battery, #clock {
         margin-left: 20px;
       }
+
+      @keyframes blink {
+        to {
+          color: ${base05};
+        }
+      }
+
+      #battery.critical:not(.charging) {
+        animation-direction: alternate;
+        animation-duration: 0.5s;
+        animation-iteration-count: infinite;
+        animation-name: blink;
+        animation-timing-function: linear;
+        color: ${base08};
+      }
     '';
   };
 }
