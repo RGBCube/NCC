@@ -5,15 +5,31 @@
   programs.nushell.shellAliases.x              = "hx";
 
   programs.helix = enabled {
-    languages.language = [{
-      name = "nix";
+    languages.language = [
+      {
+        name = "nix";
 
-      auto-format       = false;
-      formatter.command = "alejandra";
-      formatter.args    = [ "-" ];
+        auto-format       = false;
+        formatter.command = "alejandra";
+        formatter.args    = [ "-" ];
 
-      language-servers = [ "nixd" ];
-    }];
+        language-servers = [ "nixd" ];
+      }
+      {
+        name            = "cull";
+        injection-regex = "cull";
+        scope           = "scope.cull";
+
+        comment-token    = "#";
+        indent.unit      = "\t";
+        indent.tab-width = 4;
+
+        file-types = [ "cull" ];
+        roots      = [ "build.cull" ];
+
+        grammar = "python";
+      }
+    ];
 
     languages.language-server.nixd.command = "nixd";
 
