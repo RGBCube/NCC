@@ -35,6 +35,7 @@
 !modules/qt/
 !modules/ripgrep/
 !modules/rust/
+!modules/ssh/
 !modules/steam/
 !modules/steck/
 !modules/sudo/
@@ -45,7 +46,6 @@
 !.gitignore
 !flake.lock
 
-!*.lua
 !*.md
 !*.nix
 !*.nu

@@ -45,6 +45,7 @@
   "qt"
   "ripgrep"
   "rust"
+  "ssh"
   "steam"
   "steck"
   "sudo"
