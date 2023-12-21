@@ -33,7 +33,7 @@
 
     languages.language-server.nixd.command = "nixd";
 
-    settings.theme = "base16_transparent";
+    settings.theme = "gruvbox_dark_hard";
 
     settings.editor = {
       color-modes            = true;
