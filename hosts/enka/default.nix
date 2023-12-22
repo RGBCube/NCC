@@ -7,6 +7,10 @@
     description = "NixOS";
     extraGroups = [ "wheel" ];
   };
+
+  networking.firewall = enabled {
+    allowedTCPPorts = [ 8080 ];
+  };
 })
 
 (homeConfiguration {
@@ -16,6 +20,7 @@
 (importModules [
   ./hardware.nix
 
+  "autofreq"
   "bat"
   "blueman"
   "boot"

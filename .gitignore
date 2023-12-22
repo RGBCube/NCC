@@ -6,6 +6,7 @@
 !hosts/enka/
 
 !modules/
+!modules/autofreq/
 !modules/bat/
 !modules/blueman/
 !modules/boot/
