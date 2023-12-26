@@ -54,5 +54,6 @@
   "steam"
   "steck"
   "sudo"
+  "w3m"
   "waybar"
 ])
