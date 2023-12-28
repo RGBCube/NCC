@@ -57,6 +57,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    zig = {
+      url                    = "github:mitchellh/zig-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     zls = {
       url                    = "github:zigtools/zls";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -79,6 +84,7 @@
     ghosttyModule,
     nuScripts,
     fenix,
+    zig,
     tools,
     themes,
     ...
@@ -90,7 +96,11 @@
     configuration = host: system: let
       pkgs = import nixpkgs { inherit system; };
 
-      upkgs = { inherit nuScripts; } // (lib.genAttrs
+      upkgs = {
+        inherit nuScripts;
+
+        zig = zig.packages.${system}.master;
+      } // (lib.genAttrs
         [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ]
         (name: inputs.${name}.packages.${system}.default));
 

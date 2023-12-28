@@ -1,4 +1,4 @@
-{ ulib, pkgs, ... }: with ulib; merge
+{ ulib, pkgs, upkgs, ... }: with ulib; merge
 
 (systemPackages (with pkgs; [
   asciinema
@@ -25,8 +25,8 @@
   jdk
   lld
   maven
+  upkgs.zig
   vlang
-  zig
 ]))
 
 (graphicalPackages (with pkgs; [
