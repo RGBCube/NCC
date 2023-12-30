@@ -91,9 +91,13 @@
   } @ inputs: let
     lib = nixpkgs.lib;
 
-    ulib = import ./lib lib;
+    configuration = host: {
+      system,
+      normalUsers,
+      graphicalUsers ? [],
+    }: let
+      ulib = import ./lib lib normalUsers graphicalUsers;
 
-    configuration = host: system: let
       pkgs = import nixpkgs { inherit system; };
 
       upkgs = {
@@ -148,8 +152,18 @@
     configurations = builtins.mapAttrs configuration;
   in {
     nixosConfigurations = configurations {
-      enka = "x86_64-linux";
-      cube = "x86_64-linux";
+      enka = {
+        system = "x86_64-linux";
+
+        normalUsers    = [ "nixos" "root" ];
+        graphicalUsers = [ "nixos" ];
+      };
+
+      cube = {
+        system = "x86_64-linux";
+
+        normalUsers    = [ "nixos" "root" ];
+      };
     };
   };
 }

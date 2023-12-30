@@ -6,9 +6,4 @@
   normalUser = attributes: attributes // {
     isNormalUser = true;
   };
-
-  graphicalUser = attributes: attributes // {
-    extraGroups  = [ "graphical" ] ++ (attributes.extraGroups or []);
-    isNormalUser = true;
-  };
 }

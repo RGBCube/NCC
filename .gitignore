@@ -32,6 +32,7 @@
 !modules/nushell/
 !modules/openssh/
 !modules/openttd/
+!modules/packages/
 !modules/pipewire/
 !modules/pueue/
 !modules/python/

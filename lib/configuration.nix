@@ -1,3 +1,5 @@
+normalUsers: graphicalUsers:
+
 rec {
   systemConfiguration = configuration: configuration;
 
@@ -15,14 +17,12 @@ rec {
     }) {} (if builtins.isList users then users else [ users ]);
   };
 
-  # FIXME: Don't hardcode these.
-  graphicalConfiguration = userHomeConfiguration "nixos";
+  graphicalConfiguration = userHomeConfiguration graphicalUsers;
   graphicalPackages      = packages: graphicalConfiguration {
     home.packages = packages;
   };
 
-  # FIXME: Don't hardcode these.
-  homeConfiguration = userHomeConfiguration [ "nixos" "root" ];
+  homeConfiguration = userHomeConfiguration normalUsers;
   homePackages      = packages: homeConfiguration {
     home.packages = packages;
   };

@@ -5,7 +5,7 @@
 
   time.timeZone = "Europe/Istanbul";
 
-  users.users.nixos = graphicalUser {
+  users.users.nixos = normalUser {
     description = "NixOS";
     extraGroups = [ "wheel" ];
   };
@@ -21,7 +21,6 @@
 
 (importModules [
   ./hardware.nix
-  ./packages.nix
 
   "autofreq"
   "bat"
@@ -46,6 +45,7 @@
   "nix"
   "nushell"
   "openttd"
+  "packages"
   "pipewire"
   "pueue"
   "python"

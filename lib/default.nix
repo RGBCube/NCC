@@ -1,6 +1,6 @@
-lib:
+lib: normalUsers: graphicalUsers:
 
-(import ./configuration.nix)
+(import ./configuration.nix normalUsers graphicalUsers)
 //
 (import ./merge.nix lib)
 //
