@@ -1,6 +1,8 @@
 normalUsers: graphicalUsers:
 
 rec {
+  inherit normalUsers graphicalUsers;
+
   systemConfiguration = configuration: configuration;
 
   systemPackages = packages: systemConfiguration {

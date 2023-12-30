@@ -3,7 +3,7 @@
 (systemConfiguration {
   networking.networkmanager = enabled {};
 
-  users.extraGroups.networkmanager.members = [ "nixos" ];
+  users.extraGroups.networkmanager.members = ulib.normalUsers;
 })
 
 (homeConfiguration {

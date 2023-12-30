@@ -162,7 +162,7 @@
       cube = {
         system = "x86_64-linux";
 
-        normalUsers    = [ "nixos" "root" ];
+        normalUsers = [ "rgb" "root" ];
       };
     };
   };
