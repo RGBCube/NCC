@@ -6,7 +6,7 @@ homeConfiguration {
 
     matchBlocks.cube = {
       hostname     = "5.255.78.70";
-      user         = "nixos";
+      user         = "rgb";
       port         = 2222;
       identityFile = "~/.ssh/id_rsa";
     };
