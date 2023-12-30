@@ -1,11 +1,72 @@
 {
   "nodes": {
+    "advisory-db": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1703184318,
+        "narHash": "sha256-vx2/goSpegxiFc7e1jKNHzBkhnsIQjriV4GZLaVe17M=",
+        "owner": "rustsec",
+        "repo": "advisory-db",
+        "rev": "a5fb72de318a74eb69a2c241c0e46705684a35d0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rustsec",
+        "repo": "advisory-db",
+        "type": "github"
+      }
+    },
+    "crane": {
+      "inputs": {
+        "nixpkgs": [
+          "site",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1703439018,
+        "narHash": "sha256-VT+06ft/x3eMZ1MJxWzQP3zXFGcrxGo5VR2rB7t88hs=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "afdcd41180e3dfe4dac46b5ee396e3b12ccc967a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ],
         "rust-analyzer-src": "rust-analyzer-src"
+      },
+      "locked": {
+        "lastModified": 1703917281,
+        "narHash": "sha256-fmhKbANx4PLG/Rt/QvKBsAdmyl8vAGQfROtccenMonw=",
+        "owner": "nix-community",
+        "repo": "fenix",
+        "rev": "8ad4353759945bec3a5f4bfc53efe818bb41e12a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "fenix",
+        "type": "github"
+      }
+    },
+    "fenix_2": {
+      "inputs": {
+        "nixpkgs": [
+          "site",
+          "nixpkgs"
+        ],
+        "rust-analyzer-src": [
+          "site"
+        ]
       },
       "locked": {
         "lastModified": 1703917281,
@@ -595,8 +656,9 @@
         "nixSuper": "nixSuper",
         "nixpkgs": "nixpkgs_4",
         "nuScripts": "nuScripts",
+        "site": "site",
         "themes": "themes",
-        "tools": "tools",
+        "tools": "tools_2",
         "zig": "zig_2",
         "zls": "zls_2"
       }
@@ -615,6 +677,30 @@
         "owner": "rust-lang",
         "ref": "nightly",
         "repo": "rust-analyzer",
+        "type": "github"
+      }
+    },
+    "site": {
+      "inputs": {
+        "advisory-db": "advisory-db",
+        "crane": "crane",
+        "fenix": "fenix_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "tools": "tools"
+      },
+      "locked": {
+        "lastModified": 1703941106,
+        "narHash": "sha256-z1+BtPXxwcdx1oLR+kZC2lgsqPbSMVGA0b7kueN5Aag=",
+        "owner": "RGBCube",
+        "repo": "Site",
+        "rev": "2faab82c80d506b764e9f2a68553931ba1da2f69",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RGBCube",
+        "repo": "Site",
         "type": "github"
       }
     },
@@ -679,6 +765,27 @@
       }
     },
     "tools": {
+      "inputs": {
+        "nixpkgs": [
+          "site",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1700815030,
+        "narHash": "sha256-x24obS8VMX5tmf8MkJMyjG7UxxJxSiH+k063Xwyfzqg=",
+        "owner": "RGBCube",
+        "repo": "FlakeTools",
+        "rev": "7fd62102ff360783e0fcd1f4eb434d90d06694c8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RGBCube",
+        "repo": "FlakeTools",
+        "type": "github"
+      }
+    },
+    "tools_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"

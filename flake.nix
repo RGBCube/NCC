@@ -67,6 +67,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    site = {
+      url                    = "github:RGBCube/Site";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     tools = {
       url                    = "github:RGBCube/FlakeTools";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +90,7 @@
     nuScripts,
     fenix,
     zig,
+    site,
     tools,
     themes,
     ...
@@ -144,6 +150,7 @@
       specialArgs = { inherit inputs ulib upkgs theme; };
       modules     = [
         homeManager.nixosModules.default
+        site.nixosModules.default
         defaultConfiguration
         ./hosts/${host}
       ];

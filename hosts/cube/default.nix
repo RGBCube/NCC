@@ -37,6 +37,7 @@
   "python"
   "ripgrep"
   "rust"
+  "site"
   "ssh"
   "sudo"
   "tmp"
