@@ -101,7 +101,7 @@
   python311Packages.python-lsp-server
 
   # RUST
-  rust-analyzer
+  rust-analyzer-nightly
 
   # ZIG
   upkgs.zls
