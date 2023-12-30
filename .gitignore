@@ -4,6 +4,7 @@
 
 !hosts/
 !hosts/enka/
+!hosts/cube/
 
 !modules/
 !modules/autofreq/
@@ -13,6 +14,7 @@
 !modules/btop/
 !modules/discord/
 !modules/dunst/
+!modules/endlessh/
 !modules/firefox/
 !modules/fonts/
 !modules/fuzzel/
@@ -21,15 +23,15 @@
 !modules/gtk/
 !modules/helix/
 !modules/hyprland/
+!modules/kernel/
 !modules/kitty/
-!modules/kmscon/
 !modules/localisation/
 !modules/logind/
 !modules/networkmanager/
 !modules/nix/
 !modules/nushell/
+!modules/openssh/
 !modules/openttd/
-!modules/packages/
 !modules/pipewire/
 !modules/pueue/
 !modules/python/
@@ -38,8 +40,8 @@
 !modules/rust/
 !modules/ssh/
 !modules/steam/
-!modules/steck/
 !modules/sudo/
+!modules/tmp/
 !modules/w3m/
 !modules/waybar/
 

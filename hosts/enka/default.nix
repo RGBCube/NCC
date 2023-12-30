@@ -3,6 +3,8 @@
 (systemConfiguration {
   system.stateVersion = "23.05";
 
+  time.timeZone = "Europe/Istanbul";
+
   users.users.nixos = graphicalUser {
     description = "NixOS";
     extraGroups = [ "wheel" ];
@@ -19,6 +21,7 @@
 
 (importModules [
   ./hardware.nix
+  ./packages.nix
 
   "autofreq"
   "bat"
@@ -35,15 +38,14 @@
   "gtk"
   "helix"
   "hyprland"
+  "kernel"
   "kitty"
-  # "kmscon"
   "localisation"
   "logind"
   "networkmanager"
   "nix"
   "nushell"
   "openttd"
-  "packages"
   "pipewire"
   "pueue"
   "python"
@@ -52,8 +54,8 @@
   "rust"
   "ssh"
   "steam"
-  "steck"
   "sudo"
+  "tmp"
   "w3m"
   "waybar"
 ])

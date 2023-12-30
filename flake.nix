@@ -149,6 +149,7 @@
   in {
     nixosConfigurations = configurations {
       enka = "x86_64-linux";
+      cube = "x86_64-linux";
     };
   };
 }
