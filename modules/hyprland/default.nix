@@ -25,7 +25,7 @@
       exec-once = wl-paste --type text  --watch cliphist store -max-items 1000
       exec-once = wl-paste --type image --watch cliphist store -max-items 1000
 
-      exec = swaybg --image ${./wallpaper.png}
+      exec = pkill swaybg; swaybg --image ${./wallpaper.png}
 
       exec = pkill --signal SIGUSR2 waybar
     ''
