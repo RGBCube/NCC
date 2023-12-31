@@ -115,10 +115,10 @@
         (name: inputs.${name}.packages.${system}.default));
 
       theme = themes.custom (themes.raw.gruvbox-dark-hard // {
-        corner-radius = 0;
+        corner-radius = 8;
         border-width  = 1;
 
-        margin  = 0;
+        margin  = 6;
         padding = 8;
 
         font.size.normal = 12;

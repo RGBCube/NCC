@@ -12,8 +12,6 @@
         auto-format       = false;
         formatter.command = "alejandra";
         formatter.args    = [ "-" ];
-
-        language-servers = [ "nixd" ];
       }
       {
         name            = "cull";
@@ -30,8 +28,6 @@
         grammar = "python";
       }
     ];
-
-    languages.language-server.nixd.command = "nixd";
 
     settings.theme = "gruvbox_dark_hard";
 
@@ -95,7 +91,7 @@
 
   # NIX
   alejandra
-  nixd
+  nil
 
   # PYTHON
   python311Packages.python-lsp-server
