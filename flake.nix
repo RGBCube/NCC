@@ -116,7 +116,7 @@
 
       theme = themes.custom (themes.raw.gruvbox-dark-hard // {
         corner-radius = 8;
-        border-width  = 1;
+        border-width  = 2;
 
         margin  = 6;
         padding = 8;
