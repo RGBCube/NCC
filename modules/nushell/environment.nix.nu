@@ -1,6 +1,6 @@
 { nuScripts, theme }: ''
 if (tty) == /dev/tty1 {
-  Hyprland
+  (Hyprland)
 }
 
 $env.PROMPT_INDICATOR           = "";
