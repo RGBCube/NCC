@@ -1,8 +1,6 @@
-{ lib, ulib, ... }: with ulib;
+{ ulib, ... }: with ulib;
 
 systemConfiguration {
-  console.keyMap = "trq";
-
   i18n.defaultLocale       = "en_US.UTF-8";
   i18n.extraLocaleSettings = let
     locale = "tr_TR.UTF-8";

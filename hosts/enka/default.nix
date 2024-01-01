@@ -3,6 +3,7 @@
 (systemConfiguration {
   system.stateVersion = "23.05";
 
+  console.keyMap = "trq";
   time.timeZone = "Europe/Istanbul";
 
   users.users.nixos = normalUser {
