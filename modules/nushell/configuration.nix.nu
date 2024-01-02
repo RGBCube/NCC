@@ -182,7 +182,7 @@ $env.config.cursor_shape = {
 
 $env.config.hooks = {
   command_not_found: {||
-    ${lib.optionals ulib.isDesktop ''
+    ${lib.optionalString ulib.isDesktop ''
       task status
       | where label == boom
       | get id

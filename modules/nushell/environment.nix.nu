@@ -1,5 +1,5 @@
 { lib, ulib, upkgs, theme, ... }: ''
-${lib.optionals ulib.isDesktop ''
+${lib.optionalString ulib.isDesktop ''
   if (tty) == /dev/tty1 {
     (Hyprland)
   }
