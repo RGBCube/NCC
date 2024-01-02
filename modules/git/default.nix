@@ -58,9 +58,9 @@ homeConfiguration {
     extraConfig = {
       init.defaultBranch   = "master";
       push.autoSetupRemote = true;
-
-      url."ssh://git@github.com/".insteadOf = "https://github.com/";
     } // lib.optionalAttrs ulib.isDesktop {
+      url."ssh://git@github.com/".insteadOf = "https://github.com/";
+
       commit.gpgSign  = true;
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id_rsa";
