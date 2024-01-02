@@ -1,6 +1,6 @@
 { ulib, theme, ... }: with ulib;
 
-graphicalConfiguration {
+desktopHomeConfiguration {
   programs.kitty = with theme.withHashtag; enabled {
     font = with font; {
       inherit (mono) name package;

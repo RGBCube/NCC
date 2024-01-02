@@ -1,4 +1,4 @@
-{ config, ulib, pkgs, upkgs, theme, ... }: with ulib; merge3
+{ config, ulib, pkgs, ... } @ inputs: with ulib; merge3
 
 (systemConfiguration {
   users.defaultUserShell = pkgs.nushell;
@@ -8,11 +8,8 @@
   programs.starship = enabled {};
 
   programs.nushell = enabled {
-    configFile.text = import ./configuration.nix.nu;
-    envFile.text = import ./environment.nix.nu {
-      inherit (upkgs) nuScripts;
-      inherit theme;
-    };
+    configFile.text = import ./configuration.nix.nu inputs;
+    envFile.text    = import ./environment.nix.nu inputs;
 
     environmentVariables = {
       inherit (config.environment.variables) NIX_LD;

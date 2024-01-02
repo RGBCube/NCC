@@ -1,10 +1,10 @@
 { ulib, pkgs, theme, ... }: with ulib; merge
 
-(systemConfiguration {
+(desktopSystemConfiguration {
   programs.dconf = enabled {};
 })
 
-(graphicalConfiguration {
+(desktopHomeConfiguration {
   gtk = enabled {
     gtk3.extraCss = theme.adwaitaGtkCss;
     gtk4.extraCss = theme.adwaitaGtkCss;

@@ -1,6 +1,6 @@
 { ulib, pkgs, ... }: with ulib;
 
-graphicalConfiguration {
+desktopHomeConfiguration {
   qt = enabled {
     platformTheme = "gnome";
     style.name    = "adwaita-dark";

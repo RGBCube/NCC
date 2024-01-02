@@ -1,5 +1,5 @@
 { ulib, ... }: with ulib;
 
-systemConfiguration {
+desktopSystemConfiguration {
   services.logind.powerKey = "ignore";
 }

@@ -1,6 +1,6 @@
 { ulib, theme, ... }: with ulib;
 
-graphicalConfiguration {
+desktopHomeConfiguration {
   programs.fuzzel = with theme; enabled {
     settings.main = {
       dpi-aware  = false;
@@ -29,8 +29,8 @@ graphicalConfiguration {
     };
 
     settings.border = {
-      radius = corner-radius;
-      width  = border-width;
+      radius = cornerRadius;
+      width  = borderWidth;
     };
   };
 }

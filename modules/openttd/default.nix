@@ -1,5 +1,5 @@
 { ulib, pkgs, ... }: with ulib;
 
-graphicalPackages (with pkgs; [
+desktopHomePackages (with pkgs; [
   openttd
 ])

@@ -8,7 +8,7 @@
   };
 })
 
-(systemFonts (with pkgs; [
+(desktopSystemFonts (with pkgs; [
   theme.font.sans.package
   theme.font.mono.package
 

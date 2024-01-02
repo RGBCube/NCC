@@ -1,7 +1,9 @@
-{ nuScripts, theme }: ''
-if (tty) == /dev/tty1 {
-  (Hyprland)
-}
+{ lib, ulib, upkgs, theme, ... }: ''
+${lib.optionals ulib.isDesktop ''
+  if (tty) == /dev/tty1 {
+    (Hyprland)
+  }
+''}
 
 $env.PROMPT_INDICATOR           = "";
 $env.PROMPT_INDICATOR_VI_INSERT = "";
@@ -34,5 +36,5 @@ def --wrapped hx [...arguments] {
   }
 }
 
-use ${nuScripts}/modules/background_task/task.nu
+use ${upkgs.nuScripts}/modules/background_task/task.nu
 ''

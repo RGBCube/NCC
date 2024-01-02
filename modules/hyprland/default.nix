@@ -1,6 +1,6 @@
 { ulib, pkgs, upkgs, theme, ... }: with ulib; merge3
 
-(systemConfiguration {
+(desktopSystemConfiguration {
   hardware.opengl = enabled {};
 
   xdg.portal = enabled {
@@ -12,7 +12,7 @@
   };
 })
 
-(graphicalConfiguration {
+(desktopHomeConfiguration {
   wayland.windowManager.hyprland = with theme; enabled {
     package = upkgs.hyprland;
 
@@ -140,7 +140,7 @@
     ''
       decoration {
         drop_shadow = false
-        rounding    = ${toString corner-radius}
+        rounding    = ${toString cornerRadius}
 
         blur {
           enabled = false
@@ -154,7 +154,7 @@
 
         gaps_in     = ${toString (margin/ 2)}
         gaps_out    = ${toString margin}
-        border_size = ${toString border-width}
+        border_size = ${toString borderWidth}
 
         col.active_border         = 0xFF${base0A}
         col.nogroup_border_active = 0xFF${base0A}
@@ -215,7 +215,7 @@
   };
 })
 
-(homePackages (with pkgs; [
+(desktopHomePackages (with pkgs; [
   brightnessctl
   cliphist
   grim

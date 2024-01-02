@@ -1,8 +1,8 @@
 { ulib, ... }: with ulib;
 
-homeConfiguration {
+desktopHomeConfiguration {
   programs.ssh = enabled {
-    matchBlocks."*".setEnv.TERM  = "xterm-kitty";
+    matchBlocks."*".setEnv.TERM = "xterm-kitty";
 
     matchBlocks.cube = {
       hostname     = "5.255.78.70";

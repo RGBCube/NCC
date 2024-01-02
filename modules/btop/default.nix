@@ -6,6 +6,6 @@ homeConfiguration {
   programs.btop = enabled {
     settings.color_theme = "base16";
 
-    settings.rounded_corners = theme.corner-radius != 0;
+    settings.rounded_corners = theme.cornerRadius != 0;
   };
 }

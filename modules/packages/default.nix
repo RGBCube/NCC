@@ -1,4 +1,4 @@
-{ ulib, pkgs, upkgs, ... }: with ulib; merge
+{ ulib, pkgs, upkgs, ... }: with ulib; merge3
 
 (systemPackages (with pkgs; [
   asciinema
@@ -15,9 +15,9 @@
   tree
   usbutils
   yt-dlp
+]))
 
-  wine
-
+(desktopSystemPackages (with pkgs; [
   clang_16
   clang-tools_16
   gh
@@ -27,9 +27,11 @@
   maven
   upkgs.zig
   vlang
+
+  wine
 ]))
 
-(graphicalPackages (with pkgs; [
+(desktopHomePackages (with pkgs; [
   qbittorrent
   thunderbird
   whatsapp-for-linux

@@ -1,6 +1,6 @@
 { ulib, theme, ... }: with ulib;
 
-graphicalConfiguration {
+desktopHomeConfiguration {
   services.dunst = with theme.withHashtag; enabled {
     iconTheme = icons;
 
@@ -9,13 +9,13 @@ graphicalConfiguration {
 
       dmenu = "fuzzel --dmenu";
 
-      corner_radius      = corner-radius;
+      corner_radius      = cornerRadius;
       gap_size           = margin;
       horizontal_padding = padding;
       padding            = padding;
 
       frame_color     = base0A;
-      frame_width     = border-width;
+      frame_width     = borderWidth;
       separator_color = "frame";
 
       background = base00;

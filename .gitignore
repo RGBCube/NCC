@@ -10,7 +10,6 @@
 !modules/autofreq/
 !modules/bat/
 !modules/blueman/
-!modules/boot/
 !modules/btop/
 !modules/discord/
 !modules/dunst/
@@ -27,6 +26,7 @@
 !modules/kitty/
 !modules/localisation/
 !modules/logind/
+!modules/nano/
 !modules/networkmanager/
 !modules/nix/
 !modules/nushell/

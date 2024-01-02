@@ -1,9 +1,7 @@
 { ulib, modulesPath, ... }: with ulib;
 
 systemConfiguration {
-  imports = [
-    (modulesPath + "/profiles/qemu-guest.nix")
-  ];
+  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   boot.loader.grub = enabled {
     device      = "/dev/vda";

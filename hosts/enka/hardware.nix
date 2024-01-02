@@ -1,4 +1,12 @@
-{
+{ ulib, ... }: with ulib;
+
+systemConfiguration {
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.enable      = true;
+    systemd-boot.editor      = false;
+  };
+
   boot.initrd.availableKernelModules = [
     "ahci"
     "rtsx_pci_sdmmc"

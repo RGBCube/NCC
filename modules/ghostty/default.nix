@@ -1,6 +1,10 @@
-{ lib, ulib, pkgs, upkgs, theme, ... }: with ulib;
+{ inputs, lib, ulib, pkgs, upkgs, theme, ... }: with ulib; merge
 
-graphicalConfiguration {
+(desktopSystemConfiguration {
+  home-manager.sharedModules = [ inputs.ghosttyModule.homeModules.default ];
+})
+
+(desktopHomeConfiguration {
   programs.nushell.environmentVariables.TERMINAL = "ghostty";
 
   programs.ghostty = enabled {
@@ -69,4 +73,4 @@ graphicalConfiguration {
       ];
     };
   };
-}
+})

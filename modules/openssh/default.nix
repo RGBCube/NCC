@@ -1,8 +1,8 @@
-{ config, ulib, ... }: with ulib;
+{ ulib, ... }: with ulib;
 
-systemConfiguration {
+serverSystemConfiguration {
   services.openssh = enabled {
-    ports = if config.services.endlessh.enable then [ 2222 ] else [ 22 ];
+    ports = [ 2222 ];
     settings = {
       KbdInteractiveAuthentication = false;
       PasswordAuthentication       = false;

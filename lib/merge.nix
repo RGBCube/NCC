@@ -1,8 +1,11 @@
-lib:
-
-rec {
-  merge = lib.recursiveUpdate;
-  merge3 = x: y: merge (merge x y);
-  merge4 = x: y: merge3 (merge x y);
-  merge5 = x: y: merge4 (merge x y);
+lib: let
+  mergeAll = builtins.foldl' (collected: module: {
+    imports = collected.imports ++ [ module ];
+  }) { imports = []; };
+in {
+  merge  = a: b: mergeAll [ a b  ];
+  merge3 = a: b: c: mergeAll [ a b c  ];
+  merge4 = a: b: c: d: mergeAll [ a b c d ];
+  merge5 = a: b: c: d: e: mergeAll [ a b c d e ];
+  merge6 = a: b: c: d: e: f: mergeAll [ a b c d e f ];
 }

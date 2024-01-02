@@ -1,12 +1,12 @@
 { ulib, theme, ... }: with ulib;
 
-graphicalConfiguration {
+desktopHomeConfiguration {
   programs.waybar = with theme.withHashtag; enabled {
     systemd = enabled {};
 
     settings = [{
       layer  = "top";
-      height = 2 * corner-radius;
+      height = 2 * cornerRadius;
 
       margin-right = margin;
       margin-left  = margin;
@@ -124,7 +124,7 @@ graphicalConfiguration {
     style = ''
       * {
         border: none;
-        border-radius: ${toString corner-radius}px;
+        border-radius: ${toString cornerRadius}px;
         font-family: "${font.sans.name}";
       }
 

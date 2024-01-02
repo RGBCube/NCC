@@ -1,4 +1,4 @@
-{ ulib, pkgs, ... }: with ulib;
+{ lib, ulib, pkgs, ... }: with ulib;
 
 homeConfiguration {
   programs.nushell.shellAliases = {
@@ -59,11 +59,11 @@ homeConfiguration {
       init.defaultBranch   = "master";
       push.autoSetupRemote = true;
 
+      url."ssh://git@github.com/".insteadOf = "https://github.com/";
+    } // lib.mkIf ulib.isDesktop {
       commit.gpgSign  = true;
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id_rsa";
-
-      url."ssh://git@github.com/".insteadOf = "https://github.com/";
     };
   };
 }

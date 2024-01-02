@@ -8,8 +8,8 @@
 , hicolor-icon-theme
 }:
 
-stdenvNoCC.mkDerivation rec {
-  pname = "gruvbox-plus-icons";
+stdenvNoCC.mkDerivation {
+  pname = "gruvbox-plus-icon-pack";
   version = "unstable-2023-12-07";
 
   src = fetchFromGitHub {
@@ -42,6 +42,6 @@ stdenvNoCC.mkDerivation rec {
     homepage = "https://github.com/SylEleuth/gruvbox-plus-icon-pack";
     license = licenses.gpl3Only;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ eureka-cpu ];
+    maintainers = with maintainers; [ eureka-cpu RGBCube ];
   };
 }

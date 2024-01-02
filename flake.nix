@@ -86,7 +86,6 @@
     nixSuper,
     nixpkgs,
     homeManager,
-    ghosttyModule,
     nuScripts,
     fenix,
     zig,
@@ -95,28 +94,38 @@
     themes,
     ...
   } @ inputs: let
-    lib = nixpkgs.lib;
+    importConfiguration = host: let
+      hostDefault = import ./hosts/${host} {
+        # Will explode if you try to use user dependant stuff.
+        ulib = (import ./lib lib null) // { merge = lib.recursiveUpdate; };
+      };
 
-    configuration = host: {
-      system,
-      normalUsers,
-      graphicalUsers ? [],
-    }: let
-      ulib = import ./lib lib normalUsers graphicalUsers;
+      users = {
+        all       = builtins.attrNames hostDefault.users.users ++ [ "root" ];
+        graphical = builtins.attrNames (lib.filterAttrs (name: value: builtins.elem "graphical" (value.extraGroups or [])) hostDefault.users.users);
+      };
 
-      pkgs = import nixpkgs { inherit system; };
+      system = hostDefault.nixpkgs.hostPlatform;
 
-      upkgs = {
-        inherit nuScripts;
+      lib  = nixpkgs.lib;
+      ulib = import ./lib lib users;
 
-        zig = zig.packages.${system}.master;
-      } // (lib.genAttrs
-        [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ]
-        (name: inputs.${name}.packages.${system}.default));
+      pkgs  = import nixpkgs { inherit system; };
+      upkgs = let
+        defaults = lib.genAttrs
+          [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ]
+          (name: inputs.${name}.packages.${system}.default);
+
+        other = {
+          inherit nuScripts;
+
+          zig = zig.packages.${system}.master;
+        };
+      in defaults // other;
 
       theme = themes.custom (themes.raw.gruvbox-dark-hard // {
-        corner-radius = 8;
-        border-width  = 2;
+        cornerRadius = 8;
+        borderWidth  = 2;
 
         margin  = 6;
         padding = 8;
@@ -131,19 +140,16 @@
         font.mono.package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
 
         icons.name    = "Gruvbox-Plus-Dark";
-        icons.package = pkgs.callPackage (import ./derivations/gruvbox-icons.nix) {};
+        icons.package = pkgs.callPackage (import ./derivations/gruvbox-plus-icon-pack.nix) {};
       });
 
       defaultConfiguration = {
-        environment.defaultPackages = [];
-
-        home-manager.sharedModules   = [ ghosttyModule.homeModules.default ];
         home-manager.useGlobalPkgs   = true;
         home-manager.useUserPackages = true;
 
         networking.hostName  = host;
-        nixpkgs.hostPlatform = system;
       };
+
     in lib.nixosSystem {
       inherit system;
 
@@ -151,26 +157,17 @@
       modules     = [
         homeManager.nixosModules.default
         site.nixosModules.default
+
         defaultConfiguration
-        ./hosts/${host}
-      ];
+      ] ++ (builtins.attrValues (builtins.mapAttrs (name: type: ./modules/${name}) (builtins.readDir ./modules)))
+        ++ (builtins.attrValues (builtins.mapAttrs (name: type: ./hosts/${host}/${name}) (builtins.readDir ./hosts/${host})));
     };
 
-    configurations = builtins.mapAttrs configuration;
+    hosts = (builtins.attrNames
+      (nixpkgs.lib.filterAttrs
+        (name: value: value == "directory")
+        (builtins.readDir ./hosts)));
   in {
-    nixosConfigurations = configurations {
-      enka = {
-        system = "x86_64-linux";
-
-        normalUsers    = [ "nixos" "root" ];
-        graphicalUsers = [ "nixos" ];
-      };
-
-      cube = {
-        system = "x86_64-linux";
-
-        normalUsers = [ "rgb" "root" ];
-      };
-    };
+    nixosConfigurations = nixpkgs.lib.genAttrs hosts importConfiguration;
   };
 }

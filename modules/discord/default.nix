@@ -1,10 +1,14 @@
-{ ulib, pkgs, theme, ... }: with ulib; merge
+{ ulib, pkgs, theme, ... }: with ulib; merge3
 
-(graphicalConfiguration {
+(desktopSystemConfiguration {
+  nixpkgs.config.allowUnfree = true;
+})
+
+(desktopHomeConfiguration {
   xdg.configFile."Vencord/settings/quickCss.css".text = theme.discordCss;
 })
 
-(graphicalPackages (with pkgs; [
+(desktopSystemPackages (with pkgs; [
   (discord.override {
     withOpenASAR = true;
     withVencord  = true;

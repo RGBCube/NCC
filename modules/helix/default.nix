@@ -67,7 +67,7 @@
   };
 })
 
-(homePackages (with pkgs; [
+(desktopSystemPackages (with pkgs; [
   # CMAKE
   cmake-language-server
 

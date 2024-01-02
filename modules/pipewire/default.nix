@@ -1,6 +1,6 @@
 { ulib, ... }: with ulib;
 
-systemConfiguration {
+desktopSystemConfiguration {
   security.rtkit = enabled {};
   sound          = enabled {};
 

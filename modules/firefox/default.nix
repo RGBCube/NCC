@@ -1,6 +1,6 @@
 { ulib, ... }: with ulib;
 
-graphicalConfiguration {
+desktopHomeConfiguration {
   programs.firefox = enabled {};
 
   programs.librewolf = enabled {};
