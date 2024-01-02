@@ -4,6 +4,7 @@ ${if ulib.isDesktop then ''
     (Hyprland)
   }
 '' else ''
+  echo
   fastfetch
 ''}
 
