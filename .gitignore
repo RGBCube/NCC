@@ -39,7 +39,6 @@
 !modules/qt/
 !modules/ripgrep/
 !modules/rust/
-!modules/site/
 !modules/ssh/
 !modules/steam/
 !modules/sudo/
