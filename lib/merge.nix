@@ -1,4 +1,4 @@
-lib: let
+let
   mergeAll = builtins.foldl' (collected: module: {
     imports = collected.imports ++ [ module ];
   }) { imports = []; };
