@@ -144,6 +144,7 @@
       });
 
       defaultConfiguration = {
+        home-manager.users           = lib.genAttrs users.all (user: {});
         home-manager.useGlobalPkgs   = true;
         home-manager.useUserPackages = true;
 
