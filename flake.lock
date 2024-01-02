@@ -691,11 +691,11 @@
         "tools": "tools"
       },
       "locked": {
-        "lastModified": 1703941106,
-        "narHash": "sha256-z1+BtPXxwcdx1oLR+kZC2lgsqPbSMVGA0b7kueN5Aag=",
+        "lastModified": 1704201363,
+        "narHash": "sha256-Yy7Iz6tmbHxTlIp8xjrybt0SpqtHqlfGI1ehr1jBvkY=",
         "owner": "RGBCube",
         "repo": "Site",
-        "rev": "2faab82c80d506b764e9f2a68553931ba1da2f69",
+        "rev": "1c834be341adad51222e2892d375e07fe4887d7a",
         "type": "github"
       },
       "original": {
