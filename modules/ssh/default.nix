@@ -2,7 +2,7 @@
 
 desktopHomeConfiguration {
   programs.ssh = enabled {
-    matchBlocks."*".setEnv.TERM = "xterm-kitty";
+    matchBlocks."*".setEnv.TERM = "xterm-256color";
 
     matchBlocks.cube = {
       hostname     = "5.255.78.70";
