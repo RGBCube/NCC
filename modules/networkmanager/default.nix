@@ -1,11 +1,11 @@
 { ulib, ... }: with ulib; merge
 
-(desktopSystemConfiguration {
+(systemConfiguration {
   networking.networkmanager = enabled {};
 
   users.extraGroups.networkmanager.members = ulib.users.all;
 })
 
-(desktopHomeConfiguration {
+(homeConfiguration {
   programs.nushell.shellAliases.wifi = "nmcli dev wifi show-password";
 })
