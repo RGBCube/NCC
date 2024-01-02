@@ -1,8 +1,10 @@
-{ lib, ulib, upkgs, theme, ... }: ''
-${lib.optionalString ulib.isDesktop ''
+{ ulib, upkgs, theme, ... }: ''
+${if ulib.isDesktop then ''
   if (tty) == /dev/tty1 {
     (Hyprland)
   }
+'' else ''
+  fastfetch
 ''}
 
 $env.PROMPT_INDICATOR           = "";
