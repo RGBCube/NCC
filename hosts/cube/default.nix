@@ -7,6 +7,8 @@
 
   time.timeZone = "Europe/Amsterdam";
 
+  # HACK: Makes HM see the user. Idk how to automate that.
+  home-manager.users.rgb = {};
   users.users.rgb = normalUser {
     description = "RGB";
     extraGroups = [ "wheel" ];

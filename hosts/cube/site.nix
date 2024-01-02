@@ -1,6 +1,6 @@
 { ulib, ... }: with ulib;
 
-systemConfiguration {
+serverSystemConfiguration {
   services.site = { # enabled {
     openFirewall = true;
   };
