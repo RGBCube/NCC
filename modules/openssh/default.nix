@@ -2,7 +2,8 @@
 
 serverSystemConfiguration {
   services.openssh = enabled {
-    ports = [ 2222 ];
+    banner   = "Welcome to RGBCube's server!";
+    ports    = [ 2222 ];
     settings = {
       KbdInteractiveAuthentication = false;
       PasswordAuthentication       = false;
