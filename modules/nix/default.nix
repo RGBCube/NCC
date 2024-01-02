@@ -18,7 +18,7 @@ systemConfiguration {
     registry = (lib.filterAttrs
       (name: value: value != {})
       (builtins.mapAttrs
-        (name: value: lib.mkIf (value ? sourceInfo) {
+        (name: value: lib.optionalAttrs (value ? sourceInfo) {
           flake = value;
         }) inputs)) // { default.flake = inputs.nixpkgs; };
 

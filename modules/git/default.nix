@@ -60,7 +60,7 @@ homeConfiguration {
       push.autoSetupRemote = true;
 
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
-    } // lib.mkIf ulib.isDesktop {
+    } // lib.optionalAttrs ulib.isDesktop {
       commit.gpgSign  = true;
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id_rsa";
