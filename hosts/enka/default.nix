@@ -7,18 +7,15 @@
 
   time.timeZone = "Europe/Istanbul";
 
-  users.users.nixos = graphicalUser {
-    description = "NixOS";
-    extraGroups = [ "wheel" ];
-  };
-
   users.users.said = graphicalUser {
     description = "Said";
     extraGroups = [ "wheel" ];
+    uid         = 1000;
   };
 
   users.users.orhan = graphicalUser {
     description = "Orhan";
+    uid         = 1001;
   };
 
   networking.firewall = enabled {
