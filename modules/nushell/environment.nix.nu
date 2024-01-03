@@ -1,9 +1,5 @@
-{ ulib, upkgs, theme, ... }: ''
-${if ulib.isDesktop then ''
-  if (tty) == /dev/tty1 {
-    (Hyprland)
-  }
-'' else ''
+{ lib, ulib, upkgs, theme, ... }: ''
+${lib.optionalString ulib.isServer ''
   echo
   fastfetch
 ''}
