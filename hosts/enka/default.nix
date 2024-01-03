@@ -12,6 +12,11 @@
     extraGroups = [ "wheel" ];
   };
 
+  users.users.said = graphicalUser {
+    description = "Said";
+    extraGroups = [ "wheel" ];
+  };
+
   users.users.orhan = graphicalUser {
     description = "Orhan";
   };
