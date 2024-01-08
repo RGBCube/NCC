@@ -22,6 +22,10 @@
     ''
     +
     ''
+      windowrule = noinitialfocus
+    ''
+    +
+    ''
       exec-once = wl-paste --type text  --watch cliphist store -max-items 1000
       exec-once = wl-paste --type image --watch cliphist store -max-items 1000
 
