@@ -97,7 +97,7 @@
       bind = SUPER+ALT, F, togglefloating
 
       bind = SUPER+ALT, RETURN, exec, kitty
-      bind = SUPER    , RETURN, exec, ghostty
+      bind = SUPER    , RETURN, exec, ghostty --gtk-single-instance=true
       bind = SUPER    , W     , exec, firefox
       bind = SUPER    , D     , exec, discord
       bind = SUPER    , M     , exec, thunderbird

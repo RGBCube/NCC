@@ -65,7 +65,6 @@
       window-padding-y = padding;
 
       confirm-close-surface = false;
-      gtk-single-instance   = true;
 
       window-decoration = false;
 
