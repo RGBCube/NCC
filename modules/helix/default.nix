@@ -163,8 +163,9 @@
   # RUST
   rust-analyzer-nightly
 
-  # WEB & JS
-  prettier
+  # TYPESCRIPT
+  nodePackages_latest.typescript-language-server
+  nodePackages_latest.prettier
 
   # ZIG
   upkgs.zls
