@@ -11,7 +11,69 @@
 
         auto-format       = false;
         formatter.command = "alejandra";
-        formatter.args    = [ "-" ];
+      }
+      {
+        name              = "markdown";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "markdown"];
+      }
+      {
+        name              = "javascript";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "javascript" ];
+      }
+      {
+        name              = "typescript";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "typescript" ];
+      }
+      {
+        name              = "jsx";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "javascript" ];
+      }
+      {
+        name              = "tsx";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "typescript" ];
+      }
+      {
+        name              = "html";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "html" ];
+      }
+      {
+        name              = "css";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "css" ];
+      }
+      {
+        name              = "json";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "json" ];
+      }
+      {
+        name              = "yaml";
+
+        auto-format       = true;
+        formatter.command = "prettier";
+        formatter.args    = [ "--parser" "yaml" ];
       }
       {
         name            = "cull";
@@ -28,6 +90,8 @@
         grammar = "python";
       }
     ];
+
+    languages.language-server.rust-analyzer.config.check.command = "clippy";
 
     settings.theme = "gruvbox_dark_hard";
 
@@ -98,6 +162,9 @@
 
   # RUST
   rust-analyzer-nightly
+
+  # WEB & JS
+  prettier
 
   # ZIG
   upkgs.zls
