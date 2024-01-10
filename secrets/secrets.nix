@@ -1,8 +1,8 @@
-let
-  keys = import ./keys.nix;
-in {
-  "acme.age".publicKeys                = [ keys.cube ];
-  "cube.password.age".publicKeys       = [ keys.cube ];
-  "enka.said.password.age".publicKeys  = [ keys.rgbcube ];
-  "enka.orhan.password.age".publicKeys = [ keys.rgbcube ];
+with import ./keys.nix;
+
+{
+  "acme.age".publicKeys                = [ rgbcube cube ];
+  "cube.password.age".publicKeys       = [ rgbcube cube ];
+  "enka.said.password.age".publicKeys  = [ rgbcube ];
+  "enka.orhan.password.age".publicKeys = [ rgbcube ];
 }
