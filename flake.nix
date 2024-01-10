@@ -101,6 +101,7 @@
     importConfiguration = host: let
       hostDefault = import ./hosts/${host} {
         config = {};
+        keys   = {};
         ulib   = (import ./lib lib null) // {
           merge = lib.recursiveUpdate;
         };
