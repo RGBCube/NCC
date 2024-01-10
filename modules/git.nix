@@ -7,9 +7,13 @@ homeConfiguration {
     ga  = "git add";
     gaa = "git add ./";
 
-    gc  = "git commit";
-    gca = "git commit --amend --no-edit";
-    gcm = "git commit --message";
+    gb  = "git branch";
+    gbv = "git branch --verbose";
+
+    gc   = "git commit";
+    gca  = "git commit --amend --no-edit";
+    gcm  = "git commit --message";
+    gcam = "git commit --amend --message";
 
     gcl = "git clone";
 
