@@ -7,45 +7,8 @@
 !hosts/cube/
 
 !modules/
-!modules/autofreq/
-!modules/bat/
-!modules/blueman/
-!modules/btop/
-!modules/discord/
-!modules/dunst/
-!modules/endlessh/
-!modules/fail2ban/
-!modules/firefox/
-!modules/fonts/
-!modules/fuzzel/
-!modules/ghostty/
-!modules/git/
-!modules/gtk/
-!modules/helix/
 !modules/hyprland/
-!modules/kernel/
-!modules/kitty/
-!modules/localisation/
-!modules/logind/
-!modules/nano/
-!modules/networkmanager/
-!modules/nix/
 !modules/nushell/
-!modules/openssh/
-!modules/openttd/
-!modules/packages/
-!modules/pipewire/
-!modules/pueue/
-!modules/python/
-!modules/qt/
-!modules/ripgrep/
-!modules/rust/
-!modules/ssh/
-!modules/steam/
-!modules/sudo/
-!modules/tmp/
-!modules/w3m/
-!modules/waybar/
 
 !lib/
 
