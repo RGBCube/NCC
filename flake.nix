@@ -94,7 +94,7 @@
       hostDefault = import ./hosts/${host} {
         config = {};
         keys   = {};
-        ulib   = (import ./lib lib null) // {
+        ulib   = (import ./lib null) // {
           merge = lib.recursiveUpdate;
         };
       };
