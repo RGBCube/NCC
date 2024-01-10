@@ -1,6 +1,10 @@
 { config, ulib, ... }: with ulib;
 
 serverSystemConfiguration {
+  age.secrets.acme = {
+    owner = "acme";
+  };
+
   security.acme = {
     acceptTerms = true;
 
@@ -9,6 +13,7 @@ serverSystemConfiguration {
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
       email           = "rgbsphere@gmail.com";
+      group           = "nginx";
     };
 
     certs."rgbcu.be".extraDomainNames = [ "*.rgbcu.be" ];
