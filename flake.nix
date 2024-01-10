@@ -107,13 +107,13 @@
         else
           users ++ [ "root" ];
 
-        graphical = builtins.attrNames (lib.filterAttrs (name: value: builtins.elem "graphical" (value.extraGroups or [])) hostDefault.users.users);
+        graphical = builtins.attrNames (lib.filterAttrs (_: value: builtins.elem "graphical" (value.extraGroups or [])) hostDefault.users.users);
       };
 
       system = hostDefault.nixpkgs.hostPlatform;
 
       lib  = nixpkgs.lib;
-      ulib = import ./lib lib users;
+      ulib = import ./lib users;
 
       pkgs  = import nixpkgs { inherit system; };
       upkgs = let
@@ -152,7 +152,7 @@
       defaultConfiguration = {
         age.identityPaths = builtins.map (user: "/home/${user}/.ssh/id") users.all;
 
-        home-manager.users           = lib.genAttrs users.all (user: {});
+        home-manager.users           = lib.genAttrs users.all (_: {});
         home-manager.useGlobalPkgs   = true;
         home-manager.useUserPackages = true;
 
@@ -172,13 +172,13 @@
         site.nixosModules.default
 
         defaultConfiguration
-      ] ++ (builtins.attrValues (builtins.mapAttrs (name: type: ./modules/${name}) (builtins.readDir ./modules)))
-        ++ (builtins.attrValues (builtins.mapAttrs (name: type: ./hosts/${host}/${name}) (builtins.readDir ./hosts/${host})));
+      ] ++ (builtins.attrValues (builtins.mapAttrs (name: _: ./modules/${name}) (builtins.readDir ./modules)))
+        ++ (builtins.attrValues (builtins.mapAttrs (name: _: ./hosts/${host}/${name}) (builtins.readDir ./hosts/${host})));
     };
 
     hosts = (builtins.attrNames
       (nixpkgs.lib.filterAttrs
-        (name: value: value == "directory")
+        (_: value: value == "directory")
         (builtins.readDir ./hosts)));
   in {
     nixosConfigurations = nixpkgs.lib.genAttrs hosts importConfiguration;

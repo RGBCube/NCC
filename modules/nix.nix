@@ -16,9 +16,9 @@ systemConfiguration {
     package = upkgs.nixSuper;
 
     registry = (lib.filterAttrs
-      (name: value: value != {})
+      (_: value: value != {})
       (builtins.mapAttrs
-        (name: value: lib.optionalAttrs (value ? sourceInfo) {
+        (_: value: lib.optionalAttrs (value ? sourceInfo) {
           flake = value;
         }) inputs)) // { default.flake = inputs.nixpkgs; };
 

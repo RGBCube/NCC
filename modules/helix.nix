@@ -125,7 +125,7 @@
       render.tab     = "all";
     };
 
-    settings.keys = lib.genAttrs [ "normal" "select" ] (name: {
+    settings.keys = lib.genAttrs [ "normal" "select" ] (_: {
       D = "extend_to_line_end";
     });
   };

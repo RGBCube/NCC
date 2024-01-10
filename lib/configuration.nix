@@ -1,4 +1,4 @@
-lib: users: let
+users: let
   userHomeConfiguration = users: configuration: {
     home-manager.users = builtins.foldl' (final: user: final // {
       ${user} = configuration;
