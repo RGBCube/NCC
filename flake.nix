@@ -77,24 +77,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    tools = {
-      url                    = "github:RGBCube/FlakeTools";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     themes = {
       url = "github:RGBCube/ThemeNix";
     };
   };
 
   outputs = {
-    nixSuper,
     nixpkgs,
     agenix,
     homeManager,
-    fenix,
     site,
-    tools,
     themes,
     ...
   } @ inputs: let
