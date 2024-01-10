@@ -1,6 +1,8 @@
 { lib, ulib, pkgs, ... }: with ulib;
 
 serverSystemConfiguration {
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
+
   services.nginx = enabled {
     recommendedGzipSettings  = true;
     recommendedOptimisation  = true;
