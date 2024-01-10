@@ -1,11 +1,11 @@
-{ ulib, ... }: with ulib;
+{ config, ulib, ... }: with ulib;
 
 serverSystemConfiguration {
   security.acme = {
     acceptTerms = true;
 
     defaults = {
-      credentialsFile = "/home/cube/.credentials/acme";
+      credentialsFile = config.age.secrets.acme.path;
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
       email           = "rgbsphere@gmail.com";

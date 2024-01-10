@@ -31,6 +31,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    agenix = {
+      url                    = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
@@ -85,10 +90,9 @@
   outputs = {
     nixSuper,
     nixpkgs,
+    agenix,
     homeManager,
-    nuScripts,
     fenix,
-    zig,
     site,
     tools,
     themes,
@@ -96,12 +100,20 @@
   } @ inputs: let
     importConfiguration = host: let
       hostDefault = import ./hosts/${host} {
-        # Will explode if you try to use user dependant stuff.
-        ulib = (import ./lib lib null) // { merge = lib.recursiveUpdate; };
+        config = {};
+        ulib   = (import ./lib lib null) // {
+          merge = lib.recursiveUpdate;
+        };
       };
 
       users = {
-        all       = builtins.attrNames hostDefault.users.users ++ [ "root" ];
+        all = let
+          users = builtins.attrNames hostDefault.users.users;
+        in if builtins.elem "root" users then
+          users
+        else
+          users ++ [ "root" ];
+
         graphical = builtins.attrNames (lib.filterAttrs (name: value: builtins.elem "graphical" (value.extraGroups or [])) hostDefault.users.users);
       };
 
@@ -113,15 +125,16 @@
       pkgs  = import nixpkgs { inherit system; };
       upkgs = let
         defaults = lib.genAttrs
-          [ "nixSuper" "hyprland" "hyprpicker" "ghostty" "zls" ]
+          [ "nixSuper" "agenix" "hyprland" "hyprpicker" "ghostty" "zls" ]
           (name: inputs.${name}.packages.${system}.default);
 
         other = {
-          inherit nuScripts;
-
-          zig = zig.packages.${system}.master;
+          nuScripts = inputs.nuScripts;
+          zig       = inputs.zig.packages.${system}.master;
         };
       in defaults // other;
+
+      keys = import ./secrets/keys.nix;
 
       theme = themes.custom (themes.raw.gruvbox-dark-hard // {
         cornerRadius = 8;
@@ -144,6 +157,8 @@
       });
 
       defaultConfiguration = {
+        age.identityPaths = builtins.map (user: "/home/${user}/.ssh/id") users.all;
+
         home-manager.users           = lib.genAttrs users.all (user: {});
         home-manager.useGlobalPkgs   = true;
         home-manager.useUserPackages = true;
@@ -154,9 +169,13 @@
     in lib.nixosSystem {
       inherit system;
 
-      specialArgs = { inherit inputs ulib upkgs theme; };
+      specialArgs = { inherit inputs ulib upkgs keys theme; };
       modules     = [
         homeManager.nixosModules.default
+
+        agenix.nixosModules.default
+        ./secrets
+
         site.nixosModules.default
 
         defaultConfiguration

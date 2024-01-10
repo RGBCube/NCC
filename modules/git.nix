@@ -67,7 +67,7 @@ homeConfiguration {
 
       commit.gpgSign  = true;
       gpg.format      = "ssh";
-      user.signingKey = "~/.ssh/id_rsa";
+      user.signingKey = "~/.ssh/id";
     };
   };
 }

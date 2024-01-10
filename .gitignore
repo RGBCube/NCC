@@ -12,9 +12,12 @@
 
 !lib/
 
+!secrets/
+
 !.gitignore
 !flake.lock
 
+!*.age
 !*.md
 !*.nix
 !*.nu

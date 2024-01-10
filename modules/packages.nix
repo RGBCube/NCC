@@ -18,6 +18,8 @@
 ]))
 
 (desktopSystemPackages (with pkgs; [
+  upkgs.agenix
+
   clang_16
   clang-tools_16
   gh
