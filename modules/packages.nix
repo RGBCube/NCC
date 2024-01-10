@@ -2,6 +2,7 @@
 
 (systemPackages (with pkgs; [
   asciinema
+  dig
   fastfetch
   fd
   hyperfine
