@@ -10,8 +10,7 @@ serverSystemConfiguration {
     hierarchySeparator = "/";
     useFsLayout        = true;
 
-    loginAccounts.contact = {
-      name    = "contact@${config.networking.domain}";
+    loginAccounts."contact@${config.networking.domain}" = {
       aliases = [ "@${config.networking.domain}" ];
 
       hashedPasswordFile = config.age.secrets."cube.mail.password.hash".path;
