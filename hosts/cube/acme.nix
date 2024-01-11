@@ -12,7 +12,7 @@ serverSystemConfiguration {
       credentialsFile = config.age.secrets.acme.path;
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
-      email           = "rgbsphere@gmail.com";
+      email           = "security@rgbcu.be";
       group           = "nginx";
     };
 

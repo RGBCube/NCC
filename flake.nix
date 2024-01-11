@@ -36,6 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    mail = {
+      url                    = "gitlab:simple-nixos-mailserver/nixos-mailserver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
     };
@@ -85,6 +90,7 @@
   outputs = {
     nixpkgs,
     agenix,
+    mail,
     homeManager,
     site,
     themes,
@@ -169,6 +175,7 @@
         agenix.nixosModules.default
         ./secrets
 
+        mail.nixosModules.default
         site.nixosModules.default
 
         defaultConfiguration

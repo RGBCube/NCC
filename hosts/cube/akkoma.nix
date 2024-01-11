@@ -1,6 +1,6 @@
 { config, ulib, ... }: with ulib;
 
-systemConfiguration {
+serverSystemConfiguration {
   services.akkoma = let
     inherit ((pkgs.formats.elixirConf { }).lib) mkRaw mkTuple;
 
@@ -28,8 +28,8 @@ systemConfiguration {
       name        = "RGBCube's Akkoma Server";
       description = "RGBCube's Akkoma server, facism edition.";
 
-      email        = "rgbsphere@gmail.com";
-      notify_email = "rgbsphere@gmail.com";
+      email        = "social@rgbcu.be";
+      notify_email = "social@rgbcu.be";
 
       limit        = 100000;
       remote_limit = 100000;
