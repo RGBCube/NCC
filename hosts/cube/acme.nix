@@ -11,6 +11,9 @@ serverSystemConfiguration {
       email           = "security@rgbcu.be";
     };
 
-    certs.${config.networking.domain}.domain = "*.${config.networking.domain}";
+    certs.${config.networking.domain} = {
+      extraDomainNames = [ "*.${config.networking.domain}" ];
+      group            = "nginx";
+    };
   };
 }
