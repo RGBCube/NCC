@@ -5,13 +5,12 @@ serverSystemConfiguration {
     acceptTerms = true;
 
     defaults = {
-      credentialsFile = config.age.secrets.acme.path;
+      environmentFile = config.age.secrets.acme.path;
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
       email           = "security@rgbcu.be";
-      group           = "nginx";
     };
 
-    certs."rgbcu.be".domain = "*.rgbcu.be";
+    certs.${config.networking.domain}.domain = "*.${config.networking.domain}";
   };
 }
