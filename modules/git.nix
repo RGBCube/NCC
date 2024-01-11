@@ -57,7 +57,7 @@ homeConfiguration {
     package = pkgs.gitFull;
 
     userName  = "RGBCube";
-    userEmail = "RGBCube@users.noreply.github.com";
+    userEmail = "git@rgbcu.be";
 
     extraConfig = {
       init.defaultBranch   = "master";
