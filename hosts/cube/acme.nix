@@ -1,10 +1,6 @@
 { config, ulib, ... }: with ulib;
 
 serverSystemConfiguration {
-  age.secrets.acme = {
-    owner = "acme";
-  };
-
   security.acme = {
     acceptTerms = true;
 
@@ -16,6 +12,6 @@ serverSystemConfiguration {
       group           = "nginx";
     };
 
-    certs."rgbcu.be".extraDomainNames = [ "*.rgbcu.be" ];
+    certs."rgbcu.be".domain = "*.rgbcu.be";
   };
 }
