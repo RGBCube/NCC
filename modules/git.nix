@@ -63,6 +63,7 @@ homeConfiguration {
       init.defaultBranch   = "master";
       push.autoSetupRemote = true;
     } // lib.optionalAttrs ulib.isDesktop {
+      core.sshCommand                       = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf = "https://github.com/";
 
       commit.gpgSign  = true;
