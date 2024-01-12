@@ -3,7 +3,14 @@
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+  services.prometheus.exporters = {
+    nginxlog = enabled {};
+    nginx    = enabled {};
+  };
+
   services.nginx = enabled {
+    statusPage = true;
+
     recommendedGzipSettings  = true;
     recommendedOptimisation  = true;
     recommendedProxySettings = true;

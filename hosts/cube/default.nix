@@ -8,13 +8,13 @@
 
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.root.passwordFile = config.age.secrets."cube.password.hash".path;
+  users.users.root.passwordFile = config.age.secrets."cube.rgb.password.hash".path;
 
   users.users.rgb = normalUser {
     description                 = "RGB";
     extraGroups                 = [ "wheel" ];
     openssh.authorizedKeys.keys = [ keys.rgbcube ];
-    hashedPasswordFile          = config.age.secrets."cube.password.hash".path;
+    hashedPasswordFile          = config.age.secrets."cube.rgb.password.hash".path;
   };
 })
 

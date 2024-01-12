@@ -5,6 +5,18 @@ let
 
   fqdn = "mail.${domain}";
 in serverSystemConfiguration {
+  services.prometheus.exporters = {
+    dmarc = enabled {
+      imap.host         = domain;
+      imap.passwordFile = config.age.secrets."cube.mail.password".path;
+      imap.username     = "contact@${domain}";
+    };
+
+    dovecot = enabled {};
+    postfix = enabled {};
+    rspamd  = enabled {};
+  };
+
   mailserver = enabled {
     inherit fqdn;
 
