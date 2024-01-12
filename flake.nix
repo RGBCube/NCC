@@ -133,7 +133,7 @@
         };
       in defaults // other;
 
-      keys = import ./secrets/keys.nix;
+      keys = (import ./secrets/secrets.nix).keys;
 
       theme = themes.custom (themes.raw.gruvbox-dark-hard // {
         cornerRadius = 8;

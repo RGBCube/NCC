@@ -4,6 +4,7 @@ systemConfiguration {
   age.secrets = lib.genAttrs
     (builtins.map
       (lib.removeSuffix ".age")
-      (builtins.attrNames (import ./secrets.nix)))
+      (builtins.attrNames
+        (builtins.removeAttrs (import ./secrets.nix) [ "keys" ])))
     (name: { file = ./${name}.age; });
 }
