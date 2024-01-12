@@ -8,7 +8,7 @@
 
   time.timeZone = "Europe/Amsterdam";
 
-  users.users.root.passwordFile = config.age.secrets."cube.password".path;
+  users.users.root.passwordFile = config.age.secrets."cube.password.hash".path;
 
   users.users.rgb = normalUser {
     description                 = "RGB";
