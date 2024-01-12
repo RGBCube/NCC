@@ -18,7 +18,7 @@
 
   users.users.orhan = graphicalUser {
     description        = "Orhan";
-    hashedPasswordFile = builtins.trace (config.age.secrets) config.age.secrets."enka.orhan.password.hash".path;
+    hashedPasswordFile = config.age.secrets."enka.orhan.password.hash".path;
     uid                = 1001;
   };
 
