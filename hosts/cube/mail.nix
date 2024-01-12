@@ -10,11 +10,22 @@ in serverSystemConfiguration {
       imap.host         = domain;
       imap.passwordFile = config.age.secrets."cube.mail.password".path;
       imap.username     = "contact@${domain}";
+
+      listenAddress = "::";
+      port          = 9020;
     };
 
-    dovecot = enabled {};
-    postfix = enabled {};
-    rspamd  = enabled {};
+    dovecot = enabled {
+      port = 9021;
+    };
+
+    postfix = enabled {
+      port = 9022;
+    };
+
+    rspamd  = enabled {
+      port = 9023;
+    };
   };
 
   mailserver = enabled {
