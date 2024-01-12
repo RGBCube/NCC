@@ -1,6 +1,8 @@
 { config, ulib, ... }: with ulib;
 
-serverSystemConfiguration {
+let
+  inherit (config.networking) domain;
+in serverSystemConfiguration {
   security.acme = {
     acceptTerms = true;
 
@@ -11,8 +13,8 @@ serverSystemConfiguration {
       email           = "security@rgbcu.be";
     };
 
-    certs.${config.networking.domain} = {
-      extraDomainNames = [ "*.${config.networking.domain}" ];
+    certs.${domain} = {
+      extraDomainNames = [ "*.${domain}" ];
       group            = "nginx";
     };
   };

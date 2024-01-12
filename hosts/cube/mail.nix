@@ -1,17 +1,28 @@
 { config, ulib, ... }: with ulib;
 
-serverSystemConfiguration {
+let
+  inherit (config.networking) domain;
+
+  fqdn   = "mail.${domain}"; 
+in serverSystemConfiguration {
   mailserver = enabled {
-    domains = [ config.networking.domain ];
-    fqdn    = "mail.${config.networking.domain}";
+    inherit fqdn;
+
+    domains = [ domain ];
 
     certificateScheme = "acme";
 
     hierarchySeparator = "/";
     useFsLayout        = true;
 
-    loginAccounts."contact@${config.networking.domain}" = {
-      aliases = [ "@${config.networking.domain}" ];
+    dmarcReporting = enabled {
+      inherit domain;
+
+      organizationName = "Doofemshmirtz Evil Inc.";
+    };
+
+    loginAccounts."contact@${domain}" = {
+      aliases = [ "@${domain}" ];
 
       hashedPasswordFile = config.age.secrets."cube.mail.password.hash".path;
     };
