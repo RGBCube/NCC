@@ -7,7 +7,6 @@ rec {
   "acme.age".publicKeys                     = [ keys.cube ];
   "cube.password.hash.age".publicKeys       = [ keys.cube ];
   "cube.mail.password.hash.age".publicKeys  = [ keys.cube ];
-  "cube.microbin.password.age".publicKeys   = [ keys.cube ];
   "cube.id.age".publicKeys                  = [ keys.rgbcube ];
   "enka.said.password.hash.age".publicKeys  = [ keys.rgbcube ];
   "enka.orhan.password.hash.age".publicKeys = [ keys.rgbcube ];
