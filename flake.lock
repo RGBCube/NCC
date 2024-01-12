@@ -879,11 +879,11 @@
         "tools": "tools"
       },
       "locked": {
-        "lastModified": 1704993388,
-        "narHash": "sha256-jlWthzG6FJSPJYnDqQys0i8KkBAh3B41kO2yLHIjOUs=",
+        "lastModified": 1705051963,
+        "narHash": "sha256-itwKf0wTMihtXUQB7/UZgwJ1ETBPts/p/t2UzRQhkv8=",
         "owner": "RGBCube",
         "repo": "Site",
-        "rev": "67e7b7db2771eef493688aae7fe73b6db44c67e0",
+        "rev": "97eb3e5d253d3da44c9c5b3e7abd5fe3efcb96bd",
         "type": "github"
       },
       "original": {

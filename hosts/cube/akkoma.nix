@@ -49,12 +49,6 @@ serverSystemConfiguration {
       external_user_syncronization = true;
     };
 
-    config.":pleroma".":ldap" = {
-      enabled = true;
-      host = "127.0.0.1";
-      # Continue...
-    };
-
     config.":pleroma".":rate_limit" = let
       ratelimit = unauth: auth: [(mkTuple [1000 unauth]) (mkTuple [1000 auth])];
     in {
