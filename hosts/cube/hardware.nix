@@ -1,6 +1,6 @@
 { ulib, modulesPath, ... }: with ulib;
 
-systemConfiguration {
+serverSystemConfiguration {
   imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
 
   boot.loader.grub = enabled {

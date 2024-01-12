@@ -3,7 +3,7 @@
 let
   inherit (config.networking) domain;
 
-  fqdn   = "mail.${domain}"; 
+  fqdn = "mail.${domain}";
 in serverSystemConfiguration {
   mailserver = enabled {
     inherit fqdn;

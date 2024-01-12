@@ -12,7 +12,7 @@
 
     clearDefaultKeybindings = true;
 
-    keybindings = (lib.mapAttrs' (name: value: lib.nameValuePair "ctrl+shift+${name}" value) {
+    keybindings = (lib.mapAttrs' (name: lib.nameValuePair "ctrl+shift+${name}") {
       c = "copy_to_clipboard";
       v = "paste_from_clipboard";
 
@@ -50,7 +50,7 @@
       "physical:eight" = "goto_tab:8";
       "physical:nine"  = "goto_tab:9";
       "physical:zero"  = "goto_tab:10";
-    }) // (lib.mapAttrs' (name: value: lib.nameValuePair "ctrl+${name}" value) {
+    }) // (lib.mapAttrs' (name: lib.nameValuePair "ctrl+${name}") {
       "physical:tab"         = "next_tab";
       "shift+physical:tab" = "previous_tab";
     });
