@@ -21,9 +21,7 @@ in serverSystemConfiguration {
 
     settings.server.http_addr = "::";
 
-    settings.users = {
-      default_theme = "system";
-    };
+    settings.users.default_theme = "system";
   };
 
   services.nginx.virtualHosts.${fqdn} = {
