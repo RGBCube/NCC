@@ -8,5 +8,14 @@ serverSystemConfiguration {
       enabledCollectors = [ "systemd" ];
       port              = 9001;
     };
+
+    scrapeConfigs = [{
+      job_name = "node";
+
+      static_configs = [{
+        labels  = [ "node" ];
+        targets = [ "[::]:${toString config.services.prometheus.exporters.node.port}" ];
+      }];
+    }];
   };
 }

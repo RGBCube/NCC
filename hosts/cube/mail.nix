@@ -28,6 +28,20 @@ in serverSystemConfiguration {
     };
   };
 
+  services.prometheus.scrapeConfigs = [{
+    job_name = "mail";
+
+    static_configs = [{
+      labels  = [ "mail" ];
+      targets = [
+        "[::]:${toString config.services.prometheus.exporters.dmarc.port}"
+        "[::]:${toString config.services.prometheus.exporters.dovecot.port}"
+        "[::]:${toString config.services.prometheus.exporters.postfix.port}"
+        "[::]:${toString config.services.prometheus.exporters.rspamd.port}"
+      ];
+    }];
+  }];
+
   mailserver = enabled {
     inherit fqdn;
 

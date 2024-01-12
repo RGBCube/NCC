@@ -13,6 +13,18 @@ serverSystemConfiguration {
     };
   };
 
+  services.prometheus.scrapeConfigs = [{
+    job_name = "nginx";
+
+    static_configs = [{
+      labels = [ "nginx" ];
+      targets = [
+        "[::]:${toString config.services.prometheus.exporters.nginxlog.port}"
+        "[::]:${toString config.services.prometheus.exporters.nginx.port}"
+      ];
+    }];
+  }];
+
   services.nginx = enabled {
     statusPage = true;
 
