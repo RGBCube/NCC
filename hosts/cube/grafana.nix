@@ -18,6 +18,12 @@ in serverSystemConfiguration {
       admin_email    = "metrics@${domain}";
       admin_password = "$__file{${config.age.secrets."cube.mail.password".path}}";
     };
+
+    settings.server.http_addr = "::";
+
+    settings.users = {
+      default_theme = "system";
+    };
   };
 
   services.nginx.virtualHosts.${fqdn} = {
@@ -25,7 +31,7 @@ in serverSystemConfiguration {
     useACMEHost = domain;
 
     locations."/" = {
-      proxyPass       = "http://0.0.0.0:${toString config.services.grafana.port}";
+      proxyPass       = "http://[::]:${toString config.services.grafana.port}";
       proxyWebsockets = true;
     };
   };
