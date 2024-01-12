@@ -1,4 +1,4 @@
-{ ulib, ... }: with ulib;
+{ config, ulib, ... }: with ulib;
 
 serverSystemConfiguration {
   services.prometheus = enabled {
@@ -13,8 +13,8 @@ serverSystemConfiguration {
       job_name = "node";
 
       static_configs = [{
-        labels  = [ "node" ];
-        targets = [ "[::]:${toString config.services.prometheus.exporters.node.port}" ];
+        labels.job = "node";
+        targets    = [ "[::]:${toString config.services.prometheus.exporters.node.port}" ];
       }];
     }];
   };

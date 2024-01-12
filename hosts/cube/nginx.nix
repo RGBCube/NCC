@@ -1,4 +1,4 @@
-{ lib, ulib, pkgs, ... }: with ulib;
+{ config, lib, ulib, pkgs, ... }: with ulib;
 
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
@@ -17,8 +17,8 @@ serverSystemConfiguration {
     job_name = "nginx";
 
     static_configs = [{
-      labels = [ "nginx" ];
-      targets = [
+      labels.job = "nginx";
+      targets    = [
         "[::]:${toString config.services.prometheus.exporters.nginxlog.port}"
         "[::]:${toString config.services.prometheus.exporters.nginx.port}"
       ];

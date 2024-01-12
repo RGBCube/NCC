@@ -32,8 +32,8 @@ in serverSystemConfiguration {
     job_name = "mail";
 
     static_configs = [{
-      labels  = [ "mail" ];
-      targets = [
+      labels.job = "mail";
+      targets    = [
         "[::]:${toString config.services.prometheus.exporters.dmarc.port}"
         "[::]:${toString config.services.prometheus.exporters.dovecot.port}"
         "[::]:${toString config.services.prometheus.exporters.postfix.port}"
