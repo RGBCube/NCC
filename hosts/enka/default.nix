@@ -7,19 +7,19 @@
 
   time.timeZone = "Europe/Istanbul";
 
-  users.users.root.passwordFile = config.age.secrets."enka.said.password".path;
+  users.users.root.hashedPasswordFile = config.age.secrets."enka.said.password.hash".path;
 
   users.users.said = graphicalUser {
-    description = "Said";
-    extraGroups = [ "wheel" ];
-    passwordFile = config.age.secrets."enka.said.password".path;
-    uid         = 1000;
+    description        = "Said";
+    extraGroups        = [ "wheel" ];
+    hashedPasswordFile = config.age.secrets."enka.said.password.hash".path;
+    uid                = 1000;
   };
 
   users.users.orhan = graphicalUser {
-    description = "Orhan";
-    passwordFile = builtins.trace (config.age.secrets) config.age.secrets."enka.orhan.password".path;
-    uid         = 1001;
+    description        = "Orhan";
+    hashedPasswordFile = builtins.trace (config.age.secrets) config.age.secrets."enka.orhan.password.hash".path;
+    uid                = 1001;
   };
 
   networking.firewall = enabled {

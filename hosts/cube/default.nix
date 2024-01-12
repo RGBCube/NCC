@@ -11,10 +11,10 @@
   users.users.root.passwordFile = config.age.secrets."cube.password".path;
 
   users.users.rgb = normalUser {
-    description = "RGB";
-    extraGroups = [ "wheel" ];
+    description                 = "RGB";
+    extraGroups                 = [ "wheel" ];
     openssh.authorizedKeys.keys = [ keys.rgbcube ];
-    passwordFile = config.age.secrets."cube.password".path;
+    hashedPasswordFile          = config.age.secrets."cube.password.hash".path;
   };
 })
 
