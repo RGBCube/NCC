@@ -8,11 +8,12 @@ serverSystemConfiguration {
   }];
 
   services.prometheus = enabled {
-    port = 9000;
+    port          = 9000;
+    retentionTime = "1w";
 
     exporters.node = enabled {
       enabledCollectors = [ "processes" "systemd" ];
-      port              = 9001;
+      port              = 9010;
     };
 
     scrapeConfigs = [{

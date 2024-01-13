@@ -2,7 +2,7 @@
 
 (serverSystemConfiguration {
   services.prometheus.exporters.postgres = enabled {
-    port                = 9030;
+    port                = 9040;
     runAsLocalSuperUser = true;
   };
 
@@ -33,6 +33,8 @@
     ensureDatabases = [ "grafana" "nextcloud" ];
 
     initialScript   = pkgs.writeText "postgresql-initial-script" ''
+      CREATE ROLE root WITH LOGIN PASSWORD NULL CREATEDB;
+
       CREATE ROLE grafana WITH LOGIN PASSWORD NULL CREATEDB;
       GRANT ALL PRIVILEGES ON DATABASE grafana TO grafana;
 
