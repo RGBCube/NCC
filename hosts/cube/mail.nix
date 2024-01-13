@@ -21,7 +21,9 @@ in serverSystemConfiguration {
     };
 
     dovecot = enabled {
-      port = 9021;
+      port       = 9021;
+      socketPath = "/var/run/dovecot2/old-stats";
+      user       = "root";
     };
 
     postfix = enabled {
