@@ -1,4 +1,4 @@
-{ config, ulib, ... }: with ulib;
+{ config, lib, ulib, ... }: with ulib;
 
 let
   inherit (config.networking) domain;
@@ -46,6 +46,9 @@ in serverSystemConfiguration {
       ];
     }];
   }];
+
+  services.kresd.listenPlain         = lib.mkForce [ "[::]:53" "0.0.0.0:53" ];
+  services.redis.servers.rspamd.bind = "0.0.0.0";
 
   mailserver = enabled {
     inherit fqdn;
