@@ -14,6 +14,8 @@ in serverSystemConfiguration {
     domain = fqdn;
     port   = 8999;
 
+    provision = enabled {};
+
     settings = {
       database.host = "/run/postgresql";
       database.type = "postgres";
