@@ -6,8 +6,7 @@ rec {
 
   "acme.age".publicKeys                       = [ keys.cube ];
   "cube.id.age".publicKeys                    = [ keys.rgbcube ];
-  "cube.mail.password.dmarc.age".publicKeys   = [ keys.cube ];
-  "cube.mail.password.grafana.age".publicKeys = [ keys.cube ];
+  "cube.grafana.password.age".publicKeys      = [ keys.cube ];
   "cube.mail.password.hash.age".publicKeys    = [ keys.cube ];
   "cube.nextcloud.password.age".publicKeys    = [ keys.cube ];
   "cube.rgb.password.hash.age".publicKeys     = [ keys.cube ];

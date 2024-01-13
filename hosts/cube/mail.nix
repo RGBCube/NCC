@@ -5,46 +5,17 @@ let
 
   fqdn = "mail.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube.mail.password.dmarc" = {
-    owner = "dmarc-exporter";
-    group = "dmarc-exporter";
-  };
-
-  services.prometheus.exporters = {
-    dmarc = enabled {
-      imap.host         = domain;
-      imap.passwordFile = config.age.secrets."cube.mail.password.dmarc".path;
-      imap.username     = "contact@${domain}";
-
-      listenAddress = "::";
-      port          = 9020;
-    };
-
-    dovecot = enabled {
-      port       = 9021;
-      socketPath = "/var/run/dovecot2/old-stats";
-      user       = "root";
-    };
-
-    postfix = enabled {
-      port = 9022;
-    };
-
-    rspamd  = enabled {
-      port = 9023;
-    };
+  services.prometheus.exporters.postfix = enabled {
+    port = 9020;
   };
 
   services.prometheus.scrapeConfigs = [{
     job_name = "mail";
 
     static_configs = [{
-      labels.job = "mail";
+      labels.job = "postfix";
       targets    = [
-        "[::]:${toString config.services.prometheus.exporters.dmarc.port}"
-        "[::]:${toString config.services.prometheus.exporters.dovecot.port}"
         "[::]:${toString config.services.prometheus.exporters.postfix.port}"
-        "[::]:${toString config.services.prometheus.exporters.rspamd.port}"
       ];
     }];
   }];
