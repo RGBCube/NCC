@@ -5,10 +5,15 @@ let
 
   fqdn = "mail.${domain}";
 in serverSystemConfiguration {
+  age.secrets."cube.mail.password.dmarc" = {
+    owner = "dmarc-exporter";
+    group = "dmarc-exporter";
+  };
+
   services.prometheus.exporters = {
     dmarc = enabled {
       imap.host         = domain;
-      imap.passwordFile = config.age.secrets."cube.mail.password".path;
+      imap.passwordFile = config.age.secrets."cube.mail.password.dmarc".path;
       imap.username     = "contact@${domain}";
 
       listenAddress = "::";

@@ -4,11 +4,13 @@ rec {
     cube     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINMkCJeHcD0SIOZ4HkyF6rqUmbvlKhSha3HWMZ0hbIjp rgb@cube";
   };
 
-  "acme.age".publicKeys                     = [ keys.cube ];
-  "cube.rgb.password.hash.age".publicKeys   = [ keys.cube ];
-  "cube.mail.password.age".publicKeys       = [ keys.cube ];
-  "cube.mail.password.hash.age".publicKeys  = [ keys.cube ];
-  "cube.id.age".publicKeys                  = [ keys.rgbcube ];
-  "enka.said.password.hash.age".publicKeys  = [ keys.rgbcube ];
-  "enka.orhan.password.hash.age".publicKeys = [ keys.rgbcube ];
+  "acme.age".publicKeys                       = [ keys.cube ];
+  "cube.id.age".publicKeys                    = [ keys.rgbcube ];
+  "cube.mail.password.dmarc.age".publicKeys   = [ keys.cube ];
+  "cube.mail.password.grafana.age".publicKeys = [ keys.cube ];
+  "cube.mail.password.hash.age".publicKeys    = [ keys.cube ];
+  "cube.nextcloud.password.age".publicKeys    = [ keys.cube ];
+  "cube.rgb.password.hash.age".publicKeys     = [ keys.cube ];
+  "enka.orhan.password.hash.age".publicKeys   = [ keys.rgbcube ];
+  "enka.said.password.hash.age".publicKeys    = [ keys.rgbcube ];
 }
