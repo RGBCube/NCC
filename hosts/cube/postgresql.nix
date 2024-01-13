@@ -1,6 +1,6 @@
-{ config, lib, ulib, pkgs, ... }: with ulib;
+{ config, lib, ulib, pkgs, ... }: with ulib; merge
 
-serverSystemConfiguration {
+(serverSystemConfiguration {
   services.prometheus.exporters.postgres = enabled {
     port                = 9030;
     runAsLocalSuperUser = true;
@@ -40,5 +40,8 @@ serverSystemConfiguration {
       GRANT ALL PRIVILEGES ON DATABASE nextcloud TO nextcloud;
     '';
   };
+})
 
-}
+(serverSystemPackages (with pkgs; [
+  postgresql
+]))
