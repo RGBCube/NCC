@@ -28,10 +28,13 @@ serverSystemConfiguration {
   services.nginx = enabled {
     statusPage = true;
 
-    recommendedGzipSettings  = true;
-    recommendedOptimisation  = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings   = true;
+    recommendedBrotliSettings = true;
+    recommendedGzipSettings   = true;
+    recommendedZstdSettings   = true;
+
+    recommendedOptimisation   = true;
+    recommendedProxySettings  = true;
+    recommendedTlsSettings    = true;
 
     commonHttpConfig = let
       fileToList = file: lib.splitString "\n" (builtins.readFile file);
@@ -58,7 +61,7 @@ serverSystemConfiguration {
       }
       add_header Strict-Transport-Security $hsts_header;
 
-      add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+      # add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
 
       add_header "Referrer-Policy" "no-referrer";
 

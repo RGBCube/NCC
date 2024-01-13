@@ -1,4 +1,4 @@
-{ config, pkgs, ulib, ... }: with ulib;
+{ config, ulib, ... }: with ulib;
 
 let
   inherit (config.networking) domain;
@@ -8,14 +8,6 @@ in serverSystemConfiguration {
   age.secrets."cube.mail.password.grafana" = {
     owner = "grafana";
     group = "grafana";
-  };
-
-  services.postgresql = {
-    ensureDatabases = [ "grafana" ];
-    initialScript   = pkgs.writeText "postgresql-initial-script" ''
-      CREATE ROLE grafana WITH LOGIN PASSWORD NULL CREATEDB;
-      GRANT ALL PRIVILEGES ON DATABASE grafana TO grafana;
-    '';
   };
 
   services.grafana = enabled {

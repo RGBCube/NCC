@@ -10,7 +10,7 @@ in serverSystemConfiguration {
       environmentFile = config.age.secrets.acme.path;
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
-      email           = "security@rgbcu.be";
+      email           = "security@${domain}";
     };
 
     certs.${domain} = {

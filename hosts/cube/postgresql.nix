@@ -1,4 +1,4 @@
-{ config, lib, ulib, ... }: with ulib;
+{ config, lib, ulib, pkgs, ... }: with ulib;
 
 serverSystemConfiguration {
   services.prometheus.exporters.postgres = enabled {
@@ -29,5 +29,16 @@ serverSystemConfiguration {
       superuser_map postgres postgres
       superuser_map /^(.*)$  \1
     '';
+
+    ensureDatabases = [ "grafana" "nextcloud" ];
+
+    initialScript   = pkgs.writeText "postgresql-initial-script" ''
+      CREATE ROLE grafana WITH LOGIN PASSWORD NULL CREATEDB;
+      GRANT ALL PRIVILEGES ON DATABASE grafana TO grafana;
+
+      CREATE ROLE nextcloud WITH LOGIN PASSWORD NULL CREATEDB;
+      GRANT ALL PRIVILEGES ON DATABASE nextcloud TO nextcloud;
+    '';
   };
+
 }
