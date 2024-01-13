@@ -3,14 +3,8 @@
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  services.prometheus.exporters = {
-    nginxlog = enabled {
-      port = 9011;
-    };
-
-    nginx    = enabled {
-      port = 9010;
-    };
+  services.prometheus.exporters.nginx = enabled {
+    port = 9010;
   };
 
   services.prometheus.scrapeConfigs = [{
@@ -18,10 +12,7 @@ serverSystemConfiguration {
 
     static_configs = [{
       labels.job = "nginx";
-      targets    = [
-        "[::]:${toString config.services.prometheus.exporters.nginxlog.port}"
-        "[::]:${toString config.services.prometheus.exporters.nginx.port}"
-      ];
+      targets    = [ "[::]:${toString config.services.prometheus.exporters.nginx.port}" ];
     }];
   }];
 
