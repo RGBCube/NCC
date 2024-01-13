@@ -11,7 +11,7 @@ serverSystemConfiguration {
     port = 9000;
 
     exporters.node = enabled {
-      enabledCollectors = [ "systemd" ];
+      enabledCollectors = [ "processes" "systemd" ];
       port              = 9001;
     };
 
