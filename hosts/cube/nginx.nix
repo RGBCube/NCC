@@ -4,7 +4,7 @@ serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
   services.prometheus.exporters.nginx = enabled {
-    port = 9020;
+    port = 9030;
   };
 
   services.prometheus.scrapeConfigs = [{

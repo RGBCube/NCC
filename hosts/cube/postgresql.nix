@@ -2,7 +2,7 @@
 
 (serverSystemConfiguration {
   services.prometheus.exporters.postgres = enabled {
-    port                = 9040;
+    port                = 9020;
     runAsLocalSuperUser = true;
   };
 

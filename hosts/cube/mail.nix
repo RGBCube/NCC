@@ -6,7 +6,7 @@ let
   fqdn = "mail.${domain}";
 in serverSystemConfiguration {
   services.prometheus.exporters.postfix = enabled {
-    port = 9030;
+    port = 9040;
   };
 
   services.prometheus.scrapeConfigs = [{
