@@ -14,6 +14,8 @@ in serverSystemConfiguration {
     domain = fqdn;
     port   = 8999;
 
+    analytics.reporting.enable = false;
+
     provision = enabled {};
 
     settings = {
