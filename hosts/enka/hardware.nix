@@ -1,6 +1,6 @@
 { ulib, ... }: with ulib;
 
-systemConfiguration {
+desktopSystemConfiguration {
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot.enable      = true;
