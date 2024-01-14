@@ -59,6 +59,8 @@ homeConfiguration {
     userName  = "RGBCube";
     userEmail = "git@rgbcu.be";
 
+    lfs = enabled {};
+
     extraConfig = {
       init.defaultBranch   = "master";
       push.autoSetupRemote = true;
