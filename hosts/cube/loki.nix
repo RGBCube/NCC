@@ -5,23 +5,27 @@ serverSystemConfiguration {
     name = "Loki";
     type = "loki";
     url  = "http://[::]:${toString config.services.promtail.configuration.server.http_listen_port}";
+    # url  = "http://127.0.0.1:${toString config.services.promtail.configuration.server.http_listen_port}";
   }];
 
   services.promtail = enabled {
     configuration = {
-      server.http_listen_port = 9002;
-      server.grpc_listen_port = 0;
+      server.http_listen_address = "[::]";
+      # server.http_listen_address = "127.0.0.1";
+      server.http_listen_port    = 9002;
+      server.grpc_listen_port    = 0;
 
       positions.filename = "/tmp/promtail-positions.yml";
 
       clients = [{
         url = "http://[::]:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
+        # url = "http://127.0.0.1:${toString config.services.loki.configuration.server.http_listen_port}/loki/api/v1/push";
       }];
 
       scrape_configs = [{
         job_name = "journal";
 
-        journal.max_age = "1w";
+        journal.max_age = "168h";
         journal.labels  = {
           job = "journal";
           host = config.networking.hostName;
@@ -39,10 +43,12 @@ serverSystemConfiguration {
     configuration = {
       auth_enabled = false;
 
-      server.http_listen_port = 9001;
+      server.http_listen_address = "[::]";
+      server.http_listen_port    = 9001;
 
       ingester = {
-        lifecycler.address     = "::";
+        lifecycler.common.interface_names = [ "ens18" ];
+        lifecycler.address                = "[::]";
 
         lifecycler.ring = {
           kvstore.store      = "inmemory";
@@ -73,14 +79,14 @@ serverSystemConfiguration {
         boltdb_shipper = {
           active_index_directory = "/var/lib/loki/boltdb-shipper-active";
           cache_location         = "/var/lib/loki/boltdb-shipper-cache";
-          cache_ttl              = "1d";
+          cache_ttl              = "24h";
           shared_store           = "filesystem";
         };
       };
 
       limits_config = {
         reject_old_samples         = true;
-        reject_old_samples_max_age = "2w";
+        reject_old_samples_max_age = "336h";
       };
 
       chunk_store_config.max_look_back_period = "0s";
