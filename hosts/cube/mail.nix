@@ -20,6 +20,18 @@ in serverSystemConfiguration {
     }];
   }];
 
+  services.fail2ban.jails = {
+    dovecot.settings = {
+      filter   = "dovecot";
+      maxretry = 3;
+    };
+
+    postfix.settings = {
+      filter   = "postfix";
+      maxretry = 3;
+    };
+  };
+
   services.kresd.listenPlain         = lib.mkForce [ "[::]:53" "0.0.0.0:53" ];
   services.redis.servers.rspamd.bind = "0.0.0.0";
 

@@ -8,6 +8,11 @@ in serverSystemConfiguration {
   age.secrets."cube/password.grafana".owner      = "grafana";
   age.secrets."cube/password.mail.grafana".owner = "grafana";
 
+  services.fail2ban.jails.grafana.settings = {
+    filter   = "grafana";
+    maxretry = 3;
+  };
+
   systemd.services.grafana.requires = [ "postgresql.service" ];
 
   services.grafana = enabled {

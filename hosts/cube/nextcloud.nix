@@ -6,7 +6,6 @@ let
   fqdn = "cloud.${domain}";
 in serverSystemConfiguration {
   age.secrets."cube/password.nextcloud".owner      = "nextcloud";
-  age.secrets."cube/password.mail.nextcloud".owner = "nextcloud";
 
   systemd.services.nextcloud-setup.requires = [ "postgresql.service" ];
 
@@ -24,7 +23,6 @@ in serverSystemConfiguration {
     config.dbhost = "/run/postgresql";
     config.dbtype = "pgsql";
 
-    secretFile = config.age.secrets."cube/password.mail.nextcloud".path;
     extraOptions = {
       default_phone_region = "TR";
 
