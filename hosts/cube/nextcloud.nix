@@ -5,7 +5,7 @@ let
 
   fqdn = "cloud.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube.nextcloud.password" = {
+  age.secrets."cube/password.nextcloud" = {
     owner = "nextcloud";
     group = "nextcloud";
   };
@@ -19,7 +19,7 @@ in serverSystemConfiguration {
     configureRedis = true;
 
     config.adminuser     = "admin";
-    config.adminpassFile = config.age.secrets."cube.nextcloud.password".path;
+    config.adminpassFile = config.age.secrets."cube/password.nextcloud".path;
 
     config.dbtype          = "pgsql";
     database.createLocally = true;

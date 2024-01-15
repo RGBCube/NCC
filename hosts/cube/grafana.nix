@@ -5,7 +5,7 @@ let
 
   fqdn = "metrics.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube.grafana.password" = {
+  age.secrets."cube/password.grafana" = {
     owner = "grafana";
     group = "grafana";
   };
@@ -29,7 +29,7 @@ in serverSystemConfiguration {
 
     settings.security = {
       admin_email    = "metrics@${domain}";
-      admin_password = "$__file{${config.age.secrets."cube.grafana.password".path}}";
+      admin_password = "$__file{${config.age.secrets."cube/passowrd.grafana".path}}";
     };
   };
 

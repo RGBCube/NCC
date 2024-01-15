@@ -42,7 +42,7 @@ in serverSystemConfiguration {
     loginAccounts."contact@${domain}" = {
       aliases = [ "@${domain}" ];
 
-      hashedPasswordFile = config.age.secrets."cube.mail.password.hash".path;
+      hashedPasswordFile = config.age.secrets."cube/password.hash.mail".path;
     };
   };
 }
