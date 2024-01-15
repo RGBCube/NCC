@@ -38,6 +38,11 @@ in serverSystemConfiguration {
       mail_smtpsecure = "ssl";
     };
 
+    phpOptions = {
+      "opcache.interned_strings_buffer" = "16";
+      output_buffering                  = "off";
+    };
+
     extraOptions.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
       "OC\\Preview\\GIF"
