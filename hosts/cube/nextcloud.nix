@@ -22,7 +22,6 @@ in serverSystemConfiguration {
     config.adminpassFile = config.age.secrets."cube/password.nextcloud".path;
 
     config.dbtype          = "pgsql";
-    database.createLocally = true;
 
     extraAppsEnable = true;
     extraApps       = {
