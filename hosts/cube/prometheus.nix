@@ -6,10 +6,13 @@ serverSystemConfiguration {
       name = "Prometheus";
       type = "prometheus";
       url  = "http://[::]:${toString config.services.prometheus.port}";
+
+      orgId = 1;
     }];
 
     deleteDatasources = [{
-      name = "Prometheus";
+      name  = "Prometheus";
+      orgId = 1;
     }];
   };
 
