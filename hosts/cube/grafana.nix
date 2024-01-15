@@ -32,6 +32,9 @@ in serverSystemConfiguration {
       admin_password = "$__file{${config.age.secrets."cube/password.grafana".path}}";
       admin_user     = "admin";
 
+      cookie_secure    = true;
+      disable_gravatar = true;
+
       disable_initial_admin_creation = true; # Just in case.
     };
 
