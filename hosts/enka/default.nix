@@ -1,8 +1,7 @@
 { config, ulib, ... }: with ulib; merge
 
 (systemConfiguration {
-  system.stateVersion = "23.05";
-
+  system.stateVersion  = "23.05";
   nixpkgs.hostPlatform = "x86_64-linux";
 
   time.timeZone = "Europe/Istanbul";
