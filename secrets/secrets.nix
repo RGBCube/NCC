@@ -11,6 +11,7 @@ rec {
 
   "cube/password.acme.age".publicKeys         = [ keys.cube ];
   "cube/password.grafana.age".publicKeys      = [ keys.cube ];
+  "cube/password.mail.grafana.age".publicKeys = [ keys.cube ];
   "cube/password.nextcloud.age".publicKeys    = [ keys.cube ];
 
   "enka/password.hash.orhan.age".publicKeys   = [ keys.rgbcube ];
