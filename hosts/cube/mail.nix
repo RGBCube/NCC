@@ -10,7 +10,7 @@ in serverSystemConfiguration {
   };
 
   services.prometheus.scrapeConfigs = [{
-    job_name = "mail";
+    job_name = "postfix";
 
     static_configs = [{
       labels.job = "postfix";
