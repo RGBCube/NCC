@@ -1,5 +1,7 @@
 # Broken Stuff
 
+- Discord does not use Wayland.
+
 - QT theme doesn't work.
 
 - Nushell custom prompt title does not work, as it gets
