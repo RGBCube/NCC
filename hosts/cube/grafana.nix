@@ -5,15 +5,8 @@ let
 
   fqdn = "metrics.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube/password.grafana" = {
-    owner = "grafana";
-    group = "grafana";
-  };
-
-  age.secrets."cube/password.mail.grafana" = {
-    owner = "grafana";
-    group = "grafana";
-  };
+  age.secrets."cube/password.grafana".owner      = "grafana";
+  age.secrets."cube/password.mail.grafana".owner = "grafana";
 
   systemd.services.grafana.requires = [ "postgresql.service" ];
 
