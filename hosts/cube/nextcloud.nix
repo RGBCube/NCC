@@ -28,14 +28,9 @@ in serverSystemConfiguration {
     extraOptions = {
       default_phone_region = "TR";
 
-      mail_domain   = domain;
-      mail_smtphost = domain;
-
+      mail_smtphost     = "::";
+      mail_smtpmode     = "sendmail";
       mail_from_address = "cloud";
-      mail_smtpname     = "contact";
-
-      mail_smtpauth   = true;
-      mail_smtpsecure = "ssl";
     };
 
     phpOptions = {
