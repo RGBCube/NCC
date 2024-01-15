@@ -23,14 +23,26 @@ systemConfiguration {
         }) inputs)) // { default.flake = inputs.nixpkgs; };
 
     settings.experimental-features = [
-      "fetch-tree"
+      "auto-allocate-uids"
+      "ca-derivations"
+      "cgroups"
+      "configurable-impure-env"
       "flakes"
+      "git-hashing"
       "nix-command"
+      "recursive-nix"
       "repl-flake"
+      "verified-fetches"
     ];
 
-    settings.trusted-users = [ "root" "@wheel" ];
-    settings.warn-dirty = false;
+    settings = {
+      accept-flake-config       = true;
+      builders-use-substitutes = true;
+      http-connections          = 50;
+      trusted-users             = [ "root" "@wheel" ];
+      use-cgroups               = true;
+      warn-dirty                = false;
+    };
   };
 
   programs.nix-ld = enabled {};
