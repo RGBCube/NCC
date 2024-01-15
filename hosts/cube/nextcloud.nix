@@ -26,6 +26,8 @@ in serverSystemConfiguration {
 
     secretFile = config.age.secrets."cube/password.mail.nextcloud".path;
     extraOptions = {
+      default_phone_region = "TR";
+
       mail_domain   = domain;
       mail_smtphost = domain;
 
