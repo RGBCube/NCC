@@ -10,6 +10,11 @@ in serverSystemConfiguration {
     group = "grafana";
   };
 
+  age.secrets."cube/password.mail.grafana" = {
+    owner = "grafana";
+    group = "grafana";
+  };
+
   services.grafana = enabled {
     domain = fqdn;
     port   = 8999;
@@ -30,6 +35,7 @@ in serverSystemConfiguration {
     settings.security = {
       admin_email    = "metrics@${domain}";
       admin_password = "$__file{${config.age.secrets."cube/password.grafana".path}}";
+      admin_user     = "admin";
 
       disable_initial_admin_creation = true; # Just in case.
     };
