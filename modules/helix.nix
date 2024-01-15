@@ -103,7 +103,7 @@
       cursorline             = true;
       bufferline             = "multiple";
       file-picker.hidden     = false;
-      idle-timeout           = 300;
+      idle-timeout           = 50;
       line-number            = "relative";
       shell                  = [ "bash" "-c" ];
       text-width             = 100;

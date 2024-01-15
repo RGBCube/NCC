@@ -15,6 +15,7 @@
   timg
   tree
   usbutils
+  yazi
   yt-dlp
 ]))
 
