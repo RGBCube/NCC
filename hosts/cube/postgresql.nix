@@ -32,7 +32,7 @@
 
     ensureDatabases = [ "grafana" "nextcloud" ];
 
-    initialScript   = pkgs.writeText "postgresql-initial-script" ''
+    initialScript = pkgs.writeText "postgresql-initial-script" ''
       CREATE ROLE root WITH LOGIN PASSWORD NULL CREATEDB;
 
       CREATE ROLE grafana WITH LOGIN PASSWORD NULL CREATEDB;
