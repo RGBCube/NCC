@@ -7,7 +7,7 @@ in serverSystemConfiguration {
     acceptTerms = true;
 
     defaults = {
-      environmentFile = config.age.secrets.acme.path;
+      environmentFile = config.age.secrets."cube/password.acme".path;
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
       email           = "security@${domain}";
