@@ -1,11 +1,17 @@
 { config, ulib, ... }: with ulib;
 
 serverSystemConfiguration {
-  services.grafana.provision.datasources.settings.datasources = [{
-    name = "Prometheus";
-    type = "prometheus";
-    url  = "http://[::]:${toString config.services.prometheus.port}";
-  }];
+  services.grafana.provision.datasources.settings = {
+    datasources = [{
+      name = "Prometheus";
+      type = "prometheus";
+      url  = "http://[::]:${toString config.services.prometheus.port}";
+    }];
+
+    deleteDatasources = [{
+      name = "Prometheus";
+    }];
+  };
 
   services.prometheus = enabled {
     port          = 9000;

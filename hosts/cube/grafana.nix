@@ -30,6 +30,8 @@ in serverSystemConfiguration {
     settings.security = {
       admin_email    = "metrics@${domain}";
       admin_password = "$__file{${config.age.secrets."cube/passowrd.grafana".path}}";
+
+      disable_initial_admin_creation = true; # Just in case.
     };
   };
 
