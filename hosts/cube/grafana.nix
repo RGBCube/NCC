@@ -15,6 +15,8 @@ in serverSystemConfiguration {
     group = "grafana";
   };
 
+  systemd.services.grafana.requires = [ "postgresql.service" ];
+
   services.grafana = enabled {
     domain = fqdn;
     port   = 8999;

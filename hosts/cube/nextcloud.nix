@@ -15,6 +15,8 @@ in serverSystemConfiguration {
     group = "nextcloud";
   };
 
+  systemd.services.nextcloud-setup.requires = [ "postgresql.service" ];
+
   services.nextcloud = enabled {
     package  = pkgs.nextcloud28;
 
