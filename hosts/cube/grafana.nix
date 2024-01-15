@@ -29,9 +29,19 @@ in serverSystemConfiguration {
 
     settings.security = {
       admin_email    = "metrics@${domain}";
-      admin_password = "$__file{${config.age.secrets."cube/passowrd.grafana".path}}";
+      admin_password = "$__file{${config.age.secrets."cube/password.grafana".path}}";
 
       disable_initial_admin_creation = true; # Just in case.
+    };
+
+    settings.smtp = enabled {
+      password        = "$__file{${config.age.secrets."cube/password.mail.grafana".path}}";
+      startTLS_policy = "MandatoryStartTLS";
+
+      ehlo_identity = "metrics@${domain}";
+      from_address  = "contact@${domain}";
+      from_name     = "Metrics";
+      host          = domain;
     };
   };
 
