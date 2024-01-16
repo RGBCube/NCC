@@ -5,6 +5,7 @@
 !hosts/
 !hosts/enka/
 !hosts/cube/
+!hosts/cube/nextcloud/
 
 !modules/
 !modules/hyprland/
@@ -20,6 +21,7 @@
 !flake.lock
 
 !*.age
+!*.gif
 !*.md
 !*.nix
 !*.nu

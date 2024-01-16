@@ -1,4 +1,4 @@
- { config, ulib, pkgs, ... }: with ulib;
+ { config, lib, ulib, pkgs, ... }: with ulib;
 
 let
   inherit (config.networking) domain;
@@ -16,9 +16,18 @@ in serverSystemConfiguration {
   };
 
   systemd.services = {
-    nextcloud-setup.after    = [ "postgresql.service" ];
-    nextcloud-setup.requires = [ "postgresql.service" ];
     phpfpm-nextcloud.aliases = [ "nextcloud.service" ];
+
+    nextcloud-setup = {
+      after    = [ "postgresql.service" ];
+      requires = [ "postgresql.service" ];
+
+      script = lib.mkAfter ''
+        nextcloud-occ theming:config name "RGBCube's Depot"
+        nextcloud-occ theming:config slogan "RGBCube's storage of insignificant data."
+        nextcloud-occ theming:config logo ${./icon.gif}
+      '';
+    };
   };
 
   services.nextcloud = enabled {
