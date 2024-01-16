@@ -1,12 +1,12 @@
 { ulib, pkgs, ... }: with ulib; merge
 
 (systemPackages (with pkgs; [
-  (python311.withPackages (pkgs: with pkgs; [
+  (python312.withPackages (pkgs: with pkgs; [
     pip
     requests
   ]))
   virtualenv
-  poetry
+  # poetry # Broken for some reason ATM.
 ]))
 
 (homeConfiguration {
