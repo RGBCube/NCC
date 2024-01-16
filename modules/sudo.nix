@@ -27,7 +27,19 @@
           options = [ "SETENV" "NOPASSWD" ];
         }
         {
-          command = "${system}/sw/bin/nix system";
+          command = "${system}/sw/bin/nix system activate";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "${system}/sw/bin/nix system apply";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "${system}/sw/bin/nix system boot";
+          options = [ "NOPASSWD" ];
+        }
+        {
+          command = "${system}/sw/bin/nix system build";
           options = [ "NOPASSWD" ];
         }
         {
