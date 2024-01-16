@@ -24,19 +24,19 @@ in serverSystemConfiguration {
   systemd.services.grafana.requires = [ "postgresql.service" ];
 
   services.grafana = enabled {
-    domain = fqdn;
-    port   = 8999;
-
-    analytics.reporting.enable = false;
-
     provision = enabled {};
 
     settings = {
+      analytics.reporting_enabled = false;
+
       database.host = "/run/postgresql";
       database.type = "postgres";
       database.user = "grafana";
 
-      server.http_addr    = "::";
+      server.domain    = fqdn;
+      server.http_addr = "::";
+      server.port      = 8999;
+
       users.default_theme = "system";
     };
 
@@ -69,7 +69,7 @@ in serverSystemConfiguration {
     useACMEHost = domain;
 
     locations."/" = {
-      proxyPass       = "http://[::]:${toString config.services.grafana.port}";
+      proxyPass       = "http://[::]:${toString config.services.grafana.settings.server.port}";
       proxyWebsockets = true;
     };
   };
