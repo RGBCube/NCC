@@ -14,7 +14,7 @@ def main --wrapped [
     "--log-format internal-json"
   ] | append $arguments
 
-  if host == (hostname) {
+  if $host == (hostname) {
     sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
   } else {
     git ls-files | tar -cf - --files-from - | zstd -c3 | save --force /tmp/config.tar.zst
