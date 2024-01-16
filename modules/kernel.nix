@@ -64,9 +64,6 @@ systemConfiguration {
     # Performance improvement for direct-mapped memory-side-cache utilization, reduces the predictability of page allocations.
     "page_alloc.shuffle=1"
 
-    # For debugging kernel-level slab issues.
-    "slub_debug=FZP"
-
     # Disable sysrq keys. sysrq is seful for debugging, but also insecure.
     "sysrq_always_enabled=0"
 
