@@ -43,14 +43,16 @@ in serverSystemConfiguration {
       disable_initial_admin_creation = true; # Just in case.
     };
 
-    settings.smtp = enabled {
+    settings.smtp = {
+      enabled = true;
+
       password        = "$__file{${config.age.secrets."cube/password.mail.grafana".path}}";
       startTLS_policy = "MandatoryStartTLS";
 
-      ehlo_identity = "metrics@${domain}";
-      from_address  = "contact@${domain}";
+      ehlo_identity = "contact@${domain}";
+      from_address  = "metrics@${domain}";
       from_name     = "Metrics";
-      host          = domain;
+      host          = "${config.mailserver.fqdn}:${toString config.services.postfix.relayPort}";
     };
   };
 
