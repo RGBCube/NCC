@@ -1,8 +1,24 @@
 { ulib, lib, pkgs, upkgs, ... }: with ulib; merge
 
 (homeConfiguration {
-  programs.nushell.environmentVariables.EDITOR = "hx";
-  programs.nushell.shellAliases.x              = "hx";
+  programs.nushell = {
+    environmentVariables.EDITOR = "hx";
+    shellAliases.x              = "hx";
+
+    configFile.text = lib.mkAfter ''
+      def --wrapped hx [...arguments] {
+        if ($env.TERM | str contains "kitty") {
+          kitty @ set-spacing padding=0
+        }
+
+        ^hx $arguments
+
+        if ($env.TERM | str contains "kitty") {
+          kitty @ set-spacing padding=${toString theme.padding}
+        }
+      }
+    '';
+  };
 
   programs.helix = enabled {
     languages.language = [

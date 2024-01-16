@@ -23,17 +23,5 @@ def --env mc [path: path] {
   cd $path
 }
 
-def --wrapped hx [...arguments] {
-  if ($env.TERM | str contains "kitty") {
-    kitty @ set-spacing padding=0
-  }
-
-  ^hx $arguments
-
-  if ($env.TERM | str contains "kitty") {
-    kitty @ set-spacing padding=${toString theme.padding}
-  }
-}
-
 use ${upkgs.nuScripts}/modules/background_task/task.nu
 ''
