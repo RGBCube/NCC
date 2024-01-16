@@ -7,7 +7,10 @@ let
 in serverSystemConfiguration {
   age.secrets."cube/password.nextcloud".owner      = "nextcloud";
 
-  systemd.services.nextcloud-setup.requires = [ "postgresql.service" ];
+  systemd.services = {
+    nextcloud-setup.requires = [ "postgresql.service" ];
+    phpfpm-nextcloud.aliases = [ "nextcloud.service" ];
+  };
 
   services.nextcloud = enabled {
     package  = pkgs.nextcloud28;
