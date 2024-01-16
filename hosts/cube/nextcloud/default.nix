@@ -25,6 +25,10 @@ in serverSystemConfiguration {
       script = lib.mkAfter ''
         nextcloud-occ theming:config name "RGBCube's Depot"
         nextcloud-occ theming:config slogan "RGBCube's storage of insignificant data."
+
+        nextcloud-occ theming:config color "#000000"
+        nextcloud-occ theming:config background backgroundColor
+
         nextcloud-occ theming:config logo ${./icon.gif}
       '';
     };
