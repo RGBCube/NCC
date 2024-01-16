@@ -1,13 +1,4 @@
-{ lib, ulib, upkgs, ... }: ''
-${lib.optionalString ulib.isServer ''
-  echo
-  fastfetch
-''}
-
-$env.PROMPT_INDICATOR           = "";
-$env.PROMPT_INDICATOR_VI_INSERT = "";
-$env.PROMPT_INDICATOR_VI_NORMAL = "";
-$env.PROMPT_MULTILINE_INDICATOR = "";
+{ upkgs, ... }: ''
 
 $env.ENV_CONVERSIONS.PATH = {
   from_string: {|string|
