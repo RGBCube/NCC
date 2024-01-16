@@ -27,12 +27,10 @@
 
     identMap = ''
     # Map           System   DBUser
-      superuser_map root     postgres
-      superuser_map postgres postgres
+      superuser_map root     ^(.*)$
+      superuser_map postgres ^(.*)$
       superuser_map /^(.*)$  \1
     '';
-
-    ensureDatabases = [ "grafana" "nextcloud" ];
 
     ensureUsers = [
       {
@@ -46,12 +44,7 @@
         };
       }
       {
-        name = "grafana";
-        ensureDBOwnership = true;
-      }
-      {
-        name = "nextcloud";
-        ensureDBOwnership = true;
+        name = "root";
       }
     ];
 

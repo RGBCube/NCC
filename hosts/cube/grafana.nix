@@ -13,6 +13,14 @@ in serverSystemConfiguration {
     maxretry = 3;
   };
 
+  services.postgresql = {
+    ensureDatabases = [ "grafana" ];
+    ensureUsers     = [{
+      name = "grafana";
+      ensureDBOwnership = true;
+    }];
+  };
+
   systemd.services.grafana.requires = [ "postgresql.service" ];
 
   services.grafana = enabled {
