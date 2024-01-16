@@ -1,4 +1,4 @@
-{ ulib, lib, pkgs, upkgs, ... }: with ulib; merge
+{ ulib, lib, pkgs, upkgs, theme, ... }: with ulib; merge
 
 (homeConfiguration {
   programs.nushell = {

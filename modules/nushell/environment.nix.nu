@@ -1,4 +1,4 @@
-{ lib, ulib, upkgs, theme, ... }: ''
+{ lib, ulib, upkgs, ... }: ''
 ${lib.optionalString ulib.isServer ''
   echo
   fastfetch
