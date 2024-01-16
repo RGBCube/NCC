@@ -14,9 +14,13 @@ serverSystemConfiguration {
 
   nixpkgs.config.allowUnfree = true; # For pkgs.clash-geoip.
 
+  # services.endlessh-go.openFirewall exposes both the Prometheus
+  # exporters port and the SSH port, and we don't want the metrics
+  # to leak, so we manually expose this like so.
+  networking.firewall.allowedTCPPorts = [ config.services.endlessh-go.port ];
+
   services.endlessh-go = enabled {
-    openFirewall = true;
-    port         = 22;
+    port = 22;
 
     extraOptions = [
       "-alsologtostderr"
