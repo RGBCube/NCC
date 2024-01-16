@@ -35,7 +35,7 @@ in serverSystemConfiguration {
 
       server.domain    = fqdn;
       server.http_addr = "::";
-      server.port      = 8999;
+      server.http_port = 8999;
 
       users.default_theme = "system";
     };
@@ -69,7 +69,7 @@ in serverSystemConfiguration {
     useACMEHost = domain;
 
     locations."/" = {
-      proxyPass       = "http://[::]:${toString config.services.grafana.settings.server.port}";
+      proxyPass       = "http://[::]:${toString config.services.grafana.settings.server.http_port}";
       proxyWebsockets = true;
     };
   };

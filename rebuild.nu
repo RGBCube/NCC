@@ -14,5 +14,19 @@ def main --wrapped [
     "--log-format internal-json"
   ] | append $arguments
 
-  sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
+  if host == (hostname) {
+    sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
+  } else {
+    git ls-files | tar -cf - --files-from - | zstd -c3 | save --force /tmp/config.tar.zst
+    scp -q /tmp/config.tar.zst ($host + ':/tmp/')
+
+    ssh -q $host $"
+      rm -rf /tmp/config
+      mkdir /tmp/config
+      cd /tmp/config
+      tar -xf /tmp/config.tar.zst
+
+      sh -c 'sudo nixos-rebuild switch ($flags | str join ' ') |& nom --json'
+    "
+  }
 }
