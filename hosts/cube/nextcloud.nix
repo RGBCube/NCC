@@ -16,6 +16,7 @@ in serverSystemConfiguration {
   };
 
   systemd.services = {
+    nextcloud-setup.after    = [ "postgresql.service" ];
     nextcloud-setup.requires = [ "postgresql.service" ];
     phpfpm-nextcloud.aliases = [ "nextcloud.service" ];
   };
