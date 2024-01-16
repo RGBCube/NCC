@@ -3,18 +3,20 @@
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-  services.prometheus.exporters.nginx = enabled {
-    port = 9030;
-  };
+  services.prometheus = {
+    exporters.nginx = enabled {
+      port = 9030;
+    };
 
-  services.prometheus.scrapeConfigs = [{
-    job_name = "nginx";
+    scrapeConfigs = [{
+      job_name = "nginx";
 
-    static_configs = [{
-      labels.job = "nginx";
-      targets    = [ "[::]:${toString config.services.prometheus.exporters.nginx.port}" ];
+      static_configs = [{
+        labels.job = "nginx";
+        targets    = [ "[::]:${toString config.services.prometheus.exporters.nginx.port}" ];
+      }];
     }];
-  }];
+  };
 
   services.nginx = enabled {
     statusPage = true;

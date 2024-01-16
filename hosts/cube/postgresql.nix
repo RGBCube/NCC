@@ -1,19 +1,21 @@
 { config, lib, ulib, pkgs, ... }: with ulib; merge
 
 (serverSystemConfiguration {
-  services.prometheus.exporters.postgres = enabled {
-    port                = 9020;
-    runAsLocalSuperUser = true;
-  };
+  services.prometheus = {
+    exporters.postgres = enabled {
+      port                = 9020;
+      runAsLocalSuperUser = true;
+    };
 
-  services.prometheus.scrapeConfigs = [{
-    job_name = "postgres";
+    scrapeConfigs = [{
+      job_name = "postgres";
 
-    static_configs = [{
-      labels.job = "postgres";
-      targets    = [ "[::]:${toString config.services.prometheus.exporters.postgres.port}" ];
+      static_configs = [{
+        labels.job = "postgres";
+        targets    = [ "[::]:${toString config.services.prometheus.exporters.postgres.port}" ];
+      }];
     }];
-  }];
+  };
 
   services.postgresql = enabled {
     package = pkgs.postgresql_14;

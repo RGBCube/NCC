@@ -5,20 +5,22 @@ let
 
   fqdn = "mail.${domain}";
 in serverSystemConfiguration {
-  services.prometheus.exporters.postfix = enabled {
-    port = 9040;
-  };
+  services.prometheus = {
+    exporters.postfix = enabled {
+      port = 9040;
+    };
 
-  services.prometheus.scrapeConfigs = [{
-    job_name = "postfix";
+    scrapeConfigs = [{
+      job_name = "postfix";
 
-    static_configs = [{
-      labels.job = "postfix";
-      targets    = [
-        "[::]:${toString config.services.prometheus.exporters.postfix.port}"
-      ];
+      static_configs = [{
+        labels.job = "postfix";
+        targets    = [
+          "[::]:${toString config.services.prometheus.exporters.postfix.port}"
+        ];
+      }];
     }];
-  }];
+  };
 
   services.fail2ban.jails = {
     dovecot.settings = {
