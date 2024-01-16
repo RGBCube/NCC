@@ -85,10 +85,6 @@ in serverSystemConfiguration {
         # Add: files_markdown files_texteditor memories news
     };
 
-    autoUpdateApps = enabled {
-      startAt = "03:00";
-    };
-
     nginx.recommendedHttpHeaders = true;
   };
 
