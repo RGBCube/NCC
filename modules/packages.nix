@@ -2,6 +2,7 @@
 
 (systemPackages (with pkgs; [
   asciinema
+  curlHTTP3
   dig
   fastfetch
   fd
