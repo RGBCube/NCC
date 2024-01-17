@@ -1,9 +1,12 @@
-{ ulib, ... }: with ulib;
+{ ulib, ... }: with ulib; merge3
 
-systemConfiguration {
+(systemConfiguration {
   console.keyMap = "trq";
+})
 
-  i18n.defaultLocale       = "en_US.UTF-8";
+(desktopSystemConfiguration {
+  i18n.defaultLocale = "en_US.UTF-8";
+
   i18n.extraLocaleSettings = let
     locale = "tr_TR.UTF-8";
   in {
@@ -17,4 +20,8 @@ systemConfiguration {
     LC_TELEPHONE      = locale;
     LC_TIME           = locale;
   };
-}
+})
+
+(serverSystemConfiguration {
+  i18n.defaultLocale = "C.UTF-8";
+})
