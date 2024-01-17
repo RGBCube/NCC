@@ -38,7 +38,7 @@ in serverSystemConfiguration {
 
       server.domain    = fqdn;
       server.http_addr = "::";
-      server.http_port = 8999;
+      server.http_port = 8000;
 
       users.default_theme = "system";
     };
