@@ -5,8 +5,7 @@ let
 
   fqdn = "cloud.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube/password.nextcloud".owner      = "nextcloud";
-  age.secrets."cube/password.mail.nextcloud".owner = "nextcloud";
+  age.secrets."cube/password.nextcloud".owner = "nextcloud";
 
   services.postgresql = {
     ensureDatabases = [ "nextcloud" ];
@@ -48,19 +47,10 @@ in serverSystemConfiguration {
     extraOptions = {
       default_phone_region = "TR";
 
-      mail_smtphost = config.mailserver.fqdn;
-      mail_domain   = domain;
-
-      mail_smtpauth   = true;
-      mail_smtpport   = "465";
-      mail_smtpsecure = "ssl";
-
+      mail_smtphost     = "::";
+      mail_smtpmode     = "sendmail";
       mail_from_address = "cloud";
-      mail_smtpname     = "contact@${domain}";
     };
-
-    # { "mail_smtppassword": "..." }
-    secretFile = config.age.secrets."cube/password.mail.nextcloud".path;
 
     phpOptions = {
       "opcache.interned_strings_buffer" = "16";
