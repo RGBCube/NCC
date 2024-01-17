@@ -20,6 +20,8 @@
   services.postgresql = enabled {
     package = pkgs.postgresql_14;
 
+    initdbArgs = [ "--locale=C" "--encoding=UTF8" ];
+
     authentication = lib.mkOverride 10 ''
     # Type  Database DBUser Authentication IdentMap
       local sameuser all    peer           map=superuser_map
