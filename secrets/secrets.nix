@@ -18,6 +18,9 @@ in with keys; {
   "cube/password.grafana.age".publicKeys      = key cube;
   "cube/password.mail.grafana.age".publicKeys = key cube;
 
+  "cube/password.secret.matrix-synapse.age".publicKeys = key cube;
+  "cube/password.sync.matrix-synapse.age".publicKeys = key cube;
+
   "cube/password.nextcloud.age".publicKeys = key cube;
 
   "enka/password.hash.orhan.age".publicKeys = key rgbcube;

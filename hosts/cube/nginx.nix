@@ -29,7 +29,7 @@ serverSystemConfiguration {
     recommendedProxySettings  = true;
     recommendedTlsSettings    = true;
 
-    appendHttpConfig = ''
+    commonHttpConfig = ''
       map $scheme $hsts_header {
           https "max-age=31536000; includeSubdomains; preload";
       }
@@ -39,9 +39,9 @@ serverSystemConfiguration {
 
       add_header "Referrer-Policy" "no-referrer";
 
-      add_header X-Frame-Options DENY;
+      # add_header X-Frame-Options DENY;
 
-      add_header X-Content-Type-Options nosniff;
+      # add_header X-Content-Type-Options nosniff;
 
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
