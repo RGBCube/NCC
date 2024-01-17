@@ -21,7 +21,10 @@ in serverSystemConfiguration {
     }];
   };
 
-  systemd.services.grafana.requires = [ "postgresql.service" ];
+  systemd.services.grafana = {
+    after    = [ "postgresql.service" ];
+    requires = [ "postgresql.service" ];
+  };
 
   services.grafana = enabled {
     provision = enabled {};
