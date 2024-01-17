@@ -19,7 +19,8 @@ in {
   "cube/password.grafana.age".publicKeys      = server keys.cube;
   "cube/password.mail.grafana.age".publicKeys = server keys.cube;
 
-  "cube/password.nextcloud.age".publicKeys = server keys.cube;
+  "cube/password.nextcloud.age".publicKeys      = server keys.cube;
+  "cube/password.mail.nextcloud.age".publicKeys = server keys.cube;
 
   "enka/password.hash.orhan.age".publicKeys = normal keys.rgbcube;
   "enka/password.hash.said.age".publicKeys  = normal keys.rgbcube;
