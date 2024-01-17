@@ -10,11 +10,12 @@ def main --wrapped [
 ] {
   let flags = [
     $"--flake ('.#' + $host)"
+    "--show-trace"
     "--option accept-flake-config true"
     "--log-format internal-json"
   ] | append $arguments
 
-  if $host == (hostname) {
+  if $host == (hostname) or $host == "" {
     sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
   } else {
     git ls-files | tar -cf - --files-from - | zstd -c3 | save --force /tmp/config.tar.zst
