@@ -1,4 +1,4 @@
-{ config, lib, ulib, pkgs, ... }: with ulib;
+{ config, ulib, ... }: with ulib;
 
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
