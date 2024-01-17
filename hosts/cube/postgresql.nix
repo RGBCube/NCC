@@ -20,8 +20,6 @@
   services.postgresql = enabled {
     package = pkgs.postgresql_14;
 
-    enableTCPIP    = true;
-
     authentication = lib.mkOverride 10 ''
     # Type  Database DBUser Authentication IdentMap
       local sameuser all    peer           map=superuser_map
