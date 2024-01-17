@@ -9,15 +9,15 @@ let
 in {
   inherit keys;
 
-  "cube/id.age".publicKeys = normal keys.rgbcube;
+  "cube/id.age".publicKeys = server keys.cube;
 
   "cube/password.hash.mail.age".publicKeys = server keys.cube;
   "cube/password.hash.rgb.age".publicKeys  = server keys.cube;
 
   "cube/password.acme.age".publicKeys = server keys.cube;
 
-  "cube/password.grafana.age".publicKeys   = server keys.cube;
-  "cube/password.mail.grafana.age".publicKeys   = server keys.cube;
+  "cube/password.grafana.age".publicKeys      = server keys.cube;
+  "cube/password.mail.grafana.age".publicKeys = server keys.cube;
 
   "cube/password.nextcloud.age".publicKeys = server keys.cube;
 

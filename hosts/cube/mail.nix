@@ -37,20 +37,35 @@ in serverSystemConfiguration {
   services.kresd.listenPlain         = lib.mkForce [ "[::]:53" "0.0.0.0:53" ];
   services.redis.servers.rspamd.bind = "0.0.0.0";
 
+  services.dovecot2.sieve = {
+    extensions       = [ "fileinto" ];
+    globalExtensions = [ "+vnd.dovecot.pipe" "+vnd.dovecot.environment" ];
+    plugins          = [ "sieve_imapsieve" "sieve_extprograms" ];
+  };
+
   mailserver = enabled {
     inherit fqdn;
 
-    domains = [ domain ];
-
+    domains           = [ domain ];
     certificateScheme = "acme";
 
     hierarchySeparator = "/";
     useFsLayout        = true;
 
+    mailDirectory  = "/var/lib/mail";
+    sieveDirectory = "/var/lib/sieve";
+
+    vmailUserName  = "mail";
+    vmailGroupName = "mail";
+
     dmarcReporting = enabled {
       inherit domain;
 
       organizationName = "Doofemshmirtz Evil Inc.";
+    };
+
+    fullTextSearch = enabled {
+      indexAttachments = true;
     };
 
     loginAccounts."contact@${domain}" = {
