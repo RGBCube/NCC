@@ -48,17 +48,15 @@ in serverSystemConfiguration {
     extraOptions = {
       default_phone_region = "TR";
 
-      mail_sendmailmode = "smtp";
-      mail_smtpmode     = "smtp";
+      mail_smtphost = config.mailserver.fqdn;
+      mail_domain   = domain;
 
-      mail_smtpauth   = 1;
-      mail_smtphost   = config.mailserver.fqdn;
+      mail_smtpauth   = true;
       mail_smtpport   = "465";
       mail_smtpsecure = "ssl";
 
-      mail_domain       = domain;
       mail_from_address = "cloud";
-      mail_smtpname     = "cloud@${domain}";
+      mail_smtpname     = "contact@${domain}";
     };
 
     # { "mail_smtppassword": "..." }
