@@ -16,7 +16,6 @@ let
 
   synapsePort     = 8001;
   slidingSyncPort = 8002;
-  exporterPort    = 9060;
 in serverSystemConfiguration {
   age.secrets."cube/password.secret.matrix-synapse".owner = "matrix-synapse";
   age.secrets."cube/password.sync.matrix-synapse".owner   = "matrix-synapse";
@@ -101,12 +100,8 @@ in serverSystemConfiguration {
     forceSSL    = true;
     useACMEHost = domain;
 
-    locations."/".root = pkgs.element-web.override {
-      conf = {
-        default_server_name            = chatDomain;
-        sso_redirect_options.immediate = true;
-      };
-    };
+    locations."/".proxyPass       = "http://[::]${toString config.services.site.port}/404";
+    locations."/assets".proxyPass = "http://[::]${toString config.services.site.port}/assets";
 
     locations."= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
     locations."= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
