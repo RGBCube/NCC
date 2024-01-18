@@ -119,7 +119,7 @@ in serverSystemConfiguration {
     locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
       .proxyPass = "http://[::]:${toString synapsePort}";
 
-    locations."~ ^(\/_matrix|\/_synapse\/client"
+    locations."~ ^(\\/_matrix|\\/_synapse\\/client)"
       .proxyPass = "http://[::]:${toString syncPort}";
   };
 }
