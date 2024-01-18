@@ -1,9 +1,10 @@
-{ config, ulib, pkgs, ... }: with ulib;
+{ config, ulib, ... }: with ulib;
 
 let
   inherit (config.networking) domain;
 
   chatDomain = "chat.${domain}";
+  syncDomain = "sync.${domain}";
 
   wellKnownResponse = data: ''
     default_type application/json;
@@ -11,11 +12,12 @@ let
     return 200 '${builtins.toJSON data}';
   '';
 
-  clientConfig."m.homeserver".base_url = "https://${chatDomain}";
+  clientConfig."m.homeserver".base_url        = "https://${chatDomain}";
+  clientConfig."org.matrix.msc3575.proxy".url = "https://${syncDomain}";
   serverConfig."m.server" = "${chatDomain}:443";
 
   synapsePort     = 8001;
-  slidingSyncPort = 8002;
+  syncPort = 8002;
 in serverSystemConfiguration {
   age.secrets."cube/password.secret.matrix-synapse".owner = "matrix-synapse";
   age.secrets."cube/password.sync.matrix-synapse".owner   = "matrix-synapse";
@@ -82,15 +84,6 @@ in serverSystemConfiguration {
     }];
   };
 
-  services.matrix-sliding-sync = enabled {
-    settings = {
-      SYNCV3_SERVER   = "https://${chatDomain}";
-      SYNCV3_DB       = "postgresql:///matrix-sliding-sync?host=/run/postgresql";
-      SYNCV3_BINDADDR = "[::]:${toString slidingSyncPort}";
-    };
-    environmentFile = config.age.secrets."cube/password.sync.matrix-synapse".path;
-  };
-
   services.nginx.virtualHosts.${domain}.locations =  {
     "= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
     "= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
@@ -108,5 +101,25 @@ in serverSystemConfiguration {
 
     locations."/_matrix".proxyPass         = "http://[::]:${toString synapsePort}";
     locations."/_synapse/client".proxyPass = "http://[::]:${toString synapsePort}";
+  };
+
+  services.matrix-sliding-sync = enabled {
+    settings = {
+      SYNCV3_SERVER   = "https://${chatDomain}";
+      SYNCV3_DB       = "postgresql:///matrix-sliding-sync?host=/run/postgresql";
+      SYNCV3_BINDADDR = "[::]:${toString syncPort}";
+    };
+    environmentFile = config.age.secrets."cube/password.sync.matrix-synapse".path;
+  };
+
+  services.nginx.virtualHosts.${syncDomain} = {
+    forceSSL    = true;
+    useACMEHost = domain;
+
+    locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
+      .proxyPass = "http://[::]:${toString synapsePort}";
+
+    locations."~ ^(\/_matrix|\/_synapse\/client"
+      .proxyPass = "http://[::]:${toString syncPort}";
   };
 }
