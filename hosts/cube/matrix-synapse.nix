@@ -93,8 +93,8 @@ in serverSystemConfiguration {
     forceSSL    = true;
     useACMEHost = domain;
 
-    locations."/".proxyPass       = "http://[::]${toString config.services.site.port}/404";
-    locations."/assets".proxyPass = "http://[::]${toString config.services.site.port}/assets";
+    locations."/".proxyPass       = "http://[::]:${toString config.services.site.port}/404";
+    locations."/assets".proxyPass = "http://[::]:${toString config.services.site.port}/assets";
 
     locations."= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
     locations."= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
