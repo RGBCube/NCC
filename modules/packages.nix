@@ -37,7 +37,7 @@
 ]))
 
 (desktopHomePackages (with pkgs; [
-  cinny-desktop
+  element-desktop-wayland
   qbittorrent
   thunderbird
   whatsapp-for-linux
