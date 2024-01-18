@@ -10,7 +10,7 @@ desktopHomeConfiguration {
       layer     = "overlay";
       prompt    = ''"❯ "'';
 
-      terminal = "ghostty --gtk-single-instance=true -e";
+      terminal = "ghostty -e";
 
       tabs = 4;
 
