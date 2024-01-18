@@ -62,6 +62,8 @@ in serverSystemConfiguration {
       expire_access_token = true;
       url_preview_enabled = true;
 
+      loggers."synapse.http.matrixfederationclient".level = "WARNING"; # Shut the fuck up.
+
       # Trusting Matrix.org.
       suppress_key_server_warning = true;
     };
