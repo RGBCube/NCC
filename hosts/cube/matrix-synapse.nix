@@ -44,6 +44,8 @@ in serverSystemConfiguration {
 
     extras = [ "postgres" "url-preview" "user-search" ];
 
+    log.root.level = "WARNING"; # Shut the fuck up.
+
     settings = {
       server_name = domain;
       # We are not setting web_client_location since the root is not accessible
@@ -61,8 +63,6 @@ in serverSystemConfiguration {
 
       expire_access_token = true;
       url_preview_enabled = true;
-
-      loggers."synapse.http.matrixfederationclient".level = "WARNING"; # Shut the fuck up.
 
       # Trusting Matrix.org.
       suppress_key_server_warning = true;
