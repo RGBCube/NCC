@@ -21,20 +21,6 @@ in serverSystemConfiguration {
   age.secrets."cube/password.secret.matrix-synapse".owner = "matrix-synapse";
   age.secrets."cube/password.sync.matrix-synapse".owner   = "matrix-synapse";
 
-  services.prometheus = {
-    scrapeConfigs = [{
-      job_name     = "matrix-synapse";
-      metrics_path = "/_synapse/metrics";
-
-      static_configs = [{
-        labels.job = "matrix-synapse";
-        targets    = [
-          "[::]:${toString exporterPort}"
-        ];
-      }];
-    }];
-  };
-
   services.postgresql = {
     ensureDatabases = [ "matrix-synapse" "matrix-sliding-sync" ];
     ensureUsers     = [
@@ -82,30 +68,19 @@ in serverSystemConfiguration {
     # Sets registration_shared_secret.
     extraConfigFiles = [ config.age.secrets."cube/password.secret.matrix-synapse".path ];
 
-    settings.listeners = [
-      {
-        port = synapsePort;
+    settings.listeners = [{
+      port = synapsePort;
 
-        bind_addresses = [ "::" ];
-        tls            = false;
-        type           = "http";
-        x_forwarded    = true;
+      bind_addresses = [ "::" ];
+      tls            = false;
+      type           = "http";
+      x_forwarded    = true;
 
-        resources = [{
-          compress = false;
-          names    = [ "client" "federation" ];
-        }];
-      }
-      {
-        port           = exporterPort;
-
-        bind_addresses = [ "::" ];
-        tls            = false;
-        type           = "metrics";
-
-        resources = [];
-      }
-    ];
+      resources = [{
+        compress = false;
+        names    = [ "client" "federation" ];
+      }];
+    }];
   };
 
   services.matrix-sliding-sync = enabled {
