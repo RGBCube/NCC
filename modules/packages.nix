@@ -10,6 +10,7 @@
   moreutils
   nix-index
   nix-output-monitor
+  openssl
   p7zip
   pstree
   strace
