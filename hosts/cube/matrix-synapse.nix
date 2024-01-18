@@ -1,4 +1,4 @@
-{ config, ulib, ... }: with ulib;
+{ config, ulib, pkgs, ... }: with ulib;
 
 let
   inherit (config.networking) domain;
@@ -6,12 +6,12 @@ let
   chatDomain = "chat.${domain}";
 
   wellKnownResponse = data: ''
-    add_header Content-Type application/json;
+    default_type application/json;
     add_header Access-Control-Allow-Origin *;
     return 200 '${builtins.toJSON data}';
   '';
 
-  clientConfig."m.homeserver".base_url = chatDomain;
+  clientConfig."m.homeserver".base_url = "https://${chatDomain}";
   serverConfig."m.server" = "${chatDomain}:443";
 
   synapsePort     = 8001;
@@ -126,8 +126,12 @@ in serverSystemConfiguration {
     forceSSL    = true;
     useACMEHost = domain;
 
-    locations."/".proxyPass       = "http://[::]:${toString config.services.site.port}/404";
-    locations."/assets".proxyPass = "http://[::]:${toString config.services.site.port}/assets";
+    locations."/".root = pkgs.element-web.override {
+      conf = {
+        default_server_name            = chatDomain;
+        sso_redirect_options.immediate = true;
+      };
+    };
 
     locations."= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
     locations."= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
