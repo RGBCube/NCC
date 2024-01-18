@@ -118,6 +118,9 @@ in serverSystemConfiguration {
     forceSSL    = true;
     useACMEHost = domain;
 
+    locations."/".proxyPass       = "http://[::]:${toString config.services.site.port}/404";
+    locations."/assets".proxyPass = "http://[::]:${toString config.services.site.port}/assets";
+
     locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
       .proxyPass = "http://[::]:${toString synapsePort}";
 
