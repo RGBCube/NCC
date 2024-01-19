@@ -1,8 +1,5 @@
 # Broken Stuff
 
-- Not broken, but unused: Set up sliding sync for matrix properly.
-  Resource: https://github.com/matrix-org/sliding-sync.
-
 - Not broken either but set up Nextcloud exporters.
 
 - Some Nginx headers were commented out because it collided or something.
