@@ -18,16 +18,11 @@ def main --wrapped [
   if $host == (hostname) or $host == "" {
     sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
   } else {
-    git ls-files | tar -cf - --files-from - | zstd -c3 | save --force /tmp/config.tar.zst
-    scp -q /tmp/config.tar.zst ($host + ':/tmp/')
+    git ls-files | rsync --rsh "ssh -q" --delete --files-from - ./ cube:Configuration
 
-    ssh -q $host $"
-      rm -rf /tmp/config
-      mkdir /tmp/config
-      cd /tmp/config
-      tar -xf /tmp/config.tar.zst
-
-      sh -c 'sudo nixos-rebuild switch ($flags | str join ' ') |& nom --json'
-    "
+    ssh -q $host $"sh -c '
+      cd Configuration
+      sudo nixos-rebuild switch ($flags | str join ' ') |& nom --json
+    '"
   }
 }
