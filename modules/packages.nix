@@ -13,6 +13,7 @@
   openssl
   p7zip
   pstree
+  rsync
   strace
   timg
   tree
