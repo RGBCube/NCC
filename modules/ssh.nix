@@ -5,8 +5,6 @@
 ]))
 
 (desktopHomeConfiguration {
-  programs.nushell.shellAliases.ssh = "mosh";
-
   programs.ssh = enabled {
     matchBlocks."*".setEnv.TERM = "xterm-256color";
 
