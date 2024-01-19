@@ -1,6 +1,12 @@
-{ ulib, ... }: with ulib;
+{ ulib, pkgs, ... }: with ulib; merge
 
-desktopHomeConfiguration {
+(desktopSystemPackages (with pkgs; [
+  mosh
+]))
+
+(desktopHomeConfiguration {
+  programs.nushell.shellAliases.ssh = "mosh";
+
   programs.ssh = enabled {
     matchBlocks."*".setEnv.TERM = "xterm-256color";
 
@@ -18,4 +24,4 @@ desktopHomeConfiguration {
       identityFile = "~/.ssh/id";
     };
   };
-}
+})
