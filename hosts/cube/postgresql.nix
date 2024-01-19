@@ -50,8 +50,10 @@
       }
     ];
 
-    # https://pgconfigurator.cybertec.at/
     settings = {
+      listen_addresses = lib.mkForce "";
+
+      # https://pgconfigurator.cybertec.at/
       max_connections                = 100;
       superuser_reserved_connections = 3;
 
