@@ -5,7 +5,12 @@
 })
 
 (homeConfiguration {
-  programs.starship = enabled {};
+  programs.starship = enabled {
+    settings = {
+      command_timeout = 50;
+      scan_timeout    = 10;
+    };
+  };
 
   programs.nushell = enabled {
     configFile.text = import ./configuration.nix.nu inputs;
