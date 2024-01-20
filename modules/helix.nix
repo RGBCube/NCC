@@ -21,75 +21,35 @@
   };
 
   programs.helix = enabled {
-    languages.language = [
-      {
-        name = "nix";
+    languages.language = let
+      denoFormatter = language: {
+        args    = [ "fmt" "-" "--ext" language ];
+        command = "deno";
+      };
 
+      denoFormatterLanguages = builtins.map (name: {
+        inherit name;
+
+        auto-format = true;
+        formatter   = denoFormatter name;
+      }) [ "markdown" "json" "jsonc" ];
+
+      prettier = language: {
+        args    = [ "--parser" language ];
+        command = "prettier";
+      };
+
+      prettierLanguages = builtins.map (name: {
+        inherit name;
+
+        auto-format = true;
+        formatter   = prettier name;
+      }) [ "css" "html" "scss" "yaml" ];
+    in denoFormatterLanguages ++ prettierLanguages ++ [
+      {
+        name              = "nix";
         auto-format       = false;
         formatter.command = "alejandra";
-      }
-      {
-        name              = "markdown";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "markdown"];
-      }
-      {
-        name              = "javascript";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "javascript" ];
-      }
-      {
-        name              = "typescript";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "typescript" ];
-      }
-      {
-        name              = "jsx";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "javascript" ];
-      }
-      {
-        name              = "tsx";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "typescript" ];
-      }
-      {
-        name              = "html";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "html" ];
-      }
-      {
-        name              = "css";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "css" ];
-      }
-      {
-        name              = "json";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "json" ];
-      }
-      {
-        name              = "yaml";
-
-        auto-format       = true;
-        formatter.command = "prettier";
-        formatter.args    = [ "--parser" "yaml" ];
       }
       {
         name            = "cull";
@@ -105,9 +65,58 @@
 
         grammar = "python";
       }
+      {
+        name             = "javascript";
+        auto-format      = true;
+        formatter        = denoFormatter "js";
+        language-servers = [ "deno" ];
+      }
+      {
+        name             = "typescript";
+        auto-format      = true;
+        formatter        = denoFormatter "ts";
+        language-servers = [ "deno" ];
+      }
+      {
+        name             = "jsx";
+        auto-format      = true;
+        formatter        = denoFormatter "jsx";
+        language-servers = [ "deno" ];
+      }
+      {
+        name             = "tsx";
+        auto-format      = true;
+        formatter        = denoFormatter "tsx";
+        language-servers = [ "deno" ];
+      }
     ];
 
-    languages.language-server.rust-analyzer.config.check.command = "clippy";
+    languages.language-server = {
+      deno = {
+        command = "deno";
+        args    = [ "lsp" ];
+
+        environment.NO_COLOR = "1";
+
+        config.deno = enabled {
+          lint     = true;
+          unstable = true;
+
+          suggest.imports.hosts."https://deno.land" = true;
+
+          inlayHints = {
+            enumMemberValues.enabled         = true;
+            functionLikeReturnTypes.enabled  = true;
+            parameterNames.enabled           = "all";
+            parameterTypes.enabled           = true;
+            propertyDeclarationTypes.enabled = true;
+            variableTypes.enabled            = true;
+          };
+        };
+      };
+
+      rust-analyzer.config.check.command = "clippy";
+    };
 
     settings.theme = "gruvbox_dark_hard";
 
@@ -156,6 +165,7 @@
 
   # HTML
   vscode-langservers-extracted
+  nodePackages_latest.prettier
 
   # KOTLIN
   kotlin-language-server
@@ -179,9 +189,8 @@
   # RUST
   rust-analyzer-nightly
 
-  # TYPESCRIPT
-  nodePackages_latest.typescript-language-server
-  nodePackages_latest.prettier
+  # TYPESCRIPT & OTHERS
+  deno
 
   # ZIG
   upkgs.zls

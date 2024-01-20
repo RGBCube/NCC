@@ -27,6 +27,7 @@
 
   clang_16
   clang-tools_16
+  deno
   gh
   go
   jdk
