@@ -23,8 +23,8 @@
   programs.helix = enabled {
     languages.language = let
       denoFormatter = language: {
-        args    = [ "fmt" "-" "--ext" language ];
         command = "deno";
+        args    = [ "fmt" "-" "--ext" language ];
       };
 
       denoFormatterLanguages = builtins.map (name: {
@@ -32,11 +32,11 @@
 
         auto-format = true;
         formatter   = denoFormatter name;
-      }) [ "markdown" "json" "jsonc" ];
+      }) [ "markdown" "json" ];
 
       prettier = language: {
-        args    = [ "--parser" language ];
         command = "prettier";
+        args    = [ "--parser" language ];
       };
 
       prettierLanguages = builtins.map (name: {
@@ -191,6 +191,9 @@
 
   # TYPESCRIPT & OTHERS
   deno
+
+  # YAML
+  yaml-language-server
 
   # ZIG
   upkgs.zls
