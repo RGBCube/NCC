@@ -31,7 +31,7 @@ serverSystemConfiguration {
 
     commonHttpConfig = ''
       map $scheme $hsts_header {
-          https "max-age=31536000; includeSubdomains; preload";
+        https "max-age=31536000; includeSubdomains; preload";
       }
       add_header Strict-Transport-Security $hsts_header;
 
