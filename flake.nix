@@ -152,7 +152,7 @@
         font.mono.package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
 
         icons.name    = "Gruvbox-Plus-Dark";
-        icons.package = pkgs.callPackage (import ./derivations/gruvbox-plus-icon-pack.nix) {};
+        icons.package = pkgs.gruvbox-plus-icons;
       });
 
       defaultConfiguration = {

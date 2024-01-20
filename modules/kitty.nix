@@ -8,8 +8,6 @@ desktopHomeConfiguration {
       size = size.normal;
     };
 
-    theme = "Gruvbox Dark";
-
     settings = {
       allow_remote_control    = true;
       confirm_os_window_close = 0;
