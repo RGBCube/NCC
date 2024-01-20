@@ -183,10 +183,7 @@
         ++ (builtins.attrValues (builtins.mapAttrs (name: _: ./hosts/${host}/${name}) (builtins.readDir ./hosts/${host})));
     };
 
-    hosts = (builtins.attrNames
-      (nixpkgs.lib.filterAttrs
-        (_: value: value == "directory")
-        (builtins.readDir ./hosts)));
+    hosts = (builtins.attrNames (builtins.readDir ./hosts));
   in {
     nixosConfigurations = nixpkgs.lib.genAttrs hosts importConfiguration;
   };
