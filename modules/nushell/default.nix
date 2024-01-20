@@ -7,8 +7,8 @@
 (homeConfiguration {
   programs.starship = enabled {
     settings = {
-      command_timeout = 50;
-      scan_timeout    = 10;
+      command_timeout = 100;
+      scan_timeout    = 20;
     };
   };
 
