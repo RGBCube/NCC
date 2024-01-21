@@ -44,7 +44,7 @@
 
         auto-format = true;
         formatter   = prettier name;
-      }) [ "css" "html" "scss" "yaml" ];
+      }) [ "css" "scss" "yaml" ];
     in denoFormatterLanguages ++ prettierLanguages ++ [
       {
         name              = "nix";
@@ -64,6 +64,13 @@
         roots      = [ "build.cull" ];
 
         grammar = "python";
+      }
+      {
+        name        = "html";
+        # Added vto.
+        file-types  = [ "asp" "aspx" "htm" "html" "jshtm" "jsp" "rhtml" "shtml" "volt" "vto" "xht" "xhtml" ];
+        auto-format = true;
+        formatter   = prettier "html";
       }
       {
         name             = "javascript";
