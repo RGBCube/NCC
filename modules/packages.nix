@@ -18,6 +18,7 @@
   timg
   tree
   usbutils
+  uutils-coreutils-noprefix
   yazi
   yt-dlp
 ]))
