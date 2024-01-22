@@ -79,15 +79,15 @@
         language-servers = [ "deno" ];
       }
       {
-        name             = "typescript";
-        auto-format      = true;
-        formatter        = denoFormatter "ts";
-        language-servers = [ "deno" ];
-      }
-      {
         name             = "jsx";
         auto-format      = true;
         formatter        = denoFormatter "jsx";
+        language-servers = [ "deno" ];
+      }
+      {
+        name             = "typescript";
+        auto-format      = true;
+        formatter        = denoFormatter "ts";
         language-servers = [ "deno" ];
       }
       {
