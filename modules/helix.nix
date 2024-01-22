@@ -69,7 +69,7 @@
         name        = "html";
         # Added vto.
         file-types  = [ "asp" "aspx" "htm" "html" "jshtm" "jsp" "rhtml" "shtml" "volt" "vto" "xht" "xhtml" ];
-        auto-format = true;
+        auto-format = false;
         formatter   = prettier "html";
       }
       {
