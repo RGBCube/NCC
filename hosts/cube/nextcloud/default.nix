@@ -86,6 +86,7 @@ in serverSystemConfiguration {
 
   services.nginx.virtualHosts.${fqdn} = {
     forceSSL    = true;
+    quic        = true;
     useACMEHost = domain;
   };
 }

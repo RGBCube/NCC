@@ -1,4 +1,4 @@
-{ config, ulib, ... }: with ulib;
+{ config, ulib, pkgs, ... }: with ulib;
 
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
@@ -19,6 +19,8 @@ serverSystemConfiguration {
   };
 
   services.nginx = enabled {
+    package = pkgs.nginxQuic;
+
     statusPage = true;
 
     recommendedBrotliSettings = true;
