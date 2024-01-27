@@ -2,7 +2,7 @@
 
 systemConfiguration {
   age.secrets = lib.genAttrs
-    (builtins.map
+    (map
       (lib.removeSuffix ".age")
       (builtins.attrNames
         (builtins.removeAttrs (import ./secrets.nix) [ "keys" ])))

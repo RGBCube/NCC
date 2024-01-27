@@ -156,7 +156,7 @@
       });
 
       defaultConfiguration = {
-        age.identityPaths = builtins.map (user: "/home/${user}/.ssh/id") users.all;
+        age.identityPaths = map (user: "/home/${user}/.ssh/id") users.all;
 
         home-manager.users           = lib.genAttrs users.all (_: {});
         home-manager.useGlobalPkgs   = true;

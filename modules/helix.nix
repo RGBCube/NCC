@@ -27,7 +27,7 @@
         args    = [ "fmt" "-" "--ext" language ];
       };
 
-      denoFormatterLanguages = builtins.map (name: {
+      denoFormatterLanguages = map (name: {
         inherit name;
 
         auto-format = true;
@@ -39,7 +39,7 @@
         args    = [ "--parser" language ];
       };
 
-      prettierLanguages = builtins.map (name: {
+      prettierLanguages = map (name: {
         inherit name;
 
         auto-format = true;
