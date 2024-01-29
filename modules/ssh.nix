@@ -6,7 +6,10 @@
 
 (desktopHomeConfiguration {
   programs.ssh = enabled {
-    matchBlocks."*".setEnv.TERM = "xterm-256color";
+    matchBlocks."*".setEnv = {
+      COLORTERM = "truecolor";
+      TERM      = "xterm-256color";
+    };
 
     matchBlocks.cube = {
       hostname     = "5.255.78.70";
