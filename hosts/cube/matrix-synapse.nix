@@ -16,8 +16,8 @@ let
   clientConfig."org.matrix.msc3575.proxy".url = "https://${syncDomain}";
   serverConfig."m.server" = "${chatDomain}:443";
 
-  synapsePort     = 8001;
-  syncPort = 8002;
+  synapsePort = 8001;
+  syncPort    = 8002;
 in serverSystemConfiguration {
   age.secrets."cube/password.secret.matrix-synapse".owner = "matrix-synapse";
   age.secrets."cube/password.sync.matrix-synapse".owner   = "matrix-synapse";
@@ -91,13 +91,7 @@ in serverSystemConfiguration {
     "= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
   };
 
-  services.nginx.virtualHosts.${chatDomain} = {
-    forceSSL    = true;
-    useACMEHost = domain;
-
-    locations."/".proxyPass       = "http://[::]:${toString config.services.site.port}/404";
-    locations."/assets".proxyPass = "http://[::]:${toString config.services.site.port}/assets";
-
+  services.nginx.virtualHosts.${chatDomain} = (sslTemplate domain) // {
     locations."= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
     locations."= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
 
@@ -106,21 +100,15 @@ in serverSystemConfiguration {
   };
 
   services.matrix-sliding-sync = enabled {
-    settings = {
+    environmentFile = config.age.secrets."cube/password.sync.matrix-synapse".path;
+    settings        = {
       SYNCV3_SERVER   = "https://${chatDomain}";
       SYNCV3_DB       = "postgresql:///matrix-sliding-sync?host=/run/postgresql";
       SYNCV3_BINDADDR = "[::]:${toString syncPort}";
     };
-    environmentFile = config.age.secrets."cube/password.sync.matrix-synapse".path;
   };
 
-  services.nginx.virtualHosts.${syncDomain} = {
-    forceSSL    = true;
-    useACMEHost = domain;
-
-    locations."/".proxyPass       = "http://[::]:${toString config.services.site.port}/404";
-    locations."/assets".proxyPass = "http://[::]:${toString config.services.site.port}/assets";
-
+  services.nginx.virtualHosts.${syncDomain} = (sslTemplate domain) // {
     locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
       .proxyPass = "http://[::]:${toString synapsePort}";
 

@@ -84,9 +84,5 @@ in serverSystemConfiguration {
     nginx.recommendedHttpHeaders = true;
   };
 
-  services.nginx.virtualHosts.${fqdn} = {
-    forceSSL    = true;
-    quic        = true;
-    useACMEHost = domain;
-  };
+  services.nginx.virtualHosts.${fqdn} = sslTemplate domain;
 }

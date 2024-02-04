@@ -67,10 +67,7 @@ in serverSystemConfiguration {
     };
   };
 
-  services.nginx.virtualHosts.${fqdn} = {
-    forceSSL    = true;
-    useACMEHost = domain;
-
+  services.nginx.virtualHosts.${fqdn} = (sslTemplate domain) // {
     locations."/" = {
       proxyPass       = "http://[::]:${toString config.services.grafana.settings.server.http_port}";
       proxyWebsockets = true;
