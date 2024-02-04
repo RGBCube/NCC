@@ -2,19 +2,21 @@
   description = "All my NixOS configurations.";
 
   nixConfig = {
-    extra-substituters = ''
-      https://nix-community.cachix.org/
-      https://hyprland.cachix.org/
-      https://cache.privatevoid.net/
-      https://cache.garnix.io/
-    '';
+    extra-substituters = [
+      "https://nix-community.cachix.org/"
+      "https://ghostty.cachix.org/"
+      "https://hyprland.cachix.org/"
+      "https://cache.privatevoid.net/"
+      "https://cache.garnix.io/"
+    ];
 
-    extra-trusted-public-keys = ''
-      nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=
-      hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=
-      cache.privatevoid.net-1:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg=
-      cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=
-    '';
+    extra-trusted-public-keys = [
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "cache.privatevoid.net-1:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+    ];
   };
 
   inputs = {
@@ -169,7 +171,21 @@
       inherit system;
 
       specialArgs = { inherit inputs ulib upkgs keys theme; };
-      modules     = [
+
+      modules = let
+        mapDirectory = function: directory: with builtins;
+          attrValues (mapAttrs function (readDir directory));
+
+        nullIfUnderscore = name: if (builtins.substring 0 1 name) == "_" then
+          null
+        else
+          name;
+
+        filterNull = builtins.filter (x: x != null);
+
+        importDirectory = directory:
+          filterNull (mapDirectory (name: _: lib.mapNullable (name: /${directory}/${name}) (nullIfUnderscore name)) directory);
+      in [
         homeManager.nixosModules.default
 
         agenix.nixosModules.default
@@ -179,8 +195,8 @@
         site.nixosModules.default
 
         defaultConfiguration
-      ] ++ (builtins.attrValues (builtins.mapAttrs (name: _: ./modules/${name}) (builtins.readDir ./modules)))
-        ++ (builtins.attrValues (builtins.mapAttrs (name: _: ./hosts/${host}/${name}) (builtins.readDir ./hosts/${host})));
+      ] ++ (importDirectory ./hosts/${host})
+        ++ (importDirectory ./modules);
     };
 
     hosts = (builtins.attrNames (builtins.readDir ./hosts));
