@@ -45,7 +45,6 @@
   qbittorrent
   thunderbird
   whatsapp-for-linux
-  xfce.thunar
 
   krita
   obs-studio

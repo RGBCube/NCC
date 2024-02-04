@@ -15,12 +15,6 @@ desktopSystemConfiguration {
     "xhci_pci"
   ];
 
-  services = {
-    devmon  = enabled {};
-    gvfs    = enabled {};
-    udisks2 = enabled {};
-  };
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/cc473c12-94a9-4399-a0ab-f080f9e786f6";
     fsType = "ext4";
