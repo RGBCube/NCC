@@ -147,7 +147,7 @@ $env.config.completions = {
 
       let command = $tokens.0 | str trim --left --char "^"
 
-      let completions = carapace $command nushell $tokens | from json | default []
+      let completions = carapace $command nushell ...$tokens | from json | default []
 
       if ($completions | is-empty) {
         let path = $tokens | last

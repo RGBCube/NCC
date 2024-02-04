@@ -11,7 +11,7 @@
           kitty @ set-spacing padding=0
         }
 
-        ^hx $arguments
+        ^hx ...$arguments
 
         if ($env.TERM | str contains "kitty") {
           kitty @ set-spacing padding=${toString theme.padding}
