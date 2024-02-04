@@ -32,25 +32,7 @@ to your system. You would have to run the rebuild script:
 
 This runs the script interactively.
 
-You can also check how the script is used:
-
-```sh
-./rebuild.nu --help
-```
-
-This outputs:
-
-```
-Usage:
-  > rebuild.nu (host) ...(arguments)
-
-Flags:
-  -h, --help - Display the help message for this command
-
-Parameters:
-  host <string>: The host to build. (optional, default: '')
-  ...arguments <any>: The arguments to pass to `nix system apply`.
-```
+You can also check how the script is used by reading the parameters it takes.
 
 ## License
 

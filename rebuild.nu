@@ -6,7 +6,7 @@ def complete [] {
 
 def main --wrapped [
   host: string@complete = "" # The host to build.
-  ...arguments               # The arguments to pass to `nix system apply`.
+  ...arguments               # The arguments to pass to `nixos-rebuild switch`.
 ] {
   let flags = [
     $"--flake ('.#' + $host)"
