@@ -9,16 +9,8 @@
 })
 
 (desktopHomePackages (with pkgs; [
-  ((discord-canary.override {
+  (discord-canary.override {
     withOpenASAR = true;
     withVencord  = true;
-  }).overrideAttrs (old: with pkgs; {
-    libPath = old.libPath + ":${libglvnd}/lib";
-    nativeBuildInputs = old.nativeBuildInputs ++ [ makeWrapper ];
-
-    postFixup = ''
-      wrapProgram $out/opt/DiscordCanary/DiscordCanary \
-        --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}"
-    '';
-  }))
+  })
 ]))

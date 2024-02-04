@@ -41,6 +41,7 @@
 ]))
 
 (desktopHomePackages (with pkgs; [
+  element-desktop
   fractal
   qbittorrent
   thunderbird

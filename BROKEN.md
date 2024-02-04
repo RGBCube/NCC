@@ -5,8 +5,6 @@
 - Some Nginx headers were commented out because it collided or something.
   Idfk. Make them not. Uncomment.
 
-- Discord does not use Wayland.
-
 - QT theme doesn't work.
 
 - Nushell custom prompt title does not work, as it gets
