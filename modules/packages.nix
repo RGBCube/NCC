@@ -41,7 +41,7 @@
 ]))
 
 (desktopHomePackages (with pkgs; [
-  element-desktop-wayland
+  fractal
   qbittorrent
   thunderbird
   whatsapp-for-linux

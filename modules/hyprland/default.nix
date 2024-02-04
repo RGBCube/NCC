@@ -104,7 +104,7 @@
       bind = SUPER    , RETURN, exec, ghostty --gtk-single-instance=true
       bind = SUPER    , W     , exec, firefox
       bind = SUPER    , D     , exec, discordcanary
-      bind = SUPER    , E     , exec, element-desktop
+      bind = SUPER    , E     , exec, fractal
       bind = SUPER    , M     , exec, thunderbird
       bind = SUPER    , T     , exec, thunar
       bind = SUPER    , C     , exec, hyprpicker --autocopy
