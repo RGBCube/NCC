@@ -22,6 +22,7 @@ def main --wrapped [
 
     ssh -q $host $"sh -c '
       cd Configuration
+      nix flake archive
       sudo nixos-rebuild switch ($flags | str join ' ') |& nom --json
     '"
   }
