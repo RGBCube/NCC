@@ -137,45 +137,9 @@ $env.config.completions = {
     enable:      true
     max_results: 100
     completer:   {|tokens: list<string>|
-      let expanded_alias = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0 | split row " "
-
-      let tokens = if $expanded_alias != null  {
-        $tokens | skip 1 | prepend $expanded_alias.0
-      } else {
-        $tokens
-      }
-
-      let command = $tokens.0 | str trim --left --char "^"
-
-      let completions = carapace $command nushell ...$tokens | from json | default []
-
-      if ($completions | is-empty) {
-        let path = $tokens | last
-
-        ls $"($path)*" | each {|it|
-          let choice = if ($path | str ends-with "/") {
-            $path | path join ($it.name | path basename)
-          } else {
-            $path | path dirname | path join ($it.name | path basename)
-          }
-
-          let choice = if ($it.type == "dir") and (not ($choice | str ends-with "/")) {
-            $"($choice)/"
-          } else {
-            $choice
-          }
-
-          if ($choice | str contains " ") {
-            $"`($choice)`"
-          } else {
-            $choice
-          }
-        }
-      } else if ($completions | where value =~ "^.*ERR$" | is-empty) {
-        $completions
-      } else {
-        null
-      }
+      fish --command $'complete (char sq)--do-complete=($tokens | str join " ")(char sq)'
+      | $"value(char tab)description(char newline)" + $in
+      | from tsv --flexible --no-infer
     }
   }
 }

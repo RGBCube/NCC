@@ -40,5 +40,5 @@
 })
 
 (homePackages (with pkgs; [
-  carapace
+  fish # For completions.
 ]))
