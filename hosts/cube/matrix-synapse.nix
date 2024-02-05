@@ -97,6 +97,14 @@ in serverSystemConfiguration {
 
     locations."/_matrix".proxyPass         = "http://[::]:${toString synapsePort}";
     locations."/_synapse/client".proxyPass = "http://[::]:${toString synapsePort}";
+
+    locations."/".proxyPass = "http://[::]:${toString config.services.site.port}/404/";
+    locations."/assets"     = {
+      proxyPass   = "http://[::]:${toString config.services.site.port}/assets";
+      extraConfig = ''
+        add_header Cache-Control "public, max-age=10800, immutable";
+      '';
+    };
   };
 
   services.matrix-sliding-sync = enabled {
@@ -114,5 +122,13 @@ in serverSystemConfiguration {
 
     locations."~ ^(\\/_matrix|\\/_synapse\\/client)"
       .proxyPass = "http://[::]:${toString syncPort}";
+
+    locations."/".proxyPass = "http://[::]:${toString config.services.site.port}/404/";
+    locations."/assets"     = {
+      proxyPass   = "http://[::]:${toString config.services.site.port}/assets";
+      extraConfig = ''
+        add_header Cache-Control "public, max-age=10800, immutable";
+      '';
+    };
   };
 }
