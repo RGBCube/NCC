@@ -2,6 +2,7 @@
 
 serverSystemConfiguration {
   networking.firewall.allowedTCPPorts = [ 80 443 ];
+  networking.firewall.allowedUDPPorts = [ 443 ];
 
   services.prometheus = {
     exporters.nginx = enabled {
