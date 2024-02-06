@@ -15,6 +15,8 @@ in with keys; {
 
   "cube/password.acme.age".publicKeys = key cube;
 
+  "cube/password.mail.forgejo.age".publicKeys = key cube;
+
   "cube/password.grafana.age".publicKeys      = key cube;
   "cube/password.mail.grafana.age".publicKeys = key cube;
 

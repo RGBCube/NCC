@@ -58,9 +58,6 @@ in serverSystemConfiguration {
       enable_metrics = true;
       metrics_flags.known_servers = true;
 
-      allow_guest_access  = false;
-      enable_registration = false;
-
       expire_access_token = true;
       url_preview_enabled = true;
 
