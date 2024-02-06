@@ -25,8 +25,10 @@ in serverSystemConfiguration {
       type   = "postgres";
     };
 
-    settings = {
-      default.APP_NAME = "RGBCube's Forge of Shitty Software";
+    settings = let
+      description = "RGBCube's Forge of Shitty Software";
+    in {
+      default.APP_NAME = description;
 
       # actions = {
       #   ENABLED = true;
@@ -81,6 +83,11 @@ in serverSystemConfiguration {
       session = {
         COOKIE_SECURE = true;
         SAME_SITE     = "strict";
+      };
+
+      "ui.meta" = {
+        AUTHOR      = description;
+        DESCRIPTION = description;
       };
     };
   };
