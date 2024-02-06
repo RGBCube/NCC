@@ -28,10 +28,10 @@ in serverSystemConfiguration {
     settings = {
       default.APP_NAME = "RGBCube's Forge of Shitty Software";
 
-      actions = {
-        ENABLED = true;
-        DEFAULT_ACTIONS_URL = "https://${fqdn}";
-      };
+      # actions = {
+      #   ENABLED = true;
+      #   DEFAULT_ACTIONS_URL = "https://${fqdn}";
+      # };
 
       attachment.ALLOWED_TYPES = "*/*";
 
