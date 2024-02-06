@@ -807,11 +807,11 @@
     "nuScripts": {
       "flake": false,
       "locked": {
-        "lastModified": 1706273331,
-        "narHash": "sha256-XMHqjxkJo60nwjXNlS0SKWLV/Ffxz8+oImG8lG8GjkE=",
+        "lastModified": 1707136128,
+        "narHash": "sha256-OyQ4dMord891jClK/ucOAfATNlNSddLJENnrJYS5pXo=",
         "owner": "nushell",
         "repo": "nu_scripts",
-        "rev": "302fd84fed8616d4b3259c3265c5b01554fe8d91",
+        "rev": "14e77c7ec8479d210af230f75814e72efee7beb8",
         "type": "github"
       },
       "original": {
