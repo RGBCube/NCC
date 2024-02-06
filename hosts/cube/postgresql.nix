@@ -47,6 +47,13 @@
       }
       {
         name = "root";
+        ensureClauses = {
+          createdb    = true;
+          createrole  = true;
+          login       = true;
+          replication = true;
+          superuser   = true;
+        };
       }
     ];
 
