@@ -9,6 +9,8 @@
     settings = {
       command_timeout = 100;
       scan_timeout    = 20;
+
+      package.disabled = ulib.isServer;
     };
   };
 
