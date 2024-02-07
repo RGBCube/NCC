@@ -15,12 +15,10 @@ systemConfiguration {
 
     package = upkgs.nixSuper;
 
-    registry = (lib.filterAttrs
-      (_: value: value != {})
-      (builtins.mapAttrs
-        (_: value: lib.optionalAttrs (value ? sourceInfo) {
-          flake = value;
-        }) inputs)) // { default.flake = inputs.nixpkgs; };
+    registry = (builtins.mapAttrs
+      (_: value: lib.mkIf (value ? sourceInfo) {
+        flake = value;
+      }) inputs) // { default.flake = inputs.nixpkgs; };
 
     settings.experimental-features = [
       "auto-allocate-uids"

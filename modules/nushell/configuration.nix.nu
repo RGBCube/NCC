@@ -129,7 +129,7 @@ $env.config.history = {
 }
 
 $env.config.completions = {
-  algorithm:      fuzzy
+  algorithm:      prefix
   case_sensitive: false
   partial:        true
   quick:          true
@@ -137,7 +137,17 @@ $env.config.completions = {
     enable:      true
     max_results: 100
     completer:   {|tokens: list<string>|
-      fish --command $'complete (char sq)--do-complete=($tokens | str join " ")(char sq)'
+      mut expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
+
+      mut expanded = if $expanded != null  {
+        $expanded | split row " " | append ($tokens | skip 1)
+      } else {
+        $tokens
+      }
+
+      $expanded.0 = ($expanded.0 | str trim --left --char "^")
+
+      fish --command $'complete (char sq)--do-complete=($expanded | str join " ")(char sq)'
       | $"value(char tab)description(char newline)" + $in
       | from tsv --flexible --no-infer
     }
