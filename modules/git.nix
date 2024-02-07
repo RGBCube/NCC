@@ -81,7 +81,7 @@ homeConfiguration {
       core.sshCommand                       = "ssh -i ~/.ssh/id";
 
       url."ssh://git@github.com/".insteadOf        = "https://github.com/";
-      url."ssh://git@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
+      url."ssh://forgejo@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
     } // lib.optionalAttrs ulib.isDesktop {
       commit.gpgSign  = true;
       gpg.format      = "ssh";

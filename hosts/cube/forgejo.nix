@@ -15,12 +15,6 @@ in serverSystemConfiguration {
     }];
   };
 
-  users.users.git = {
-    createHome   = false;
-    group        = "forgejo";
-    isSystemUser = true;
-  };
-
   services.forgejo = enabled {
     lfs = enabled {};
 
@@ -86,7 +80,6 @@ in serverSystemConfiguration {
         HTTP_PORT = 8004;
 
         SSH_PORT = builtins.elemAt config.services.openssh.ports 0;
-        SSH_USER = "git";
 
         DISABLE_ROUTER_LOG = true;
       };
