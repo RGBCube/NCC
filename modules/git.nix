@@ -53,6 +53,19 @@ homeConfiguration {
     gst = "git status";
   };
 
+  programs.nushell.configFile.text = lib.mkAfter ''
+    # Sets the remote origin to the specified user and repository on my git instance
+    def gsr [user_and_repo: string] {
+      let user_and_repo = if ($user_and_repo | str index-of "/") != -1 {
+        $user_and_repo
+      } else {
+        "RGBCube/" + $user_and_repo
+      }
+
+      git remote add origin ("https://git.rgbcu.be/" + $user_and_repo)
+    }
+  '';
+
   programs.git = enabled {
     package = pkgs.gitFull;
 
