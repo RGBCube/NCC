@@ -55,8 +55,15 @@ in serverSystemConfiguration {
       packages.ENABLED = false;
 
       repository = {
-        DEFAULT_BRANCH     = "master";
-        PREFERRED_LICENSES = "MIT,GPL-3.0,GPL-2.0,LGPL-3.0,LGPL-2.1";
+        DEFAULT_BRANCH      = "master";
+        DEFAULT_MERGE_STYLE = "rebase-merge";
+        DEFAULT_REPO_UNITS  = "repo.code, repo.issues, repo.pulls, repo.actions";
+
+        DEFAULT_PUSH_CREATE_PRIVATE = false;
+        ENABLE_PUSH_CREATE_ORG      = true;
+        ENABLE_PUSH_CREATE_USER     = true;
+
+        DISABLE_STARS = true;
       };
 
       "repository.upload" = {
