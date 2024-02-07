@@ -1,11 +1,12 @@
-{ config, ulib, ... }: with ulib;
+{ config, ulib, pkgs, ... }: with ulib;
 
 let
   inherit (config.networking) domain;
 
   fqdn = "git.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube/password.mail.forgejo".owner = "forgejo";
+  age.secrets."cube/password.mail.forgejo".owner   = "forgejo";
+  age.secrets."cube/password.runner.forgejo".owner = "forgejo";
 
   services.postgresql = {
     ensureDatabases = [ "forgejo" ];
@@ -14,6 +15,46 @@ in serverSystemConfiguration {
       ensureDBOwnership = true;
     }];
   };
+
+  users.groups.gitea-runner = {};
+  users.users.gitea-runner  = systemUser {
+    extraGroups = [ "docker" ];
+    group       = "gitea-runner";
+    home        = "/var/lib/gitea-runner";
+  };
+
+  services.gitea-actions-runner = {
+    package = pkgs.forgejo-actions-runner;
+
+    instances.runner-01 = enabled {
+      name = "runner-01";
+      url  = fqdn;
+
+      labels = [
+        "debian-latest:docker://node:18-bullseye"
+        "ubuntu-latest:docker://node:18-bullseye"
+        "act:docker://ghcr.io/catthehacker/ubuntu:act-latest"
+      ];
+
+      tokenFile = config.age.secrets."cube/password.runner.forgejo".path;
+
+      settings = {
+        cache.enabled     = true;
+        capacity          = 4;
+        container.network = "host";
+      };
+
+      hostPackages = with pkgs; [
+        bash
+        coreutils
+        curl
+        gitMinimal
+        sudo
+        wget
+      ];
+    };
+  };
+
 
   services.forgejo = enabled {
     lfs = enabled {};
@@ -30,10 +71,10 @@ in serverSystemConfiguration {
     in {
       default.APP_NAME = description;
 
-      # actions = {
-      #   ENABLED = true;
-      #   DEFAULT_ACTIONS_URL = "https://${fqdn}";
-      # };
+      actions = {
+        ENABLED = true;
+        DEFAULT_ACTIONS_URL = "https://${fqdn}";
+      };
 
       attachment.ALLOWED_TYPES = "*/*";
 

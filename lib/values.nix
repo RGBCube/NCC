@@ -7,6 +7,10 @@
     isNormalUser = true;
   };
 
+  systemUser = attributes: attributes // {
+    isSystemUser = true;
+  };
+
   graphicalUser = attributes: attributes // {
     isNormalUser = true;
     extraGroups  = [ "graphical" ] ++ attributes.extraGroups or []; 
