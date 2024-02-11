@@ -28,7 +28,7 @@
 
     gl  = "git log";
     glo = "git log --oneline";
-    glp = "git log -p --full-diff";
+    glp = "git log -p --ext-diff";
 
     gpl   = "git pull";
     gplr  = "git pull --rebase";
@@ -51,7 +51,7 @@
     gsw  = "git switch";
     gswm = "git switch master";
 
-    gsh = "git show";
+    gsh = "git show --ext-diff";
 
     gst = "git status";
   };
@@ -76,6 +76,10 @@
     userEmail = "git@rgbcu.be";
 
     lfs = enabled {};
+
+    difftastic = enabled {
+      background = "dark";
+    };
 
     extraConfig = {
       init.defaultBranch   = "master";
