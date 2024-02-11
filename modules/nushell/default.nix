@@ -41,6 +41,6 @@
   };
 })
 
-(homePackages (with pkgs; [
+(systemPackages (with pkgs; [
   fish # For completions.
 ]))

@@ -1,11 +1,14 @@
-{ lib, ulib, pkgs, ... }: with ulib;
+{ lib, ulib, pkgs, ... }: with ulib; merge
 
-homeConfiguration {
+(homeConfiguration {
   programs.nushell.shellAliases = {
     g = "git";
 
     ga  = "git add";
     gaa = "git add ./";
+
+    gab  = "git absorb";
+    gabr = "git absorb --and-rebase";
 
     gb  = "git branch";
     gbv = "git branch --verbose";
@@ -88,4 +91,8 @@ homeConfiguration {
       user.signingKey = "~/.ssh/id";
     };
   };
-}
+})
+
+(systemPackages (with pkgs; [
+  git-absorb
+]))
