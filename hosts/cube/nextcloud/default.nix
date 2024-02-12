@@ -44,7 +44,7 @@ in serverSystemConfiguration {
     config.dbhost = "/run/postgresql";
     config.dbtype = "pgsql";
 
-    extraOptions = {
+    settings = {
       default_phone_region = "TR";
 
       mail_smtphost     = "::";
