@@ -122,7 +122,7 @@ $env.config.explore = {
 }
 
 $env.config.history = {
-  file_format:   plaintext
+  file_format:   sqlite
   isolation:     false
   max_size:      100_000
   sync_on_enter: true
