@@ -96,6 +96,11 @@
         formatter        = denoFormatter "tsx";
         language-servers = [ "deno" ];
       }
+
+      { # TODO: Remove in the next Helix release.
+        name             = "nu";
+        language-servers = [ "nu" ];
+      }
     ];
 
     languages.language-server = {
@@ -120,6 +125,11 @@
             variableTypes.enabled            = true;
           };
         };
+      };
+
+      nu = { # TODO: Remove in the next Helix release.
+        command = "nu";
+        args    = [ "--lsp" ];
       };
 
       rust-analyzer.config.check.command = "clippy";
