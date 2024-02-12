@@ -131,6 +131,7 @@
 
         other = {
           nuScripts = inputs.nuScripts;
+          rat       = pkgs.callPackage ./derivations/rat.nix {};
           zig       = inputs.zig.packages.${system}.master;
         };
       in defaults // other;

@@ -1,5 +1,7 @@
 *
 
+!derivations/
+
 !hosts/
 !hosts/enka/
 !hosts/cube/

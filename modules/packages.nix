@@ -45,6 +45,7 @@
   fractal
   qbittorrent
   thunderbird
+  upkgs.rat
   whatsapp-for-linux
 
   krita
