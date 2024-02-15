@@ -9,8 +9,9 @@ in serverSystemConfiguration {
   age.secrets."cube/password.mail.grafana".owner = "grafana";
 
   services.fail2ban.jails.grafana.settings = {
-    filter   = "grafana";
-    maxretry = 3;
+    filter       = "grafana";
+    journalmatch = "_SYSTEMD_UNIT=grafana.service";
+    maxretry     = 3;
   };
 
   services.postgresql = {
