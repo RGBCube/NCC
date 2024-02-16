@@ -101,6 +101,10 @@
       rebase.autoSquash = true;
       rebase.autoStash  = true;
 
+      fetch.fsckObjects    = true;
+      receive.fsckObjects  = true;
+      transfer.fsckobjects = true;
+
       # https://bernsteinbear.com/git
       alias.recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10";
 
