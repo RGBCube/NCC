@@ -34,6 +34,8 @@
     gplr  = "git pull --rebase";
     gplff = "git pull --ff-only";
 
+    gr = "git recent";
+
     grb  = "git rebase";
     grba = "git rebase --abort";
     grbc = "git rebase --continue";
@@ -82,11 +84,27 @@
     };
 
     extraConfig = {
-      init.defaultBranch   = "master";
+      init.defaultBranch = "master";
+
+      commit.verbose = true;
+
+      log.date = "iso";
+
+      diff.algorithm  = "histogram";
+      diff.colorMoved = "default";
+
+      pull.rebase          = true;
       push.autoSetupRemote = true;
 
-      core.sshCommand                       = "ssh -i ~/.ssh/id";
+      merge.conflictStyle = "zdiff3";
 
+      rebase.autoSquash = true;
+      rebase.autoStash  = true;
+
+      # https://bernsteinbear.com/git
+      alias.recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10";
+
+      core.sshCommand                              = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf        = "https://github.com/";
       url."ssh://forgejo@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
     } // lib.optionalAttrs ulib.isDesktop {
@@ -99,4 +117,5 @@
 
 (systemPackages (with pkgs; [
   git-absorb
+  tig
 ]))
