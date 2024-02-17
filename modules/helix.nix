@@ -7,13 +7,13 @@
 
     configFile.text = lib.mkAfter ''
       def --wrapped hx [...arguments] {
-        if ($env.TERM | str contains "kitty") {
+        if $env.TERM == "xterm-kitty" {
           kitty @ set-spacing padding=0
         }
 
         ^hx ...$arguments
 
-        if ($env.TERM | str contains "kitty") {
+        if $env.TERM == "xterm-kitty" {
           kitty @ set-spacing padding=${toString theme.padding}
         }
       }
