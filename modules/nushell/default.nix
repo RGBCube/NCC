@@ -10,6 +10,8 @@
       command_timeout = 100;
       scan_timeout    = 20;
 
+      cmd_duration.show_notifications = ulib.isDesktop;
+
       package.disabled = ulib.isServer;
     };
   };
