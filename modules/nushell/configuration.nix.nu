@@ -137,9 +137,9 @@ $env.config.completions = {
     enable:      true
     max_results: 100
     completer:   {|tokens: list<string>|
-      mut expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
+      let expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
 
-      mut expanded = if $expanded != null  {
+      let expanded = if $expanded != null and $expanded.0 != "cd" {
         $expanded | split row " " | append ($tokens | skip 1)
       } else {
         $tokens
@@ -147,7 +147,7 @@ $env.config.completions = {
 
       $expanded.0 = ($expanded.0 | str trim --left --char "^")
 
-      fish --command $'complete (char sq)--do-complete=($expanded | str join " ")(char sq)'
+      fish --command $"complete '--do-complete=($expanded | str join ' ')'"
       | $"value(char tab)description(char newline)" + $in
       | from tsv --flexible --no-infer
     }
@@ -410,4 +410,6 @@ $env.config.keybindings = [
     event:    { send: enter }
   }
 ]
+
+source ~/.config/nushell/zoxide.nu
 ''

@@ -15,4 +15,5 @@ def --env mc [path: path] {
 }
 
 use ${upkgs.nuScripts}/modules/background_task/task.nu
+zoxide init nushell --cmd cd | save --force ~/.config/nushell/zoxide.nu
 ''

@@ -44,5 +44,6 @@
 })
 
 (systemPackages (with pkgs; [
-  fish # For completions.
+  fish   # For completions.
+  zoxide # For completions and better cd.
 ]))
