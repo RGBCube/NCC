@@ -155,8 +155,6 @@
     +
     ''
       general {
-        max_fps = 60
-
         gaps_in     = ${toString (margin/ 2)}
         gaps_out    = ${toString margin}
         border_size = ${toString borderWidth}
