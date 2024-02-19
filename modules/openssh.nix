@@ -6,7 +6,29 @@ serverSystemConfiguration {
   };
 
   services.openssh = enabled {
-    banner   = "Welcome to RGBCube's server!\n";
+    banner   = ''
+       _________________________________________
+      / You will pay for your sins. If you have \
+      | already paid, please disregard this     |
+      \ message.                                /
+       -----------------------------------------
+            \                    / \  //\
+             \    |\___/|      /   \//  \\
+                  /0  0  \__  /    //  | \ \
+                 /     /  \/_/    //   |  \  \
+                 @_^_@'/   \/_   //    |   \   \
+                 //_^_/     \/_ //     |    \    \
+              ( //) |        \///      |     \     \
+            ( / /) _|_ /   )  //       |      \     _\
+          ( // /) '/,_ _ _/  ( ; -.    |    _ _\.-~        .-~~~^-.
+        (( / / )) ,-{        _      `-.|.-~-.           .~         `.
+       (( // / ))  '/\      /                 ~-. _ .-~      .-~^-.  \
+       (( /// ))      `.   {            }                   /      \  \
+        (( / ))     .----~-.\        \-'                 .~         \  `. \^-.
+                   ///.----..>        \             _ -~             `.  ^-`  ^-_
+                     ///-._ _ _ _ _ _ _}^ - - - - ~                     ~-- ,.-~
+                                                                        /.-~
+    '';
     ports    = [ 2222 ];
     settings = {
       KbdInteractiveAuthentication = false;
