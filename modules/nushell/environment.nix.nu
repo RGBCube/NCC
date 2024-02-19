@@ -14,6 +14,12 @@ def --env mc [path: path] {
   cd $path
 }
 
+def --env mcg [path: path] {
+  mkdir $path
+  cd $path
+  git init
+}
+
 use ${upkgs.nuScripts}/modules/background_task/task.nu
 zoxide init nushell --cmd cd | save --force ~/.config/nushell/zoxide.nu
 ''
