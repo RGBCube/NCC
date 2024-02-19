@@ -139,15 +139,15 @@ $env.config.completions = {
     completer:   {|tokens: list<string>|
       let expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
 
-      let expanded = if $expanded != null and $expanded.0 != "cd" {
+      mut expanded_tokens = if $expanded != null and $tokens.0 != "cd" {
         $expanded | split row " " | append ($tokens | skip 1)
       } else {
         $tokens
       }
 
-      $expanded.0 = ($expanded.0 | str trim --left --char "^")
+      $expanded_tokens.0 = ($expanded_tokens.0 | str trim --left --char "^")
 
-      fish --command $"complete '--do-complete=($expanded | str join ' ')'"
+      fish --command $"complete '--do-complete=($expanded_tokens | str join ' ')'"
       | $"value(char tab)description(char newline)" + $in
       | from tsv --flexible --no-infer
     }
