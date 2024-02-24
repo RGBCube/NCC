@@ -1,41 +1,35 @@
 {
   stdenv,
-  lib,
-
-  bash,
-  fetchurl,
-  gnused,
-  makeWrapper,
-  opusfile,
-  sharutils,
-  sox,
+  fetchFromGitHub,
+  unixtools,
 }:
 
 stdenv.mkDerivation rec {
-  pname   = "rat";
-  version = "1.1";
+  pname = "rat";
+  version = "2.0.1";
 
-  src = fetchurl {
-    url    = "https://github.com/Mcharlsto/rat/releases/download/${version}/rat";
-    sha256 = "sha256-93sspjvXFPocGFPeCF1AWoWYx5hI7vMltx9SQ7x25z4=";
+  src = fetchFromGitHub {
+    owner  = "thinkingsand";
+    repo   = pname;
+    sha256 = "sha256-OsEIOC6EZrAN2NnDvnyN0nBRLVIviSMX2+TPqlidxrI=";
+    rev    = "4817f542b067255d2b6cd1d29137f393da6e4085";
   };
 
-  buildInputs = [ gnused makeWrapper ];
+  buildInputs = [ unixtools.xxd ];
+  buildPhase = ''
+    runHook preBuild
 
-  phases = [ "installPhase" "postInstall" ];
+    make linux_audio
 
-  installPhase = ''
-    mkdir -p $out/bin
-
-    cp $src $out/bin/rat
-
-    chmod +x $out/bin/rat
-
-    sed -i '1 s/^.*$/#\/usr\/bin\/env bash/' $out/bin/rat
+    runHook postBuild
   '';
 
-  postInstall = ''
-    wrapProgram $out/bin/rat \
-      --prefix PATH : ${lib.makeBinPath [ sharutils opusfile sox bash ]}
+  installPhase = ''
+    runHook preInstall
+
+    mkdir -p $out/bin
+    install -Dm755 ./bin/rat -t $out/bin/
+
+    runHook postInstall
   '';
 }
