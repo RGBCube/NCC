@@ -18,7 +18,7 @@ def main --wrapped [
   if $host == (hostname) or $host == "" {
     sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
   } else {
-    git ls-files | rsync --rsh "ssh -q" --delete --files-from - ./ cube:Configuration
+    git ls-files | rsync --rsh "ssh -q" --delete --compress --files-from - ./ cube:Configuration
 
     ssh -q $host $"sh -c '
       cd Configuration

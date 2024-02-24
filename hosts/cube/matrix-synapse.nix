@@ -3,6 +3,8 @@
 let
   inherit (config.networking) domain;
 
+  sitePath = "/var/www/site";
+
   chatDomain = "chat.${domain}";
   syncDomain = "sync.${domain}";
 
@@ -95,11 +97,11 @@ in serverSystemConfiguration {
     locations."/_matrix".proxyPass         = "http://[::]:${toString synapsePort}";
     locations."/_synapse/client".proxyPass = "http://[::]:${toString synapsePort}";
 
-    locations."/".proxyPass = "http://[::]:${toString config.services.site.port}/404/";
-    locations."/assets"     = {
-      proxyPass   = "http://[::]:${toString config.services.site.port}/assets";
+    locations."/".alias = "${sitePath}/404.html";
+    locations."/assets/"= {
+      alias       = "${sitePath}/assets/";
       extraConfig = ''
-        add_header Cache-Control "public, max-age=10800, immutable";
+        add_header Cache-Control "public, max-age=86400, immutable";
       '';
     };
   };
@@ -120,11 +122,11 @@ in serverSystemConfiguration {
     locations."~ ^(\\/_matrix|\\/_synapse\\/client)"
       .proxyPass = "http://[::]:${toString syncPort}";
 
-    locations."/".proxyPass = "http://[::]:${toString config.services.site.port}/404/";
-    locations."/assets"     = {
-      proxyPass   = "http://[::]:${toString config.services.site.port}/assets";
+    locations."/".alias = "${sitePath}/404.html";
+    locations."/assets/" = {
+      alias       = "${sitePath}/assets/";
       extraConfig = ''
-        add_header Cache-Control "public, max-age=10800, immutable";
+        add_header Cache-Control "public, max-age=86400, immutable";
       '';
     };
   };

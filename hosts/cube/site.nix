@@ -3,19 +3,21 @@
 let
   inherit (config.networking) domain;
 
-  port = 8003;
-in serverSystemConfiguration {
-  services.site = enabled {
-    inherit port;
-  };
+  path = "/var/www/site";
 
-  services.nginx.virtualHosts.${domain} = (sslTemplate domain) // {
-    locations."/".proxyPass         = "http://[::]:${toString port}";
-    locations."/assets"     = {
-      proxyPass   = "http://[::]:${toString port}/assets";
+  assetsLocation = {
+    locations."/assets/" = {
+      alias       = "${path}/assets/";
       extraConfig = ''
-        add_header Cache-Control "public, max-age=10800, immutable";
+        add_header Cache-Control "public, max-age=86400, immutable";
       '';
+    };
+  };
+in serverSystemConfiguration {
+  services.nginx.virtualHosts.${domain} = (sslTemplate domain) // assetsLocation // {
+    locations."/" = {
+      alias    = "${path}/";
+      tryFiles = "$uri $uri/ $uri.html $uri/index.html =404";
     };
   };
 
@@ -25,13 +27,7 @@ in serverSystemConfiguration {
     '';
   };
 
-  services.nginx.virtualHosts._ = (sslTemplate domain) // {
-    locations."/".proxyPass = "http://[::]:${toString port}/404/";
-    locations."/assets"     = {
-      proxyPass   = "http://[::]:${toString port}/assets";
-      extraConfig = ''
-        add_header Cache-Control "public, max-age=10800, immutable";
-      '';
-    };
+  services.nginx.virtualHosts._ = (sslTemplate domain) // assetsLocation // {
+    locations."/".alias = "${path}/404.html";
   };
 }

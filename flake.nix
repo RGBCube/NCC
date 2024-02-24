@@ -79,11 +79,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    site = {
-      url                    = "github:RGBCube/Site";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     themes = {
       url = "github:RGBCube/ThemeNix";
     };
@@ -94,7 +89,6 @@
     agenix,
     mail,
     homeManager,
-    site,
     themes,
     ...
   } @ inputs: let
@@ -193,7 +187,6 @@
         ./secrets
 
         mail.nixosModules.default
-        site.nixosModules.default
 
         defaultConfiguration
       ] ++ (importDirectory ./hosts/${host})
