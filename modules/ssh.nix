@@ -6,6 +6,11 @@
 
 (desktopHomeConfiguration {
   programs.ssh = enabled {
+    controlMaster       = "auto";
+    controlPersist      = "60m";
+    serverAliveCountMax = 2;
+    serverAliveInterval = 60;
+
     matchBlocks."*".setEnv = {
       COLORTERM = "truecolor";
       TERM      = "xterm-256color";
