@@ -52,8 +52,9 @@ in serverSystemConfiguration {
     hierarchySeparator = "/";
     useFsLayout        = true;
 
-    mailDirectory  = "/var/lib/mail";
-    sieveDirectory = "/var/lib/sieve";
+    dkimKeyDirectory = "/var/lib/dkim";
+    mailDirectory    = "/var/lib/mail";
+    sieveDirectory   = "/var/lib/sieve";
 
     vmailUserName  = "mail";
     vmailGroupName = "mail";
