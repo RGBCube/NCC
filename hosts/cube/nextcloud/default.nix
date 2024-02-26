@@ -52,12 +52,7 @@ in serverSystemConfiguration {
       mail_from_address = "cloud";
     };
 
-    phpOptions = {
-      "opcache.interned_strings_buffer" = "16";
-      output_buffering                  = "off";
-    };
-
-    extraOptions.enabledPreviewProviders = [
+    settings.enabledPreviewProviders = [
       "OC\\Preview\\BMP"
       "OC\\Preview\\GIF"
       "OC\\Preview\\JPEG"
@@ -70,6 +65,11 @@ in serverSystemConfiguration {
       "OC\\Preview\\XBitmap"
       "OC\\Preview\\HEIC"
     ];
+
+    phpOptions = {
+      "opcache.interned_strings_buffer" = "16";
+      output_buffering                  = "off";
+    };
 
     extraAppsEnable = true;
     extraApps       = {
