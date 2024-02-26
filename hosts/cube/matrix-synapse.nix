@@ -18,6 +18,20 @@ let
   clientConfig."org.matrix.msc3575.proxy".url = "https://${syncDomain}";
   serverConfig."m.server" = "${chatDomain}:443";
 
+  wellKnownResponseConfig.locations = {
+    "= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
+    "= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
+  };
+
+  notFoundLocationConfig = {
+    locations."/".extraConfig = "return 404;";
+
+    extraConfig                         = "error_page 404 /404.html;";
+    locations."= /404.html".extraConfig = "internal;";
+
+    locations."/assets/".extraConfig = "return 301 https://${domain}$request_uri;";
+  };
+
   synapsePort = 8001;
   syncPort    = 8002;
 in serverSystemConfiguration {
@@ -85,26 +99,14 @@ in serverSystemConfiguration {
     }];
   };
 
-  services.nginx.virtualHosts.${domain}.locations =  {
-    "= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
-    "= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
-  };
+  services.nginx.virtualHosts.${domain} = wellKnownResponseConfig;
 
-  services.nginx.virtualHosts.${chatDomain} = (sslTemplate domain) // {
-    locations."= /.well-known/matrix/client".extraConfig = wellKnownResponse clientConfig;
-    locations."= /.well-known/matrix/server".extraConfig = wellKnownResponse serverConfig;
+  services.nginx.virtualHosts.${chatDomain} = ulib.recursiveUpdateAll [ (sslTemplate domain) wellKnownResponseConfig notFoundLocationConfig {
+    root = "${sitePath}";
 
     locations."/_matrix".proxyPass         = "http://[::]:${toString synapsePort}";
     locations."/_synapse/client".proxyPass = "http://[::]:${toString synapsePort}";
-
-    locations."/".alias = "${sitePath}/404.html";
-    locations."/assets/"= {
-      alias       = "${sitePath}/assets/";
-      extraConfig = ''
-        add_header Cache-Control "public, max-age=86400, immutable";
-      '';
-    };
-  };
+  }];
 
   services.matrix-sliding-sync = enabled {
     environmentFile = config.age.secrets."cube/password.sync.matrix-synapse".path;
@@ -115,19 +117,13 @@ in serverSystemConfiguration {
     };
   };
 
-  services.nginx.virtualHosts.${syncDomain} = (sslTemplate domain) // {
+  services.nginx.virtualHosts.${syncDomain} = ulib.recursiveUpdateAll [ (sslTemplate domain) notFoundLocationConfig {
+    root = "${sitePath}";
+
     locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
       .proxyPass = "http://[::]:${toString synapsePort}";
 
     locations."~ ^(\\/_matrix|\\/_synapse\\/client)"
       .proxyPass = "http://[::]:${toString syncPort}";
-
-    locations."/".alias = "${sitePath}/404.html";
-    locations."/assets/" = {
-      alias       = "${sitePath}/assets/";
-      extraConfig = ''
-        add_header Cache-Control "public, max-age=86400, immutable";
-      '';
-    };
-  };
+  }];
 }

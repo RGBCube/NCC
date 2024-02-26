@@ -96,7 +96,7 @@
       hostDefault = import ./hosts/${host} {
         config = {};
         keys   = {};
-        ulib   = (import ./lib null) // {
+        ulib   = (import ./lib lib null) // {
           merge = lib.recursiveUpdate;
         };
       };
@@ -115,7 +115,7 @@
       system = hostDefault.nixpkgs.hostPlatform;
 
       lib  = nixpkgs.lib;
-      ulib = import ./lib users;
+      ulib = import ./lib lib users;
 
       pkgs  = import nixpkgs { inherit system; };
       upkgs = let
