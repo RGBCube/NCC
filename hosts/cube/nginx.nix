@@ -40,7 +40,7 @@ serverSystemConfiguration {
 
       # add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
 
-      add_header "Referrer-Policy" "no-referrer";
+      add_header Referrer-Policy no-referrer;
 
       # add_header X-Frame-Options DENY;
 
