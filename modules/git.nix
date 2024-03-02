@@ -24,7 +24,7 @@
     gds = "git diff --staged";
 
     gp  = "git push";
-    gpf = "git push --force";
+    gpf = "git push --force-with-lease";
 
     gl  = "git log";
     glo = "git log --oneline";
