@@ -83,12 +83,15 @@
       background = "dark";
     };
 
-    extraConfig = {
+    extraConfig = lib.recursiveUpdate {
       init.defaultBranch = "master";
 
       commit.verbose = true;
 
       log.date = "iso";
+
+      branch.sort = "-committerdate";
+      tag.sort    = "version:refname";
 
       diff.algorithm  = "histogram";
       diff.colorMoved = "default";
@@ -100,6 +103,7 @@
 
       rebase.autoSquash = true;
       rebase.autoStash  = true;
+      rerere.enabled    = true;
 
       fetch.fsckObjects    = true;
       receive.fsckObjects  = true;
@@ -111,12 +115,12 @@
       core.sshCommand                              = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf        = "https://github.com/";
       url."ssh://forgejo@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
-    } // lib.optionalAttrs ulib.isDesktop {
+    } (lib.optionalAttrs ulib.isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id";
-    };
+    });
   };
 })
 
