@@ -113,6 +113,7 @@
       url."ssh://forgejo@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
     } // lib.optionalAttrs ulib.isDesktop {
       commit.gpgSign  = true;
+      tag.gpgSign     = true;
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id";
     };
