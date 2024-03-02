@@ -88,7 +88,8 @@
 
       commit.verbose = true;
 
-      log.date = "iso";
+      log.date  = "iso";
+      column.ui = "auto";
 
       branch.sort = "-committerdate";
       tag.sort    = "version:refname";
