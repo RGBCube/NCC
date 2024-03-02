@@ -2,6 +2,7 @@
 
 (systemPackages (with pkgs; [
   asciinema
+  cowsay
   curlHTTP3
   dig
   fastfetch
