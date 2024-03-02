@@ -10,6 +10,7 @@
 !modules/
 !modules/hyprland/
 !modules/nushell/
+!modules/openssh/
 
 !lib/
 
@@ -22,6 +23,7 @@
 
 !*.age
 !*.gif
+!*.hist
 !*.md
 !*.nix
 !*.nu
