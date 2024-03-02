@@ -6,6 +6,7 @@
   dig
   fastfetch
   fd
+  (fortune.override { withOffensive = true; })
   hyperfine
   moreutils
   nix-index
