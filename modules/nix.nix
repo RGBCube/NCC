@@ -1,6 +1,18 @@
-{ inputs, lib, ulib, upkgs, ... }: with ulib;
+{ inputs, lib, ulib, upkgs, ... }: with ulib; merge
 
-systemConfiguration {
+(homeConfiguration {
+  programs.nushell = {
+    shellAliases.ns = "nix shell";
+
+    configFile.text = lib.mkAfter ''
+      def --wrapped nr [program: string = "", ...arguments] {
+        nix run $program -- ...$arguments
+      }
+    '';
+  };
+})
+
+(systemConfiguration {
   nix = {
     gc = {
       automatic  = true;
@@ -44,4 +56,4 @@ systemConfiguration {
   };
 
   programs.nix-ld = enabled {};
-}
+})
