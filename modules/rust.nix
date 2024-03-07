@@ -17,5 +17,5 @@
 ]))
 
 (desktopHomeConfiguration {
-  programs.nushell.environmentVariables.CARGO_NET_GIT_FETCH_WITH_CLI = "true";
+  programs.nushell.environmentVariables.CARGO_NET_GIT_FETCH_WITH_CLI = ''"true"'';
 })
