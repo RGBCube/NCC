@@ -13,6 +13,9 @@
       cmd_duration.show_notifications = ulib.isDesktop;
 
       package.disabled = ulib.isServer;
+
+      character.error_symbol   = "";
+      character.success_symbol = "";
     };
   };
 

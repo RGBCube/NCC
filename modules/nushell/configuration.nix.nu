@@ -1,9 +1,4 @@
 { lib, ulib, ... }: ''
-$env.PROMPT_INDICATOR           = "";
-$env.PROMPT_INDICATOR_VI_INSERT = "";
-$env.PROMPT_INDICATOR_VI_NORMAL = "";
-$env.PROMPT_MULTILINE_INDICATOR = "";
-
 $env.config = {
   bracketed_paste:                  true
   buffer_editor:                    ""
