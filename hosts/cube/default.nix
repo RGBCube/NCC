@@ -13,7 +13,7 @@
   users.users.rgb = normalUser {
     description                 = "RGB";
     extraGroups                 = [ "wheel" ];
-    openssh.authorizedKeys.keys = [ keys.rgbcube ];
+    openssh.authorizedKeys.keys = [ keys.enka ];
     hashedPasswordFile          = config.age.secrets."cube/password.hash.rgb".path;
   };
 })
