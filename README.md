@@ -15,7 +15,8 @@ Here is the script you need to run to get this working:
 sudo nix-shell --packages git nu nix-output-monitor --command "
   git clone https://github.com/RGBCube/NixOSConfiguration ~/Configuration
   cd ~/Configuration
-  nu rebuild.nu <host>
+  hostname -v <host>
+  nu rebuild.nu
 "
 ```
 
