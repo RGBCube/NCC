@@ -12,7 +12,7 @@ $env.config = {
   show_banner:                      false
   use_ansi_coloring:                true
   use_grid_icons:                   true
-  use_kitty_protocol:               false
+  use_kitty_protocol:               true
 }
 
 $env.config.color_config = {
