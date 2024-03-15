@@ -32,7 +32,7 @@ desktopHomeConfiguration {
         seperate-outputs = true;
 
         rewrite."(.*) - Discord"   = "󰙯 $1";
-        rewrite."(.*) — Librewolf" = "󰖟 $1";
+        rewrite."(.*) — Mozilla Firefox" = "󰖟 $1";
         rewrite."(.*) — nu"        = " $1";
       };
 
