@@ -1,4 +1,4 @@
-{ lib, ulib, pkgs, ... }: with ulib; merge
+{ lib, ulib, pkgs, ... }: with ulib; merge3
 
 (homeConfiguration {
   programs.nushell.shellAliases = {
@@ -122,6 +122,18 @@
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id";
     });
+  };
+})
+
+(desktopHomeConfiguration {
+  programs.nushell.shellAliases = {
+    "??"   = "gh copilot suggest --target shell";
+    "gh?"  = "gh copilot suggest --target gh";
+    "git?" = "gh copilot suggest --target git";
+  };
+
+  programs.gh = enabled {
+    settings.git_protocol = "ssh";
   };
 })
 
