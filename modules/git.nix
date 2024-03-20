@@ -27,7 +27,7 @@
     gpf = "git push --force-with-lease";
 
     gl  = "git log";
-    glo = "git log --oneline";
+    glo = "git log --oneline --graph";
     glp = "git log -p --ext-diff";
 
     gpl   = "git pull";
