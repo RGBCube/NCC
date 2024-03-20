@@ -44,6 +44,11 @@
 
     grl = "git reflog";
 
+    grm   = "git remote";
+    grma  = "git remote add";
+    grmv  = "git remote --verbose";
+    grmsu = "git remote set-url";
+
     grs  = "git reset";
     grsh = "git reset --hard";
 
