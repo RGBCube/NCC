@@ -109,6 +109,7 @@
 
       rebase.autoSquash = true;
       rebase.autoStash  = true;
+      rebase.updateRefs = true;
       rerere.enabled    = true;
 
       fetch.fsckObjects    = true;
