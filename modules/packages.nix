@@ -26,7 +26,7 @@
 ]))
 
 (desktopSystemPackages (with pkgs; [
-  upkgs.agenix
+  upkgs.ageNix
 
   clang_16
   clang-tools_16

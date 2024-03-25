@@ -13,6 +13,8 @@
 })
 
 (systemConfiguration {
+  environment.etc."flakes".text = builtins.toJSON inputs;
+
   nix = {
     gc = {
       automatic  = true;
@@ -27,10 +29,11 @@
 
     package = upkgs.nixSuper;
 
-    registry = (builtins.mapAttrs
-      (_: value: lib.mkIf (value ? sourceInfo) {
-        flake = value;
-      }) inputs) // { default.flake = inputs.nixpkgs; };
+    registry = {
+      default.flake = inputs.nixpkgs;
+    } // builtins.mapAttrs (_: value: lib.mkIf (lib.isType "flake" value) {
+      flake = value;
+    }) inputs;
 
     settings.experimental-features = [
       "auto-allocate-uids"
@@ -47,7 +50,8 @@
 
     settings = {
       accept-flake-config       = true;
-      builders-use-substitutes = true;
+      builders-use-substitutes  = true;
+      flake-registry            = ""; # I DON'T WANT THE GLOBAL REGISTRY!!!
       http-connections          = 50;
       trusted-users             = [ "root" "@wheel" ];
       use-cgroups               = true;
