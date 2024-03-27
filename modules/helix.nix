@@ -1,24 +1,26 @@
-{ ulib, lib, pkgs, upkgs, theme, ... }: with ulib; merge
+{ config, lib, pkgs, ... }: with lib; merge
+
+(systemConfiguration {
+  environment = {
+    variables.EDITOR = "hx";
+    shellAliases.x = "hx";
+  };
+})
 
 (homeConfiguration {
-  programs.nushell = {
-    environmentVariables.EDITOR = "hx";
-    shellAliases.x              = "hx";
-
-    configFile.text = lib.mkAfter ''
-      def --wrapped hx [...arguments] {
-        if $env.TERM == "xterm-kitty" {
-          kitty @ set-spacing padding=0
-        }
-
-        ^hx ...$arguments
-
-        if $env.TERM == "xterm-kitty" {
-          kitty @ set-spacing padding=${toString theme.padding}
-        }
+  programs.nushell.configFile.text = mkAfter ''
+    def --wrapped hx [...arguments] {
+      if $env.TERM == "xterm-kitty" {
+        kitty @ set-spacing padding=0
       }
-    '';
-  };
+
+      ^hx ...$arguments
+
+      if $env.TERM == "xterm-kitty" {
+        kitty @ set-spacing padding=${toString config.theme.padding}
+      }
+    }
+  '';
 
   programs.helix = enabled {
     languages.language = let
@@ -96,11 +98,6 @@
         formatter        = denoFormatter "tsx";
         language-servers = [ "deno" ];
       }
-
-      { # TODO: Remove in the next Helix release.
-        name             = "nu";
-        language-servers = [ "nu" ];
-      }
     ];
 
     languages.language-server = {
@@ -145,7 +142,7 @@
       cursorline             = true;
       bufferline             = "multiple";
       file-picker.hidden     = false;
-      idle-timeout           = 50;
+      idle-timeout           = 0;
       line-number            = "relative";
       shell                  = [ "bash" "-c" ];
       text-width             = 100;
@@ -167,7 +164,7 @@
       render.tab     = "all";
     };
 
-    settings.keys = lib.genAttrs [ "normal" "select" ] (_: {
+    settings.keys = genAttrs [ "normal" "select" ] (_: {
       D = "extend_to_line_end";
     });
   };
@@ -213,5 +210,5 @@
   yaml-language-server
 
   # ZIG
-  upkgs.zls
+  zls
 ]))

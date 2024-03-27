@@ -1,4 +1,4 @@
-{ ulib, pkgs, ... }: with ulib;
+{ lib, pkgs, ... }: with lib;
 
 systemConfiguration {
   boot.kernelPackages = pkgs.linuxPackages_latest;

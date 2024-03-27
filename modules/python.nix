@@ -1,4 +1,10 @@
-{ ulib, pkgs, ... }: with ulib; merge
+{ lib, pkgs, ... }: with lib; merge
+
+(systemConfiguration {
+  environment.shellAliases = {
+    venv = "virtualenv venv";
+  };
+})
 
 (systemPackages (with pkgs; [
   (python311.withPackages (pkgs: with pkgs; [
@@ -8,9 +14,3 @@
   virtualenv
   poetry
 ]))
-
-(homeConfiguration {
-  programs.nushell.shellAliases = {
-    venv = "virtualenv venv";
-  };
-})

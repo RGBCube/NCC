@@ -1,11 +1,15 @@
-{ config, ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
-serverSystemConfiguration {
+let
+  port = 9000;
+
+  nodeExporterPort = 9010;
+in systemConfiguration {
   services.grafana.provision.datasources.settings = {
     datasources = [{
       name = "Prometheus";
       type = "prometheus";
-      url  = "http://[::]:${toString config.services.prometheus.port}";
+      url  = "http://[::1]:${toString port}";
 
       orgId = 1;
     }];
@@ -17,12 +21,14 @@ serverSystemConfiguration {
   };
 
   services.prometheus = enabled {
-    port          = 9000;
+    inherit port;
+
     retentionTime = "1w";
 
     exporters.node = enabled {
       enabledCollectors = [ "processes" "systemd" ];
-      port              = 9010;
+      listenAddress     = "[::1]";
+      port              = nodeExporterPort;
     };
 
     scrapeConfigs = [{
@@ -30,7 +36,7 @@ serverSystemConfiguration {
 
       static_configs = [{
         labels.job = "node";
-        targets    = [ "[::]:${toString config.services.prometheus.exporters.node.port}" ];
+        targets    = [ "[::1]:${toString nodeExporterPort}" ];
       }];
     }];
   };

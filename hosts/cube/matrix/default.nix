@@ -1,4 +1,4 @@
-{ config, ulib, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
 let
   inherit (config.networking) domain;
@@ -16,6 +16,7 @@ let
 
   clientConfig."m.homeserver".base_url        = "https://${chatDomain}";
   clientConfig."org.matrix.msc3575.proxy".url = "https://${syncDomain}";
+
   serverConfig."m.server" = "${chatDomain}:443";
 
   wellKnownResponseConfig.locations = {
@@ -26,8 +27,8 @@ let
   notFoundLocationConfig = {
     locations."/".extraConfig = "return 404;";
 
-    extraConfig                         = "error_page 404 /404.html;";
-    locations."= /404.html".extraConfig = "internal;";
+    extraConfig                  = "error_page 404 /404.html;";
+    locations."/404".extraConfig = "internal;";
 
     locations."/assets/".extraConfig = "return 301 https://${domain}$request_uri;";
   };
@@ -35,11 +36,11 @@ let
   synapsePort = 8001;
   syncPort    = 8002;
 in serverSystemConfiguration {
-  age.secrets."hosts/cube/matrix-synapse/password.secret" = {
+  secrets.matrixSecret = {
     file  = ./password.secret.age;
     owner = "matrix-synapse";
   };
-  age.secrets."hosts/cube/matrix-synapse/password.sync" = {
+  secrets.matrixSyncPassword = {
     file  = ./password.sync.age;
     owner = "matrix-synapse";
   };
@@ -88,12 +89,12 @@ in serverSystemConfiguration {
     };
 
     # Sets registration_shared_secret.
-    extraConfigFiles = [ config.age.secrets."hosts/cube/matrix-synapse/password.secret".path ];
+    extraConfigFiles = [ config.secrets.matrixSecret.path ];
 
     settings.listeners = [{
       port = synapsePort;
 
-      bind_addresses = [ "::" ];
+      bind_addresses = [ "::1" ];
       tls            = false;
       type           = "http";
       x_forwarded    = true;
@@ -107,29 +108,29 @@ in serverSystemConfiguration {
 
   services.nginx.virtualHosts.${domain} = wellKnownResponseConfig;
 
-  services.nginx.virtualHosts.${chatDomain} = ulib.recursiveUpdateAll [ (sslTemplate domain) wellKnownResponseConfig notFoundLocationConfig {
+  services.nginx.virtualHosts.${chatDomain} = merge config.sslTemplate wellKnownResponseConfig notFoundLocationConfig {
     root = "${sitePath}";
 
-    locations."/_matrix".proxyPass         = "http://[::]:${toString synapsePort}";
-    locations."/_synapse/client".proxyPass = "http://[::]:${toString synapsePort}";
-  }];
+    locations."/_matrix".proxyPass         = "http://[::1]:${toString synapsePort}";
+    locations."/_synapse/client".proxyPass = "http://[::1]:${toString synapsePort}";
+  };
 
   services.matrix-sliding-sync = enabled {
-    environmentFile = config.age.secrets."hosts/cube/matrix-synapse/password.sync".path;
+    environmentFile = config.age.secrets.matrixSyncPassword.path;
     settings        = {
       SYNCV3_SERVER   = "https://${chatDomain}";
       SYNCV3_DB       = "postgresql:///matrix-sliding-sync?host=/run/postgresql";
-      SYNCV3_BINDADDR = "[::]:${toString syncPort}";
+      SYNCV3_BINDADDR = "[::1]:${toString syncPort}";
     };
   };
 
-  services.nginx.virtualHosts.${syncDomain} = ulib.recursiveUpdateAll [ (sslTemplate domain) notFoundLocationConfig {
-    root = "${sitePath}";
+  services.nginx.virtualHosts.${syncDomain} = merge config.sslTemplate notFoundLocationConfig {
+    root = sitePath;
 
     locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
-      .proxyPass = "http://[::]:${toString synapsePort}";
+      .proxyPass = "http://[::1]:${toString synapsePort}";
 
     locations."~ ^(\\/_matrix|\\/_synapse\\/client)"
-      .proxyPass = "http://[::]:${toString syncPort}";
-  }];
+      .proxyPass = "http://[::1]:${toString syncPort}";
+  };
 }

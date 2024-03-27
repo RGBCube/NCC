@@ -1,4 +1,4 @@
-{ lib, ulib, ... }: with ulib; merge
+{ lib, ... }: with lib; merge
 
 (desktopSystemConfiguration {
   security.sudo.wheelNeedsPassword = false;
@@ -6,15 +6,15 @@
 
 (systemConfiguration {
   security.sudo = enabled {
+    execWheelOnly = true;
     extraConfig   = ''
       Defaults lecture = never
       Defaults pwfeedback
       Defaults env_keep += "DISPLAY EDITOR PATH"
-      ${lib.optionalString ulib.isServer ''
+      ${optionalString isServer ''
         Defaults timestamp_timeout = 0
       ''}
     '';
-    execWheelOnly = true;
 
     extraRules = [{
       groups   = [ "wheel" ];

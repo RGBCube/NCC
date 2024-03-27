@@ -1,7 +1,7 @@
-{ ulib, theme, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
-desktopHomeConfiguration {
-  programs.kitty = with theme.withHashtag; enabled {
+desktopUserHomeConfiguration {
+  programs.kitty = with config.theme.withHashtag; enabled {
     font = with font; {
       inherit (mono) name package;
 

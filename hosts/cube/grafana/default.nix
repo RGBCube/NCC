@@ -1,23 +1,19 @@
-{ config, ulib, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
 let
   inherit (config.networking) domain;
 
   fqdn = "metrics.${domain}";
-in serverSystemConfiguration {
-  age.secrets."hosts/cube/grafana/password" = {
+
+  port = 8000;
+in systemConfiguration {
+  secrets.grafanaPassword = {
     file  = ./password.age;
     owner = "grafana";
   };
-  age.secrets."hosts/cube/grafana/password.mail" = {
+  secrets.grafanaMailPassword = {
     file  = ./password.mail.age;
     owner = "grafana";
-  };
-
-  services.fail2ban.jails.grafana.settings = {
-    filter       = "grafana";
-    journalmatch = "_SYSTEMD_UNIT=grafana.service";
-    maxretry     = 3;
   };
 
   services.postgresql = {
@@ -34,7 +30,7 @@ in serverSystemConfiguration {
   };
 
   services.grafana = enabled {
-    provision = enabled {};
+    provision = enabled;
 
     settings = {
       analytics.reporting_enabled = false;
@@ -44,15 +40,15 @@ in serverSystemConfiguration {
       database.user = "grafana";
 
       server.domain    = fqdn;
-      server.http_addr = "[::]";
-      server.http_port = 8000;
+      server.http_addr = "[::1]";
+      server.http_port = port;
 
       users.default_theme = "system";
     };
 
     settings.security = {
       admin_email    = "metrics@${domain}";
-      admin_password = "$__file{${config.age.secrets."hosts/cube/grafana/password".path}}";
+      admin_password = "$__file{${config.secrets.grafanaPassword.path}}";
       admin_user     = "admin";
 
       cookie_secure    = true;
@@ -64,7 +60,7 @@ in serverSystemConfiguration {
     settings.smtp = {
       enabled = true;
 
-      password        = "$__file{${config.age.secrets."hosts/cube/grafana/password.mail".path}}";
+      password        = "$__file{${config.secrets.grafanaMailPassword.path}}";
       startTLS_policy = "MandatoryStartTLS";
 
       ehlo_identity = "contact@${domain}";
@@ -74,9 +70,9 @@ in serverSystemConfiguration {
     };
   };
 
-  services.nginx.virtualHosts.${fqdn} = (sslTemplate domain) // {
+  services.nginx.virtualHosts.${fqdn} = merge config.sslTemplate {
     locations."/" = {
-      proxyPass       = "http://[::]:${toString config.services.grafana.settings.server.http_port}";
+      proxyPass       = "http://[::1]:${toString port}";
       proxyWebsockets = true;
     };
   };

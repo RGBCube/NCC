@@ -1,9 +1,9 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
-serverSystemConfiguration {
+systemConfiguration {
   virtualisation.podman = enabled {
     dockerCompat = true;
-    dockerSocket = enabled {};
+    dockerSocket = enabled;
 
     defaultNetwork.settings.dns_enabled = true;
 

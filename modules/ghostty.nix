@@ -1,18 +1,14 @@
-{ inputs, lib, ulib, pkgs, upkgs, theme, ... }: with ulib; merge
+{ config, lib, pkgs, ... }: with lib;
 
-(desktopSystemConfiguration {
-  home-manager.sharedModules = [ inputs.ghosttyModule.homeModules.default ];
-})
-
-(desktopHomeConfiguration {
+desktopUserHomeConfiguration {
   programs.nushell.environmentVariables.TERMINAL = "ghostty";
 
   programs.ghostty = enabled {
-    package = upkgs.ghostty;
+    package = pkgs.ghostty;
 
     clearDefaultKeybindings = true;
 
-    keybindings = (lib.mapAttrs' (name: lib.nameValuePair "ctrl+shift+${name}") {
+    keybindings = (mapAttrs' (name: nameValuePair "ctrl+shift+${name}") {
       c = "copy_to_clipboard";
       v = "paste_from_clipboard";
 
@@ -50,14 +46,15 @@
       "physical:eight" = "goto_tab:8";
       "physical:nine"  = "goto_tab:9";
       "physical:zero"  = "goto_tab:10";
-    }) // (lib.mapAttrs' (name: lib.nameValuePair "ctrl+${name}") {
-      "physical:tab"         = "next_tab";
+    }) // (mapAttrs' (name: nameValuePair "ctrl+${name}") {
+      "physical:tab"       = "next_tab";
       "shift+physical:tab" = "previous_tab";
     });
 
-    shellIntegration.enable = false;
+    # Disabled here as Nushell isn't supported and Nushell enables it in its own config.
+    shellIntegration = disabled;
 
-    settings = with theme; {
+    settings = with config.theme; {
       font-size   = font.size.normal;
       font-family = font.mono.name;
 
@@ -73,4 +70,4 @@
       ];
     };
   };
-})
+}

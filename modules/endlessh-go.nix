@@ -1,13 +1,16 @@
-{ config, ulib, pkgs, ... }: with ulib;
+{ lib, pkgs, ... }: with lib;
 
-serverSystemConfiguration {
+let
+  fakeSSHPort    = 22;
+  prometheusPort = 9050;
+in serverSystemConfiguration {
   services.prometheus.scrapeConfigs = [{
     job_name = "endlessh-go";
 
     static_configs = [{
       labels.job = "endlessh-go";
       targets    = [
-        "[::]:${toString config.services.endlessh-go.prometheus.port}"
+        "[::1]:${toString prometheusPort}"
       ];
     }];
   }];
@@ -17,10 +20,11 @@ serverSystemConfiguration {
   # services.endlessh-go.openFirewall exposes both the Prometheus
   # exporters port and the SSH port, and we don't want the metrics
   # to leak, so we manually expose this like so.
-  networking.firewall.allowedTCPPorts = [ config.services.endlessh-go.port ];
+  networking.firewall.allowedTCPPorts = [ fakeSSHPort ];
 
   services.endlessh-go = enabled {
-    port = 22;
+    listenAddress = "[::]";
+    port          = fakeSSHPort;
 
     extraOptions = [
       "-alsologtostderr"
@@ -29,8 +33,8 @@ serverSystemConfiguration {
     ];
 
     prometheus = enabled {
-      listenAddress = "[::]";
-      port          = 9050;
+      listenAddress = "[::1]";
+      port          = prometheusPort;
     };
   };
 }

@@ -1,15 +1,17 @@
-{ config, ulib, pkgs, ... }: with ulib;
+{ config, lib, pkgs, ... }: with lib;
 
 let
   inherit (config.networking) domain;
 
   fqdn = "git.${domain}";
-in serverSystemConfiguration {
-  age.secrets."hosts/cube/forgejo/password.mail" = {
+
+  port = 8004;
+in systemConfiguration {
+  secrets.forgejoMailPassword = {
     file  = ./password.mail.age;
     owner = "forgejo";
   };
-  age.secrets."hosts/cube/forgejo/password.runner" = {
+  secrets.forgejoRunnerPassword = {
     file  = ./password.runner.age;
     owner = "forgejo";
   };
@@ -42,7 +44,7 @@ in serverSystemConfiguration {
         "act:docker://ghcr.io/catthehacker/ubuntu:act-latest"
       ];
 
-      tokenFile = config.age.secrets."hosts/cube/forgejo/password.runner".path;
+      tokenFile = config.secrets.forgejoRunnerPassword.path;
 
       settings = {
         cache.enabled     = true;
@@ -61,11 +63,12 @@ in serverSystemConfiguration {
     };
   };
 
+  services.openssh.settings.AcceptEnv = mkForce "COLORTERM GIT_PROTOCOL";
 
   services.forgejo = enabled {
-    lfs = enabled {};
+    lfs = enabled;
 
-    mailerPasswordFile = config.age.secrets."hosts/cube/forgejo/password.mail".path;
+    mailerPasswordFile = config.secrets.forgejoMailPassword.path;
 
     database = {
       socket = "/run/postgresql";
@@ -78,7 +81,7 @@ in serverSystemConfiguration {
       default.APP_NAME = description;
 
       actions = {
-        ENABLED = true;
+        ENABLED             = true;
         DEFAULT_ACTIONS_URL = "https://${fqdn}";
       };
 
@@ -89,9 +92,9 @@ in serverSystemConfiguration {
       mailer = {
         ENABLED = true;
 
-        PROTOCOL = "smtps";
+        PROTOCOL  = "smtps";
         SMTP_ADDR = config.mailserver.fqdn;
-        USER = "git@${domain}";
+        USER      = "git@${domain}";
       };
 
       other = {
@@ -123,8 +126,8 @@ in serverSystemConfiguration {
         ROOT_URL     = "https://${fqdn}/";
         LANDING_PAGE = "/explore";
 
-        HTTP_ADDR = "::";
-        HTTP_PORT = 8004;
+        HTTP_ADDR = "::1";
+        HTTP_PORT = port;
 
         SSH_PORT = builtins.elemAt config.services.openssh.ports 0;
 
@@ -145,7 +148,7 @@ in serverSystemConfiguration {
     };
   };
 
-  services.nginx.virtualHosts.${fqdn} = (sslTemplate domain) // {
-    locations."/".proxyPass = "http://[::]:${toString config.services.forgejo.settings.server.HTTP_PORT}";
+  services.nginx.virtualHosts.${fqdn} = merge config.sslTemplate {
+    locations."/".proxyPass = "http://[::1]:${toString port}";
   };
 }

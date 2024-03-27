@@ -1,15 +1,15 @@
-{ ulib, pkgs, theme, ... }: with ulib; merge3
+{ config, lib, pkgs, ... }: with lib; merge
 
 (desktopSystemConfiguration {
   nixpkgs.config.allowUnfree = true;
 })
 
-(desktopHomeConfiguration {
-  xdg.configFile."Vencord/settings/quickCss.css".text = theme.discordCss;
+(desktopUserHomeConfiguration {
+  xdg.configFile."Vencord/settings/quickCss.css".text = config.theme.discordCss;
 })
 
-(desktopHomePackages (with pkgs; [
-  (discord-canary.override {
+(desktopUserHomePackages (with pkgs; [
+  (discord.override {
     withOpenASAR = true;
     withVencord  = true;
   })

@@ -1,4 +1,4 @@
-{ lib, ulib, ... }: ''
+{ lib, ... }: ''
 $env.config = {
   bracketed_paste:                  true
   buffer_editor:                    ""
@@ -155,19 +155,7 @@ $env.config.cursor_shape = {
 }
 
 $env.config.hooks = {
-  command_not_found: {||
-    ${lib.optionalString ulib.isDesktop ''
-      task status
-      | where label == boom
-      | get id
-      | each {|id|
-        task kill $id | null
-        task remove $id | null
-      }
-
-      task spawn --label boom { pw-play ${./boom.opus} }
-    ''}
-  }
+  command_not_found: {||}
   display_output:    "table --expand"
   env_change:        {}
   pre_execution:     [

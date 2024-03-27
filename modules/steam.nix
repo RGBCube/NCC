@@ -1,4 +1,4 @@
-{ ulib, pkgs, ... }: with ulib; merge
+{ lib, pkgs, ... }: with lib; merge
 
 (desktopSystemConfiguration {
   # Steam uses 32-bit drivers for some unholy fucking reason.
@@ -7,6 +7,6 @@
   nixpkgs.config.allowUnfree = true;
 })
 
-(desktopHomePackages (with pkgs; [
+(desktopUserHomePackages (with pkgs; [
   steam
 ]))

@@ -1,8 +1,8 @@
-{ ulib, theme, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
-desktopHomeConfiguration {
+desktopUserHomeConfiguration {
   programs.firefox = enabled {
-    profiles.default.settings = with theme.font; {
+    profiles.default.settings = with config.theme.font; {
       "general.autoScroll"               = true;
       "privacy.donottrackheader.enabled" = true;
 

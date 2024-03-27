@@ -1,10 +1,13 @@
-{ ulib, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
-desktopSystemConfiguration {
+systemConfiguration {
   boot.loader = {
+    systemd-boot = enabled {
+      editor      = false;
+      consoleMode = "max";
+    };
+
     efi.canTouchEfiVariables = true;
-    systemd-boot.enable      = true;
-    systemd-boot.editor      = false;
   };
 
   boot.initrd.availableKernelModules = [
@@ -20,14 +23,14 @@ desktopSystemConfiguration {
     fsType = "btrfs";
   };
 
-  fileSystems."/boot" = {
+  fileSystems.${config.boot.loader.efi.efiSysMountPoint} = {
     device = "/dev/disk/by-label/boot";
     fsType = "vfat";
   };
 
-  swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
-  ];
+  swapDevices = [{
+    device = "/dev/disk/by-label/swap";
+  }];
 
   hardware.enableAllFirmware         = true;
   hardware.cpu.intel.updateMicrocode = true;

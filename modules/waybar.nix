@@ -1,8 +1,8 @@
-{ ulib, theme, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
-desktopHomeConfiguration {
-  programs.waybar = with theme.withHashtag; enabled {
-    systemd = enabled {};
+desktopUserHomeConfiguration {
+  programs.waybar = with config.theme.withHashtag; enabled {
+    systemd = enabled;
 
     settings = [{
       layer  = "top";
@@ -12,9 +12,7 @@ desktopHomeConfiguration {
       margin-left  = margin;
       margin-top   = margin;
 
-      modules-left = [
-        "hyprland/workspaces"
-      ];
+      modules-left = [ "hyprland/workspaces" ];
 
       "hyprland/workspaces" = {
         format               = "{icon}";
@@ -36,16 +34,7 @@ desktopHomeConfiguration {
         rewrite."(.*) — nu"        = " $1";
       };
 
-      modules-right = [
-        "tray"
-        "pulseaudio"
-        "backlight"
-        "cpu"
-        "memory"
-        "network"
-        "battery"
-        "clock"
-      ];
+      modules-right = [ "tray" "pulseaudio" "backlight" "cpu" "memory" "network" "battery" "clock" ];
 
       tray = {
         reverse-direction = true;
@@ -53,35 +42,21 @@ desktopHomeConfiguration {
       };
 
       pulseaudio = {
-        format                 = "{format_source} {icon} {volume}%";
-        format-muted           = "{format_source} 󰸈";
+        format       = "{format_source} {icon} {volume}%";
+        format-muted = "{format_source} 󰸈";
 
         format-bluetooth       = "{format_source} 󰋋 󰂯 {volume}%";
         format-bluetooth-muted = "{format_source} 󰟎 󰂯";
 
-        format-source          = "󰍬";
-        format-source-muted    = "󰍭";
+        format-source       = "󰍬";
+        format-source-muted = "󰍭";
 
-        format-icons.default = [
-          "󰕿"
-          "󰖀"
-          "󰕾"
-        ];
+        format-icons.default = [ "󰕿" "󰖀" "󰕾" ];
       };
 
       backlight =  {
         format       = "{icon} {percent}%";
-        format-icons = [
-          ""
-          ""
-          ""
-          ""
-          ""
-          ""
-          ""
-          ""
-          ""
-        ];
+        format-icons = [ "" "" "" "" "" "" "" "" "" ];
       };
 
       cpu.format    = " {usage}%";
@@ -99,26 +74,13 @@ desktopHomeConfiguration {
         format-charging = "󰂄 {capacity}%";
         format-plugged  = "󰂄 {capacity}%";
 
-        format-icons = [
-          "󰁺"
-          "󰁻"
-          "󰁼"
-          "󰁽"
-          "󰁾"
-          "󰁿"
-          "󰂀"
-          "󰂁"
-          "󰂂"
-          "󰁹"
-        ];
+        format-icons = [ "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹" ];
 
         states.warning  = 30;
         states.critical = 15;
       };
 
-      clock = {
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-      };
+      clock.tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
     }];
 
     style = ''

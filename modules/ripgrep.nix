@@ -1,10 +1,12 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib; merge
 
-homeConfiguration {
-  programs.nushell.shellAliases = {
+(systemConfiguration {
+  environment.shellAliases = {
     rg   = "rg --line-number --smart-case";
     todo = ''rg "todo|fixme" --colors match:fg:yellow --colors match:style:bold'';
   };
+})
 
-  programs.ripgrep = enabled {};
-}
+(homeConfiguration {
+  programs.ripgrep = enabled;
+})

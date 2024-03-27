@@ -1,7 +1,7 @@
-{ lib, ulib, pkgs, ... }: with ulib; merge3
+{ lib, pkgs, ... }: with lib; merge
 
-(homeConfiguration {
-  programs.nushell.shellAliases = {
+(systemConfiguration {
+  environment.shellAliases = {
     g = "git";
 
     ga  = "git add";
@@ -62,8 +62,10 @@
 
     gst = "git status";
   };
+})
 
-  programs.nushell.configFile.text = lib.mkAfter ''
+(homeConfiguration {
+  programs.nushell.configFile.text = mkAfter ''
     # Sets the remote origin to the specified user and repository on my git instance
     def gsr [user_and_repo: string] {
       let user_and_repo = if ($user_and_repo | str index-of "/") != -1 {
@@ -82,13 +84,13 @@
     userName  = "RGBCube";
     userEmail = "git@rgbcu.be";
 
-    lfs = enabled {};
+    lfs = enabled;
 
     difftastic = enabled {
       background = "dark";
     };
 
-    extraConfig = lib.recursiveUpdate {
+    extraConfig = merge {
       init.defaultBranch = "master";
 
       commit.verbose = true;
@@ -122,7 +124,7 @@
       core.sshCommand                              = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf        = "https://github.com/";
       url."ssh://forgejo@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
-    } (lib.optionalAttrs ulib.isDesktop {
+    } (mkIf isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;
       gpg.format      = "ssh";
@@ -131,13 +133,15 @@
   };
 })
 
-(desktopHomeConfiguration {
-  programs.nushell.shellAliases = {
+(desktopSystemConfiguration {
+  environment.shellAliases = {
     "??"   = "gh copilot suggest --target shell";
     "gh?"  = "gh copilot suggest --target gh";
     "git?" = "gh copilot suggest --target git";
   };
+})
 
+(desktopHomeConfiguration {
   programs.gh = enabled {
     settings.git_protocol = "ssh";
   };

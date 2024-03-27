@@ -1,9 +1,9 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
 systemConfiguration {
   documentation = {
-    doc.enable  = false;
-    info.enable = false;
+    doc  = disabled;
+    info = disabled;
 
     man = enabled {
       generateCaches = true;

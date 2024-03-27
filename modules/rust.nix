@@ -1,8 +1,4 @@
-{ inputs, ulib, pkgs, ... }: with ulib; merge3
-
-(desktopSystemConfiguration {
-  nixpkgs.overlays = [ inputs.fenix.overlays.default ];
-})
+{ lib, pkgs, ... }: with lib; merge
 
 (desktopSystemPackages (with pkgs; [
   cargo-expand
@@ -16,6 +12,7 @@
   ])
 ]))
 
-(desktopHomeConfiguration {
-  programs.nushell.environmentVariables.CARGO_NET_GIT_FETCH_WITH_CLI = ''"true"'';
+(desktopSystemConfiguration {
+  environment.variables.CARGO_NET_GIT_FETCH_WITH_CLI = "true";
 })
+

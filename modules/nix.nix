@@ -1,19 +1,7 @@
-{ inputs, lib, ulib, upkgs, ... }: with ulib; merge
-
-(homeConfiguration {
-  programs.nushell = {
-    shellAliases.ns = "nix shell";
-
-    configFile.text = lib.mkAfter ''
-      def --wrapped nr [program: string = "", ...arguments] {
-        nix run $program -- ...$arguments
-      }
-    '';
-  };
-})
+{ inputs, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
-  environment.etc."flakes".text = builtins.toJSON inputs;
+  environment.etc."flakes.json".text = strings.toJSON inputs;
 
   nix = {
     gc = {
@@ -27,11 +15,9 @@
 
     optimise.automatic = true;
 
-    package = upkgs.nixSuper;
-
     registry = {
       default.flake = inputs.nixpkgs;
-    } // builtins.mapAttrs (_: value: lib.mkIf (lib.isType "flake" value) {
+    } // mapAttrs (_: value: mkIf (isType "flake" value) {
       flake = value;
     }) inputs;
 
@@ -39,25 +25,51 @@
       "auto-allocate-uids"
       "ca-derivations"
       "cgroups"
-      "configurable-impure-env"
       "flakes"
-      "git-hashing"
       "nix-command"
       "recursive-nix"
       "repl-flake"
-      "verified-fetches"
     ];
 
     settings = {
-      accept-flake-config       = true;
-      builders-use-substitutes  = true;
-      flake-registry            = ""; # I DON'T WANT THE GLOBAL REGISTRY!!!
-      http-connections          = 50;
-      trusted-users             = [ "root" "@wheel" ];
-      use-cgroups               = true;
-      warn-dirty                = false;
+      accept-flake-config      = true;
+      builders-use-substitutes = true;
+      flake-registry           = ""; # I DON'T WANT THE GLOBAL REGISTRY!!!
+      http-connections         = 50;
+      show-trace               = true;
+      trusted-users            = [ "root" "@wheel" ];
+      use-cgroups              = true;
+      warn-dirty               = false;
     };
   };
 
-  programs.nix-ld = enabled {};
+  programs.nix-ld = enabled;
+})
+
+(systemPackages (with pkgs; [
+  nh
+  nix-index
+  nix-output-monitor
+]))
+
+(homeConfiguration {
+  programs.nushell.configFile.text = mkAfter ''
+    def --wrapped nr [program: string = "", ...arguments] {
+      if ($program | str contains "#") or ($program | str contains ":") {
+        nix run $program -- ...$arguments
+      } else {
+        nix run ("default#" + $program) -- ...$arguments
+      }
+    }
+
+  def --wrapped ns [...programs] {
+    nix shell ...($programs | each {
+      if ($in | str contains "#") or ($in | str contains ":") {
+        $in
+      } else {
+        "default#" + $in
+      }
+    })
+  }
+  '';
 })

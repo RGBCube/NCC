@@ -1,6 +1,6 @@
-{ ulib, pkgs, theme, ... }: with ulib; merge
+{ config, lib, pkgs, ... }: with lib; merge
 
-(systemConfiguration {
+(desktopSystemConfiguration {
   console = {
     earlySetup = true;
     font       = "Lat2-Terminus16";
@@ -8,12 +8,16 @@
   };
 })
 
-(desktopSystemFonts (with pkgs; [
-  theme.font.sans.package
-  theme.font.mono.package
+(desktopSystemFonts [
+  config.theme.font.sans.package
+  config.theme.font.mono.package
 
-  noto-fonts
-  noto-fonts-cjk-sans
-  noto-fonts-lgc-plus
-  noto-fonts-emoji
-]))
+  pkgs.noto-fonts
+  pkgs.noto-fonts-cjk-sans
+  pkgs.noto-fonts-lgc-plus
+  pkgs.noto-fonts-emoji
+])
+
+(serverSystemConfiguration {
+  fonts.fontconfig = disabled;
+})
