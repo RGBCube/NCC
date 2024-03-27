@@ -1,5 +1,3 @@
-{ upkgs, ... }: ''
-
 $env.ENV_CONVERSIONS.PATH = {
   from_string: {|string|
     $string | split row (char esep) | path expand --no-symlink
@@ -20,6 +18,4 @@ def --env mcg [path: path] {
   git init
 }
 
-use ${upkgs.nuScripts}/modules/background_task/task.nu
 zoxide init nushell --cmd cd | save --force ~/.config/nushell/zoxide.nu
-''

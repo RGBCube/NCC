@@ -1,7 +1,7 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
 desktopSystemConfiguration {
-  services.blueman = enabled {};
+  services.blueman = enabled;
 
   hardware.bluetooth = enabled {
     powerOnBoot = true;

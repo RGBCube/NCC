@@ -1,12 +1,12 @@
-{ ulib, pkgs, ... }: with ulib; merge
+{ lib, pkgs, ... }: with lib; merge
 
-(systemPackages (with pkgs; [
-  w3m
-]))
-
-(homeConfiguration {
-  programs.nushell.shellAliases = {
+(systemConfiguration {
+  environment.shellAliases = {
     ddg = "w3m lite.duckduckgo.com";
     web = "w3m";
   };
 })
+
+(systemPackages (with pkgs; [
+  w3m
+]))

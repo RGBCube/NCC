@@ -1,7 +1,7 @@
-{ ulib, theme, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
-desktopHomeConfiguration {
-  programs.fuzzel = with theme; enabled {
+desktopUserHomeConfiguration {
+  programs.fuzzel = with config.theme; enabled {
     settings.main = {
       dpi-aware  = false;
       font       = "${font.sans.name}:size=${toString font.size.big}";
@@ -19,13 +19,13 @@ desktopHomeConfiguration {
       inner-pad      = padding;
     };
 
-    settings.colors = {
-      background     = base00 + "FF";
-      text           = base05 + "FF";
-      match          = base0A + "FF";
-      selection      = base05 + "FF";
-      selection-text = base00 + "FF";
-      border         = base0A + "FF";
+    settings.colors = mapAttrs (_: color: color + "FF") {
+      background     = base00;
+      text           = base05;
+      match          = base0A;
+      selection      = base05;
+      selection-text = base00;
+      border         = base0A;
     };
 
     settings.border = {

@@ -1,29 +1,40 @@
 #!/usr/bin/env nu
 
-def complete [] {
-  ls hosts | get name | each { $in | str replace "hosts/" "" }
-}
-
 def main --wrapped [
-  host: string@complete = "" # The host to build.
-  ...arguments               # The arguments to pass to `nixos-rebuild switch`.
+  host: string = "" # The host to build.
+  ...arguments      # The arguments to pass to `nixos-rebuild switch`.
 ] {
-  let flags = [
-    $"--flake ('.#' + $host)"
-    "--show-trace"
-    "--option accept-flake-config true"
-    "--log-format internal-json"
-  ] | append $arguments
-
-  if $host == (hostname) or $host == "" {
-    sudo sh -c $"nixos-rebuild switch ($flags | str join ' ') |& nom --json"
+  let host = if ($host | is-not-empty) {
+    $host
   } else {
-    git ls-files | rsync --rsh "ssh -q" --delete --compress --files-from - ./ cube:Configuration
+    (hostname)
+  }
 
-    ssh -q $host $"sh -c '
+  let args_split = $arguments | split list "--"
+
+  let nh_flags = [
+    "--hostname" $host
+  ] | append ($args_split | get --ignore-errors 0 | default [])
+
+  let nix_flags = [
+    "--option" "accept-flake-config" "true"
+  ] | append ($args_split | get --ignore-errors 1 | default [])
+
+  if $host == (hostname) {
+    nh os switch . ...$nh_flags -- ...$nix_flags
+  } else {
+    git ls-files | (
+      rsync
+        --rsh "ssh -q"
+        --delete --delete-excluded
+        --compress
+        --files-from -
+        ./ ($host + ":Configuration")
+    )
+
+    ssh -q $host $"
       cd Configuration
-      nix flake archive
-      sudo nixos-rebuild switch ($flags | str join ' ') |& nom --json
-    '"
+      ./rebuild.nu ($host) ($arguments | str join ' ')
+    "
   }
 }

@@ -1,9 +1,9 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
 desktopSystemConfiguration {
-  programs.seahorse = enabled {};
+  programs.seahorse = enabled;
 
   security.pam.services.login.enableGnomeKeyring = true;
 
-  services.gnome.gnome-keyring = enabled {};
+  services.gnome.gnome-keyring = enabled;
 }

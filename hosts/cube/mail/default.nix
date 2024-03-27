@@ -1,15 +1,18 @@
-{ config, lib, ulib, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
 let
   inherit (config.networking) domain;
 
   fqdn = "mail.${domain}";
-in serverSystemConfiguration {
-  age.secrets."hosts/cube/mail/password".file = ./password.age;
+
+  prometheusPort = 9040;
+in systemConfiguration {
+  secrets.mailPassword.file = ./password.age;
 
   services.prometheus = {
     exporters.postfix = enabled {
-      port = 9040;
+      listenAddress = "[::1]";
+      port          = prometheusPort;
     };
 
     scrapeConfigs = [{
@@ -18,26 +21,11 @@ in serverSystemConfiguration {
       static_configs = [{
         labels.job = "postfix";
         targets    = [
-          "[::]:${toString config.services.prometheus.exporters.postfix.port}"
+          "[::1]:${toString prometheusPort}"
         ];
       }];
     }];
   };
-
-  services.fail2ban.jails = {
-    dovecot.settings = {
-      filter   = "dovecot";
-      maxretry = 3;
-    };
-
-    postfix.settings = {
-      filter   = "postfix";
-      maxretry = 3;
-    };
-  };
-
-  services.kresd.listenPlain         = lib.mkForce [ "[::]:53" "0.0.0.0:53" ];
-  services.redis.servers.rspamd.bind = "0.0.0.0";
 
   services.dovecot2.sieve = {
     extensions       = [ "fileinto" ];
@@ -74,7 +62,7 @@ in serverSystemConfiguration {
     loginAccounts."contact@${domain}" = {
       aliases = [ "@${domain}" ];
 
-      hashedPasswordFile = config.age.secrets."hosts/cube/mail/password".path;
+      hashedPasswordFile = config.secrets.mailPassword.path;
     };
   };
 }

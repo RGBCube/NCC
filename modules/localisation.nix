@@ -1,4 +1,4 @@
-{ ulib, ... }: with ulib; merge
+{ lib, ... }: with lib; merge
 
 (systemConfiguration {
   console.keyMap = "trq";
@@ -7,17 +7,15 @@
 })
 
 (desktopSystemConfiguration {
-  i18n.extraLocaleSettings = let
-    locale = "tr_TR.UTF-8";
-  in {
-    LC_ADDRESS        = locale;
-    LC_IDENTIFICATION = locale;
-    LC_MEASUREMENT    = locale;
-    LC_MONETARY       = locale;
-    LC_NAME           = locale;
-    LC_NUMERIC        = locale;
-    LC_PAPER          = locale;
-    LC_TELEPHONE      = locale;
-    LC_TIME           = locale;
-  };
+  i18n.extraLocaleSettings = genAttrs [
+    "LC_ADDRESS"
+    "LC_IDENTIFICATION"
+    "LC_MEASUREMENT"
+    "LC_MONETARY"
+    "LC_NAME"
+    "LC_NUMERIC"
+    "LC_PAPER"
+    "LC_TELEPHONE"
+    "LC_TIME"
+  ] (_: "tr_TR.UTF-8");
 })

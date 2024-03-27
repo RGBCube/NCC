@@ -1,7 +1,7 @@
-{ ulib, theme, ... }: with ulib;
+{ config, lib, ... }: with lib;
 
-desktopHomeConfiguration {
-  services.dunst = with theme.withHashtag; enabled {
+desktopUserHomeConfiguration {
+  services.dunst = with config.theme.withHashtag; enabled {
     iconTheme = icons;
 
     settings.global = {

@@ -1,5 +1,5 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
 desktopSystemConfiguration {
-  services.auto-cpufreq = enabled {};
+  services.auto-cpufreq = enabled;
 }

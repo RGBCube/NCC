@@ -1,4 +1,4 @@
-{ ulib, pkgs, upkgs, ... }: with ulib; merge3
+{ lib, pkgs, ... }: with lib; merge
 
 (systemPackages (with pkgs; [
   asciinema
@@ -10,8 +10,6 @@
   (fortune.override { withOffensive = true; })
   hyperfine
   moreutils
-  nix-index
-  nix-output-monitor
   openssl
   p7zip
   pstree
@@ -26,7 +24,7 @@
 ]))
 
 (desktopSystemPackages (with pkgs; [
-  upkgs.ageNix
+  agenix
 
   clang_16
   clang-tools_16
@@ -36,18 +34,17 @@
   jdk
   lld
   maven
-  upkgs.zig
   vlang
+  zig
 
   wine
 ]))
 
-(desktopHomePackages (with pkgs; [
+(desktopUserHomePackages (with pkgs; [
   element-desktop
   fractal
   qbittorrent
   thunderbird
-  upkgs.rat
   whatsapp-for-linux
 
   krita

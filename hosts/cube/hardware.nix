@@ -1,8 +1,10 @@
-{ ulib, modulesPath, ... }: with ulib; merge
+{ lib, modulesPath, ... }: with lib;
 
-(modulesPath + "/profiles/qemu-guest.nix")
+systemConfiguration {
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
 
-(serverSystemConfiguration {
   boot.loader.grub = enabled {
     device      = "/dev/vda";
     useOSProber = true;
@@ -17,7 +19,7 @@
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/a14e3685-693a-4099-a2fe-ce959935dd50";
+    device = "/dev/disk/by-label/root";
     fsType = "ext4";
   };
-})
+}

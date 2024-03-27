@@ -1,18 +1,19 @@
-{
-  enabled = attributes: attributes // {
-    enable = true;
-  };
-
+lib: {
   normalUser = attributes: attributes // {
     isNormalUser = true;
   };
 
-  systemUser = attributes: attributes // {
-    isSystemUser = true;
+  sudoUser = attributes: attributes // {
+    isNormalUser = true;
+    extraGroups  = [ "wheel" ] ++ attributes.extraGroups or [];
   };
 
-  graphicalUser = attributes: attributes // {
-    isNormalUser = true;
-    extraGroups  = [ "graphical" ] ++ attributes.extraGroups or []; 
+  desktopUser = attributes: attributes // {
+    isNormalUser  = true;
+    isDesktopUser = true; # Defined in options/desktop.nix.
+  };
+
+  systemUser = attributes: attributes // {
+    isSystemUser = true;
   };
 }

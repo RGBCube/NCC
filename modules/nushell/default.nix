@@ -1,7 +1,22 @@
-{ config, ulib, pkgs, ... } @ inputs: with ulib; merge3
+{ config, lib, pkgs, ... } @ inputs: with lib; merge
 
 (systemConfiguration {
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.nushellFull;
+
+  environment.shellAliases = {
+    la  = "ls --all";
+    lla = "ls --long --all";
+    sl  = "ls";
+
+    cp = "cp --recursive --verbose --progress";
+    mk = "mkdir";
+    mv = "mv --verbose";
+    rm = "rm --recursive --verbose";
+
+    less   = "less -FR";
+    pstree = "pstree -g 2";
+    tree   = "tree -CF --dirsfirst";
+  };
 })
 
 (homeConfiguration {
@@ -10,9 +25,9 @@
       command_timeout = 100;
       scan_timeout    = 20;
 
-      cmd_duration.show_notifications = ulib.isDesktop;
+      cmd_duration.show_notifications = isDesktop;
 
-      package.disabled = ulib.isServer;
+      package.disabled = isServer;
 
       character.error_symbol   = "";
       character.success_symbol = "";
@@ -20,29 +35,16 @@
   };
 
   programs.nushell = enabled {
+    package = pkgs.nushellFull;
+
     configFile.text = import ./configuration.nix.nu inputs;
-    envFile.text    = import ./environment.nix.nu inputs;
+    envFile.source  = ./environment.nu;
 
-    environmentVariables = {
-      inherit (config.environment.variables) NIX_LD;
-    };
+    environmentVariables = mapAttrs (_: value: ''"${value}"'') config.environment.variables;
 
-    shellAliases = {
+    shellAliases = (attrsets.removeAttrs config.environment.shellAliases [ "ls" "l" ]) // {
       cdtmp = "cd (mktemp --directory)";
-
-      la  = "ls --all";
-      ll  = "ls --long";
-      lla = "ls --long --all";
-      sl  = "ls";
-
-      cp = "cp --recursive --verbose --progress";
-      mk = "mkdir";
-      mv = "mv --verbose";
-      rm = "rm --recursive --verbose";
-
-      less   = "less -FR";
-      pstree = "pstree -g 2";
-      tree   = "tree -CF --dirsfirst";
+      ll    = "ls --long";
     };
   };
 })

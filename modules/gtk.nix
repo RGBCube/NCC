@@ -1,21 +1,21 @@
-{ ulib, pkgs, theme, ... }: with ulib; merge
+{ config, lib, pkgs, ... }: with lib; merge
 
 (desktopSystemConfiguration {
-  programs.dconf = enabled {};
+  programs.dconf = enabled;
 })
 
-(desktopHomeConfiguration {
+(desktopUserHomeConfiguration {
   gtk = enabled {
-    gtk3.extraCss = theme.adwaitaGtkCss;
-    gtk4.extraCss = theme.adwaitaGtkCss;
+    gtk3.extraCss = config.theme.adwaitaGtkCss;
+    gtk4.extraCss = config.theme.adwaitaGtkCss;
 
-    font = with theme.font; {
+    font = with config.theme.font; {
       inherit (sans) name package;
 
       size = size.normal;
     };
 
-    iconTheme = theme.icons;
+    iconTheme = config.theme.icons;
 
     theme = {
       name    = "Adwaita-dark";
@@ -23,4 +23,5 @@
     };
   };
 })
+
 

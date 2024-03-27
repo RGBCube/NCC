@@ -1,4 +1,4 @@
-{ ulib, pkgs, ... }: with ulib; merge
+{ lib, pkgs, ... }: with lib; merge
 
 (desktopSystemConfiguration {
   programs.thunar = enabled {

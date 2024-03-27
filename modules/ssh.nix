@@ -1,4 +1,4 @@
-{ ulib, pkgs, ... }: with ulib; merge
+{ lib, pkgs, ... }: with lib; merge
 
 (desktopSystemPackages (with pkgs; [
   mosh
@@ -11,23 +11,49 @@
     serverAliveCountMax = 2;
     serverAliveInterval = 60;
 
-    matchBlocks."*".setEnv = {
-      COLORTERM = "truecolor";
-      TERM      = "xterm-256color";
-    };
+    matchBlocks = {
+      "*" = {
+        setEnv.COLORTERM = "truecolor";
+        setEnv.TERM      = "xterm-256color";
 
-    matchBlocks.cube = {
-      hostname     = "5.255.78.70";
-      user         = "rgb";
-      port         = 2222;
-      identityFile = "~/.ssh/id";
-    };
+        identityFile = "~/.ssh/id";
+      };
 
-    matchBlocks.robotic = {
-      hostname     = "86.105.252.189";
-      user         = "rgbcube";
-      port         = 2299;
-      identityFile = "~/.ssh/id";
+      cube = {
+        hostname = "5.255.78.70";
+        user     = "rgb";
+        port     = 2222;
+      };
+
+      disk = {
+        hostname = "23.164.232.40";
+        user     = "floppy";
+        port     = 2222;
+      };
+
+      robotic = {
+        hostname = "86.105.252.189";
+        user     = "rgbcube";
+        port     = 2299;
+      };
+    };
+  };
+})
+
+(let
+  port = 2222;
+in serverSystemConfiguration {
+  programs.mosh = enabled {
+    openFirewall = true;
+  };
+
+  services.openssh = enabled {
+    ports    = [ port ];
+    settings = {
+      KbdInteractiveAuthentication = false;
+      PasswordAuthentication       = false;
+
+      AcceptEnv = "COLORTERM";
     };
   };
 })

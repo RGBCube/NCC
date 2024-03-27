@@ -1,19 +1,49 @@
- { config, lib, ulib, pkgs, ... }: with ulib;
+ { config, lib, pkgs, ... }: with lib;
 
 let
   inherit (config.networking) domain;
 
   fqdn = "cloud.${domain}";
-in serverSystemConfiguration {
-  age.secrets."hosts/cube/nextcloud/password" = {
+
+  prometheusPort = 9060;
+
+  nextcloudPackage = pkgs.nextcloud28;
+in systemConfiguration {
+  secrets.nextcloudPassword = {
     file  = ./password.age;
     owner = "nextcloud";
+  };
+  secrets.nextcloudExporterPassword = {
+    file  = ./password.age;
+    owner = "nextcloud-exporter";
+  };
+
+  services.prometheus = {
+    exporters.nextcloud = enabled {
+      listenAddress = "[::1]";
+      port          = prometheusPort;
+
+      username     = "admin";
+      url          = "https://${fqdn}";
+      passwordFile = config.secrets.nextcloudExporterPassword.path;
+    };
+
+    scrapeConfigs = [{
+      job_name = "nextcloud";
+
+      static_configs = [{
+        labels.job = "nextcloud";
+        targets    = [
+          "[::1]:${toString prometheusPort}"
+        ];
+      }];
+    }];
   };
 
   services.postgresql = {
     ensureDatabases = [ "nextcloud" ];
     ensureUsers     = [{
-      name = "nextcloud";
+      name              = "nextcloud";
       ensureDBOwnership = true;
     }];
   };
@@ -22,7 +52,7 @@ in serverSystemConfiguration {
     after    = [ "postgresql.service" ];
     requires = [ "postgresql.service" ];
 
-    script = lib.mkAfter ''
+    script = mkAfter ''
       nextcloud-occ theming:config name "RGBCube's Depot"
       nextcloud-occ theming:config slogan "RGBCube's storage of insignificant data."
 
@@ -34,7 +64,7 @@ in serverSystemConfiguration {
   };
 
   services.nextcloud = enabled {
-    package  = pkgs.nextcloud28;
+    package  = nextcloudPackage;
 
     hostName = fqdn;
     https    = true;
@@ -42,7 +72,7 @@ in serverSystemConfiguration {
     configureRedis = true;
 
     config.adminuser     = "admin";
-    config.adminpassFile = config.age.secrets."hosts/cube/nextcloud/password".path;
+    config.adminpassFile = config.secrets.nextcloudPassword.path;
 
     config.dbhost = "/run/postgresql";
     config.dbtype = "pgsql";
@@ -50,7 +80,7 @@ in serverSystemConfiguration {
     settings = {
       default_phone_region = "TR";
 
-      mail_smtphost     = "::";
+      mail_smtphost     = "::1";
       mail_smtpmode     = "sendmail";
       mail_from_address = "cloud";
     };
@@ -76,16 +106,15 @@ in serverSystemConfiguration {
 
     extraAppsEnable = true;
     extraApps       = {
-      inherit (config.services.nextcloud.package.packages.apps)
+      inherit (nextcloudPackage.packages.apps)
         bookmarks calendar contacts deck
-        forms groupfolders impersonate
-        mail maps notes phonetrack
-        polls previewgenerator tasks;
+        forms groupfolders impersonate mail
+        maps notes polls previewgenerator tasks;
         # Add: files_markdown files_texteditor memories news
     };
 
     nginx.recommendedHttpHeaders = true;
   };
 
-  services.nginx.virtualHosts.${fqdn} = sslTemplate domain;
+  services.nginx.virtualHosts.${fqdn} = config.sslTemplate;
 }

@@ -1,9 +1,12 @@
-{ config, lib, ulib, pkgs, ... }: with ulib; merge
+{ lib, pkgs, ... }: with lib; merge
 
-(serverSystemConfiguration {
+(let
+  prometheusPort = 9020;
+in systemConfiguration {
   services.prometheus = {
     exporters.postgres = enabled {
-      port                = 9020;
+      listenAddress       = "[::1]";
+      port                = prometheusPort;
       runAsLocalSuperUser = true;
     };
 
@@ -12,7 +15,7 @@
 
       static_configs = [{
         labels.job = "postgres";
-        targets    = [ "[::]:${toString config.services.prometheus.exporters.postgres.port}" ];
+        targets    = [ "[::1]:${toString prometheusPort}" ];
       }];
     }];
   };
@@ -22,7 +25,7 @@
 
     initdbArgs = [ "--locale=C" "--encoding=UTF8" ];
 
-    authentication = lib.mkOverride 10 ''
+    authentication = mkOverride 10 ''
     # Type  Database DBUser Authentication IdentMap
       local sameuser all    peer           map=superuser_map
     '';
@@ -58,7 +61,7 @@
     ];
 
     settings = {
-      listen_addresses = lib.mkForce "";
+      listen_addresses = mkForce "";
 
       # https://pgconfigurator.cybertec.at/
       max_connections                = 100;
@@ -118,6 +121,6 @@
   };
 })
 
-(serverSystemPackages (with pkgs; [
+(systemPackages (with pkgs; [
   postgresql
 ]))

@@ -1,37 +1,34 @@
 *
 
-!derivations/
-
 !docs/
 
 !hosts/
 
-!hosts/enka/
-
 !hosts/cube/
-!hosts/cube/acme/
 !hosts/cube/forgejo/
 !hosts/cube/grafana/
 !hosts/cube/mail/
-!hosts/cube/matrix-synapse/
+!hosts/cube/matrix/
 !hosts/cube/nextcloud/
+
+!hosts/disk/
+
+!hosts/enka/
 
 !modules/
 !modules/hyprland/
 !modules/nushell/
-!modules/openssh/
 
 !lib/
+
+!options/
 
 !.gitignore
 !flake.lock
 
 !*.age
 !*.gif
-!*.hist
 !*.md
 !*.nix
 !*.nu
-!*.opus
 !*.png
-!*.sh

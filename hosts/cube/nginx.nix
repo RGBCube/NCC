@@ -1,12 +1,17 @@
-{ config, ulib, pkgs, ... }: with ulib;
+{ lib, pkgs, ... }: with lib;
 
-serverSystemConfiguration {
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  networking.firewall.allowedUDPPorts = [ 443 ];
+let
+  prometheusPort = 9030;
+in systemConfiguration {
+  networking.firewall = {
+    allowedTCPPorts = [ 443 80 ];
+    allowedUDPPorts = [ 443 ];
+  };
 
   services.prometheus = {
     exporters.nginx = enabled {
-      port = 9030;
+      listenAddress = "[::1]";
+      port          = prometheusPort;
     };
 
     scrapeConfigs = [{
@@ -14,7 +19,7 @@ serverSystemConfiguration {
 
       static_configs = [{
         labels.job = "nginx";
-        targets    = [ "[::]:${toString config.services.prometheus.exporters.nginx.port}" ];
+        targets    = [ "[::1]:${toString prometheusPort}" ];
       }];
     }];
   };

@@ -1,7 +1,7 @@
-{ ulib, ... }: with ulib;
+{ lib, ... }: with lib;
 
 systemConfiguration {
   environment.defaultPackages = [];
 
-  programs.nano.enable = false; # Garbage.
+  programs.nano = disabled; # Garbage.
 }

@@ -1,15 +1,15 @@
-{ config, ulib, ... }: with ulib;
+{ self, config, lib, ... }: with lib;
 
 let
   inherit (config.networking) domain;
-in serverSystemConfiguration {
-  age.secrets."hosts/cube/acme/password".file = ./password.age;
+in systemConfiguration {
+  secrets.acmePassword.file = self + /hosts/password.acme.age;
 
   security.acme = {
     acceptTerms = true;
 
     defaults = {
-      environmentFile = config.age.secrets."hosts/cube/acme/password".path;
+      environmentFile = config.secrets.acmePassword.path;
       dnsProvider     = "cloudflare";
       dnsResolver     = "1.1.1.1";
       email           = "security@${domain}";

@@ -1,4 +1,4 @@
-{ config, ulib, keys, ... }: with ulib; merge
+{ config, lib, keys, ... }: with lib; merge
 
 (systemConfiguration {
   system.stateVersion  = "23.05";
@@ -6,18 +6,30 @@
 
   networking.domain = "rgbcu.be";
 
-  time.timeZone = "Europe/Amsterdam";
+  secrets.rgbPassword.file = ./password.rgb.age;
 
-  age.secrets."hosts/cube/password.rgb".file = ./password.rgb.age;
+  users.users = {
+    root.hashedPasswordFile = config.secrets.rgbPassword.path;
 
-  users.users.root.hashedPasswordFile = config.age.secrets."hosts/cube/password.rgb".path;
-
-  users.users.rgb = normalUser {
-    description                 = "RGB";
-    extraGroups                 = [ "wheel" ];
-    openssh.authorizedKeys.keys = [ keys.enka ];
-    hashedPasswordFile          = config.age.secrets."hosts/cube/password.rgb".path;
+    rgb = sudoUser {
+      description                 = "RGB";
+      openssh.authorizedKeys.keys = [ keys.enka ];
+      hashedPasswordFile          = config.secrets.rgbPassword.path;
+    };
   };
+
+  services.openssh.banner = ''
+     _______________________________________
+    / If God doesn't destroy San Francisco, \
+    | He should apologize to Sodom and      |
+    \ Gomorrah.                             /
+     ---------------------------------------
+            \   ^__^
+             \  (oo)\_______
+                (__)\       )\/\
+                    ||----w |
+                    ||     ||
+  '';
 })
 
 (homeConfiguration {

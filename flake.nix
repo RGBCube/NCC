@@ -7,14 +7,14 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nixSuper = {
-      url = "github:privatevoid-net/nix-super";
+    # nixSuper = {
+    #   url = "github:privatevoid-net/nix-super";
 
-      inputs.flake-compat.follows = "flakeCompat";
-      # inputs.nixpkgs.follows      = "nixpkgs";
-    };
+    #   inputs.flake-compat.follows = "flakeCompat";
+    #   inputs.nixpkgs.follows      = "nixpkgs";
+    # };
 
     homeManager = {
       url = "github:nix-community/home-manager";
@@ -27,11 +27,6 @@
 
       inputs.nixpkgs.follows      = "nixpkgs";
       inputs.home-manager.follows = "homeManager";
-    };
-
-    nuScripts = {
-      url   = "github:nushell/nu_scripts";
-      flake = false;
     };
 
     simpleMail = {
@@ -69,7 +64,7 @@
     fenix = {
       url = "github:nix-community/fenix";
 
-      inputs.nixpkgs.follows      = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zig = {
@@ -116,117 +111,103 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     ageNix,
     simpleMail,
     homeManager,
-    themes,
+    ghosttyModule,
     ...
   } @ inputs: let
-    importConfiguration = host: let
-      hostDefault = import ./hosts/${host} {
-        config = {};
-        keys   = {};
-        ulib   = (import ./lib lib null) // {
-          merge = lib.recursiveUpdate;
-        };
-      };
+    lib0  = nixpkgs.lib;
+    keys = import ./keys.nix;
 
-      users = {
-        all = let
-          users = builtins.attrNames hostDefault.users.users;
-        in if builtins.elem "root" users then
-          users
-        else
-          users ++ [ "root" ];
+    collectNixFiles = directory: with lib0; pipe (builtins.readDir directory) [
+      (mapAttrsToList (name: type: let
+        path = /${directory}/${name};
+      in if type == "directory" then
+        collectNixFiles path
+      else
+        path))
+      flatten
+      (filter (hasSuffix ".nix"))
+      (filter (name: !hasPrefix "_" (builtins.baseNameOf name)))
+    ];
 
-        graphical = builtins.attrNames (lib.filterAttrs (_: value: builtins.elem "graphical" (value.extraGroups or [])) hostDefault.users.users);
-      };
+    lib1 = with lib0; extend (_: _: pipe (collectNixFiles ./lib) [
+      (map (file: import file lib0))
+      (filter (thunk: !isFunction thunk))
+      (foldl' recursiveUpdate {})
+    ]);
 
-      system = hostDefault.nixpkgs.hostPlatform;
-
-      lib  = nixpkgs.lib;
-      ulib = import ./lib lib users;
-
-      pkgs  = import nixpkgs { inherit system; };
-      upkgs = let
-        defaults = lib.genAttrs
-          [ "nixSuper" "ageNix" "hyprland" "hyprpicker" "ghostty" "zls" ]
-          (name: inputs.${name}.packages.${system}.default);
-
-        other = {
-          nuScripts = inputs.nuScripts;
-          rat       = pkgs.callPackage ./derivations/rat.nix {};
-          zig       = inputs.zig.packages.${system}.master;
-        };
-      in defaults // other;
-
-      keys = import ./keys.nix;
-
-      theme = themes.custom (themes.raw.gruvbox-dark-hard // {
-        cornerRadius = 8;
-        borderWidth  = 2;
-
-        margin  = 6;
-        padding = 8;
-
-        font.size.normal = 12;
-        font.size.big    = 18;
-
-        font.sans.name    = "Lexend";
-        font.sans.package = pkgs.lexend;
-
-        font.mono.name    = "JetBrainsMono Nerd Font";
-        font.mono.package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
-
-        icons.name    = "Gruvbox-Plus-Dark";
-        icons.package = pkgs.gruvbox-plus-icons;
-      });
-
-      defaultConfiguration = {
-        age.identityPaths = map (user: "/home/${user}/.ssh/id") users.all;
-
-        home-manager.users           = lib.genAttrs users.all (_: {});
-        home-manager.useGlobalPkgs   = true;
-        home-manager.useUserPackages = true;
-
-        networking.hostName  = host;
-      };
-
-    in lib.nixosSystem {
-      inherit system;
-
-      specialArgs = { inherit inputs ulib upkgs keys theme; };
-
-      modules = let
-        mapDirectory = function: directory: with builtins;
-          attrValues (mapAttrs function (readDir directory));
-
-        nullIfUnderscoreOrNotNix = name: if (builtins.substring 0 1 name) == "_" then
-          null
-        else if lib.hasSuffix ".age" name then
-          null
-        else
-          name;
-
-        filterNull = builtins.filter (x: x != null);
-
-        importDirectory = directory:
-          filterNull (mapDirectory (name: _: lib.mapNullable (name: /${directory}/${name}) (nullIfUnderscoreOrNotNix name)) directory);
-      in [
-        homeManager.nixosModules.default
-
-        ageNix.nixosModules.default
-
-        simpleMail.nixosModules.default
-
-        defaultConfiguration
-      ] ++ (importDirectory ./hosts/${host})
-        ++ (importDirectory ./modules);
+    nixpkgsOverlayModule = with lib1; {
+      nixpkgs.overlays = [(final: prev: {
+        ghostty = inputs.ghostty.packages.${prev.system}.default;
+        zls     = inputs.zls.packages.${prev.system}.default;
+      })] ++ pipe inputs [
+        attrValues
+        (filter (value: value ? overlays.default))
+        (map (value: value.overlays.default))
+      ];
     };
 
-    hosts = (builtins.attrNames (builtins.readDir ./hosts));
+    homeManagerModule = { lib, ... }: with lib; {
+      home-manager.users = genAttrs allNormalUsers (_: {});
+
+      home-manager.useGlobalPkgs   = true;
+      home-manager.useUserPackages = true;
+
+      home-manager.sharedModules = [ ghosttyModule.homeModules.default ];
+    };
+
+    ageNixModule = {
+      age.identityPaths = [ "/root/.ssh/id" ];
+    };
+
+    optionModules = [
+      homeManager.nixosModules.default
+      ageNix.nixosModules.default
+      simpleMail.nixosModules.default
+
+      (lib1.mkAliasOptionModule [ "secrets" ] [ "age" "secrets" ])
+    ] ++ collectNixFiles ./options;
+
+    optionUsageModules = [
+      nixpkgsOverlayModule
+      homeManagerModule
+      ageNixModule
+    ] ++ collectNixFiles ./modules;
+
+    specialArgs = { inherit self inputs keys; };
+
+    hosts = lib1.pipe (builtins.readDir ./hosts) [
+      (lib1.filterAttrs (name: type: type == "regular" -> lib1.hasSuffix ".nix" name))
+      lib1.attrNames
+    ];
+
+    lib2s = with lib1; genAttrs hosts (name: let
+      hostStub = nixosSystem {
+        inherit specialArgs;
+
+        modules = [ ./hosts/${name} ] ++ optionModules;
+      };
+    in extend (_: _: pipe (collectNixFiles ./lib) [
+      (map (file: import file lib1))
+      (filter (isFunction))
+      (map (func: func hostStub.config))
+      (foldl' recursiveUpdate {})
+    ]));
+
+    configurations = lib1.genAttrs hosts (name: lib2s.${name}.nixosSystem {
+      inherit specialArgs;
+ 
+      modules = [{
+        networking.hostName = name;
+      }] ++ optionModules ++ optionUsageModules ++ collectNixFiles ./hosts/${name};
+    });
   in {
-    nixosConfigurations = nixpkgs.lib.genAttrs hosts importConfiguration;
-  };
+    nixosConfigurations = configurations;
+
+  # This is here so we can do self.<whatever> instead of self.nixosConfigurations.<whatever>.config.
+  } // lib1.mapAttrs (_: value: value.config) configurations;
 }
