@@ -5,8 +5,14 @@ let
 
   fqdn = "git.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube/password.mail.forgejo".owner   = "forgejo";
-  age.secrets."cube/password.runner.forgejo".owner = "forgejo";
+  age.secrets."hosts/cube/forgejo/password.mail" = {
+    file  = ./password.mail.age;
+    owner = "forgejo";
+  };
+  age.secrets."hosts/cube/forgejo/password.runner" = {
+    file  = ./password.runner.age;
+    owner = "forgejo";
+  };
 
   services.postgresql = {
     ensureDatabases = [ "forgejo" ];
@@ -36,7 +42,7 @@ in serverSystemConfiguration {
         "act:docker://ghcr.io/catthehacker/ubuntu:act-latest"
       ];
 
-      tokenFile = config.age.secrets."cube/password.runner.forgejo".path;
+      tokenFile = config.age.secrets."hosts/cube/forgejo/password.runner".path;
 
       settings = {
         cache.enabled     = true;
@@ -59,7 +65,7 @@ in serverSystemConfiguration {
   services.forgejo = enabled {
     lfs = enabled {};
 
-    mailerPasswordFile = config.age.secrets."cube/password.mail.forgejo".path;
+    mailerPasswordFile = config.age.secrets."hosts/cube/forgejo/password.mail".path;
 
     database = {
       socket = "/run/postgresql";

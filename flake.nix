@@ -161,7 +161,7 @@
         };
       in defaults // other;
 
-      keys = (import ./secrets/secrets.nix).keys;
+      keys = import ./keys.nix;
 
       theme = themes.custom (themes.raw.gruvbox-dark-hard // {
         cornerRadius = 8;
@@ -202,7 +202,9 @@
         mapDirectory = function: directory: with builtins;
           attrValues (mapAttrs function (readDir directory));
 
-        nullIfUnderscore = name: if (builtins.substring 0 1 name) == "_" then
+        nullIfUnderscoreOrNotNix = name: if (builtins.substring 0 1 name) == "_" then
+          null
+        else if lib.hasSuffix ".age" name then
           null
         else
           name;
@@ -210,12 +212,11 @@
         filterNull = builtins.filter (x: x != null);
 
         importDirectory = directory:
-          filterNull (mapDirectory (name: _: lib.mapNullable (name: /${directory}/${name}) (nullIfUnderscore name)) directory);
+          filterNull (mapDirectory (name: _: lib.mapNullable (name: /${directory}/${name}) (nullIfUnderscoreOrNotNix name)) directory);
       in [
         homeManager.nixosModules.default
 
         ageNix.nixosModules.default
-        ./secrets
 
         simpleMail.nixosModules.default
 

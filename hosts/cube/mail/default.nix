@@ -5,6 +5,8 @@ let
 
   fqdn = "mail.${domain}";
 in serverSystemConfiguration {
+  age.secrets."hosts/cube/mail/password".file = ./password.age;
+
   services.prometheus = {
     exporters.postfix = enabled {
       port = 9040;
@@ -72,7 +74,7 @@ in serverSystemConfiguration {
     loginAccounts."contact@${domain}" = {
       aliases = [ "@${domain}" ];
 
-      hashedPasswordFile = config.age.secrets."cube/password.hash.mail".path;
+      hashedPasswordFile = config.age.secrets."hosts/cube/mail/password".path;
     };
   };
 }

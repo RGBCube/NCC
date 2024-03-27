@@ -5,7 +5,10 @@ let
 
   fqdn = "cloud.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube/password.nextcloud".owner = "nextcloud";
+  age.secrets."hosts/cube/nextcloud/password" = {
+    file  = ./password.age;
+    owner = "nextcloud";
+  };
 
   services.postgresql = {
     ensureDatabases = [ "nextcloud" ];
@@ -39,7 +42,7 @@ in serverSystemConfiguration {
     configureRedis = true;
 
     config.adminuser     = "admin";
-    config.adminpassFile = config.age.secrets."cube/password.nextcloud".path;
+    config.adminpassFile = config.age.secrets."hosts/cube/nextcloud/password".path;
 
     config.dbhost = "/run/postgresql";
     config.dbtype = "pgsql";

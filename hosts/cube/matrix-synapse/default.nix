@@ -35,8 +35,14 @@ let
   synapsePort = 8001;
   syncPort    = 8002;
 in serverSystemConfiguration {
-  age.secrets."cube/password.secret.matrix-synapse".owner = "matrix-synapse";
-  age.secrets."cube/password.sync.matrix-synapse".owner   = "matrix-synapse";
+  age.secrets."hosts/cube/matrix-synapse/password.secret" = {
+    file  = ./password.secret.age;
+    owner = "matrix-synapse";
+  };
+  age.secrets."hosts/cube/matrix-synapse/password.sync" = {
+    file  = ./password.sync.age;
+    owner = "matrix-synapse";
+  };
 
   services.postgresql = {
     ensureDatabases = [ "matrix-synapse" "matrix-sliding-sync" ];
@@ -82,7 +88,7 @@ in serverSystemConfiguration {
     };
 
     # Sets registration_shared_secret.
-    extraConfigFiles = [ config.age.secrets."cube/password.secret.matrix-synapse".path ];
+    extraConfigFiles = [ config.age.secrets."hosts/cube/matrix-synapse/password.secret".path ];
 
     settings.listeners = [{
       port = synapsePort;
@@ -109,7 +115,7 @@ in serverSystemConfiguration {
   }];
 
   services.matrix-sliding-sync = enabled {
-    environmentFile = config.age.secrets."cube/password.sync.matrix-synapse".path;
+    environmentFile = config.age.secrets."hosts/cube/matrix-synapse/password.sync".path;
     settings        = {
       SYNCV3_SERVER   = "https://${chatDomain}";
       SYNCV3_DB       = "postgresql:///matrix-sliding-sync?host=/run/postgresql";

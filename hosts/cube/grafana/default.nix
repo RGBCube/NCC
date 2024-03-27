@@ -5,8 +5,14 @@ let
 
   fqdn = "metrics.${domain}";
 in serverSystemConfiguration {
-  age.secrets."cube/password.grafana".owner      = "grafana";
-  age.secrets."cube/password.mail.grafana".owner = "grafana";
+  age.secrets."hosts/cube/grafana/password" = {
+    file  = ./password.age;
+    owner = "grafana";
+  };
+  age.secrets."hosts/cube/grafana/password.mail" = {
+    file  = ./password.mail.age;
+    owner = "grafana";
+  };
 
   services.fail2ban.jails.grafana.settings = {
     filter       = "grafana";
@@ -46,7 +52,7 @@ in serverSystemConfiguration {
 
     settings.security = {
       admin_email    = "metrics@${domain}";
-      admin_password = "$__file{${config.age.secrets."cube/password.grafana".path}}";
+      admin_password = "$__file{${config.age.secrets."hosts/cube/grafana/password".path}}";
       admin_user     = "admin";
 
       cookie_secure    = true;
@@ -58,7 +64,7 @@ in serverSystemConfiguration {
     settings.smtp = {
       enabled = true;
 
-      password        = "$__file{${config.age.secrets."cube/password.mail.grafana".path}}";
+      password        = "$__file{${config.age.secrets."hosts/cube/grafana/password.mail".path}}";
       startTLS_policy = "MandatoryStartTLS";
 
       ehlo_identity = "contact@${domain}";
