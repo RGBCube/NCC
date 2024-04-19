@@ -182,7 +182,7 @@
   nodePackages_latest.prettier
 
   # KOTLIN
-  kotlin-language-server
+  # kotlin-language-server
 
   # LATEX
   texlab
