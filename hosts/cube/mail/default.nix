@@ -39,6 +39,9 @@ in systemConfiguration {
     domains           = [ domain ];
     certificateScheme = "acme";
 
+    # We use systemd-resolved instead of Knot Resolver.
+    localDnsResolver = false;
+
     hierarchySeparator = "/";
     useFsLayout        = true;
 
