@@ -4,7 +4,6 @@ systemConfiguration {
   boot.loader = {
     systemd-boot = enabled {
       editor      = false;
-      consoleMode = "max";
     };
 
     efi.canTouchEfiVariables = true;
