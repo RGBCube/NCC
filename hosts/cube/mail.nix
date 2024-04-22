@@ -7,7 +7,7 @@ let
 
   prometheusPort = 9040;
 in systemConfiguration {
-  secrets.mailPassword.file = ./password.age;
+  secrets.mailPassword.file = ./password.plain.mail.age;
 
   services.prometheus = {
     exporters.postfix = enabled {
