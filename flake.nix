@@ -153,10 +153,6 @@
       home-manager.sharedModules = [ ghosttyModule.homeModules.default ];
     };
 
-    ageNixModule = {
-      age.identityPaths = [ "/root/.ssh/id" ];
-    };
-
     optionModules = [
       homeManager.nixosModules.default
       ageNix.nixosModules.default
@@ -168,7 +164,6 @@
     optionUsageModules = [
       nixpkgsOverlayModule
       homeManagerModule
-      ageNixModule
     ] ++ collectNixFiles ./modules;
 
     specialArgs = { inherit self inputs keys; };

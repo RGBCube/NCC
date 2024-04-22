@@ -24,8 +24,6 @@
 ]))
 
 (desktopSystemPackages (with pkgs; [
-  agenix
-
   clang_16
   clang-tools_16
   deno
