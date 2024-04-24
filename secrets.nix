@@ -17,6 +17,8 @@ in with keys; {
 
   "hosts/cube/nextcloud/password.age".publicKeys  = [ cube enka ];
 
+  "hosts/cube/restic/password.age".publicKeys = [ cube enka ];
+
   ### disk
   "hosts/disk/id.age".publicKeys              = [ cube enka ];
   "hosts/disk/password.floppy.age".publicKeys = [ disk enka ];

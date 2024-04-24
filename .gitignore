@@ -9,6 +9,7 @@
 !hosts/cube/grafana/
 !hosts/cube/matrix/
 !hosts/cube/nextcloud/
+!hosts/cube/restic/
 
 !hosts/disk/
 
