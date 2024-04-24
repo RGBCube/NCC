@@ -13,11 +13,11 @@ in systemConfiguration {
   services.nginx = enabled {
     appendHttpConfig = ''
       map $http_origin $allow_origin {
-        ~^https://.+\.rgbcu.be$ $http_origin;
+        ~^https://.+\.${domain}$ $http_origin;
       }
 
       map $http_origin $allow_methods {
-        ~^https://.+\.rgbcu.be$ "GET, HEAD, OPTIONS";
+        ~^https://.+\.${domain}$ "GET, HEAD, OPTIONS";
       }
     '';
 

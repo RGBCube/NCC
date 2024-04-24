@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: with lib; merge
+{ self, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
   environment.shellAliases = {
@@ -64,7 +64,9 @@
   };
 })
 
-(homeConfiguration {
+(let
+  gitHost = self.cube.networking.hostName;
+in homeConfiguration {
   programs.nushell.configFile.text = mkAfter ''
     # Sets the remote origin to the specified user and repository on my git instance
     def gsr [user_and_repo: string] {
@@ -74,7 +76,7 @@
         "RGBCube/" + $user_and_repo
       }
 
-      git remote add origin ("https://git.rgbcu.be/" + $user_and_repo)
+      git remote add origin ("https://git.${gitHost}/" + $user_and_repo)
     }
   '';
 
@@ -82,7 +84,7 @@
     package = pkgs.gitFull;
 
     userName  = "RGBCube";
-    userEmail = "git@rgbcu.be";
+    userEmail = "git@${gitHost}";
 
     lfs = enabled;
 
@@ -123,7 +125,7 @@
 
       core.sshCommand                              = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf        = "https://github.com/";
-      url."ssh://forgejo@rgbcu.be:2222/".insteadOf = "https://git.rgbcu.be/";
+      url."ssh://forgejo@${gitHost}:2222/".insteadOf = "https://git.${gitHost}/";
     } (mkIf isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;
