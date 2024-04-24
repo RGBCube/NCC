@@ -7,7 +7,7 @@ systemConfiguration {
     passwordFile = config.secrets.resticPassword.path;
     initialize   = true;
 
-    repository = "sftp:backup@disk:cube-varlib";
+    repository = "sftp:backup@${self.disk.networking.ipv4}:cube-varlib";
 
     paths = [ "/var/lib" ];
 

@@ -4,8 +4,6 @@
   system.stateVersion  = "23.05";
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  networking.domain = "rgbcu.be";
-
   secrets.rgbPassword.file = ./password.rgb.age;
 
   users.users = {
@@ -30,6 +28,12 @@
                     ||----w |
                     ||     ||
   '';
+
+  networking = {
+    ipv4 = "5.255.78.70";
+
+    domain = "rgbcu.be";
+  };
 })
 
 (homeConfiguration {

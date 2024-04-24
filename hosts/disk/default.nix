@@ -4,8 +4,6 @@
   system.stateVersion  = "23.11";
   nixpkgs.hostPlatform = "x86_64-linux";
 
-  networking.domain = "rgbcu.be";
-
   secrets.floppyPassword.file  = ./password.floppy.age;
 
   users.users = {
@@ -25,17 +23,22 @@
   };
 
   networking = {
+    ipv4 = "23.164.232.40";
+    ipv6 = "2602:f9f7::40";
+
+    domain = "rgbcu.be";
+
     defaultGateway  = "23.164.232.1";
     defaultGateway6 = "2602:f9f7::1";
 
     interfaces.ens32 = {
       ipv4.addresses = [{
-        address      = "23.164.232.40";
+        address      = config.networking.ipv4;
         prefixLength = 25;
       }];
 
       ipv6.addresses = [{
-        address      = "2602:f9f7::40";
+        address      = config.networking.ipv6;
         prefixLength = 64;
       }];
     };

@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: with lib; merge
+{ self, lib, pkgs, ... }: with lib; merge
 
 (desktopSystemPackages (with pkgs; [
   mosh
@@ -20,13 +20,13 @@
       };
 
       cube = {
-        hostname = "5.255.78.70";
+        hostname = self.cube.networking.ipv4;
         user     = "rgb";
         port     = 2222;
       };
 
       disk = {
-        hostname = "23.164.232.40";
+        hostname = self.disk.networking.ipv4;
         user     = "floppy";
         port     = 2222;
       };
