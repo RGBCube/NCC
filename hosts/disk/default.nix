@@ -16,6 +16,12 @@
       openssh.authorizedKeys.keys = [ keys.enka ];
       hashedPasswordFile          = config.secrets.floppyPassword.path;
     };
+
+    backup = normalUser {
+      description                 = "Backup";
+      openssh.authorizedKeys.keys = [ keys.cube keys.enka ];
+      hashedPasswordFile          = config.secrets.floppyPassword.path;
+    };
   };
 
   networking = {

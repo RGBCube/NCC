@@ -2,7 +2,8 @@ let
   keys = import ./keys.nix;
 in with keys; {
   ### cube
-  "hosts/cube/password.rgb.age".publicKeys       = [ cube enka ];
+  "hosts/cube/id.age".publicKeys           = [ cube enka ];
+  "hosts/cube/password.rgb.age".publicKeys = [ cube enka ];
 
   "hosts/cube/password.plain.mail.age".publicKeys = [ cube enka ];
   "hosts/cube/password.hash.mail.age".publicKeys  = [ cube enka ];
@@ -17,7 +18,7 @@ in with keys; {
   "hosts/cube/nextcloud/password.age".publicKeys  = [ cube enka ];
 
   ### disk
-
+  "hosts/disk/id.age".publicKeys              = [ cube enka ];
   "hosts/disk/password.floppy.age".publicKeys = [ disk enka ];
 
   ### enka

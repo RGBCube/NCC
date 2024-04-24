@@ -4,7 +4,7 @@
   mosh
 ]))
 
-(desktopHomeConfiguration {
+(homeConfiguration {
   programs.ssh = enabled {
     controlMaster       = "auto";
     controlPersist      = "60m";
