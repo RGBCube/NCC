@@ -4,6 +4,7 @@
   system.stateVersion  = "23.11";
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  secrets.id.file              = ./id.age;
   secrets.floppyPassword.file  = ./password.floppy.age;
 
   users.users = {
@@ -21,6 +22,11 @@
       hashedPasswordFile          = config.secrets.floppyPassword.path;
     };
   };
+
+  services.openssh.hostKeys = [{
+    type = "ed25519";
+    path = config.secrets.id.path;
+  }];
 
   networking = {
     ipv4 = "23.164.232.40";

@@ -4,6 +4,7 @@
   system.stateVersion  = "23.05";
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  secrets.id.file          = ./id.age;
   secrets.rgbPassword.file = ./password.rgb.age;
 
   users.users = {
@@ -16,18 +17,25 @@
     };
   };
 
-  services.openssh.banner = ''
-     _______________________________________
-    / If God doesn't destroy San Francisco, \
-    | He should apologize to Sodom and      |
-    \ Gomorrah.                             /
-     ---------------------------------------
-            \   ^__^
-             \  (oo)\_______
-                (__)\       )\/\
-                    ||----w |
-                    ||     ||
-  '';
+  services.openssh = {
+    banner = ''
+       _______________________________________
+      / If God doesn't destroy San Francisco, \
+      | He should apologize to Sodom and      |
+      \ Gomorrah.                             /
+       ---------------------------------------
+              \   ^__^
+               \  (oo)\_______
+                  (__)\       )\/\
+                      ||----w |
+                      ||     ||
+    '';
+
+    hostKeys = [{
+      type = "ed25519";
+      path = config.secrets.id.path;
+    }];
+  };
 
   networking = {
     ipv4 = "5.255.78.70";

@@ -20,7 +20,7 @@ in with keys; {
   "hosts/cube/restic/password.age".publicKeys = [ cube enka ];
 
   ### disk
-  "hosts/disk/id.age".publicKeys              = [ cube enka ];
+  "hosts/disk/id.age".publicKeys              = [ disk enka ];
   "hosts/disk/password.floppy.age".publicKeys = [ disk enka ];
 
   ### enka
