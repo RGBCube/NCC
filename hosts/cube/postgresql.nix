@@ -27,7 +27,7 @@ in systemConfiguration {
 
     authentication = mkOverride 10 ''
       # Type Database DBUser Authentication IdentMap
-      local  sameuser all    peer           map=superuser_map
+      local  all      all    peer           map=superuser_map
     '';
 
     identMap = ''
