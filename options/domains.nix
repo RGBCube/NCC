@@ -1,7 +1,3 @@
 { lib, ... }: {
-  options = {
-    mailserver.domain = lib.mkValue null;
-
-    services.forgejo.fqdn = lib.mkValue null;
-  };
+  options.services.forgejo.fqdn = lib.mkValue null;
 }

@@ -66,7 +66,7 @@
 
 (let
   gitDomain  = self.cube.services.forgejo.fqdn;
-  mailDomain = self.disk.mailserver.domain;
+  mailDomain = head self.disk.mailserver.domains;
 in homeConfiguration {
   programs.nushell.configFile.text = mkAfter ''
     # Sets the remote origin to the specified user and repository on my git instance
