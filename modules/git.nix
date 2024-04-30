@@ -126,7 +126,7 @@ in homeConfiguration {
 
       core.sshCommand                                  = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf            = "https://github.com/";
-      url."ssh://forgejo@${gitDomain}:2222/".insteadOf = "https://${gitDomain}/";
+      url."ssh://forgejo@${gitDomain}:${head self.cube.openssh.ports}/".insteadOf = "https://${gitDomain}/";
     } (mkIf isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;

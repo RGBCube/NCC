@@ -131,7 +131,7 @@ in systemConfiguration {
         HTTP_ADDR = "::1";
         HTTP_PORT = port;
 
-        SSH_PORT = builtins.elemAt config.services.openssh.ports 0;
+        SSH_PORT = head config.services.openssh.ports;
 
         DISABLE_ROUTER_LOG = true;
       };
