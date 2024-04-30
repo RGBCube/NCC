@@ -10,10 +10,10 @@ systemConfiguration {
       initialize   = true;
 
       pruneOpts = [
-        "--keep-daily 3"
-        "--keep-weekly 5"
-        "--keep-monthly 12"
-        "--keep-yearly 75"
+        "--keep-daily unlimited"
+        "--keep-weekly unlimited"
+        "--keep-monthly 6"
+        "--keep-yearly 12"
       ];
 
       timerConfig = {
