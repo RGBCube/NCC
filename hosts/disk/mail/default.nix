@@ -28,7 +28,7 @@ in systemConfiguration {
   };
 
   mailserver = enabled {
-    inherit fqdn;
+    inherit domain fqdn;
 
     domains           = [ domain ];
     certificateScheme = "acme";

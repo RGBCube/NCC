@@ -66,6 +66,8 @@ in systemConfiguration {
   services.openssh.settings.AcceptEnv = mkForce "COLORTERM GIT_PROTOCOL";
 
   services.forgejo = enabled {
+    inherit fqdn;
+
     lfs = enabled;
 
     mailerPasswordFile = config.secrets.forgejoMailPassword.path;

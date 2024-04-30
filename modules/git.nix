@@ -65,9 +65,8 @@
 })
 
 (let
-  inherit (self.disk.networking) domain;
-
-  gitHost = self.cube.networking.hostName;
+  gitDomain  = self.cube.services.forgejo.fqdn;
+  mailDomain = self.disk.mailserver.domain;
 in homeConfiguration {
   programs.nushell.configFile.text = mkAfter ''
     # Sets the remote origin to the specified user and repository on my git instance
@@ -78,7 +77,7 @@ in homeConfiguration {
         "RGBCube/" + $user_and_repo
       }
 
-      git remote add origin ("https://${gitHost}/" + $user_and_repo)
+      git remote add origin ("https://${gitDomain}/" + $user_and_repo)
     }
   '';
 
@@ -86,7 +85,7 @@ in homeConfiguration {
     package = pkgs.gitFull;
 
     userName  = "RGBCube";
-    userEmail = "git@${domain}";
+    userEmail = "git@${mailDomain}";
 
     lfs = enabled;
 
@@ -125,9 +124,9 @@ in homeConfiguration {
       # https://bernsteinbear.com/git
       alias.recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10";
 
-      core.sshCommand                              = "ssh -i ~/.ssh/id";
-      url."ssh://git@github.com/".insteadOf        = "https://github.com/";
-      url."ssh://forgejo@${domain}:2222/".insteadOf = "https://git.${gitHost}/";
+      core.sshCommand                                  = "ssh -i ~/.ssh/id";
+      url."ssh://git@github.com/".insteadOf            = "https://github.com/";
+      url."ssh://forgejo@${gitDomain}:2222/".insteadOf = "https://${gitDomain}/";
     } (mkIf isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;
