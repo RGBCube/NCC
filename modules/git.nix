@@ -65,7 +65,9 @@
 })
 
 (let
-  gitDomain  = self.cube.services.forgejo.fqdn;
+  gitUrl    = self.cube.services.forgejo.settings.server.ROOT_URL;
+  gitDomain = head (strings.match "https://(.*)/" gitUrl);
+
   mailDomain = head self.disk.mailserver.domains;
 in homeConfiguration {
   programs.nushell.configFile.text = mkAfter ''
@@ -77,7 +79,7 @@ in homeConfiguration {
         "RGBCube/" + $user_and_repo
       }
 
-      git remote add origin ("https://${gitDomain}/" + $user_and_repo)
+      git remote add origin ("${gitUrl}" + $user_and_repo)
     }
   '';
 
@@ -126,7 +128,7 @@ in homeConfiguration {
 
       core.sshCommand                                  = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf            = "https://github.com/";
-      url."ssh://forgejo@${gitDomain}:${head self.cube.openssh.ports}/".insteadOf = "https://${gitDomain}/";
+      url."ssh://forgejo@${gitDomain}:${toString (head self.cube.services.openssh.ports)}/".insteadOf = gitUrl;
     } (mkIf isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;
