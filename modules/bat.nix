@@ -2,7 +2,7 @@
 
 (systemConfiguration {
   environment.variables = {
-    MANPAGER = "bat --plain --language man";
+    MANPAGER = "bat --plain";
     PAGER    = "bat --plain";
   };
 
