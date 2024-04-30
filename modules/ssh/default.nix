@@ -1,4 +1,11 @@
-{ self, lib, pkgs, ... }: with lib; merge
+{ self, config, lib, pkgs, ... }: with lib; merge
+
+(systemConfiguration {
+  secrets.sshConfig = {
+    file = ./config.age;
+    mode = "444";
+  };
+})
 
 (desktopSystemPackages (with pkgs; [
   mosh
@@ -10,6 +17,8 @@
     controlPersist      = "60m";
     serverAliveCountMax = 2;
     serverAliveInterval = 60;
+
+    includes = [ config.secrets.sshConfig.path ];
 
     matchBlocks = {
       "*" = {

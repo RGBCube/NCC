@@ -19,6 +19,7 @@
 !modules/
 !modules/hyprland/
 !modules/nushell/
+!modules/ssh/
 
 !lib/
 

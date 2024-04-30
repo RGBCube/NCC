@@ -1,5 +1,7 @@
 let
   keys = import ./keys.nix;
+
+  all = builtins.attrValues keys;
 in with keys; {
   ### cube
   "hosts/cube/id.age".publicKeys           = [ cube enka ];
@@ -28,6 +30,6 @@ in with keys; {
   "hosts/enka/password.said.age".publicKeys  = [ enka ];
 
   ### shared
-
-  "hosts/password.acme.age".publicKeys = [ cube disk enka ];
+  "hosts/password.acme.age".publicKeys = all;
+  "modules/ssh/config.age".publicKeys  = all;
 }
