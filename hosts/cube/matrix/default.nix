@@ -11,7 +11,7 @@ let
   wellKnownResponse = data: ''
     default_type application/json;
     add_header Access-Control-Allow-Origin *;
-    return 200 '${builtins.toJSON data}';
+    return 200 '${strings.toJSON data}';
   '';
 
   clientConfig."m.homeserver".base_url        = "https://${chatDomain}";
