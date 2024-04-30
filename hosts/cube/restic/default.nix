@@ -9,7 +9,8 @@ systemConfiguration {
 
     repository = "sftp:backup@disk:${config.networking.hostName}-varlib";
 
-    paths = [ "/var/lib" ];
+    paths   = [ "/var/lib" ];
+    exclude = [ "/var/lib/postgresql" ]; # TODO
 
     timerConfig = {
       OnCalendar = "daily";
