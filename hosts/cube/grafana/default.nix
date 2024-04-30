@@ -1,4 +1,4 @@
-{ config, lib, ... }: with lib;
+{ self, config, lib, ... }: with lib;
 
 let
   inherit (config.networking) domain;
@@ -12,7 +12,7 @@ in systemConfiguration {
     owner = "grafana";
   };
   secrets.grafanaMailPassword = {
-    file  = ../mail/password.plain.age;
+    file  = ../../disk/mail/password.plain.age;
     owner = "grafana";
   };
 
@@ -63,10 +63,10 @@ in systemConfiguration {
       password        = "$__file{${config.secrets.grafanaMailPassword.path}}";
       startTLS_policy = "MandatoryStartTLS";
 
-      ehlo_identity = "contact@${domain}";
+      ehlo_identity = "metrics@${domain}";
       from_address  = "metrics@${domain}";
       from_name     = "Metrics";
-      host          = "${config.mailserver.fqdn}:${toString config.services.postfix.relayPort}";
+      host          = "${self.disk.mailserver.fqdn}:${toString config.services.postfix.relayPort}";
     };
   };
 

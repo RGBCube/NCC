@@ -80,7 +80,7 @@ in systemConfiguration {
     settings = {
       default_phone_region = "TR";
 
-      mail_smtphost     = "::1";
+      mail_smtphost     = "::1"; # FIXME: Will need to use SMTP.
       mail_smtpmode     = "sendmail";
       mail_from_address = "cloud";
     };

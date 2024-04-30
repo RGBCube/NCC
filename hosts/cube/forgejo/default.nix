@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: with lib;
+{ self, config, lib, pkgs, ... }: with lib;
 
 let
   inherit (config.networking) domain;
@@ -8,7 +8,7 @@ let
   port = 8001;
 in systemConfiguration {
   secrets.forgejoMailPassword = {
-    file  = ../mail/password.plain.age;
+    file  = ../../disk/mail/password.plain.age;
     owner = "forgejo";
   };
   secrets.forgejoRunnerPassword = {
@@ -93,7 +93,7 @@ in systemConfiguration {
         ENABLED = true;
 
         PROTOCOL  = "smtps";
-        SMTP_ADDR = config.mailserver.fqdn;
+        SMTP_ADDR = self.disk.mailserver.fqdn;
         USER      = "git@${domain}";
       };
 

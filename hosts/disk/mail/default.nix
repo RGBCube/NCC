@@ -7,7 +7,7 @@ let
 
   prometheusPort = 9040;
 in systemConfiguration {
-  secrets.mailPassword.file = ./password.plain.age;
+  secrets.mailPassword.file = ./password.hash.age;
 
   services.prometheus = {
     exporters.postfix = enabled {
@@ -25,12 +25,6 @@ in systemConfiguration {
         ];
       }];
     }];
-  };
-
-  services.dovecot2.sieve = {
-    extensions       = [ "fileinto" ];
-    globalExtensions = [ "+vnd.dovecot.pipe" "+vnd.dovecot.environment" ];
-    plugins          = [ "sieve_imapsieve" "sieve_extprograms" ];
   };
 
   mailserver = enabled {
