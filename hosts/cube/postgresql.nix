@@ -23,18 +23,17 @@ in systemConfiguration {
   services.postgresql = enabled {
     package = pkgs.postgresql_14;
 
-    initdbArgs = [ "--locale=C" "--encoding=UTF8" ];
+    enableJIT = true;
 
-    authentication = mkOverride 10 ''
-      # Type Database DBUser Authentication IdentMap
-      local  all      all    peer           map=superuser_map
+    initdbArgs    = [ "--locale=C" "--encoding=UTF8" ];
+    initialScript = pkgs.writeText "grant-root-perms" ''
+      GRANT pg_read_all_data  TO root;
+      GRANT pg_write_all_data TO root;
     '';
 
-    identMap = ''
-      # Map         System   DBUser
-      superuser_map root     ^(.*)$
-      superuser_map postgres ^(.*)$
-      superuser_map /^(.*)$  \1
+    authentication = mkOverride 10 ''
+      # Type Database DBUser Authentication
+      local  all      all    peer
     '';
 
     ensureUsers = [
