@@ -65,6 +65,8 @@
 })
 
 (let
+  inherit (self.disk.networking) domain;
+
   gitHost = self.cube.networking.hostName;
 in homeConfiguration {
   programs.nushell.configFile.text = mkAfter ''
@@ -76,7 +78,7 @@ in homeConfiguration {
         "RGBCube/" + $user_and_repo
       }
 
-      git remote add origin ("https://git.${gitHost}/" + $user_and_repo)
+      git remote add origin ("https://${gitHost}/" + $user_and_repo)
     }
   '';
 
@@ -84,7 +86,7 @@ in homeConfiguration {
     package = pkgs.gitFull;
 
     userName  = "RGBCube";
-    userEmail = "git@${gitHost}";
+    userEmail = "git@${domain}";
 
     lfs = enabled;
 
@@ -125,7 +127,7 @@ in homeConfiguration {
 
       core.sshCommand                              = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf        = "https://github.com/";
-      url."ssh://forgejo@${gitHost}:2222/".insteadOf = "https://git.${gitHost}/";
+      url."ssh://forgejo@${domain}:2222/".insteadOf = "https://git.${gitHost}/";
     } (mkIf isDesktop {
       commit.gpgSign  = true;
       tag.gpgSign     = true;
