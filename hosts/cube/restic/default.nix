@@ -23,15 +23,12 @@ systemConfiguration {
     paths = [
       "/tmp/postgresql-dump.sql.gz"
     ] ++ map (dir: "/var/lib/${dir}") [
-      "dkim"
       "forgejo"
       "gitea-runner"
       "grafana"
-      "mail"
       "matrix-sliding-sync"
       "matrix-synapse"
       "nextcloud"
-      "postfix"
     ];
 
     backupPrepareCommand = ''
