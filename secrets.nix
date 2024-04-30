@@ -5,8 +5,8 @@ in with keys; {
   "hosts/cube/id.age".publicKeys           = [ cube enka ];
   "hosts/cube/password.rgb.age".publicKeys = [ cube enka ];
 
-  "hosts/cube/password.plain.mail.age".publicKeys = [ cube enka ];
-  "hosts/cube/password.hash.mail.age".publicKeys  = [ cube enka ];
+  "hosts/cube/mail/password.plain.age".publicKeys = [ cube enka ];
+  "hosts/cube/mail/password.hash.age".publicKeys  = [ cube enka ];
 
   "hosts/cube/forgejo/password.runner.age".publicKeys = [ cube enka ];
 

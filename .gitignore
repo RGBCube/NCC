@@ -7,6 +7,7 @@
 !hosts/cube/
 !hosts/cube/forgejo/
 !hosts/cube/grafana/
+!hosts/cube/mail/
 !hosts/cube/matrix/
 !hosts/cube/nextcloud/
 !hosts/cube/restic/

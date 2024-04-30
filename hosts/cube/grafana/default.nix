@@ -12,7 +12,7 @@ in systemConfiguration {
     owner = "grafana";
   };
   secrets.grafanaMailPassword = {
-    file  = ../password.plain.mail.age;
+    file  = ../mail/password.plain.age;
     owner = "grafana";
   };
 
