@@ -124,11 +124,6 @@
         };
       };
 
-      nu = { # TODO: Remove in the next Helix release.
-        command = "nu";
-        args    = [ "--lsp" ];
-      };
-
       rust-analyzer.config.check.command = "clippy";
     };
 
