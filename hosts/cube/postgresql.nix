@@ -26,12 +26,12 @@ in systemConfiguration {
     initdbArgs = [ "--locale=C" "--encoding=UTF8" ];
 
     authentication = mkOverride 10 ''
-    # Type  Database DBUser Authentication IdentMap
-      local sameuser all    peer           map=superuser_map
+      # Type Database DBUser Authentication IdentMap
+      local  sameuser all    peer           map=superuser_map
     '';
 
     identMap = ''
-    # Map           System   DBUser
+      # Map         System   DBUser
       superuser_map root     ^(.*)$
       superuser_map postgres ^(.*)$
       superuser_map /^(.*)$  \1
