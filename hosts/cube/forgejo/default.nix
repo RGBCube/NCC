@@ -8,7 +8,7 @@ let
   port = 8001;
 in systemConfiguration {
   secrets.forgejoMailPassword = {
-    file  = ../../disk/mail/password.plain.age;
+    file  = self + /hosts/disk/mail/password.plain.age;
     owner = "forgejo";
   };
   secrets.forgejoRunnerPassword = {

@@ -2,7 +2,7 @@
 
 systemConfiguration {
   imports = [
-    (self + /hosts/cube/acme.nix)
+    (self + /hosts/cube/acme)
     (self + /hosts/cube/nginx.nix)
     (self + /hosts/cube/site.nix)
   ];

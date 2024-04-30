@@ -7,6 +7,8 @@ in with keys; {
   "hosts/cube/id.age".publicKeys           = [ cube enka ];
   "hosts/cube/password.rgb.age".publicKeys = [ cube enka ];
 
+  "hosts/cube/acme/environment.age".publicKeys = all;
+
   "hosts/cube/forgejo/password.runner.age".publicKeys = [ cube enka ];
 
   "hosts/cube/grafana/password.age".publicKeys      = [ cube enka ];
@@ -22,7 +24,7 @@ in with keys; {
   "hosts/disk/id.age".publicKeys              = [ disk enka ];
   "hosts/disk/password.floppy.age".publicKeys = [ disk enka ];
 
-  "hosts/disk/mail/password.plain.age".publicKeys = [ cube disk enka ]; # TODO: Move to shared.
+  "hosts/disk/mail/password.plain.age".publicKeys = all;
   "hosts/disk/mail/password.hash.age".publicKeys  = [ disk enka ];
 
   ### enka
@@ -30,6 +32,5 @@ in with keys; {
   "hosts/enka/password.said.age".publicKeys  = [ enka ];
 
   ### shared
-  "hosts/password.acme.age".publicKeys = all;
   "modules/ssh/config.age".publicKeys  = all;
 }
