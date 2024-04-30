@@ -13,7 +13,6 @@
     mv = "mv --verbose";
     rm = "rm --recursive --verbose";
 
-    less   = "less -FR";
     pstree = "pstree -g 2";
     tree   = "tree -CF --dirsfirst";
   };

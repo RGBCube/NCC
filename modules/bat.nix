@@ -6,7 +6,10 @@
     PAGER    = "bat --plain";
   };
 
-  environment.shellAliases.cat  = "bat";
+  environment.shellAliases = {
+    cat  = "bat";
+    less = "bat --plain";
+  };
 })
 
 (homeConfiguration {
