@@ -5,7 +5,7 @@ let
 
   fqdn = "git.${domain}";
 
-  port = 8004;
+  port = 8001;
 in systemConfiguration {
   secrets.forgejoMailPassword = {
     file  = ../mail/password.plain.age;

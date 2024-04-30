@@ -33,8 +33,8 @@ let
     locations."/assets/".extraConfig = "return 301 https://${domain}$request_uri;";
   };
 
-  synapsePort = 8001;
-  syncPort    = 8002;
+  synapsePort = 8002;
+  syncPort    = 8003;
 in serverSystemConfiguration {
   secrets.matrixSecret = {
     file  = ./password.secret.age;
