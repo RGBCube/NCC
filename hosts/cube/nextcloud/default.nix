@@ -83,6 +83,12 @@ in systemConfiguration {
       mail_smtphost     = "::1"; # FIXME: Will need to use SMTP.
       mail_smtpmode     = "sendmail";
       mail_from_address = "cloud";
+
+      maintenance_window_start = 1;
+
+      # No clue why it was syslog.
+      # What are the NixOS module authors on?
+      log_type = "file";
     };
 
     settings.enabledPreviewProviders = [
