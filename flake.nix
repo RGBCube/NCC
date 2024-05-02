@@ -166,7 +166,7 @@
       homeManagerModule
     ] ++ collectNixFiles ./modules;
 
-    specialArgs = { inherit self inputs keys; };
+    specialArgs = inputs // { inherit inputs keys; };
 
     hosts = lib1.pipe (builtins.readDir ./hosts) [
       (lib1.filterAttrs (name: type: type == "regular" -> lib1.hasSuffix ".nix" name))

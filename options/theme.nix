@@ -1,6 +1,4 @@
-{ inputs, lib, pkgs, ... }: let
-  inherit (inputs) themes;
-in {
+{ lib, pkgs, themes, ... }: {
   options.theme = lib.mkConst (themes.custom (themes.raw.gruvbox-dark-hard // {
     cornerRadius = 8;
     borderWidth  = 2;
