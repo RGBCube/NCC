@@ -1,4 +1,3 @@
-{ lib, ... }: ''
 $env.config = {
   bracketed_paste:                  true
   buffer_editor:                    ""
@@ -390,4 +389,3 @@ $env.config.keybindings = [
 ]
 
 source ~/.config/nushell/zoxide.nu
-''

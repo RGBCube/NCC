@@ -36,7 +36,7 @@
   programs.nushell = enabled {
     package = pkgs.nushellFull;
 
-    configFile.text = import ./configuration.nix.nu inputs;
+    configFile.text = readFile ./configuration.nu;
     envFile.source  = ./environment.nu;
 
     environmentVariables = mapAttrs (_: value: ''"${value}"'') config.environment.variables;
