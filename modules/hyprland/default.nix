@@ -1,7 +1,12 @@
-{ config, lib, pkgs, ... }: with lib; merge
+{ config, lib, pkgs, hyprland, ... }: with lib; merge
 
-(desktopSystemConfiguration {
-  hardware.opengl = enabled;
+(let
+  hyprPkgs = import hyprland.inputs.nixpkgs { inherit (config.nixpkgs.hostPlatform) system; };
+in desktopSystemConfiguration {
+  hardware.opengl = enabled {
+    package   = hyprPkgs.mesa.drivers;
+    package32 = hyprPkgs.pkgsi686Linux.mesa.drivers;
+  };
 
   xdg.portal = enabled {
     config.common.default = "*";
