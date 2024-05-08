@@ -119,6 +119,10 @@ desktopUserHomeConfiguration {
         color: ${base0C};
       }
 
+      #workspaces button.empty {
+        color: ${base01};
+      }
+
       #tray, #pulseaudio, #backlight, #cpu, #memory, #network, #battery, #clock {
         margin-left: 20px;
       }
