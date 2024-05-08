@@ -48,7 +48,7 @@
   krita
   obs-studio
 
-  libreoffice
-  hunspellDicts.en_US
-  hunspellDicts.en_GB-ize
+  # libreoffice
+  # hunspellDicts.en_US
+  # hunspellDicts.en_GB-ize
 ]))
