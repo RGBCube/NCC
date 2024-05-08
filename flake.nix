@@ -2,8 +2,19 @@
   description = "RGBCube's NixOS Configuration Collection";
 
   nixConfig = {
-    extra-substituters        = "https://cache.garnix.io/";
-    extra-trusted-public-keys = "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g=";
+    extra-substituters = [
+      "https://cache.garnix.io/"
+      "https://ghostty.cachix.org/"
+      "https://hyprland.cachix.org/"
+      "https://nix-community.cachix.org/"
+    ];
+
+    extra-trusted-public-keys = [
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+    ];
   };
 
   inputs = {
@@ -25,82 +36,30 @@
     simpleMail = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
 
-      inputs.nixpkgs.follows      = "nixpkgs";
-      inputs.utils.follows        = "flakeUtils";
-      inputs.flake-compat.follows = "flakeCompat";
-    };
-
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-
-      inputs.hyprlang.follows = "hyprlang";
-      inputs.nixpkgs.follows  = "nixpkgs";
-      inputs.systems.follows  = "systems";
-    };
-
-    hyprpicker = {
-      url = "github:hyprwm/hyprpicker";
-
-      inputs.nixpkgs.follows  = "nixpkgs";
-    };
-
-    ghostty = {
-      url = "git+ssh://git@github.com/RGBCube/ghostty";
-
-      inputs.nixpkgs-unstable.follows = "nixpkgs";
-      inputs.nixpkgs-stable.follows   = "nixpkgs";
-
-      inputs.zig.follows = "zig";
-      inputs.zls.follows = "zig";
-    };
-
-    fenix = {
-      url = "github:nix-community/fenix";
-
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprland.url   = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+
+    ghostty.url       = "git+ssh://git@github.com/RGBCube/ghostty";
+    ghosttyModule.url = "github:clo4/ghostty-hm-module";
+
+    fenix.url = "github:nix-community/fenix";
 
     zig = {
       url = "github:mitchellh/zig-overlay";
 
-      inputs.nixpkgs.follows      = "nixpkgs";
-      inputs.flake-utils.follows  = "flakeUtils";
-      inputs.flake-compat.follows = "flakeCompat";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     zls = {
       url = "github:zigtools/zls/master";
 
-      inputs.nixpkgs.follows     = "nixpkgs";
-      inputs.flake-utils.follows = "flakeUtils";
-      inputs.zig-overlay.follows = "zig";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    ghosttyModule.url = "github:clo4/ghostty-hm-module";
 
     themes.url = "github:RGBCube/ThemeNix";
-
-    # I don't use these, but I place them here and make the other
-    # inputs follow them, so I get much less duplicate code pulled in.
-    flakeUtils = {
-      url = "github:numtide/flake-utils";
-
-      inputs.systems.follows = "systems";
-    };
-
-    flakeCompat = {
-      url   = "github:edolstra/flake-compat";
-      flake = false;
-    };
-
-    systems.url = "github:nix-systems/default";
-
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.systems.follows = "systems";
-    };
   };
 
   outputs = {
