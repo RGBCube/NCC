@@ -40,6 +40,11 @@
         port     = 2222;
       };
 
+      tailtard = {
+        hostname = "164.92.186.28";
+        user     = "root";
+      };
+
       robotic = {
         hostname = "86.105.252.189";
         user     = "rgbcube";
