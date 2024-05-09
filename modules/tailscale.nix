@@ -4,6 +4,8 @@ let
   # Shorter is better for networking interfaces IMO.
   interface = "ts0";
 in systemConfiguration {
+  # This doesn't work with dig but works with curl, Firefox
+  # and all other tools. Skill issue.
   services.resolved.domains = [ "warthog-major.ts.net" ];
 
   services.tailscale = enabled {
