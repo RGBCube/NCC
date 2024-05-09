@@ -8,6 +8,8 @@ in desktopSystemConfiguration {
     package32 = hyprPkgs.pkgsi686Linux.mesa.drivers;
   };
 
+  services.logind.powerKey = "ignore";
+
   xdg.portal = enabled {
     config.common.default = "*";
 
