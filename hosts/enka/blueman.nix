@@ -1,6 +1,6 @@
 { lib, ... }: with lib;
 
-desktopSystemConfiguration {
+systemConfiguration {
   services.blueman = enabled;
 
   hardware.bluetooth = enabled {

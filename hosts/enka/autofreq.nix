@@ -1,5 +1,5 @@
 { lib, ... }: with lib;
 
-desktopSystemConfiguration {
+systemConfiguration {
   services.auto-cpufreq = enabled;
 }
