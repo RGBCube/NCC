@@ -31,6 +31,10 @@ in with keys; {
   "hosts/enka/password.orhan.age".publicKeys = [ enka ];
   "hosts/enka/password.said.age".publicKeys  = [ enka ];
 
+  ### tard
+  "hosts/tard/id.age".publicKeys            = [ tard enka ];
+  "hosts/tard/password.tail.age".publicKeys = [ tard enka ];
+
   ### shared
   "modules/ssh/config.age".publicKeys  = all;
 }

@@ -40,10 +40,11 @@
         port     = 2222;
       };
 
-      tailtard = {
-        hostname = "164.92.186.28";
-        user     = "root";
-      };
+      # tard = {
+      #   hostname = self.tard.networking.ipv4;
+      #   user     = "tail";
+      #   port     = 2222;
+      # };
 
       robotic = {
         hostname = "86.105.252.189";

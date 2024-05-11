@@ -17,6 +17,8 @@
 
 !hosts/enka/
 
+!hosts/tard/
+
 !modules/
 !modules/hyprland/
 !modules/nushell/
