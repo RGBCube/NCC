@@ -101,6 +101,8 @@
         (filter (value: value ? overlays.default))
         (map (value: value.overlays.default))
       ];
+
+      nixpkgs.config.allowUnfree = true; # IDGAF anymore.
     };
 
     homeManagerModule = { lib, ... }: with lib; {
