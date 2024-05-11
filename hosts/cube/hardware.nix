@@ -6,8 +6,7 @@ systemConfiguration {
   ];
 
   boot.loader.grub = enabled {
-    device      = "/dev/vda";
-    # useOSProber = true;
+    device = "/dev/vda";
   };
 
   boot.initrd.availableKernelModules = [
