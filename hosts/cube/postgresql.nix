@@ -1,23 +1,9 @@
 { lib, pkgs, ... }: with lib; merge
 
-(let
-  prometheusPort = 9020;
-in systemConfiguration {
-  services.prometheus = {
-    exporters.postgres = enabled {
-      listenAddress       = "[::1]";
-      port                = prometheusPort;
-      runAsLocalSuperUser = true;
-    };
-
-    scrapeConfigs = [{
-      job_name = "postgres";
-
-      static_configs = [{
-        labels.job = "postgres";
-        targets    = [ "[::1]:${toString prometheusPort}" ];
-      }];
-    }];
+(systemConfiguration {
+  services.prometheus.exporters.postgres = enabled {
+    listenAddress       = "[::]";
+    runAsLocalSuperUser = true;
   };
 
   services.postgresql = enabled {

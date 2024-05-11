@@ -2,24 +2,9 @@
 
 let
   fakeSSHPort    = 22;
-  prometheusPort = 9050;
 in serverSystemConfiguration {
-  services.prometheus = {
-    exporters.endlessh-go = enabled {
-      listenAddress = "[::1]";
-      port          = prometheusPort;
-    };
-
-    scrapeConfigs = [{
-      job_name = "endlessh-go";
-
-      static_configs = [{
-        labels.job = "endlessh-go";
-        targets    = [
-          "[::1]:${toString prometheusPort}"
-        ];
-      }];
-    }];
+  services.prometheus.exporters.endlessh-go = enabled {
+    listenAddress = "[::]";
   };
 
   # `services.endlessh-go.openFirewall` exposes both the Prometheus

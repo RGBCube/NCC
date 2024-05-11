@@ -1,15 +1,11 @@
-{ lib, ... }: with lib;
+{ self, config, lib, ... }: with lib;
 
-let
-  port = 9000;
-
-  nodeExporterPort = 9010;
-in systemConfiguration {
+systemConfiguration {
   services.grafana.provision.datasources.settings = {
     datasources = [{
       name = "Prometheus";
       type = "prometheus";
-      url  = "http://[::1]:${toString port}";
+      url  = "http://[::1]:${toString config.services.prometheus.port}";
 
       orgId = 1;
     }];
@@ -21,23 +17,20 @@ in systemConfiguration {
   };
 
   services.prometheus = enabled {
-    inherit port;
-
+    listenAddress = "[::]";
     retentionTime = "1w";
 
-    exporters.node = enabled {
-      enabledCollectors = [ "processes" "systemd" ];
-      listenAddress     = "[::1]";
-      port              = nodeExporterPort;
-    };
+    scrapeConfigs = with lib; let
+      configToScrapeConfig = name: { config, ... }: pipe config.services.prometheus.exporters [
+        (filterAttrs (_: value: value.enable or false))
+        (mapAttrsToList (expName: expConfig: {
+          job_name = "${expName}-${name}";
 
-    scrapeConfigs = [{
-      job_name = "node";
-
-      static_configs = [{
-        labels.job = "node";
-        targets    = [ "[::1]:${toString nodeExporterPort}" ];
-      }];
-    }];
+          static_configs = [{
+            targets = [ "${name}:${toString expConfig.port}" ];
+          }];
+        }))
+      ];
+    in flatten (mapAttrsToList configToScrapeConfig self.nixosConfigurations);
   };
 }

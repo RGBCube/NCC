@@ -4,27 +4,11 @@ let
   inherit (config.networking) domain;
 
   fqdn = "mail.${domain}";
-
-  prometheusPort = 9040;
 in systemConfiguration {
   secrets.mailPassword.file = ./password.hash.age;
 
-  services.prometheus = {
-    exporters.postfix = enabled {
-      listenAddress = "[::1]";
-      port          = prometheusPort;
-    };
-
-    scrapeConfigs = [{
-      job_name = "postfix";
-
-      static_configs = [{
-        labels.job = "postfix";
-        targets    = [
-          "[::1]:${toString prometheusPort}"
-        ];
-      }];
-    }];
+  services.prometheus.exporters.postfix = enabled {
+    listenAddress = "[::]";
   };
 
   mailserver = enabled {

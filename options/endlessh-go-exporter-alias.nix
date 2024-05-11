@@ -5,8 +5,18 @@
 # This works, however.
 
 { config, lib, ... }: {
-  options.services.prometheus.exporters.endlessh-go = lib.mkOption {
-    default = {};
+  options.services.prometheus.exporters.endlessh-go = {
+    enable = lib.mkEnableOption (lib.mdDoc "Prometheus integration");
+
+    listenAddress = lib.mkOption {
+      type = lib.types.str;
+      default = "0.0.0.0";
+    };
+
+    port = lib.mkOption {
+      type = lib.types.port;
+      default = 2112;
+    };
   };
 
   config.services.endlessh-go.prometheus = config.services.prometheus.exporters.endlessh-go;

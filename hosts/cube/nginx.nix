@@ -1,27 +1,13 @@
 { lib, pkgs, ... }: with lib;
 
-let
-  prometheusPort = 9030;
-in systemConfiguration {
+systemConfiguration {
   networking.firewall = {
     allowedTCPPorts = [ 443 80 ];
     allowedUDPPorts = [ 443 ];
   };
 
-  services.prometheus = {
-    exporters.nginx = enabled {
-      listenAddress = "[::1]";
-      port          = prometheusPort;
-    };
-
-    scrapeConfigs = [{
-      job_name = "nginx";
-
-      static_configs = [{
-        labels.job = "nginx";
-        targets    = [ "[::1]:${toString prometheusPort}" ];
-      }];
-    }];
+  services.prometheus.exporters.nginx = enabled {
+    listenAddress = "[::]";
   };
 
   services.nginx = enabled {

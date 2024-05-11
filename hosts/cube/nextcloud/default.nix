@@ -5,8 +5,6 @@ let
 
   fqdn = "cloud.${domain}";
 
-  prometheusPort = 9060;
-
   nextcloudPackage = pkgs.nextcloud28;
 in systemConfiguration {
   secrets.nextcloudPassword = {
@@ -18,26 +16,12 @@ in systemConfiguration {
     owner = "nextcloud-exporter";
   };
 
-  services.prometheus = {
-    exporters.nextcloud = enabled {
-      listenAddress = "[::1]";
-      port          = prometheusPort;
+  services.prometheus.exporters.nextcloud = enabled {
+    listenAddress = "[::]";
 
-      username     = "admin";
-      url          = "https://${fqdn}";
-      passwordFile = config.secrets.nextcloudExporterPassword.path;
-    };
-
-    scrapeConfigs = [{
-      job_name = "nextcloud";
-
-      static_configs = [{
-        labels.job = "nextcloud";
-        targets    = [
-          "[::1]:${toString prometheusPort}"
-        ];
-      }];
-    }];
+    username     = "admin";
+    url          = "https://${fqdn}";
+    passwordFile = config.secrets.nextcloudExporterPassword.path;
   };
 
   services.postgresql = {
