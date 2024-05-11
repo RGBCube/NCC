@@ -3,7 +3,7 @@ let
 
   all = builtins.attrValues keys;
 in with keys; {
-  ### cube
+  # cube
   "hosts/cube/id.age".publicKeys           = [ cube enka ];
   "hosts/cube/password.rgb.age".publicKeys = [ cube enka ];
 
@@ -20,21 +20,21 @@ in with keys; {
 
   "hosts/cube/restic/password.age".publicKeys = [ cube enka ];
 
-  ### disk
+  # disk
   "hosts/disk/id.age".publicKeys              = [ disk enka ];
   "hosts/disk/password.floppy.age".publicKeys = [ disk enka ];
 
   "hosts/disk/mail/password.plain.age".publicKeys = all;
   "hosts/disk/mail/password.hash.age".publicKeys  = [ disk enka ];
 
-  ### enka
+  # enka
   "hosts/enka/password.orhan.age".publicKeys = [ enka ];
   "hosts/enka/password.said.age".publicKeys  = [ enka ];
 
-  ### tard
+  # tard
   "hosts/tard/id.age".publicKeys            = [ tard enka ];
   "hosts/tard/password.tail.age".publicKeys = [ tard enka ];
 
-  ### shared
+  # shared
   "modules/ssh/config.age".publicKeys  = all;
 }
