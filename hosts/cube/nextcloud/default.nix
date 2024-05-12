@@ -101,7 +101,7 @@ in systemConfiguration {
       inherit (nextcloudPackage.packages.apps)
         bookmarks calendar contacts deck
         forms groupfolders impersonate mail
-        maps notes polls previewgenerator tasks;
+        maps notes polls previewgenerator; # tasks;
         # Add: files_markdown files_texteditor memories news
     };
 
