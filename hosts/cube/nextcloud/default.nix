@@ -5,7 +5,7 @@ let
 
   fqdn = "cloud.${domain}";
 
-  nextcloudPackage = pkgs.nextcloud28;
+  nextcloudPackage = pkgs.nextcloud29;
 in systemConfiguration {
   secrets.nextcloudPassword = {
     file  = ./password.age;
