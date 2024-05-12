@@ -18,7 +18,8 @@ systemConfiguration {
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/root";
-    fsType = "ext4";
+    device  = "/dev/disk/by-label/root";
+    fsType  = "ext4";
+    options = [ "noatime" ];
   };
 }

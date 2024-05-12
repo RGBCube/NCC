@@ -18,8 +18,9 @@ systemConfiguration {
   ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/root";
-    fsType = "btrfs";
+    device  = "/dev/disk/by-label/root";
+    fsType  = "btrfs";
+    options = [ "noatime" ];
   };
 
   fileSystems.${config.boot.loader.efi.efiSysMountPoint} = {

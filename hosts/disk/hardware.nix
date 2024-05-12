@@ -12,8 +12,9 @@ systemConfiguration {
   boot.initrd.availableKernelModules = [ "ahci" "ata_piix" "nvme" "sr_mod" ];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-label/root";
-    fsType = "ext4";
+    device  = "/dev/disk/by-label/root";
+    fsType  = "ext4";
+    options = [ "noatime" ];
   };
 
   fileSystems.${config.boot.loader.efi.efiSysMountPoint} = {
