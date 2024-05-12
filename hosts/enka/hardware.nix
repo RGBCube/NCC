@@ -3,7 +3,7 @@
 systemConfiguration {
   boot.loader = {
     systemd-boot = enabled {
-      editor      = false;
+      editor = false;
     };
 
     efi.canTouchEfiVariables = true;
