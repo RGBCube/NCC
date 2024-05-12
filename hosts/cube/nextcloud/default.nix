@@ -100,7 +100,7 @@ in systemConfiguration {
     extraApps       = {
       inherit (nextcloudPackage.packages.apps)
         bookmarks calendar contacts deck
-        forms groupfolders impersonate mail
+        forms impersonate mail # groupfolders impersonate mail
         maps notes polls previewgenerator; # tasks;
         # Add: files_markdown files_texteditor memories news
     };
