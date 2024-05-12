@@ -24,8 +24,9 @@ systemConfiguration {
   };
 
   fileSystems.${config.boot.loader.efi.efiSysMountPoint} = {
-    device = "/dev/disk/by-label/boot";
-    fsType = "vfat";
+    device  = "/dev/disk/by-label/boot";
+    fsType  = "vfat";
+    options = [ "noatime" ];
   };
 
   swapDevices = [{
