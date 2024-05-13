@@ -120,7 +120,7 @@ desktopUserHomeConfiguration {
       }
 
       #workspaces button.empty {
-        color: ${base01};
+        color: ${base02};
       }
 
       #tray, #pulseaudio, #backlight, #cpu, #memory, #network, #battery, #clock {
