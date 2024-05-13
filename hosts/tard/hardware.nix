@@ -19,7 +19,7 @@ systemConfiguration {
   boot.initrd.kernelModules = [ "nvme" ];
 
   fileSystems."/" = {
-    device  = "/dev/vda1";
+    device  = "/dev/disk/by-label/root";
     fsType  = "ext4";
     options = [ "noatime" ];
   };

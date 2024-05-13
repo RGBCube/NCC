@@ -9,7 +9,12 @@ systemConfiguration {
     efi.canTouchEfiVariables = true;
   };
 
-  boot.initrd.availableKernelModules = [ "ahci" "ata_piix" "nvme" "sr_mod" ];
+  boot.initrd.availableKernelModules = [
+    "ahci"
+    "ata_piix"
+    "nvme"
+    "sr_mod"
+  ];
 
   fileSystems."/" = {
     device  = "/dev/disk/by-label/root";
