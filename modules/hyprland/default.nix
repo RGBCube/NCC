@@ -147,9 +147,6 @@ in desktopSystemConfiguration {
         "col.inactive_border" = "0xFF${base01}";
         "col.nogroup_border"  = "0xFF${base01}";
 
-        cursor_inactive_timeout = 10;
-        no_cursor_warps         = true;
-
         resize_on_border = true;
       };
 
@@ -197,9 +194,14 @@ in desktopSystemConfiguration {
         disable_hyprland_logo    = true;
         disable_splash_rendering = true;
 
-        hide_cursor_on_key_press = true;
         key_press_enables_dpms   = true;
         mouse_move_enables_dpms  = true;
+      };
+
+      cursor = {
+        hide_on_key_press = true;
+        inactive_timeout  = 10;
+        no_warps          = true;
       };
 
       dwindle = {
