@@ -48,11 +48,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1715772335,
-        "narHash": "sha256-UJqH5daLJL9xWwMSUtxN+Fes3eGZZtcV+Vbj2am8+FY=",
+        "lastModified": 1715779594,
+        "narHash": "sha256-hfkFr987DhmMmoJb2KSrd1ZnGiCyMDd9eYbUMEqhqzE=",
         "owner": "RGBCube",
         "repo": "crash",
-        "rev": "d17a8c9d054d8404c94a1dff8356a36eea428698",
+        "rev": "00c77812f131f0f0e6781c68e632f8551da0ac63",
         "type": "github"
       },
       "original": {
