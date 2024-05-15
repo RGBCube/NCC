@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... } @ inputs: with lib; merge
+{ config, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
   users.defaultUserShell = pkgs.nushellFull;
