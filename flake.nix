@@ -33,6 +33,12 @@
       inputs.home-manager.follows = "homeManager";
     };
 
+    crash = {
+      url = "github:RGBCube/crash";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     simpleMail = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
 
@@ -111,16 +117,20 @@
       home-manager.useGlobalPkgs   = true;
       home-manager.useUserPackages = true;
 
-      home-manager.sharedModules = [ ghosttyModule.homeModules.default ];
+      home-manager.sharedModules = pipe inputs [
+        attrValues
+        (filter (value: value ? homeModules.default))
+        (map (value: value.homeModules.default))
+      ];
     };
 
-    optionModules = [
-      homeManager.nixosModules.default
-      ageNix.nixosModules.default
-      simpleMail.nixosModules.default
-
+    optionModules = with lib1; [
       (lib1.mkAliasOptionModule [ "secrets" ] [ "age" "secrets" ])
-    ] ++ collectNixFiles ./options;
+    ] ++ collectNixFiles ./options ++ pipe inputs [
+      attrValues
+      (filter (value: value ? nixosModules.default))
+      (map (value: value.nixosModules.default))
+    ];
 
     optionUsageModules = [
       nixpkgsOverlayModule
