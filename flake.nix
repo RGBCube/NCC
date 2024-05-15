@@ -68,15 +68,7 @@
     themes.url = "github:RGBCube/ThemeNix";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    ageNix,
-    simpleMail,
-    homeManager,
-    ghosttyModule,
-    ...
-  } @ inputs: let
+  outputs = { self, nixpkgs, ... } @ inputs: let
     lib0  = nixpkgs.lib;
     keys = import ./keys.nix;
 
