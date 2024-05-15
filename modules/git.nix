@@ -125,13 +125,14 @@ in homeConfiguration {
 
       # https://bernsteinbear.com/git
       alias.recent = "! git branch --sort=-committerdate --format=\"%(committerdate:relative)%09%(refname:short)\" | head -10";
-
+    } (mkIf isDesktop {
       core.sshCommand                                  = "ssh -i ~/.ssh/id";
       url."ssh://git@github.com/".insteadOf            = "https://github.com/";
       url."ssh://forgejo@${gitDomain}:${toString (head self.cube.services.openssh.ports)}/".insteadOf = gitUrl;
-    } (mkIf isDesktop {
+
       commit.gpgSign  = true;
       tag.gpgSign     = true;
+
       gpg.format      = "ssh";
       user.signingKey = "~/.ssh/id";
     });
