@@ -68,7 +68,7 @@ in serverSystemConfiguration {
       KbdInteractiveAuthentication = false;
       PasswordAuthentication       = false;
 
-      AcceptEnv = "COLORTERM";
+      AcceptEnv = "SHELLS COLORTERM";
     };
   };
 })

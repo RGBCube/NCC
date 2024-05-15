@@ -41,6 +41,26 @@
         "type": "gitlab"
       }
     },
+    "crash": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1715772335,
+        "narHash": "sha256-UJqH5daLJL9xWwMSUtxN+Fes3eGZZtcV+Vbj2am8+FY=",
+        "owner": "RGBCube",
+        "repo": "crash",
+        "rev": "d17a8c9d054d8404c94a1dff8356a36eea428698",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RGBCube",
+        "repo": "crash",
+        "type": "github"
+      }
+    },
     "darwin": {
       "inputs": {
         "nixpkgs": [
@@ -629,6 +649,7 @@
     "root": {
       "inputs": {
         "ageNix": "ageNix",
+        "crash": "crash",
         "fenix": "fenix",
         "ghostty": "ghostty",
         "ghosttyModule": "ghosttyModule",
