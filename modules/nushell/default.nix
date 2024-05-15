@@ -1,14 +1,8 @@
 { config, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
-  users.defaultUserShell              = pkgs.crash;
-  environment.sessionVariables.SHELLS = pipe [
-    pkgs.nushellFull
-    pkgs.fish
-  ] [
-    (map getExe)
-    (concatStringsSep ":")
-  ];
+  users.defaultUserShell              = pkgs.crash.override { fallbackShell = pkgs.fish; };
+  environment.sessionVariables.SHELLS = lib.getExe pkgs.nushellFull;
 
   environment.shellAliases = {
     la  = "ls --all";
