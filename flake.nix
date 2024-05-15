@@ -72,14 +72,7 @@
     lib0  = nixpkgs.lib;
     keys = import ./keys.nix;
 
-    collectNixFiles = directory: with lib0; pipe (builtins.readDir directory) [
-      (mapAttrsToList (name: type: let
-        path = /${directory}/${name};
-      in if type == "directory" then
-        collectNixFiles path
-      else
-        path))
-      flatten
+    collectNixFiles = directory: with lib0; pipe (filesystem.listFilesRecursive directory) [
       (filter (hasSuffix ".nix"))
       (filter (name: !hasPrefix "_" (builtins.baseNameOf name)))
     ];
