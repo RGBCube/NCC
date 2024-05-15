@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, ... }: with lib; merge
+{ self, inputs, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
   environment.etc."flakes.json".text = strings.toJSON inputs;
@@ -21,17 +21,17 @@
       flake = value;
     }) inputs;
 
-    settings.experimental-features = [
-      "auto-allocate-uids"
-      "ca-derivations"
-      "cgroups"
-      "flakes"
-      "nix-command"
-      "recursive-nix"
-      "repl-flake"
-    ];
-
     settings = {
+      experimental-features = [
+        "auto-allocate-uids"
+        "ca-derivations"
+        "cgroups"
+        "flakes"
+        "nix-command"
+        "recursive-nix"
+        "repl-flake"
+      ];
+
       accept-flake-config      = true;
       builders-use-substitutes = true;
       flake-registry           = ""; # I DON'T WANT THE GLOBAL REGISTRY!!!
@@ -40,7 +40,7 @@
       trusted-users            = [ "root" "@wheel" ];
       use-cgroups              = true;
       warn-dirty               = false;
-    };
+    } // (import (self + /flake.nix)).nixConfig;
   };
 
   programs.nix-ld = enabled;
