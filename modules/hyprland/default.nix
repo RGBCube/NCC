@@ -20,6 +20,18 @@ in desktopSystemConfiguration {
 })
 
 (desktopUserHomeConfiguration {
+  xdg.configFile."xkb/symbols/tr-swapped-i".text = ''
+    default partial
+    xkb_symbols "basic" {
+      include "tr(basic)"
+
+      name[Group1]="Turkish (i and ı swapped)";
+
+      key <AC11>  { type[group1] = "FOUR_LEVEL_SEMIALPHABETIC", [ idotless, Iabovedot,  paragraph , none      ]};
+      key <AD08>  { type[group1] = "FOUR_LEVEL_SEMIALPHABETIC", [ i       , I        ,  apostrophe, dead_caron ]};
+    };
+  '';
+
   wayland.windowManager.hyprland = enabled {
     settings = {
       monitor    = [ ",preferred,auto,1" ];
@@ -160,7 +172,7 @@ in desktopSystemConfiguration {
       input = {
         follow_mouse = 1;
 
-        kb_layout = "tr";
+        kb_layout = "tr-swapped-i";
 
         repeat_delay = 400;
         repeat_rate  = 100;

@@ -1,7 +1,15 @@
-{ lib, ... }: with lib; merge
+{ lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
-  console.keyMap = "trq";
+  console.keyMap = pkgs.writeText "trq-swapped-i.map" ''
+    include "${pkgs.kbd}/share/keymaps/i386/qwerty/trq.map"
+
+    keycode 23 = i
+    	altgr       keycode 23 = +icircumflex
+    	altgr shift keycode 23 = +Icircumflex
+
+    keycode 40 = +dotlessi +Idotabove
+  '';
 
   i18n.defaultLocale = "C.UTF-8";
 })
