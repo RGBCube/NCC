@@ -1,9 +1,9 @@
 { lib, pkgs, themes, ... }: {
   options.theme = lib.mkConst (themes.custom (themes.raw.gruvbox-dark-hard // {
-    cornerRadius = 8;
-    borderWidth  = 2;
+    cornerRadius = 0;
+    borderWidth  = 1;
 
-    margin  = 6;
+    margin  = 0;
     padding = 8;
 
     font.size.normal = 12;
