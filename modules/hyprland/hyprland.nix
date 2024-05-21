@@ -44,18 +44,6 @@ in desktopSystemConfiguration {
 
       exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
-      bindl = [
-        (replaceStrings [ "\n;" "\n" ] [ ";" "" ] ''
-          ,XF86PowerOff,exec,
-          pkill fuzzel;
-          echo -en "Suspend\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-suspend-hibernate-alt2\nPower Off\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot"
-          | fuzzel --dmenu
-          | tr --delete " "
-          | tr '[:upper:]' '[:lower:]'
-          | ifne xargs systemctl
-        '')
-      ];
-
       bindle = [
         ",XF86AudioRaiseVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
         ",XF86AudioLowerVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
@@ -136,9 +124,6 @@ in desktopSystemConfiguration {
         "SUPER    , M     , exec, thunderbird"
         "SUPER    , T     , exec, thunar"
         "SUPER    , C     , exec, hyprpicker --autocopy"
-
-        "SUPER, SPACE, exec, pkill fuzzel; fuzzel"
-        "SUPER, V    , exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 
         "   , PRINT, exec, pkill grim; grim -g \"$(slurp -w 0)\" - | swappy -f - -o - | wl-copy --type image/png"
         "ALT, PRINT, exec, pkill grim; grim                      - | swappy -f - -o - | wl-copy --type image/png"
