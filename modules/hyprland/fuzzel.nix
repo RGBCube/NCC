@@ -3,7 +3,7 @@
 desktopUserHomeConfiguration {
   wayland.windowManager.hyprland.settings = {
     bindl = [(replaceStrings [ "\n;" "\n" ] [ ";" "" ] ''
-      ,XF86PowerOff,exec,
+      , XF86PowerOff, exec,
       pkill fuzzel;
       echo -en "Suspend\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-suspend-hibernate-alt2\nPower Off\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot"
       | fuzzel --dmenu

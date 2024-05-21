@@ -34,7 +34,7 @@ in desktopSystemConfiguration {
 
   wayland.windowManager.hyprland = enabled {
     settings = {
-      monitor    = [ ",preferred,auto,1" ];
+      monitor    = [ ", preferred, auto, 1" ];
       windowrule = [ "noinitialfocus" ];
 
       exec-once = [
@@ -45,14 +45,14 @@ in desktopSystemConfiguration {
       exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
       bindle = [
-        ",XF86AudioRaiseVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
-        ",XF86AudioLowerVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioRaiseVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
+        ", XF86AudioLowerVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
-        ",XF86AudioMute        , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
-        ",XF86AudioMicMute     , exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMute        , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
+        ", XF86AudioMicMute     , exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
-        ",XF86MonBrightnessUp  , exec, brightnessctl set 5%+"
-        ",XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-"
+        ", XF86MonBrightnessUp  , exec, brightnessctl set 5%+"
+        ", XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-"
       ];
 
       bindm = [
@@ -170,7 +170,7 @@ in desktopSystemConfiguration {
       gestures.workspace_swipe = true;
 
       animations = {
-        bezier = [ "material_decelerate,0.05,0.7,0.1,1" ];
+        bezier = [ "material_decelerate, 0.05, 0.7, 0.1, 1" ];
 
         animation = [
           "border    , 1, 10, material_decelerate"
