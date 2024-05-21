@@ -42,10 +42,7 @@ in desktopSystemConfiguration {
         "wl-paste --type image --watch cliphist store -max-items 1000"
       ];
 
-      exec = [
-        "pkill swaybg; swaybg --image ${./wallpaper.png}"
-        "pkill --signal SIGUSR2 waybar"
-      ];
+      exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
       bindl = [
         (replaceStrings [ "\n;" "\n" ] [ ";" "" ] ''
@@ -140,7 +137,6 @@ in desktopSystemConfiguration {
         "SUPER    , T     , exec, thunar"
         "SUPER    , C     , exec, hyprpicker --autocopy"
 
-        "SUPER, B, exec, pkill --signal SIGUSR1 waybar"
         "SUPER, SPACE, exec, pkill fuzzel; fuzzel"
         "SUPER, V    , exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
 

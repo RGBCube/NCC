@@ -1,6 +1,11 @@
 { config, lib, ... }: with lib;
 
 desktopUserHomeConfiguration {
+  wayland.windowManager.hyprland.settings = {
+    exec = [ "pkill --signal SIGUSR2 waybar" ];
+    bind = [ "SUPER, B, exec, pkill --signal SIGUSR1 waybar" ];
+  };
+
   programs.waybar = with config.theme.withHashtag; enabled {
     systemd = enabled;
 
