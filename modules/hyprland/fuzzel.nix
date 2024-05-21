@@ -18,6 +18,10 @@ desktopUserHomeConfiguration {
     ];
   };
 
+  services.cliphist = enabled {
+    extraOptions = [ "-max-items" "1000" ];
+  };
+
   programs.fuzzel = with config.theme; enabled {
     settings.main = {
       dpi-aware  = false;

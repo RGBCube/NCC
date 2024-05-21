@@ -33,14 +33,13 @@ in desktopSystemConfiguration {
   '';
 
   wayland.windowManager.hyprland = enabled {
+    systemd = enabled {
+      enableXdgAutostart = true;
+    };
+
     settings = {
       monitor    = [ ", preferred, auto, 1" ];
       windowrule = [ "noinitialfocus" ];
-
-      exec-once = [
-        "wl-paste --type text  --watch cliphist store -max-items 1000"
-        "wl-paste --type image --watch cliphist store -max-items 1000"
-      ];
 
       exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
@@ -207,7 +206,6 @@ in desktopSystemConfiguration {
 
 (desktopUserHomePackages (with pkgs; [
   brightnessctl
-  cliphist
   grim
   hyprpicker
   slurp
