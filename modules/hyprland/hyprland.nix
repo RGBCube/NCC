@@ -94,7 +94,9 @@ in desktopSystemConfiguration {
         (map (n: [
           "SUPER    , ${toString n}, workspace            , ${toString n}"
           "SUPER+ALT, ${toString n}, movetoworkspacesilent, ${toString n}"
-        ]) (range [ 1 10 ]))
+        ]) (range 1 9))
+        "SUPER    , 0, workspace            , 10"
+        "SUPER+ALT, 0, movetoworkspacesilent, 10"
 
         "SUPER+ALT, left , movewindow, l"
         "SUPER+ALT, down , movewindow, d"
