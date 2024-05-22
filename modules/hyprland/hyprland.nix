@@ -38,8 +38,10 @@ in desktopSystemConfiguration {
     };
 
     settings = {
-      monitor    = [ ", preferred, auto, 1" ];
-      windowrule = [ "noinitialfocus" ];
+      monitor = [ ", preferred, auto, 1" ];
+
+      windowrule   = [ "noinitialfocus" ];
+      windowrulev2 = [ "workspace special silent, class:^(xwaylandvideobridge)$" ];
 
       exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
@@ -82,24 +84,17 @@ in desktopSystemConfiguration {
         "SUPER+CTRL, l, resizeactive, 100 0"
       ];
 
-      bind = [
+      bind = flatten [
         "SUPER    , TAB, workspace, e+1"
         "SUPER+ALT, TAB, workspace, e-1"
 
         "SUPER, mouse_up,   workspace, e+1"
         "SUPER, mouse_down, workspace, e-1"
 
-        "SUPER, 1, workspace, 1"
-        "SUPER, 2, workspace, 2"
-        "SUPER, 3, workspace, 3"
-        "SUPER, 4, workspace, 4"
-        "SUPER, 5, workspace, 5"
-
-        "SUPER+ALT, 1, movetoworkspacesilent, 1"
-        "SUPER+ALT, 2, movetoworkspacesilent, 2"
-        "SUPER+ALT, 3, movetoworkspacesilent, 3"
-        "SUPER+ALT, 4, movetoworkspacesilent, 4"
-        "SUPER+ALT, 5, movetoworkspacesilent, 5"
+        (map (n: [
+          "SUPER    , ${toString n}, workspace            , ${toString n}"
+          "SUPER+ALT, ${toString n}, movetoworkspacesilent, ${toString n}"
+        ]) (range [ 1 10 ]))
 
         "SUPER+ALT, left , movewindow, l"
         "SUPER+ALT, down , movewindow, d"

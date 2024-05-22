@@ -24,7 +24,7 @@ desktopUserHomeConfiguration {
         format-icons.default = "";
         format-icons.active  = "";
 
-        persistent-workspaces."*" = 5;
+        persistent-workspaces."*" = 10;
       };
 
       modules-center = [
@@ -104,25 +104,16 @@ desktopUserHomeConfiguration {
         color: ${base05};
       }
 
-      #workspaces button:nth-child(1) {
-        color: ${base08};
-      }
-
-      #workspaces button:nth-child(2) {
-        color: ${base09};
-      }
-
-      #workspaces button:nth-child(3) {
-        color: ${base0A};
-      }
-
-      #workspaces button:nth-child(4) {
-        color: ${base0B};
-      }
-
-      #workspaces button:nth-child(5) {
-        color: ${base0C};
-      }
+      #workspaces button:nth-child(1)  { color: ${base08}; }
+      #workspaces button:nth-child(2)  { color: ${base09}; }
+      #workspaces button:nth-child(3)  { color: ${base0A}; }
+      #workspaces button:nth-child(4)  { color: ${base0B}; }
+      #workspaces button:nth-child(5)  { color: ${base0C}; }
+      #workspaces button:nth-child(6)  { color: ${base0D}; }
+      #workspaces button:nth-child(7)  { color: ${base0E}; }
+      #workspaces button:nth-child(8)  { color: ${base0F}; }
+      #workspaces button:nth-child(9)  { color: ${base04}; }
+      #workspaces button:nth-child(10) { color: ${base06}; }
 
       #workspaces button.empty {
         color: ${base02};
