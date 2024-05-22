@@ -119,7 +119,6 @@ in desktopSystemConfiguration {
         "SUPER    , RETURN, exec, ghostty --gtk-single-instance=true"
         "SUPER    , W     , exec, firefox"
         "SUPER    , D     , exec, discord"
-        "SUPER    , E     , exec, fractal"
         "SUPER    , M     , exec, thunderbird"
         "SUPER    , T     , exec, thunar"
         "SUPER    , C     , exec, hyprpicker --autocopy"
@@ -212,6 +211,7 @@ in desktopSystemConfiguration {
   swappy
   swaybg
   wl-clipboard
+  wtype
   xdg-utils
   xwaylandvideobridge
 ]))
