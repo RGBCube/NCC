@@ -63,6 +63,9 @@ in desktopSystemConfiguration {
       ];
 
       binde = [
+        "SUPER, mouse_up,   workspace, e+1"
+        "SUPER, mouse_down, workspace, e-1"
+
         "SUPER, left , movefocus, l"
         "SUPER, down , movefocus, d"
         "SUPER, up   , movefocus, u"
@@ -87,9 +90,6 @@ in desktopSystemConfiguration {
       bind = flatten [
         "SUPER    , TAB, workspace, e+1"
         "SUPER+ALT, TAB, workspace, e-1"
-
-        "SUPER, mouse_up,   workspace, e+1"
-        "SUPER, mouse_down, workspace, e-1"
 
         (map (n: [
           "SUPER    , ${toString n}, workspace            , ${toString n}"
