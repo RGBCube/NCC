@@ -181,6 +181,7 @@ in desktopSystemConfiguration {
       misc = {
         animate_manual_resizes = true;
 
+        background_color         = config.theme.with0x.base00;
         disable_hyprland_logo    = true;
         disable_splash_rendering = true;
 
