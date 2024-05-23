@@ -14,6 +14,7 @@
 (homeConfiguration {
   programs.ssh = enabled {
     controlMaster       = "auto";
+    controlPath         = "~/.ssh/control/%r@%n:%p";
     controlPersist      = "60m";
     serverAliveCountMax = 2;
     serverAliveInterval = 60;
