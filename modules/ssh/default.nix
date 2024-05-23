@@ -11,10 +11,17 @@
   mosh
 ]))
 
-(homeConfiguration {
+(let
+  controlPath = "~/.ssh/control";
+in homeConfiguration {
+  home.activation.createControlPath = {
+    after = [ "writeBoundary" ];
+    data  = "mkdir --parents ${controlPath}";
+  };
+
   programs.ssh = enabled {
     controlMaster       = "auto";
-    controlPath         = "~/.ssh/control/%r@%n:%p";
+    controlPath         = "${controlPath}/%r@%n:%p";
     controlPersist      = "60m";
     serverAliveCountMax = 2;
     serverAliveInterval = 60;
