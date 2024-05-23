@@ -28,6 +28,7 @@ in with keys; {
   "hosts/disk/mail/password.hash.age".publicKeys  = [ disk enka ];
 
   # enka
+  "hosts/enka/id.age".publicKeys             = [ enka ];
   "hosts/enka/password.orhan.age".publicKeys = [ enka ];
   "hosts/enka/password.said.age".publicKeys  = [ enka ];
 
