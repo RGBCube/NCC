@@ -49,11 +49,13 @@ in desktopSystemConfiguration {
         ", XF86AudioRaiseVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
         ", XF86AudioLowerVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
-        ", XF86AudioMute        , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
-        ", XF86AudioMicMute     , exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-
         ", XF86MonBrightnessUp  , exec, brightnessctl set 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-"
+      ];
+
+      bindl = [
+        ", XF86AudioMute        , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
+        ", XF86AudioMicMute     , exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
       bindm = [
@@ -63,9 +65,6 @@ in desktopSystemConfiguration {
       ];
 
       binde = [
-        "SUPER, mouse_up,   workspace, e+1"
-        "SUPER, mouse_down, workspace, e-1"
-
         "SUPER, left , movefocus, l"
         "SUPER, down , movefocus, d"
         "SUPER, up   , movefocus, u"
@@ -90,6 +89,9 @@ in desktopSystemConfiguration {
       bind = flatten [
         "SUPER    , TAB, workspace, e+1"
         "SUPER+ALT, TAB, workspace, e-1"
+
+        "SUPER, mouse_up,   workspace, e+1"
+        "SUPER, mouse_down, workspace, e-1"
 
         (map (n: [
           "SUPER    , ${toString n}, workspace            , ${toString n}"
