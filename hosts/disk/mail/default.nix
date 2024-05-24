@@ -1,10 +1,12 @@
-{ config, lib, ... }: with lib;
+{ self, config, lib, ... }: with lib;
 
 let
   inherit (config.networking) domain;
 
   fqdn = "mail.${domain}";
 in systemConfiguration {
+  imports = [(self + /hosts/cube/acme)];
+
   secrets.mailPassword.file = ./password.hash.age;
 
   services.prometheus.exporters.postfix = enabled {
@@ -12,9 +14,9 @@ in systemConfiguration {
   };
 
   mailserver = enabled {
-    inherit fqdn;
+    fqdn = mkDefault fqdn;
 
-    domains           = [ domain ];
+    domains           = mkDefault [ domain ];
     certificateScheme = "acme";
 
     # We use systemd-resolved instead of Knot Resolver.
@@ -31,7 +33,7 @@ in systemConfiguration {
     vmailGroupName = "mail";
 
     dmarcReporting = enabled {
-      inherit domain;
+      domain = head config.mailserver.domains;
 
       organizationName = "Doofemshmirtz Evil Inc.";
     };
@@ -40,8 +42,8 @@ in systemConfiguration {
       indexAttachments = true;
     };
 
-    loginAccounts."contact@${domain}" = {
-      aliases = [ "@${domain}" ];
+    loginAccounts."contact@${head config.mailserver.domains}" = {
+      aliases = [ "@${head config.mailserver.domains}" ];
 
       hashedPasswordFile = config.secrets.mailPassword.path;
     };
