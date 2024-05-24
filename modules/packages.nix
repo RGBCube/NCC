@@ -5,6 +5,7 @@
   cowsay
   curlHTTP3
   dig
+  doggo
   fastfetch
   fd
   (fortune.override { withOffensive = true; })
