@@ -28,7 +28,7 @@ in with keys; {
   "hosts/disk/password.floppy.age".publicKeys = withAdmins disk;
 
   "hosts/disk/mail/password.plain.age".publicKeys = all;
-  "hosts/disk/mail/password.hash.age".publicKeys  = withAdmins disk;
+  "hosts/disk/mail/password.hash.age".publicKeys  = [ disk nine ] ++ admins;
 
   # enka
   "hosts/enka/id.age".publicKeys             = admins;
