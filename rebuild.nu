@@ -33,7 +33,7 @@ def main --wrapped [
         ./ ($host + ":Configuration")
     )
 
-    ssh -q $host $"
+    ssh -q -tt $host $"
       cd Configuration
       ./rebuild.nu ($host) ($arguments | str join ' ')
     "
