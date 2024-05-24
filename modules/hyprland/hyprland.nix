@@ -41,7 +41,7 @@ in desktopSystemConfiguration {
       monitor = [ ", preferred, auto, 1" ];
 
       windowrule   = [ "noinitialfocus" ];
-      windowrulev2 = [ "workspace special silent, class:^(xwaylandvideobridge)$" ];
+      windowrulev2 = [ "workspace special silent, initialclass:^(xwaylandvideobridge)$" ];
 
       exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
