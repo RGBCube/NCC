@@ -3,7 +3,7 @@
 let
   inherit (config.networking) domain;
 
-  fqdn = "mail.${domain}";
+  fqdn = "mail1.${domain}";
 in systemConfiguration {
   imports = [(self + /hosts/cube/acme)];
 
