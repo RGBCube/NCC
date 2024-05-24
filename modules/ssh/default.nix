@@ -37,6 +37,8 @@ in homeConfiguration {
         identityFile = "~/.ssh/id";
       };
 
+      # Maybe autogenerate these?
+
       cube = {
         hostname = self.cube.networking.ipv4;
         user     = "rgb";
@@ -46,6 +48,12 @@ in homeConfiguration {
       disk = {
         hostname = self.disk.networking.ipv4;
         user     = "floppy";
+        port     = 2222;
+      };
+
+      nine = {
+        hostname = self.nine.networking.ipv4;
+        user     = "seven";
         port     = 2222;
       };
 

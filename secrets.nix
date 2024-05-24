@@ -35,6 +35,10 @@ in with keys; {
   "hosts/enka/password.orhan.age".publicKeys = admins;
   "hosts/enka/password.said.age".publicKeys  = admins;
 
+  # nine
+  "hosts/nine/id.age".publicKeys             = withAdmins nine;
+  "hosts/nine/password.seven.age".publicKeys = withAdmins nine;
+
   # tard
   "hosts/tard/id.age".publicKeys            = withAdmins tard;
   "hosts/tard/password.tail.age".publicKeys = withAdmins tard;
