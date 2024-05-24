@@ -15,8 +15,9 @@
   controlPath = "~/.ssh/control";
 in homeConfiguration {
   home.activation.createControlPath = {
-    after = [ "writeBoundary" ];
-    data  = "mkdir --parents ${controlPath}";
+    after  = [ "writeBoundary" ];
+    before = [];
+    data   = "mkdir --parents ${controlPath}";
   };
 
   programs.ssh = enabled {

@@ -18,6 +18,7 @@ def main --wrapped [
 
   let nix_flags = [
     "--option" "accept-flake-config" "true"
+    "--option" "eval-cache"          "false"
   ] | append ($args_split | get --ignore-errors 1 | default [])
 
   if $host == (hostname) {
