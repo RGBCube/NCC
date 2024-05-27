@@ -24,6 +24,10 @@ in systemConfiguration {
     }];
   };
 
+  services.restic.backups = genAttrs config.resticHosts (_: {
+    paths = [ "/var/lib/gitea-runner"  "/var/lib/forgejo" ];
+  });
+
   users.groups.gitea-runner = {};
   users.users.gitea-runner  = systemUser {
     extraGroups = [ "docker" ];

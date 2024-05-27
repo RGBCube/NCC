@@ -59,6 +59,10 @@ in serverSystemConfiguration {
     ];
   };
 
+  services.restic.backups = genAttrs config.resticHosts (_: {
+    paths = [ "/var/lib/matrix-synapse"  "/var/lib/matrix-sliding-sync" ];
+  });
+
   services.matrix-synapse = enabled {
     withJemalloc = true;
 

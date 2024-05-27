@@ -1,31 +1,24 @@
-let
-  keys = import ./keys.nix;
-
-  all = builtins.attrValues keys;
-
-  admins     = with keys; [ enka pala ];
-  withAdmins = key: [ key ] ++ admins;
-in with keys; {
+with import ./keys.nix; {
   # cube
-  "hosts/cube/id.age".publicKeys           = withAdmins cube;
-  "hosts/cube/password.rgb.age".publicKeys = withAdmins cube;
+  "hosts/cube/id.age".publicKeys           = [ cube ] ++ admins;
+  "hosts/cube/password.rgb.age".publicKeys = [ cube ] ++ admins;
 
   "hosts/cube/acme/environment.age".publicKeys = all;
 
-  "hosts/cube/forgejo/password.runner.age".publicKeys = withAdmins cube;
+  "hosts/cube/forgejo/password.runner.age".publicKeys = [ cube ] ++ admins;
 
-  "hosts/cube/grafana/password.age".publicKeys      = withAdmins cube;
+  "hosts/cube/grafana/password.age".publicKeys      = [ cube ] ++ admins;
 
-  "hosts/cube/matrix/password.secret.age".publicKeys = withAdmins cube;
-  "hosts/cube/matrix/password.sync.age".publicKeys   = withAdmins cube;
+  "hosts/cube/matrix/password.secret.age".publicKeys = [ cube ] ++ admins;
+  "hosts/cube/matrix/password.sync.age".publicKeys   = [ cube ] ++ admins;
 
-  "hosts/cube/nextcloud/password.age".publicKeys  = withAdmins cube;
+  "hosts/cube/nextcloud/password.age".publicKeys  = [ cube ] ++ admins;
 
-  "hosts/cube/restic/password.age".publicKeys = withAdmins cube;
+  "hosts/cube/restic/password.age".publicKeys = [ cube ] ++ admins;
 
   # disk
-  "hosts/disk/id.age".publicKeys              = withAdmins disk;
-  "hosts/disk/password.floppy.age".publicKeys = withAdmins disk;
+  "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
+  "hosts/disk/password.floppy.age".publicKeys = [ disk ] ++ admins;
 
   "hosts/disk/mail/password.plain.age".publicKeys = all;
   "hosts/disk/mail/password.hash.age".publicKeys  = [ disk nine ] ++ admins;
@@ -36,8 +29,8 @@ in with keys; {
   "hosts/enka/password.said.age".publicKeys  = admins;
 
   # nine
-  "hosts/nine/id.age".publicKeys             = withAdmins nine;
-  "hosts/nine/password.seven.age".publicKeys = withAdmins nine;
+  "hosts/nine/id.age".publicKeys             = [ nine ] ++ admins;
+  "hosts/nine/password.seven.age".publicKeys = [ nine ] ++ admins;
 
   # shared
   "modules/ssh/config.age".publicKeys  = all;

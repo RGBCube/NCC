@@ -24,6 +24,10 @@ in systemConfiguration {
     }];
   };
 
+  services.restic.backups = genAttrs config.resticHosts (_: {
+    paths = [ "/var/lib/grafana" ];
+  });
+
   systemd.services.grafana = {
     after    = [ "postgresql.service" ];
     requires = [ "postgresql.service" ];

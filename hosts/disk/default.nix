@@ -18,7 +18,7 @@
 
     backup = normalUser {
       description                 = "Backup";
-      openssh.authorizedKeys.keys = [ keys.cube keys.enka ];
+      openssh.authorizedKeys.keys = keys.all;
       hashedPasswordFile          = config.secrets.floppyPassword.path;
     };
   };

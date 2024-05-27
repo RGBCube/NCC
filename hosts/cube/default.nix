@@ -15,6 +15,12 @@
       openssh.authorizedKeys.keys = [ keys.enka ];
       hashedPasswordFile          = config.secrets.rgbPassword.path;
     };
+
+    backup = normalUser {
+      description                 = "Backup";
+      openssh.authorizedKeys.keys = keys.all;
+      hashedPasswordFile          = config.secrets.rgbPassword.path;
+    };
   };
 
   services.openssh = {

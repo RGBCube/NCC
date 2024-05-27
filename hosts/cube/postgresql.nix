@@ -1,10 +1,24 @@
-{ lib, pkgs, ... }: with lib; merge
+{ config, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
   services.prometheus.exporters.postgres = enabled {
     listenAddress       = "[::]";
     runAsLocalSuperUser = true;
   };
+
+  services.restic.backups = genAttrs config.resticHosts (_: {
+    paths = [ "/tmp/postgresql-dump.sql.gz" ];
+
+    backupPrepareCommand = ''
+      ${config.services.postgresql.package}/bin/pg_dumpall --clean \
+      | ${lib.getExe pkgs.gzip} --rsyncable \
+      > /tmp/postgresql-dump.sql.gz
+    '';
+
+    backupCleanupCommand = ''
+      rm /tmp/postgresql-dump.sql.gz
+    '';
+  });
 
   services.postgresql = enabled {
     package = pkgs.postgresql_14;

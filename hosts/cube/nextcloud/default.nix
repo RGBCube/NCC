@@ -32,6 +32,10 @@ in systemConfiguration {
     }];
   };
 
+  services.restic.backups = genAttrs config.resticHosts (_: {
+    paths = [ "/var/lib/nextcloud" ];
+  });
+
   systemd.services.nextcloud-setup = {
     after    = [ "postgresql.service" ];
     requires = [ "postgresql.service" ];

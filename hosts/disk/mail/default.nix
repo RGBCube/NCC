@@ -13,6 +13,10 @@ in systemConfiguration {
     listenAddress = "[::]";
   };
 
+  services.restic.backups = genAttrs config.resticHosts (_: {
+    paths = [ config.mailserver.dkimKeyDirectory config.mailserver.mailDirectory ];
+  });
+
   mailserver = enabled {
     fqdn = mkDefault fqdn;
 
