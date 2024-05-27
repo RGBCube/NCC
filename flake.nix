@@ -77,11 +77,11 @@
       (filter (name: !hasPrefix "_" (builtins.baseNameOf name)))
     ];
 
-    lib1 = with lib0; extend (_: _: pipe (collectNixFiles ./lib) [
+    lib1 = with lib0; extend (const (const (pipe (collectNixFiles ./lib) [
       (map (file: import file lib0))
       (filter (thunk: !isFunction thunk))
       (foldl' recursiveUpdate {})
-    ]);
+    ])));
 
     nixpkgsOverlayModule = with lib1; {
       nixpkgs.overlays = [(final: prev: {
@@ -97,7 +97,7 @@
     };
 
     homeManagerModule = { lib, ... }: with lib; {
-      home-manager.users = genAttrs allNormalUsers (_: {});
+      home-manager.users = genAttrs allNormalUsers (const {});
 
       home-manager.useGlobalPkgs   = true;
       home-manager.useUserPackages = true;
@@ -135,12 +135,12 @@
 
         modules = [ ./hosts/${name} ] ++ optionModules;
       };
-    in extend (_: _: pipe (collectNixFiles ./lib) [
+    in extend (const (const (pipe (collectNixFiles ./lib) [
       (map (file: import file lib1))
       (filter (isFunction))
       (map (func: func hostStub.config))
       (foldl' recursiveUpdate {})
-    ]));
+    ]))));
 
     configurations = lib1.genAttrs hosts (name: lib2s.${name}.nixosSystem {
       inherit specialArgs;
@@ -153,5 +153,5 @@
     nixosConfigurations = configurations;
 
   # This is here so we can do self.<whatever> instead of self.nixosConfigurations.<whatever>.config.
-  } // lib1.mapAttrs (_: value: value.config) configurations;
+  } // lib1.mapAttrs (lib1.const (value: value.config)) configurations;
 }

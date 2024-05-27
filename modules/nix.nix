@@ -17,7 +17,7 @@
 
     registry = {
       default.flake = inputs.nixpkgs;
-    } // mapAttrs (_: value: mkIf (isType "flake" value) {
+    } // mapAttrs (const (value: mkIf (isType "flake" value)) {
       flake = value;
     }) inputs;
 

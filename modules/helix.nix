@@ -159,7 +159,7 @@
       render.tab     = "all";
     };
 
-    settings.keys = genAttrs [ "normal" "select" ] (_: {
+    settings.keys = genAttrs [ "normal" "select" ] (const {
       D = "extend_to_line_end";
     });
   };

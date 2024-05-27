@@ -25,5 +25,5 @@
     "LC_PAPER"
     "LC_TELEPHONE"
     "LC_TIME"
-  ] (_: "tr_TR.UTF-8");
+  ] (const "tr_TR.UTF-8");
 })

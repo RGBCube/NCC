@@ -32,7 +32,7 @@ in systemConfiguration {
     }];
   };
 
-  services.restic.backups = genAttrs config.resticHosts (_: {
+  services.restic.backups = genAttrs config.resticHosts (const {
     paths = [ "/var/lib/nextcloud" ];
   });
 

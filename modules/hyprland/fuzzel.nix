@@ -42,7 +42,7 @@ desktopUserHomeConfiguration {
       inner-pad      = padding;
     };
 
-    settings.colors = mapAttrs (_: color: color + "FF") {
+    settings.colors = mapAttrs (const (color: color + "FF")) {
       background     = base00;
       text           = base05;
       match          = base0A;

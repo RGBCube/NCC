@@ -59,7 +59,7 @@ in serverSystemConfiguration {
     ];
   };
 
-  services.restic.backups = genAttrs config.resticHosts (_: {
+  services.restic.backups = genAttrs config.resticHosts (const {
     paths = [ "/var/lib/matrix-synapse"  "/var/lib/matrix-sliding-sync" ];
   });
 

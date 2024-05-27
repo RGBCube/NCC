@@ -13,7 +13,7 @@ in systemConfiguration {
     listenAddress = "[::]";
   };
 
-  services.restic.backups = genAttrs config.resticHosts (_: {
+  services.restic.backups = genAttrs config.resticHosts (const {
     paths = [ config.mailserver.dkimKeyDirectory config.mailserver.mailDirectory ];
   });
 

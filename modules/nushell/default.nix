@@ -40,7 +40,7 @@
     configFile.text = readFile ./configuration.nu;
     envFile.source  = ./environment.nu;
 
-    environmentVariables = mapAttrs (_: value: ''"${value}"'') config.environment.variables;
+    environmentVariables = mapAttrs (const (value: ''"${value}"'')) config.environment.variables;
 
     shellAliases = (attrsets.removeAttrs config.environment.shellAliases [ "ls" "l" ]) // {
       cdtmp = "cd (mktemp --directory)";

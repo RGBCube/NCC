@@ -1,15 +1,15 @@
 lib: config: let
   userHomeConfiguration = users: cfg: {
-    home-manager.users = lib.genAttrs users (_: cfg);
+    home-manager.users = lib.genAttrs users (lib.const cfg);
   };
 
   allNormalUsers = [ "root" ] ++ lib.pipe config.users.users [
-    (lib.filterAttrs (_: lib.getAttr "isNormalUser"))
+    (lib.filterAttrs (lib.const (lib.getAttr "isNormalUser")))
     lib.attrNames
   ];
 
   desktopUsers = lib.pipe config.users.users [
-    (lib.filterAttrs (_: lib.getAttr "isDesktopUser"))
+    (lib.filterAttrs (lib.const (lib.getAttr "isDesktopUser")))
     lib.attrNames
   ];
 in rec {

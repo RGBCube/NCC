@@ -6,7 +6,7 @@
     runAsLocalSuperUser = true;
   };
 
-  services.restic.backups = genAttrs config.resticHosts (_: {
+  services.restic.backups = genAttrs config.resticHosts (const {
     paths = [ "/tmp/postgresql-dump.sql.gz" ];
 
     backupPrepareCommand = ''

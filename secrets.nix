@@ -14,8 +14,6 @@ with import ./keys.nix; {
 
   "hosts/cube/nextcloud/password.age".publicKeys  = [ cube ] ++ admins;
 
-  "hosts/cube/restic/password.age".publicKeys = [ cube ] ++ admins;
-
   # disk
   "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
   "hosts/disk/password.floppy.age".publicKeys = [ disk ] ++ admins;
@@ -33,5 +31,6 @@ with import ./keys.nix; {
   "hosts/nine/password.seven.age".publicKeys = [ nine ] ++ admins;
 
   # shared
-  "modules/ssh/config.age".publicKeys  = all;
+  "modules/ssh/config.age".publicKeys      = all;
+  "modules/restic/password.age".publicKeys = all;
 }
