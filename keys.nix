@@ -4,5 +4,4 @@
   enka = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBVkWUQ6Z4OK539tore/R5wnueNPPaX532RUAld8UOCo said@enka";
   pala = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEXXxaxhkIMy0UyLOOnvwkNjzypS7D9kElHGKw8pZuFb said@pala";
   nine = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILJDqnItmvXZMTSwzbalr+9jzS4kSJm5PWEpI8GOpebF seven@nine";
-  tard = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDzvLg5IvqGzqdiNUOsRLPdYC56wXXSYNo9QNlXwaCKw tail@tard";
 }

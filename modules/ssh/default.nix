@@ -57,12 +57,6 @@ in homeConfiguration {
         port     = 2222;
       };
 
-      tard = {
-        hostname = self.tard.networking.ipv4;
-        user     = "tail";
-        port     = 2222;
-      };
-
       robotic = {
         hostname = "86.105.252.189";
         user     = "rgbcube";

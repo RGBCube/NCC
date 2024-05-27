@@ -39,10 +39,6 @@ in with keys; {
   "hosts/nine/id.age".publicKeys             = withAdmins nine;
   "hosts/nine/password.seven.age".publicKeys = withAdmins nine;
 
-  # tard
-  "hosts/tard/id.age".publicKeys            = withAdmins tard;
-  "hosts/tard/password.tail.age".publicKeys = withAdmins tard;
-
   # shared
   "modules/ssh/config.age".publicKeys  = all;
 }
