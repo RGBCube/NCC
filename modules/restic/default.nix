@@ -17,11 +17,6 @@ serverSystemConfiguration {
         "--keep-monthly 6"
         "--keep-yearly 12"
       ];
-
-      timerConfig = {
-        OnCalendar = "daily";
-        Persistent = true;
-      };
     });
   };
 }
