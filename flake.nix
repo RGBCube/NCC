@@ -45,6 +45,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    github2forgejo = {
+      url = "github:RGBCube/GitHub2Forgejo";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland.url   = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprpicker.url = "github:hyprwm/hyprpicker";
 

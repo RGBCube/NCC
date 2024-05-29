@@ -30,6 +30,8 @@ with import ./keys.nix; {
   "hosts/nine/id.age".publicKeys             = [ nine ] ++ admins;
   "hosts/nine/password.seven.age".publicKeys = [ nine ] ++ admins;
 
+  "hosts/nine/github2forgejo/environment.age".publicKeys = [ nine ] ++ admins;
+
   # shared
   "modules/ssh/config.age".publicKeys      = all;
   "modules/restic/password.age".publicKeys = all;

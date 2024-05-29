@@ -17,6 +17,7 @@
 !hosts/enka/
 
 !hosts/nine/
+!hosts/nine/github2forgejo/
 
 !modules/
 !modules/hyprland/
