@@ -397,5 +397,3 @@ $env.config.keybindings = [
     event:    { send: enter }
   }
 ]
-
-source ~/.config/nushell/zoxide.nu

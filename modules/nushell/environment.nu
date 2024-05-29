@@ -7,6 +7,8 @@ $env.ENV_CONVERSIONS.PATH = {
   }
 }
 
+$env.LS_COLORS = (open ~/.config/nushell/ls_colors.txt)
+
 def --env mc [path: path] {
   mkdir $path
   cd $path
@@ -18,4 +20,4 @@ def --env mcg [path: path] {
   git init
 }
 
-zoxide init nushell --cmd cd | save --force ~/.config/nushell/zoxide.nu
+source ~/.config/nushell/zoxide.nu

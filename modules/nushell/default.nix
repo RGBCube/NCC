@@ -20,6 +20,16 @@
 })
 
 (homeConfiguration {
+  xdg.configFile = {
+    "nushell/zoxide.nu".source = pkgs.runCommand "zoxide.nu" {} ''
+      ${lib.getExe pkgs.zoxide} init nushell --cmd cd > $out
+    '';
+
+    "nushell/ls_colors.txt".source = pkgs.runCommand "ls_colors.txt" {} ''
+      ${lib.getExe pkgs.vivid} generate gruvbox-dark-hard > $out
+    '';
+  };
+
   programs.starship = enabled {
     settings = {
       command_timeout = 100;
