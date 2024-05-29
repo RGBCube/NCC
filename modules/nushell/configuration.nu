@@ -279,6 +279,16 @@ $env.config.keybindings = [
     event:    { send: openeditor }
   }
   {
+    name:     abbr
+    modifier: control
+    keycode:  space
+    mode:     [ vi_normal vi_insert ]
+    event: [
+      { send: menu name: abbr_menu }
+      { edit: insertchar, value: " " }
+    ]
+  }
+  {
     name:     move_up
     modifier: none
     keycode:  up
