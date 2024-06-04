@@ -17,6 +17,8 @@ in desktopSystemConfiguration {
       xdg-desktop-portal-hyprland
     ];
   };
+
+  programs.xwayland = enabled;
 })
 
 (desktopUserHomeConfiguration {
