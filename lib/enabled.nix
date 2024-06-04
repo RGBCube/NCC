@@ -7,5 +7,5 @@ lib: {
     };
   };
 
-  disabled = { enable = false; };
+  disabled = { enable = lib.mkForce false; };
 }
