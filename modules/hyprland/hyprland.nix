@@ -172,11 +172,11 @@ in desktopSystemConfiguration {
         bezier = [ "material_decelerate, 0.05, 0.7, 0.1, 1" ];
 
         animation = [
-          "border    , 1, 10, material_decelerate"
-          "fade      , 1, 2 , material_decelerate"
-          "layers    , 1, 2 , material_decelerate"
-          "windows   , 1, 2 , material_decelerate, popin 80%"
-          "workspaces, 1, 3 , material_decelerate"
+          "border    , 1, 2, material_decelerate"
+          "fade      , 1, 2, material_decelerate"
+          "layers    , 1, 2, material_decelerate"
+          "windows   , 1, 2, material_decelerate, popin 80%"
+          "workspaces, 1, 2, material_decelerate"
         ];
       };
 
