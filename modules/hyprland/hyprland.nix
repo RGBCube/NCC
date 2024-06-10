@@ -201,6 +201,8 @@ in desktopSystemConfiguration {
         preserve_split = true;
         smart_resizing = false;
       };
+
+      debug.error_position = 1;
     };
   };
 })
