@@ -2,6 +2,9 @@
 
 (desktopSystemPackages (with pkgs; [
   cargo-expand
+  cargo-fuzz
+
+  evcxr
 
   (fenix.complete.withComponents [
     "cargo"
