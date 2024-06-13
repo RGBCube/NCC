@@ -33,7 +33,7 @@ systemConfiguration {
   };
 
   fileSystems.${config.boot.loader.efi.efiSysMountPoint} = {
-    device  = "/dev/disk/by-label/boot";
+    device  = "/dev/disk/by-label/ESP";
     fsType  = "vfat";
     options = [ "noatime" ];
   };
