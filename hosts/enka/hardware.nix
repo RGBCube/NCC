@@ -11,11 +11,13 @@ systemConfiguration {
 
   boot.initrd.availableKernelModules = [
     "ahci"
-    "rtsx_pci_sdmmc"
-    "sd_mod"
+    "nvme"
     "sr_mod"
+    "usbhid"
     "xhci_pci"
   ];
+
+  boot.kernelModules = [ "kvm-intel" ];
 
   fileSystems."/" = {
     device  = "/dev/disk/by-label/root";
