@@ -1,13 +1,13 @@
 { lib, pkgs, themes, ... }: {
   options.theme = lib.mkConst (themes.custom (themes.raw.gruvbox-dark-hard // {
-    cornerRadius = 0;
-    borderWidth  = 1;
+    cornerRadius = 8;
+    borderWidth  = 2;
 
-    margin  = 0;
+    margin  = 8;
     padding = 8;
 
-    font.size.normal = 12;
-    font.size.big    = 18;
+    font.size.normal = 16;
+    font.size.big    = 20;
 
     font.sans.name    = "Lexend";
     font.sans.package = pkgs.lexend;
