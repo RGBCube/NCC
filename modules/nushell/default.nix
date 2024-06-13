@@ -19,7 +19,7 @@
   };
 })
 
-(homeConfiguration {
+(homeConfiguration (homeArgs: {
   xdg.configFile = {
     "nushell/zoxide.nu".source = pkgs.runCommand "zoxide.nu" {} ''
       ${lib.getExe pkgs.zoxide} init nushell --cmd cd > $out
@@ -50,14 +50,32 @@
     configFile.text = readFile ./configuration.nu;
     envFile.source  = ./environment.nu;
 
-    environmentVariables = mapAttrs (const (value: ''"${value}"'')) config.environment.variables;
+    environmentVariables = let
+      environmentVariables = config.environment.variables;
+
+      homeVariables      = homeArgs.config.home.sessionVariables;
+      homeVariablesExtra = pipe (pkgs.runCommand "home-variables-extra.env" {} ''
+        alias export=echo
+        # echo foo > $out
+        # FIXME
+        eval $(cat ${homeArgs.config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh) > $out
+      '') [
+        # (aaa: (_: break _) aaa)
+        readFile
+        (splitString "\n")
+        (filter (s: s != ""))
+        (map (strings.match "([^=]+)=(.*)"))
+        (map (keyAndValue: nameValuePair (first keyAndValue) (last keyAndValue)))
+        (foldl' (x: y: x // y) {})
+      ];
+    in mapAttrs (const (value: ''"${value}"'')) (environmentVariables // homeVariables // homeVariablesExtra);
 
     shellAliases = (attrsets.removeAttrs config.environment.shellAliases [ "ls" "l" ]) // {
       cdtmp = "cd (mktemp --directory)";
       ll    = "ls --long";
     };
   };
-})
+}))
 
 (systemPackages (with pkgs; [
   fish   # For completions.
