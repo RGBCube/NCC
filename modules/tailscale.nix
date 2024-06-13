@@ -15,8 +15,5 @@ in systemConfiguration {
     useRoutingFeatures = "both";
   };
 
-  # Breaks with tailscale.
-  systemd.services.NetworkManager-wait-online = disabled;
-
   networking.firewall.trustedInterfaces = [ interface ];
 }

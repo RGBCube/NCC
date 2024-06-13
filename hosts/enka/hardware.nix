@@ -17,14 +17,9 @@ systemConfiguration {
     "xhci_pci"
   ];
 
-  boot.kernelModules = [ "kvm-intel" ];
-
-  imports = [ hardware.nixosModules.common-gpu-nvidia ];
-
-  hardware.nvidia.prime = {
-    intelBusId  = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
-  };
+  boot.kernelModules = [
+    "kvm-intel"
+  ];
 
   fileSystems."/" = {
     device  = "/dev/disk/by-label/root";
