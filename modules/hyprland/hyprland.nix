@@ -48,16 +48,25 @@ in desktopSystemConfiguration {
       exec = [ "pkill swaybg; swaybg --image ${./wallpaper.png}" ];
 
       bindle = [
-        ", XF86AudioRaiseVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
-        ", XF86AudioLowerVolume , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
+        ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
         ", XF86MonBrightnessUp  , exec, brightnessctl set 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-"
+
+        "SUPER+ALT, Prior, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
+        "SUPER+ALT, Next , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+
+        "SUPER, Home, exec, brightnessctl set 5%+"
+        "SUPER, End , exec, brightnessctl set --min-value=0 5%-"
       ];
 
       bindl = [
-        ", XF86AudioMute        , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
-        ", XF86AudioMicMute     , exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+        ", XF86AudioMute   , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
+        ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+        "SUPER+ALT, Insert, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
+        "SUPER+ALT, Delete, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
       ];
 
       bindm = [
