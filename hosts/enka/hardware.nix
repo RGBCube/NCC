@@ -1,4 +1,4 @@
-{ config, lib, ... }: with lib;
+{ hardware, config, lib, ... }: with lib;
 
 systemConfiguration {
   boot.loader = {
@@ -19,6 +19,13 @@ systemConfiguration {
 
   boot.kernelModules = [ "kvm-intel" ];
 
+  imports = [ hardware.nixosModules.common-gpu-nvidia ];
+
+  hardware.nvidia.prime = {
+    intelBusId  = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
+
   fileSystems."/" = {
     device  = "/dev/disk/by-label/root";
     fsType  = "btrfs";
@@ -30,10 +37,6 @@ systemConfiguration {
     fsType  = "vfat";
     options = [ "noatime" ];
   };
-
-  swapDevices = [{
-    device = "/dev/disk/by-label/swap";
-  }];
 
   hardware.enableAllFirmware         = true;
   hardware.cpu.intel.updateMicrocode = true;

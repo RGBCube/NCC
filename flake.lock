@@ -384,6 +384,21 @@
         "type": "github"
       }
     },
+    "hardware": {
+      "locked": {
+        "lastModified": 1718265846,
+        "narHash": "sha256-h4MnTID6ciFxtTvtl+ibXMKaG6iLMezCtUvKIfFG7r0=",
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "rev": "d75003136c0fc94ee60e51806c2801ff572d06a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixos-hardware",
+        "type": "github"
+      }
+    },
     "homeManager": {
       "inputs": {
         "nixpkgs": [
@@ -681,6 +696,7 @@
         "ghostty": "ghostty",
         "ghosttyModule": "ghosttyModule",
         "github2forgejo": "github2forgejo",
+        "hardware": "hardware",
         "homeManager": "homeManager",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",

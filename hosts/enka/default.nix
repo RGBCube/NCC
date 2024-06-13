@@ -1,7 +1,7 @@
 { config, lib, ... }: with lib; merge
 
 (systemConfiguration {
-  system.stateVersion  = "23.05";
+  system.stateVersion  = "24.11";
   nixpkgs.hostPlatform = "x86_64-linux";
 
   time.timeZone = "Europe/Istanbul";
@@ -27,5 +27,5 @@
 })
 
 (homeConfiguration {
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.11";
 })
