@@ -54,8 +54,8 @@ in desktopSystemConfiguration {
         ", XF86MonBrightnessUp  , exec, brightnessctl set 5%+"
         ", XF86MonBrightnessDown, exec, brightnessctl set --min-value=0 5%-"
 
-        "SUPER+ALT, Prior, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
-        "SUPER+ALT, Next , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
+        "SUPER, Prior, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ --limit 1.5"
+        "SUPER, Next , exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
 
         "SUPER, Home, exec, brightnessctl set 5%+"
         "SUPER, End , exec, brightnessctl set --min-value=0 5%-"

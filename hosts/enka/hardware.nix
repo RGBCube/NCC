@@ -1,4 +1,4 @@
-{ hardware, config, lib, ... }: with lib;
+{ config, lib, ... }: with lib;
 
 systemConfiguration {
   boot.loader = {
