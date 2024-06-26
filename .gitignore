@@ -4,6 +4,8 @@
 
 !hosts/
 
+!hosts/altk/
+
 !hosts/cube/
 !hosts/cube/acme/
 !hosts/cube/forgejo/
