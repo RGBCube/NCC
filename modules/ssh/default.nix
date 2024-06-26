@@ -56,12 +56,6 @@ in homeConfiguration {
         user     = "seven";
         port     = 2222;
       };
-
-      robotic = {
-        hostname = "86.105.252.189";
-        user     = "rgbcube";
-        port     = 2299;
-      };
     };
   };
 })
