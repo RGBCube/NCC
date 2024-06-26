@@ -1,4 +1,8 @@
 with import ./keys.nix; {
+  # altk
+  "hosts/altk/id.age".publicKeys            = admins;
+  "hosts/altk/password.said.age".publicKeys = admins;
+
   # cube
   "hosts/cube/id.age".publicKeys           = [ cube ] ++ admins;
   "hosts/cube/password.rgb.age".publicKeys = [ cube ] ++ admins;
