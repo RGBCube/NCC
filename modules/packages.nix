@@ -42,9 +42,12 @@
 (desktopUserHomePackages (with pkgs; [
   element-desktop
   fractal
-  qbittorrent
-  thunderbird
   whatsapp-for-linux
+  zulip
+
+  qbittorrent
+
+  thunderbird
 
   krita
   obs-studio
