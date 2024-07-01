@@ -3,7 +3,7 @@
 (let
   hyprPkgs = import hyprland.inputs.nixpkgs { inherit (config.nixpkgs.hostPlatform) system; };
 in desktopSystemConfiguration {
-  hardware.opengl = enabled {
+  hardware.graphics = enabled {
     package   = hyprPkgs.mesa.drivers;
     package32 = hyprPkgs.pkgsi686Linux.mesa.drivers;
   };

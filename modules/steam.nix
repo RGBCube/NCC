@@ -2,7 +2,7 @@
 
 (desktopSystemConfiguration {
   # Steam uses 32-bit drivers for some unholy fucking reason.
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
 })
 
 (desktopUserHomePackages (with pkgs; [
