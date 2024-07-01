@@ -129,7 +129,7 @@ in desktopSystemConfiguration {
         "SUPER    , RETURN, exec, ghostty --gtk-single-instance=true"
         "SUPER    , W     , exec, firefox"
         "SUPER    , D     , exec, discord"
-        "SUPER    , Z,    , exec, zulip"
+        "SUPER    , Z     , exec, zulip"
         "SUPER    , M     , exec, thunderbird"
         "SUPER    , T     , exec, thunar"
         "SUPER    , C     , exec, hyprpicker --autocopy"
