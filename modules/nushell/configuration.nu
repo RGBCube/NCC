@@ -7,11 +7,20 @@ $env.config = {
   float_precision:                  2
   footer_mode:                      25
   render_right_prompt_on_last_line: false
-  shell_integration:                true
   show_banner:                      false
   use_ansi_coloring:                true
   use_grid_icons:                   true
   use_kitty_protocol:               true
+
+  shell_integration: {
+    osc2:                   false
+    osc7:                   true
+    osc8:                   true
+    osc9_9:                 false
+    osc133:                 true
+    osc633:                 true
+    reset_application_mode: true
+  }
 }
 
 $env.config.color_config = {
@@ -159,7 +168,7 @@ $env.config.hooks = {
   env_change:        {}
   pre_execution:     [
     {
-      let prompt = (commandline) | str trim
+      let prompt = commandline | str trim
 
       if ($prompt | is-empty) {
         return
