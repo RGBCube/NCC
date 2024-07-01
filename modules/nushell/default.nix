@@ -2,7 +2,7 @@
 
 (systemConfiguration {
   users.defaultUserShell              = pkgs.crash;
-  environment.sessionVariables.SHELLS = lib.getExe pkgs.nushellFull;
+  environment.sessionVariables.SHELLS = lib.getExe pkgs.nushell;
 
   environment.shellAliases = {
     la  = "ls --all";
@@ -45,8 +45,6 @@
   };
 
   programs.nushell = enabled {
-    package = pkgs.nushellFull;
-
     configFile.text = readFile ./configuration.nu;
     envFile.source  = ./environment.nu;
 
