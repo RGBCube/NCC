@@ -438,6 +438,30 @@
         "type": "github"
       }
     },
+    "hyprcursors": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ],
+        "nixpkgs": [
+          "hyprland",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1719779888,
+        "narHash": "sha256-Jf6Te5Jhbja4Pk6+UeEi3YMxvgMUf/nqHS9PCU1ntOw=",
+        "owner": "VirtCode",
+        "repo": "hypr-dynamic-cursors",
+        "rev": "91c03dea2ebfe34dbe64e54921801829dfe23ea8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VirtCode",
+        "repo": "hypr-dynamic-cursors",
+        "type": "github"
+      }
+    },
     "hyprland": {
       "inputs": {
         "hyprcursor": "hyprcursor",
@@ -718,6 +742,7 @@
         "github2forgejo": "github2forgejo",
         "hardware": "hardware",
         "homeManager": "homeManager",
+        "hyprcursors": "hyprcursors",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
         "nixpkgs": "nixpkgs_4",

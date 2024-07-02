@@ -56,6 +56,13 @@
     hyprland.url   = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     hyprpicker.url = "github:hyprwm/hyprpicker";
 
+    hyprcursors = {
+      url = "github:VirtCode/hypr-dynamic-cursors";
+
+      inputs.hyprland.follows = "hyprland";
+      inputs.nixpkgs.follows  = "hyprland/nixpkgs";
+    };
+
     ghostty.url       = "git+ssh://git@github.com/RGBCube/ghostty";
     ghosttyModule.url = "github:clo4/ghostty-hm-module";
 
@@ -93,8 +100,9 @@
 
     nixpkgsOverlayModule = with lib1; {
       nixpkgs.overlays = [(final: prev: {
-        ghostty = inputs.ghostty.packages.${prev.system}.default;
-        zls     = inputs.zls.packages.${prev.system}.default;
+        ghostty     = inputs.ghostty.packages.${prev.system}.default;
+        hyprcursors = inputs.hyprcursors.packages.${prev.system}.default;
+        zls         = inputs.zls.packages.${prev.system}.default;
       })] ++ pipe inputs [
         attrValues
         (filter (value: value ? overlays.default))
