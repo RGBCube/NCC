@@ -1,8 +1,13 @@
 { config, lib, pkgs, ... }: with lib; merge
 
 (systemConfiguration {
-  users.defaultUserShell              = pkgs.crash;
-  environment.sessionVariables.SHELLS = lib.getExe pkgs.nushell;
+  users.defaultUserShell = pkgs.crash;
+
+  environment.sessionVariables = {
+    SHELLS = lib.getExe pkgs.nushell;
+
+    STARSHIP_LOG = "error";
+  };
 
   environment.shellAliases = {
     la  = "ls --all";
