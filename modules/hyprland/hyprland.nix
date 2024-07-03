@@ -42,10 +42,14 @@ in desktopSystemConfiguration {
     plugins = with pkgs; [ hyprcursors ];
 
     settings.plugin.dynamic-cursors = {
-      enabled = true;
-
       mode  = "rotate";
-      shake = true;
+
+      shake = {
+        threshold = 3;
+
+        effects = true;
+        nearest = false;
+      };
     };
 
     settings = {
