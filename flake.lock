@@ -449,11 +449,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1719927337,
-        "narHash": "sha256-NWiG8T2D1frOKypAYzPK1kbjS046j+cIuRtmoaoAJfA=",
+        "lastModified": 1720021879,
+        "narHash": "sha256-Rgg7mvuMOQKQKtE9HB/1hls/9QXK6LKP6AFap8YHUaI=",
         "owner": "VirtCode",
         "repo": "hypr-dynamic-cursors",
-        "rev": "5fee8c5545c4c4a68f446408fa4ee1ae84d42c17",
+        "rev": "e382821ac67f4812d766982c3ec98cb6d026a311",
         "type": "github"
       },
       "original": {
