@@ -72,7 +72,7 @@ in systemConfiguration {
   services.forgejo = enabled {
     lfs = enabled;
 
-    mailerPasswordFile = config.secrets.forgejoMailPassword.path;
+    secrets.mailer.PASSWD = config.secrets.forgejoMailPassword.path;
 
     database = {
       socket = "/run/postgresql";

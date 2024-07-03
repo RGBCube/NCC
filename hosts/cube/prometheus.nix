@@ -22,7 +22,7 @@ systemConfiguration {
 
     scrapeConfigs = with lib; let
       configToScrapeConfig = name: { config, ... }: pipe config.services.prometheus.exporters [
-        (filterAttrs (const (value: value.enable or false)))
+        (filterAttrs (name: value: name != "minio" && name != "unifi-poller" && value.enable or false))
         (mapAttrsToList (expName: expConfig: {
           job_name = "${expName}-${name}";
 
