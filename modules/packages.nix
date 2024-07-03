@@ -17,6 +17,7 @@
   rsync
   strace
   timg
+  traceroute
   tree
   usbutils
   uutils-coreutils-noprefix
