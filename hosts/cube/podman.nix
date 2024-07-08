@@ -8,7 +8,7 @@ systemConfiguration {
     defaultNetwork.settings.dns_enabled = true;
 
     autoPrune = enabled {
-      dates = "daily";
+      dates = "weekly";
       flags = [ "--all" ];
     };
   };
