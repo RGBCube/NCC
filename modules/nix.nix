@@ -17,9 +17,9 @@
 
     registry = {
       default.flake = inputs.nixpkgs;
-    } // mapAttrs (const (value: mkIf (isType "flake" value)) {
+    } // mapAttrs (const (value: mkIf (isType "flake" value) {
       flake = value;
-    }) inputs;
+    })) inputs;
 
     settings = {
       experimental-features = [
