@@ -30,11 +30,11 @@ def main --wrapped [
         --delete-missing-args
         --compress
         --files-from -
-        ./ ($host + ":Configuration")
+        ./ ($host + ":ncc")
     )
 
     ssh -q -tt $host $"
-      cd Configuration
+      cd ncc
       ./rebuild.nu ($host) ($arguments | str join ' ')
     "
   }
