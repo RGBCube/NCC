@@ -12,10 +12,9 @@ serverSystemConfiguration {
       initialize   = true;
 
       pruneOpts = [
-        "--keep-daily unlimited"
-        "--keep-weekly unlimited"
-        "--keep-monthly 6"
-        "--keep-yearly 12"
+        "--keep-daily 7"
+        "--keep-weekly 4"
+        "--keep-monthly 12"
       ];
     });
   };
