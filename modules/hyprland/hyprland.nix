@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }: with lib; merge
 
 (desktopSystemConfiguration {
+  hardware.graphics = enabled;
+
   services.logind.powerKey = "ignore";
 
   xdg.portal = enabled {
@@ -8,6 +10,10 @@
 
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
+    ];
+
+    configPackages = with pkgs; [
+      hyprland
     ];
   };
 
@@ -46,7 +52,7 @@
     # };
 
     settings = {
-      monitor = [ ", preferred, auto, 1" ];
+      monitor = [ ", preferred, auto, 1.5" ];
 
       windowrule   = [ "noinitialfocus" ];
       windowrulev2 = [ "workspace special silent, initialclass:^(xwaylandvideobridge)$" ];
@@ -138,7 +144,7 @@
         "SUPER    , Z     , exec, zulip"
         "SUPER    , M     , exec, thunderbird"
         "SUPER    , T     , exec, thunar"
-        "SUPER    , C     , exec, hyprpicker --autocopy"
+        # "SUPER    , C     , exec, hyprpicker --autocopy"
 
         "   , PRINT, exec, pkill grim; grim -g \"$(slurp -w 0)\" - | swappy -f - -o - | wl-copy --type image/png"
         "ALT, PRINT, exec, pkill grim; grim                      - | swappy -f - -o - | wl-copy --type image/png"
@@ -226,7 +232,7 @@
 (desktopUserHomePackages (with pkgs; [
   brightnessctl
   grim
-  hyprpicker
+  # hyprpicker
   slurp
   swappy
   swaybg
