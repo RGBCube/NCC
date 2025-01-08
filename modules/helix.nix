@@ -3,7 +3,7 @@
 (systemConfiguration {
   environment = {
     variables.EDITOR = "hx";
-    shellAliases.x = "hx";
+    shellAliases.x   = "hx";
   };
 })
 
@@ -52,20 +52,6 @@
         name              = "nix";
         auto-format       = false;
         formatter.command = "alejandra";
-      }
-      {
-        name            = "cull";
-        injection-regex = "cull";
-        scope           = "scope.cull";
-
-        comment-token    = "#";
-        indent.unit      = "\t";
-        indent.tab-width = 4;
-
-        file-types = [ "cull" ];
-        roots      = [ "build.cull" ];
-
-        grammar = "python";
       }
       {
         name        = "html";

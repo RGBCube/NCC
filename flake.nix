@@ -4,19 +4,17 @@
   nixConfig = {
     extra-substituters = [
       "https://cache.garnix.io/"
-      "https://hyprland.cachix.org/"
       "https://nix-community.cachix.org/"
     ];
 
     extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     hardware.url = "github:NixOS/nixos-hardware";
 
@@ -33,44 +31,29 @@
       inputs.home-manager.follows = "homeManager";
     };
 
-    crash = {
-      url = "github:RGBCube/crash";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     simpleMail = {
       url = "gitlab:simple-nixos-mailserver/nixos-mailserver";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    github2forgejo = {
-      url = "github:RGBCube/GitHub2Forgejo";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    hyprland.url   = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-
-    hyprcursors = {
-      url = "github:VirtCode/hypr-dynamic-cursors";
-
-      inputs.hyprland.follows = "hyprland";
-      inputs.nixpkgs.follows  = "hyprland/nixpkgs";
-    };
-
     fenix.url = "github:nix-community/fenix";
 
-    zig = {
-      url = "github:mitchellh/zig-overlay";
+    # hyprcursors = {
+    #   url = "github:VirtCode/hypr-dynamic-cursors";
+
+    #   inputs.hyprland.follows = "hyprland";
+    #   inputs.nixpkgs.follows  = "hyprland/nixpkgs";
+    # };
+
+    crash = {
+      url = "github:RGBCube/crash";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    zls = {
-      url = "github:zigtools/zls/master";
+    github2forgejo = {
+      url = "github:RGBCube/GitHub2Forgejo";
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -96,7 +79,6 @@
     nixpkgsOverlayModule = with lib1; {
       nixpkgs.overlays = [(final: prev: {
         # hyprcursors = inputs.hyprcursors.packages.${prev.system}.default;
-        zls         = inputs.zls.packages.${prev.system}.default;
       })] ++ pipe inputs [
         attrValues
         (filter (value: value ? overlays.default))

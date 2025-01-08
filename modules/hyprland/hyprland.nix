@@ -1,13 +1,6 @@
-{ config, lib, pkgs, hyprland, ... }: with lib; merge
+{ config, lib, pkgs, ... }: with lib; merge
 
-(let
-  hyprPkgs = import hyprland.inputs.nixpkgs { inherit (config.nixpkgs.hostPlatform) system; };
-in desktopSystemConfiguration {
-  hardware.graphics = enabled {
-    package   = hyprPkgs.mesa.drivers;
-    package32 = hyprPkgs.pkgsi686Linux.mesa.drivers;
-  };
-
+(desktopSystemConfiguration {
   services.logind.powerKey = "ignore";
 
   xdg.portal = enabled {
