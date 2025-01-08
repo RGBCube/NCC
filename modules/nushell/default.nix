@@ -77,7 +77,7 @@
         (map (keyAndValue: nameValuePair (first keyAndValue) (last keyAndValue)))
         (foldl' (x: y: x // y) {})
       ];
-    in mapAttrs (const (value: ''"${value}"'')) (environmentVariables // homeVariables // homeVariablesExtra);
+    in environmentVariables // homeVariables // homeVariablesExtra;
 
     shellAliases = (attrsets.removeAttrs config.environment.shellAliases [ "ls" "l" ]) // {
       cdtmp = "cd (mktemp --directory)";
