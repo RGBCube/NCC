@@ -26,34 +26,34 @@
 ]))
 
 (desktopSystemPackages (with pkgs; [
-  clang_16
-  clang-tools_16
+  # clang_16
+  # clang-tools_16
   deno
   gh
-  go
-  jdk
+  # go
+  # jdk
   lld
-  maven
-  vlang
-  zig
+  # maven
+  # vlang
+  # zig
 
-  wine
+  # wine
 ]))
 
 (desktopUserHomePackages (with pkgs; [
   element-desktop
   fractal
-  whatsapp-for-linux
-  zulip
+  # whatsapp-for-linux
+  # zulip
 
   qbittorrent
 
   thunderbird
 
-  krita
+  # krita
   obs-studio
 
-  libreoffice
-  hunspellDicts.en_US
-  hunspellDicts.en_GB-ize
+  # libreoffice
+  # hunspellDicts.en_US
+  # hunspellDicts.en_GB-ize
 ]))

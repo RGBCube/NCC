@@ -36,6 +36,9 @@ with import ./keys.nix; {
 
   "hosts/nine/github2forgejo/environment.age".publicKeys = [ nine ] ++ admins;
 
+  # pala
+  "hosts/pala/password.said.age".publicKeys  = admins;
+
   # shared
   "modules/ssh/config.age".publicKeys      = all;
   "modules/restic/password.age".publicKeys = all;

@@ -205,5 +205,5 @@
   yaml-language-server
 
   # ZIG
-  zls
+  # zls
 ]))

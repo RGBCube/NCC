@@ -39,18 +39,18 @@ in desktopSystemConfiguration {
       enableXdgAutostart = true;
     };
 
-    plugins = with pkgs; [ hyprcursors ];
+    # plugins = with pkgs; [ hyprcursors ];
 
-    settings.plugin.dynamic-cursors = {
-      mode  = "rotate";
+    # settings.plugin.dynamic-cursors = {
+    #   mode  = "rotate";
 
-      shake = {
-        threshold = 3;
+    #   shake = {
+    #     threshold = 3;
 
-        effects = true;
-        nearest = false;
-      };
-    };
+    #     effects = true;
+    #     nearest = false;
+    #   };
+    # };
 
     settings = {
       monitor = [ ", preferred, auto, 1" ];

@@ -31,7 +31,7 @@
     font.sans.package = pkgs.lexend;
 
     font.mono.name    = "JetBrainsMono Nerd Font";
-    font.mono.package = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
+    font.mono.package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono"]; };
 
     icons.name    = "Gruvbox-Plus-Dark";
     icons.package = pkgs.gruvbox-plus-icons;

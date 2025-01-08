@@ -29,7 +29,6 @@
         "flakes"
         "nix-command"
         "recursive-nix"
-        "repl-flake"
       ];
 
       accept-flake-config      = true;

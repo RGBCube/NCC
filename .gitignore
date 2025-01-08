@@ -21,6 +21,8 @@
 !hosts/nine/
 !hosts/nine/github2forgejo/
 
+!hosts/pala/
+
 !modules/
 !modules/hyprland/
 !modules/nushell/

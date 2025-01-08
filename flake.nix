@@ -4,14 +4,12 @@
   nixConfig = {
     extra-substituters = [
       "https://cache.garnix.io/"
-      "https://ghostty.cachix.org/"
       "https://hyprland.cachix.org/"
       "https://nix-community.cachix.org/"
     ];
 
     extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "ghostty.cachix.org-1:QB389yTa6gTyneehvqG58y0WnHjQOqgnA+wBnpWWxns="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];
@@ -63,22 +61,19 @@
       inputs.nixpkgs.follows  = "hyprland/nixpkgs";
     };
 
-    ghostty.url       = "git+ssh://git@github.com/RGBCube/ghostty";
-    ghosttyModule.url = "github:clo4/ghostty-hm-module";
-
     fenix.url = "github:nix-community/fenix";
 
-    zig = {
-      url = "github:mitchellh/zig-overlay";
+    # zig = {
+    #   url = "github:mitchellh/zig-overlay";
 
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
-    zls = {
-      url = "github:zigtools/zls/master";
+    # zls = {
+    #   url = "github:zigtools/zls/master";
 
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     themes.url = "github:RGBCube/ThemeNix";
   };
@@ -100,8 +95,7 @@
 
     nixpkgsOverlayModule = with lib1; {
       nixpkgs.overlays = [(final: prev: {
-        ghostty     = inputs.ghostty.packages.${prev.system}.default;
-        hyprcursors = inputs.hyprcursors.packages.${prev.system}.default;
+        # hyprcursors = inputs.hyprcursors.packages.${prev.system}.default;
         zls         = inputs.zls.packages.${prev.system}.default;
       })] ++ pipe inputs [
         attrValues
