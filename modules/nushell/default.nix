@@ -33,9 +33,15 @@
     "nushell/ls_colors.txt".source = pkgs.runCommand "ls_colors.txt" {} ''
       ${lib.getExe pkgs.vivid} generate gruvbox-dark-hard > $out
     '';
+
+    "nushell/starship.nu".source = pkgs.runCommand "starship.nu" {} ''
+      ${lib.getExe pkgs.starship} init nu > $out
+    '';
   };
 
-  programs.starship = enabled {
+  # No `enabled` because home-manager is terrible and spits out something
+  # that does it at runtime instead of doing it at system realization time.
+  programs.starship = {
     settings = {
       command_timeout = 100;
       scan_timeout    = 20;
