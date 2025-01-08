@@ -1,6 +1,8 @@
 { config, lib, ... }: with lib;
 
 systemConfiguration {
+  virtualisation.vmware.guest = enabled;
+
   boot.loader = {
     systemd-boot = enabled {
       editor = false;
