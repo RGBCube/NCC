@@ -12,7 +12,7 @@
 
     rgb = sudoUser {
       description                 = "RGB";
-      openssh.authorizedKeys.keys = [ keys.enka ];
+      openssh.authorizedKeys.keys = keys.admins;
       hashedPasswordFile          = config.secrets.rgbPassword.path;
     };
 

@@ -4,8 +4,6 @@
 
 !hosts/
 
-!hosts/altk/
-
 !hosts/cube/
 !hosts/cube/acme/
 !hosts/cube/forgejo/
@@ -15,8 +13,6 @@
 
 !hosts/disk/
 !hosts/disk/mail/
-
-!hosts/enka/
 
 !hosts/nine/
 !hosts/nine/github2forgejo/

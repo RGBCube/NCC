@@ -12,7 +12,7 @@
 
     floppy = sudoUser {
       description                 = "Floppy";
-      openssh.authorizedKeys.keys = [ keys.enka ];
+      openssh.authorizedKeys.keys = keys.admins;
       hashedPasswordFile          = config.secrets.floppyPassword.path;
     };
 

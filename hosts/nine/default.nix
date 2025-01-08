@@ -12,7 +12,7 @@
 
     seven = sudoUser {
       description                 = "Hungry Seven";
-      openssh.authorizedKeys.keys = [ keys.enka ];
+      openssh.authorizedKeys.keys = keys.admins;
       hashedPasswordFile          = config.secrets.sevenPassword.path;
     };
 
