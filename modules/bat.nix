@@ -1,18 +1,14 @@
 { config, lib, pkgs, ... }: with lib; merge
 
-(let
-  batPlain = pkgs.writeScript "bat-plain" ''
-    bat --plain $@
-  '';
-in systemConfiguration {
+(systemConfiguration {
   environment.variables = {
-    MANPAGER = toString batPlain;
-    PAGER    = toString batPlain;
+    MANPAGER = "bat --plain";
+    PAGER    = "bat --plain";
   };
 
   environment.shellAliases = {
     cat  = "bat";
-    less = toString batPlain;
+    less = "bat --plain";
   };
 })
 
