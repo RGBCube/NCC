@@ -63,17 +63,17 @@
 
     fenix.url = "github:nix-community/fenix";
 
-    # zig = {
-    #   url = "github:mitchellh/zig-overlay";
+    zig = {
+      url = "github:mitchellh/zig-overlay";
 
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # zls = {
-    #   url = "github:zigtools/zls/master";
+    zls = {
+      url = "github:zigtools/zls/master";
 
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     themes.url = "github:RGBCube/ThemeNix";
   };

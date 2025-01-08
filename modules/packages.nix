@@ -26,16 +26,15 @@
 ]))
 
 (desktopSystemPackages (with pkgs; [
-  # clang_16
-  # clang-tools_16
+  clang_16
+  clang-tools_16
   deno
   gh
-  # go
-  # jdk
+  go
+  jdk
   lld
-  # maven
-  # vlang
-  # zig
+  maven
+  zig
 
   # wine
 ]))
@@ -53,7 +52,7 @@
   # krita
   obs-studio
 
-  # libreoffice
-  # hunspellDicts.en_US
-  # hunspellDicts.en_GB-ize
+  libreoffice
+  hunspellDicts.en_US
+  hunspellDicts.en_GB-ize
 ]))
