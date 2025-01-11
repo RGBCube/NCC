@@ -1,19 +1,18 @@
-lib: {
-  normalUser = attributes: attributes // {
-    isNormalUser = true;
+_: self: _: let
+  inherit (self) merge mkMerge;
+in {
+  # When the block has a `_type` attribute in the NixOS
+  # module system, anything not immediately relevant is
+  # silently ignored. We can make use of that by adding
+  # a `__functor` attribute, which lets us call the set.
+  merge = mkMerge [] // {
+    __functor = self: next: self // {
+      # Technically, `contents` is implementation defined
+      # but nothing ever happens, so we can rely on this.
+      contents = self.contents ++ [ next ];
+    };
   };
-
-  sudoUser = attributes: attributes // {
-    isNormalUser = true;
-    extraGroups  = [ "wheel" ] ++ attributes.extraGroups or [];
-  };
-
-  desktopUser = attributes: attributes // {
-    isNormalUser  = true;
-    isDesktopUser = true; # Defined in options/desktop.nix.
-  };
-
-  systemUser = attributes: attributes // {
-    isSystemUser = true;
-  };
+  
+  enabled  = merge { enable = true; };
+  disabled = merge { enable = false; };
 }

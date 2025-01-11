@@ -1,24 +1,16 @@
-{ config, lib, ... }: with lib; merge
+lib: lib.darwinSystem {
+  networking.hostName = "pala";
 
-(systemConfiguration {
-  system.stateVersion  = "24.11";
-  nixpkgs.hostPlatform = "aarch64-linux";
-
-  time.timeZone = "Europe/Istanbul";
-
-  secrets.saidPassword.file  = ./password.said.age;
-
-  users.users = {
-    root.hashedPasswordFile = config.secrets.saidPassword.path;
-
-    said = sudoUser (desktopUser {
-      description        = "Said";
-      hashedPasswordFile = config.secrets.saidPassword.path;
-    });
+  users.users.pala = {
+    name = "pala";
+    home = "/Users/pala";
   };
-})
 
-(homeConfiguration {
-  home.stateVersion = "24.11";
-})
+  home-manager.users.pala.home = {
+    stateVersion  = "25.05";
+    homeDirectory = "/Users/pala";
+  };
 
+  nixpkgs.hostPlatform = "aarch64-darwin";
+  system.stateVersion  = 5;
+}
