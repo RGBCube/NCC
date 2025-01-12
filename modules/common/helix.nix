@@ -115,22 +115,28 @@ in {
       settings.theme = "gruvbox_dark_hard";
 
       settings.editor = {
-        color-modes            = true;
-        completion-replace     = true;
-        completion-trigger-len = 0;
-        cursor-shape.insert    = "bar";
-        cursorline             = true;
-        bufferline             = "multiple";
-        file-picker.hidden     = false;
-        idle-timeout           = 0;
-        line-number            = "relative";
-        shell                  = [ "bash" "-c" ];
-        text-width             = 100;
+        bufferline              = "multiple";
+        color-modes             = true;
+        completion-replace      = true;
+        completion-trigger-len  = 0;
+        cursor-shape.insert     = "bar";
+        cursorline              = true;
+        end-of-line-diagnostics = "hint";
+        file-picker.hidden      = false;
+        idle-timeout            = 0;
+        line-number             = "relative";
+        shell                   = [ "bash" "-c" ];
+        text-width              = 100;
       };
 
       settings.editor.indent-guides = {
         character = "▏";
         render = true;
+      };
+
+      settings.editor.inline-diagnostics = {
+        cursor-line = "hint";
+        other-lines = "hint";
       };
 
       settings.editor.statusline.mode = {
