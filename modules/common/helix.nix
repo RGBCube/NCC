@@ -135,7 +135,7 @@ in {
       };
 
       settings.editor.inline-diagnostics = {
-        cursor-line = "hint";
+        cursor-line = "disable";
         other-lines = "hint";
       };
 
