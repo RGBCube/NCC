@@ -134,11 +134,6 @@ in {
         render = true;
       };
 
-      settings.editor.inline-diagnostics = {
-        cursor-line = "disable";
-        other-lines = "hint";
-      };
-
       settings.editor.statusline.mode = {
         insert = "INSERT";
         normal = "NORMAL";
