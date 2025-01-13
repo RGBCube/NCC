@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) enabled mapAttrsToList merge mkIf;
+  inherit (lib) enabled mapAttrsToList merge mkIf optionals;
 in merge <| mkIf config.isDesktop {
   home-manager.sharedModules = [{
     programs.nushell.environmentVariables = {
@@ -71,7 +71,9 @@ in merge <| mkIf config.isDesktop {
         } ++ mapAttrsToList (name: value: "ctrl+${name}=${value}") {
           "physical:tab"       = "next_tab";
           "shift+physical:tab" = "previous_tab";
-        };
+        } ++ optionals config.isDarwin [
+          "command+q=quit"
+        ];
       };
     };
   }];
