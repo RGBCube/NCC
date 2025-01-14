@@ -121,7 +121,6 @@ in {
         completion-trigger-len  = 0;
         cursor-shape.insert     = "bar";
         cursorline              = true;
-        end-of-line-diagnostics = "hint";
         file-picker.hidden      = false;
         idle-timeout            = 0;
         line-number             = "relative";
