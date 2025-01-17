@@ -1,7 +1,5 @@
-{ lib, ... }: let
-  inherit (lib) enabled;
+{ config, lib, ... }: let
+  inherit (lib) optionalString;
 in {
-  environment.shellAliases.ts = "sudo tailscale";
-
-  services.tailscale = enabled;
+  environment.shellAliases.ts = "${optionalString config.isLinux "sudo "}tailscale";
 }
