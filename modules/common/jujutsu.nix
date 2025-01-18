@@ -21,7 +21,7 @@ in {
         user.email = "git@${mailDomain}";
 
         ui.default-command = "log";
-        ui.diff            = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
+        ui.diff.tool       = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
 
         ui.conflict-marker-style = "snapshot";
         ui.graph.style = if config.theme.cornerRadius > 0 then "curved" else "square";
