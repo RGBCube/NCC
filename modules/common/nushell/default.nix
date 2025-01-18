@@ -26,7 +26,9 @@ in {
 
   environment.variables.STARSHIP_LOG = "error";
 
-  home-manager.sharedModules = [(homeArgs: {
+  home-manager.sharedModules = [(homeArgs: let
+    homeConfig = homeArgs.config;
+  in {
     xdg.configFile = {
       "nushell/zoxide.nu".source = pkgs.runCommand "zoxide.nu" {} ''
         ${getExe pkgs.zoxide} init nushell --cmd cd > $out
@@ -37,7 +39,7 @@ in {
       '';
 
       "nushell/starship.nu".source = pkgs.runCommand "starship.nu" {} ''
-        ${getExe pkgs.starship} init nu > $out
+        ${getExe homeConfig.programs.starship.package} init nu > $out
       '';
     };
 
@@ -167,12 +169,12 @@ in {
       environmentVariables = let
         environmentVariables = config.environment.variables;
 
-        homeVariables      = homeArgs.config.home.sessionVariables;
+        homeVariables      = homeConfig.home.sessionVariables;
         homeVariablesExtra = pkgs.runCommand "home-variables-extra.env" {} ''
             alias export=echo
             # echo foo > $out
             # FIXME
-            eval $(cat ${homeArgs.config.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh) > $out
+            eval $(cat ${homeConfig.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh) > $out
           ''
             # |> (aaa: (_: break _) aaa)
             |> readFile
