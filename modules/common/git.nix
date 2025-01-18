@@ -1,4 +1,4 @@
-{ self, config, lib, pkgs, ... }: let
+{ config, lib, pkgs, ... }: let
   inherit (lib) head mkAfter enabled merge mkIf;
   inherit (lib.strings) match;
 in {
@@ -74,13 +74,12 @@ in {
   ];
 
   home-manager.sharedModules = [
-    (let
+    (homeArgs: let
+      homeConfig = homeArgs.config;
+
       # TODO: gitUrl    = self.cube.services.forgejo.settings.server.ROOT_URL;
       gitUrl    = "https://git.rgbcu.be/";
       gitDomain = head <| match "https://(.*)/" gitUrl;
-
-      # TODO: mailDomain = head self.disk.mailserver.domains;
-      mailDomain = "rgbcu.be";
     in {
       programs.nushell.configFile.text = mkAfter ''
         # Sets the remote origin to the specified user and repository on my git instance
@@ -98,8 +97,8 @@ in {
       programs.git = enabled {
         package = pkgs.gitFull;
 
-        userName  = "RGBCube";
-        userEmail = "git@${mailDomain}";
+        userName  = homeConfig.programs.jujutsu.settings.user.name;
+        userEmail = homeConfig.programs.jujutsu.settings.user.email;
 
         lfs = enabled;
 
