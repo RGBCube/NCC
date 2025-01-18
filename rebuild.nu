@@ -4,7 +4,7 @@
 def main --wrapped [
   host: string = "" # The host to build.
   ...arguments      # The arguments to pass to `nixos-rebuild switch`.
-] {
+]: nothing -> nothing {
   let host = if ($host | is-not-empty) {
     $host
   } else {

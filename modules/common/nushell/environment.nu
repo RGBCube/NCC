@@ -7,12 +7,16 @@ $env.ENV_CONVERSIONS.PATH = {
   }
 }
 
-def --env mc [path: path] {
+def copy []: string -> nothing {
+	print -n $"(ansi osc)52;c;($in | encode base64)(ansi st)"
+}
+
+def --env mc [path: path]: nothing -> nothing {
   mkdir $path
   cd $path
 }
 
-def --env mcg [path: path] {
+def --env mcg [path: path]: nothing -> nothing {
   mkdir $path
   cd $path
   git init
