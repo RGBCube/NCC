@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) enabled const filter first foldl' getExe last match mkIf nameValuePair optionalAttrs readFile removeAttrs splitString;
+  inherit (lib) enabled filter first foldl' getExe last match mkIf nameValuePair optionalAttrs readFile removeAttrs splitString;
 in {
   users = optionalAttrs config.isLinux { defaultUserShell = pkgs.nushell; };
 

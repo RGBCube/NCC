@@ -232,6 +232,16 @@ $env.config.menus = [
 
 $env.config.keybindings = [
   {
+    name: copy_commandline
+    modifier: alt
+    keycode: char_c
+    mode: [ vi_normal vi_insert ]
+    event: {
+      send: executehostcommand
+      cmd: 'commandline | nu-highlight | $"```ansi\n($in)\n```" | copy'
+    }
+  }
+  {
     name:     completion_menu
     modifier: none
     keycode:  tab
