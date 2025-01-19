@@ -26,6 +26,22 @@ in {
 
   environment.variables.STARSHIP_LOG = "error";
 
+  nixpkgs.overlays = [(self: super: {
+    starship = super.starship.overrideAttrs (old: {
+      src = self.fetchFromGitHub {
+        owner  = "poliorcetics";
+        repo   = "starship";
+        rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
+        hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
+      };
+
+      cargoDeps = super.starship.cargoDeps.overrideAttrs (_: {
+        inherit (self.starship) src;
+        outputHash = "sha256-3NJV+hsgX3H8pycso0gCdzxJg8SgVwGMbIoHDDRZBvY=";
+      });
+    });
+  })];
+
   home-manager.sharedModules = [(homeArgs: let
     homeConfig = homeArgs.config;
   in {
@@ -39,7 +55,7 @@ in {
       '';
 
       "nushell/starship.nu".source = pkgs.runCommand "starship.nu" {} ''
-        ${getExe homeConfig.programs.starship.package} init nu > $out
+        ${getExe pkgs.starship} init nu > $out
       '';
     };
 
@@ -48,104 +64,6 @@ in {
       # this retarded module does it. Why the hell do you generate
       # the config every time the shell is launched?
       enableNushellIntegration = false;
-
-      # package = pkgs.starship.overrideAttrs (const {
-      #   src = pkgs.fetchFromGitHub {
-      #     owner  = "poliorcetics";
-      #     repo   = "starship";
-      #     rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
-      #     hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
-      #   };
-
-      #   cargoHash = "sha256-sOjCkRHknc0SWNEItEvD6ajk/5W2kfbD1bw8T+wzGeU=";
-      # });
-
-      package = pkgs.callPackage ({
-        lib,
-        stdenv,
-        fetchFromGitHub,
-        rustPlatform,
-        installShellFiles,
-        cmake,
-        git,
-        nixosTests,
-        Security,
-        Foundation,
-        Cocoa,
-      }:
-
-      rustPlatform.buildRustPackage {
-        pname = "starship";
-        version = "1.22.1";
-
-        src = pkgs.fetchFromGitHub {
-          owner  = "poliorcetics";
-          repo   = "starship";
-          rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
-          hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
-        };
-
-        nativeBuildInputs = [
-          installShellFiles
-          cmake
-        ];
-
-        buildInputs = lib.optionals stdenv.hostPlatform.isDarwin [
-          Security
-          Foundation
-          Cocoa
-        ];
-
-        NIX_LDFLAGS = lib.optionals (stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isx86_64) [
-          "-framework"
-          "AppKit"
-        ];
-
-        # tries to access HOME only in aarch64-darwin environment when building mac-notification-sys
-        preBuild = lib.optionalString (stdenv.hostPlatform.isDarwin && stdenv.hostPlatform.isAarch64) ''
-          export HOME=$TMPDIR
-        '';
-
-        postInstall =
-          ''
-            presetdir=$out/share/starship/presets/
-            mkdir -p $presetdir
-            cp docs/public/presets/toml/*.toml $presetdir
-          ''
-          + lib.optionalString (stdenv.buildPlatform.canExecute stdenv.hostPlatform) ''
-            installShellCompletion --cmd starship \
-              --bash <($out/bin/starship completions bash) \
-              --fish <($out/bin/starship completions fish) \
-              --zsh <($out/bin/starship completions zsh)
-          '';
-
-        cargoHash = "sha256-sOjCkRHknc0SWNEItEvD6ajk/5W2kfbD1bw8T+wzGeU=";
-
-        nativeCheckInputs = [ git ];
-
-        preCheck = ''
-          HOME=$TMPDIR
-        '';
-
-        passthru.tests = {
-          inherit (nixosTests) starship;
-        };
-
-        meta = with lib; {
-          description = "Minimal, blazing fast, and extremely customizable prompt for any shell";
-          homepage = "https://starship.rs";
-          license = licenses.isc;
-          maintainers = with maintainers; [
-            danth
-            davidtwco
-            Br1ght0ne
-            Frostman
-          ];
-          mainProgram = "starship";
-        };
-      }) {
-        inherit (pkgs.darwin.apple_sdk.frameworks) Security Foundation Cocoa;
-      };
 
       settings = {
         vcs.disabled = false;
