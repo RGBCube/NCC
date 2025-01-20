@@ -21,6 +21,7 @@ in {
         user.email = "git@${mailDomain}";
 
         ui.default-command = "log";
+        ui.diff-editor     = ":builtin";
         ui.diff.tool       = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
 
         ui.conflict-marker-style = "snapshot";
