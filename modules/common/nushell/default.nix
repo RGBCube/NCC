@@ -68,6 +68,8 @@ in {
       settings = {
         vcs.disabled = false;
 
+        swift.disabled = true;
+
         command_timeout = 100;
         scan_timeout    = 20;
 
