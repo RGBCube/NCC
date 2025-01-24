@@ -1,12 +1,8 @@
 inputs: self: super: let
-  inherit (self) attrValues filter getAttrFromPath hasAttrByPath hasSuffix;
-  inherit (self.filesystem) listFilesRecursive;
-
-  collect = path: listFilesRecursive path
-    |> filter (hasSuffix ".nix");
+  inherit (self) attrValues filter getAttrFromPath hasAttrByPath collect;
 
   commonModules = collect ../modules/common;
-  nixosModules  = collect ../modules/nixos;
+  nixosModules  = collect ../modules/linux;
   darwinModules = collect ../modules/darwin;
 
   collectInputs = let
@@ -20,34 +16,33 @@ inputs: self: super: let
 
   inputOverlays = collectInputs [ "overlays" "default" ];
   overlayModule = { nixpkgs.overlays = inputOverlays; };
+
+  specialArgs = inputs // {
+    inherit inputs;
+
+    keys = import ../keys.nix;
+    lib  = self;
+  };
 in {
   nixosSystem = module: super.nixosSystem {
+    inherit specialArgs;
+
     modules = [
       module
       overlayModule
     ] ++ commonModules
       ++ nixosModules
       ++ inputNixosModules;
-
-    specialArgs = inputs // {
-      inherit inputs;
-
-      lib = self;
-    };
   };
 
   darwinSystem = module: super.darwinSystem {
+    inherit specialArgs;
+
     modules = [
       module
       overlayModule
     ] ++ commonModules
       ++ darwinModules
       ++ inputDarwinModules;
-
-    specialArgs = inputs // {
-      inherit inputs;
-
-      lib = self;
-    };
   };
 }
