@@ -6,25 +6,25 @@ in {
     shellAliases.x   = "hx";
   };
 
-  nixpkgs.overlays = [(self: super: {
-    helix = super.helix.overrideAttrs (old: {
-      version = "25.01.1";
+  # nixpkgs.overlays = [(self: super: {
+  #   helix = super.helix.overrideAttrs (old: {
+  #     version = "25.01.1";
 
-      src = self.fetchzip {
-        url = "https://github.com/cull-os/helix/releases/download/ci-release-25.01.1/helix-ci-release-25.01.1-source.tar.xz";
-        hash = "sha256-bvlzXRAdPvz8P49KENSw9gupQNaUm/+3eZZ1q7+fTsw=";
-        stripRoot = false;
-      };
+  #     src = self.fetchzip {
+  #       url = "https://github.com/cull-os/helix/releases/download/ci-release-25.01.1/helix-ci-release-25.01.1-source.tar.xz";
+  #       hash = "sha256-bvlzXRAdPvz8P49KENSw9gupQNaUm/+3eZZ1q7+fTsw=";
+  #       stripRoot = false;
+  #     };
 
-      # TODO: Delete this as this was fixed on latest unstable.
-      preVersionCheck = "";
+  #     # TODO: Delete this as this was fixed on latest unstable.
+  #     preVersionCheck = "";
 
-      cargoDeps = super.helix.cargoDeps.overrideAttrs (_: {
-        inherit (self.helix) src;
-        outputHash = "sha256-O5ECrKyF9x5r7w9wMIqbYYuGFIeUaRgtzDfYK9dFjp4=";
-      });
-    });
-  })];
+  #     cargoDeps = super.helix.cargoDeps.overrideAttrs (_: {
+  #       inherit (self.helix) src;
+  #       outputHash = "sha256-O5ECrKyF9x5r7w9wMIqbYYuGFIeUaRgtzDfYK9dFjp4=";
+  #     });
+  #   });
+  # })];
 
 
   home-manager.sharedModules = [{
@@ -69,11 +69,6 @@ in {
         }) [ "css" "scss" "yaml" ];
       in denoFormatterLanguages ++ prettierLanguages ++ [
         {
-          name              = "nix";
-          auto-format       = false;
-          formatter.command = "alejandra";
-        }
-        {
           name        = "html";
           # Added vto.
           file-types  = [ "asp" "aspx" "htm" "html" "jshtm" "jsp" "rhtml" "shtml" "volt" "vto" "xht" "xhtml" ];
@@ -104,33 +99,74 @@ in {
           formatter        = denoFormatter "tsx";
           language-servers = [ "deno" ];
         }
+
+        # NON-DENO
+        {
+          name              = "nix";
+          auto-format       = false;
+          formatter.command = "alejandra";
+        }
+
+        {
+          name = "rust";
+
+          debugger.name      = "lldb-dap";
+          debugger.transport = "stdio";
+          debugger.command   = "lldb-dap";
+
+          debugger.templates = [{
+            name    = "binary";
+            request = "launch";
+
+            completion = [{
+              name = "binary";
+              completion = "filename";
+            }];
+
+            args.program      = "{0}";
+            args.initCommands = [ "command script import ${pkgs.writeText "lldb_dap_rustc_primer.py" ''
+              import subprocess
+              import pathlib
+              import lldb
+
+              # Not hardcoding a nix store path here on purpose.
+              rustlib_etc = pathlib.Path(subprocess.getoutput("rustc --print sysroot")) / "lib" / "rustlib" / "etc"
+              if not rustlib_etc.exists():
+                  raise RuntimeError("Unable to determine rustc sysroot")
+
+              # Load lldb_lookup.py and execute lldb_commands with the correct path
+              lldb.debugger.HandleCommand(f"""command script import "{rustlib_etc / 'lldb_lookup.py'}" """)
+              lldb.debugger.HandleCommand(f"""command source -s 0 "{rustlib_etc / 'lldb_commands'}" """)
+            ''}" ];
+          }];
+        }
       ];
 
-      languages.language-server = {
-        deno = {
-          command = "deno";
-          args    = [ "lsp" ];
+      languages.language-server.deno = {
+        command = "deno";
+        args    = [ "lsp" ];
 
-          environment.NO_COLOR = "1";
+        environment.NO_COLOR = "1";
 
-          config.javascript = enabled {
-            lint     = true;
-            unstable = true;
+        config.javascript = enabled {
+          lint     = true;
+          unstable = true;
 
-            suggest.imports.hosts."https://deno.land" = true;
+          suggest.imports.hosts."https://deno.land" = true;
 
-            inlayHints = {
-              enumMemberValues.enabled         = true;
-              functionLikeReturnTypes.enabled  = true;
-              parameterNames.enabled           = "all";
-              parameterTypes.enabled           = true;
-              propertyDeclarationTypes.enabled = true;
-              variableTypes.enabled            = true;
-            };
+          inlayHints = {
+            enumMemberValues.enabled         = true;
+            functionLikeReturnTypes.enabled  = true;
+            parameterNames.enabled           = "all";
+            parameterTypes.enabled           = true;
+            propertyDeclarationTypes.enabled = true;
+            variableTypes.enabled            = true;
           };
         };
+      };
 
-        rust-analyzer.config.check.command = "clippy";
+      languages.language-server.rust-analyzer = {
+        config.check.command = "clippy";
       };
 
       settings.theme = "gruvbox_dark_hard";
@@ -203,6 +239,7 @@ in {
 
     # RUST
     pkgs.rust-analyzer-nightly
+    pkgs.lldb_20
 
     # TYPESCRIPT & OTHERS
     pkgs.deno
@@ -214,4 +251,3 @@ in {
     pkgs.zls
   ];
 }
-

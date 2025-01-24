@@ -151,11 +151,6 @@ $env.config.completions = {
   }
 }
 
-$env.config.filesize = {
-  format: auto
-  metric: true
-}
-
 $env.config.cursor_shape = {
   vi_insert: line
   vi_normal: block
