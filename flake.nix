@@ -56,7 +56,7 @@
 
     fenix.url = "github:nix-community/fenix";
 
-    nix.url = "github:NixOS/nix";
+    # nix.url = "github:NixOS/nix";
     nil.url = "github:oxalica/nil";
 
     jj = {

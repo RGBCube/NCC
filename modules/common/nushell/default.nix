@@ -26,21 +26,21 @@ in {
 
   environment.variables.STARSHIP_LOG = "error";
 
-  nixpkgs.overlays = [(self: super: {
-    starship = super.starship.overrideAttrs (old: {
-      src = self.fetchFromGitHub {
-        owner  = "poliorcetics";
-        repo   = "starship";
-        rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
-        hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
-      };
+  # nixpkgs.overlays = [(self: super: {
+  #   starship = super.starship.overrideAttrs (old: {
+  #     src = self.fetchFromGitHub {
+  #       owner  = "poliorcetics";
+  #       repo   = "starship";
+  #       rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
+  #       hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
+  #     };
 
-      cargoDeps = super.starship.cargoDeps.overrideAttrs (_: {
-        inherit (self.starship) src;
-        outputHash = "sha256-3NJV+hsgX3H8pycso0gCdzxJg8SgVwGMbIoHDDRZBvY=";
-      });
-    });
-  })];
+  #     cargoDeps = super.starship.cargoDeps.overrideAttrs (_: {
+  #       inherit (self.starship) src;
+  #       outputHash = "sha256-3NJV+hsgX3H8pycso0gCdzxJg8SgVwGMbIoHDDRZBvY=";
+  #     });
+  #   });
+  # })];
 
   home-manager.sharedModules = [(homeArgs: let
     homeConfig = homeArgs.config;

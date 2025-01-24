@@ -63,9 +63,9 @@ in {
 
     gst = "git status";
   } <| mkIf config.isDesktop {
-    "\"??\""   = "gh copilot suggest --target shell";
-    "\"gh?\""  = "gh copilot suggest --target gh";
-    "\"git?\"" = "gh copilot suggest --target git";
+    "??"   = "gh copilot suggest --target shell --";
+    "gh?"  = "gh copilot suggest --target gh --";
+    "git?" = "gh copilot suggest --target git --";
   };
 
   environment.systemPackages = [
