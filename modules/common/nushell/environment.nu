@@ -8,7 +8,7 @@ $env.ENV_CONVERSIONS.PATH = {
 }
 
 def copy []: string -> nothing {
-	print -n $"(ansi osc)52;c;($in | encode base64)(ansi st)"
+	print --no-newline $"(ansi osc)52;c;($in | encode base64)(ansi st)"
 }
 
 def --env mc [path: path]: nothing -> nothing {
