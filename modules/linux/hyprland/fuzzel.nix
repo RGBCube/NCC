@@ -1,7 +1,7 @@
 { config, lib, ... }: let
   inherit (lib) enabled mapAttrs merge mkIf replaceStrings;
 in merge <| mkIf config.isDesktop {
-  home-manager.sharedNodules = [{
+  home-manager.sharedModules = [{
     wayland.windowManager.hyprland.settings = {
       bindl = [(replaceStrings [ "\n;" "\n" ] [ ";" "" ] ''
         , XF86PowerOff, exec,
