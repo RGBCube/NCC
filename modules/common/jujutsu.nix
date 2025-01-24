@@ -29,6 +29,7 @@ in {
 
         git.auto-local-bookmark  = true;
         git.push-bookmark-prefix = "change-";
+        git.subprocess           = true;
 
         signing.sign-all = true;
         signing.backend  = "ssh";

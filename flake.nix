@@ -59,6 +59,12 @@
     nix.url = "github:NixOS/nix";
     nil.url = "github:oxalica/nil";
 
+    jj = {
+      url = "github:jj-vcs/jj";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     crash = {
       url = "github:RGBCube/crash";
 
