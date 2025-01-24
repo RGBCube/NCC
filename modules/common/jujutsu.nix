@@ -20,7 +20,13 @@ in {
         user.name  = "RGBCube";
         user.email = "git@${mailDomain}";
 
-        ui.default-command = "log";
+        aliases.".." = [ "edit" "@-" ];
+        aliases.",," = [ "edit" "@+" ];
+
+        revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().., 2) | reachable(@, all())";
+
+        ui.default-command = "status";
+
         ui.diff-editor     = ":builtin";
         ui.diff.tool       = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
 
@@ -30,6 +36,9 @@ in {
         git.auto-local-bookmark  = true;
         git.push-bookmark-prefix = "change-";
         git.subprocess           = true;
+
+        git.fetch = [ "origin" "upstream" "rad" ];
+        git.push  = "origin"; # TODO: Find a way to make this become rad when origin is up to date.
 
         signing.sign-all = true;
         signing.backend  = "ssh";
