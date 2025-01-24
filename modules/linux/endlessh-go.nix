@@ -2,17 +2,17 @@
   inherit (lib) enabled merge mkEnableOption mkIf mkOption types;
 
   fakeSSHPort    = 22;
-in merge <| mkIf config.isServer {
-  config.services.prometheus.exporters.endlessh-go = enabled {
+in {
+  config.services.prometheus.exporters.endlessh-go = mkIf config.isServer <| enabled {
     listenAddress = "[::]";
   };
 
   # `services.endlessh-go.openFirewall` exposes both the Prometheus
   # exporters port and the SSH port, and we don't want the metrics
   # to leak, so we manually expose this like so.
-  config.networking.firewall.allowedTCPPorts = [ fakeSSHPort ];
+  config.networking.firewall.allowedTCPPorts = mkIf config.isServer <| [ fakeSSHPort ];
 
-  config.services.endlessh-go = enabled {
+  config.services.endlessh-go = mkIf config.isServer <| enabled {
     listenAddress = "[::]";
     port          = fakeSSHPort;
 
