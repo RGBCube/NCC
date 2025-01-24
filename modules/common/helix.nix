@@ -92,7 +92,7 @@ in {
 
           environment.NO_COLOR = "1";
 
-          config.deno = enabled {
+          config.javascript = enabled {
             lint     = true;
             unstable = true;
 
