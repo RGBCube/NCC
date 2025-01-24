@@ -54,10 +54,10 @@ def main --wrapped [
 # the "install developer tools" popup.
 #
 # Set by default to "SplitForks" because who even uses that?
-const original_trigger = "SplitForks"
+const original_trigger = "/usr/bin/SplitForks"
 
-# Where the symbolic links to `false` will be created in
-# to shadow all popup-triggering binaries.
+# Where the symbolic links to `/usr/bin/false` will
+# be created in to shadow all popup-triggering binaries.
 #
 # Place this in your $env.PATH right before /usr/bin
 # to never get the "install developer tools" popup ever again:
@@ -73,13 +73,12 @@ const original_trigger = "SplitForks"
 #
 # Do NOT set this to a path that you use for other things,
 # it will get deleted if it exists to only have the shadowers.
-const shadow_path = "~/.local/shadow" # Did you read the comment?
+const shadow_path = "~/.local/shadow" | path expand # Did you read the comment?
 
 def darwin-shadow-xcode-popup [] {
   print "shadowing xcode popup binaries..."
 
-  let original_size = ls (which $original_trigger | get 0.path)
-  | get 0.size
+  let original_size = ls $original_trigger | get 0.size
 
   let shadoweds = ls /usr/bin
   | flatten
@@ -93,14 +92,13 @@ def darwin-shadow-xcode-popup [] {
   | get name
   | each { path basename }
 
-  let false_path = which "false" | get 0.path
-
   rm -rf $shadow_path
   mkdir $shadow_path
+
   for shadowed in $shadoweds {
     let shadow_path = $shadow_path | path join $shadowed
 
-    ln --symbolic $false_path $"($shadow_path)"
+    ln --symbolic /usr/bin/false $shadow_path
   }
 }
 
