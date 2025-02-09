@@ -24,7 +24,10 @@ in merge <| mkIf config.isDesktop {
         window-padding-x = padding;
         window-padding-y = padding;
 
+        mouse-hide-while-typing = true;
+
         confirm-close-surface = false;
+        quit-after-last-window-closed = true;
 
         window-decoration = config.isDarwin;
 
