@@ -12,7 +12,6 @@
 
 !modules/
 !modules/common/
-!modules/common/helix/
 !modules/common/nushell/
 !modules/common/ssh/
 !modules/darwin/
