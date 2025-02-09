@@ -47,15 +47,15 @@ in {
         }
       }
 
-    def --wrapped ns [...programs] {
-      nix shell ...($programs | each {
-        if ($in | str contains "#") or ($in | str contains ":") {
-          $in
-        } else {
-          "default#" + $in
-        }
-      })
-    }
+      def --wrapped ns [...programs] {
+        nix shell ...($programs | each {
+          if ($in | str contains "#") or ($in | str contains ":") {
+            $in
+          } else {
+            "default#" + $in
+          }
+        })
+      }
     '';
   }];
 }

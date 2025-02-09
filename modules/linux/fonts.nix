@@ -10,13 +10,13 @@ in merge
   };
 
   fonts.packages = [
-  config.theme.font.sans.package
-  config.theme.font.mono.package
+    config.theme.font.sans.package
+    config.theme.font.mono.package
 
-  pkgs.noto-fonts
-  pkgs.noto-fonts-cjk-sans
-  pkgs.noto-fonts-lgc-plus
-  pkgs.noto-fonts-emoji
+    pkgs.noto-fonts
+    pkgs.noto-fonts-cjk-sans
+    pkgs.noto-fonts-lgc-plus
+    pkgs.noto-fonts-emoji
   ];
 })
 
