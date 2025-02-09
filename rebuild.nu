@@ -42,7 +42,9 @@ def main --wrapped [
   if (uname | get kernel-name) == "Darwin" {
     darwin-rebuild switch --flake (".#" + $host) ...$nix_flags
 
-    darwin-shadow-xcode-popup
+    if not (xcode-select --install e>| str contains "Command line tools are already installed") {
+      darwin-shadow-xcode-popup
+    }
 
     darwin-set-zshrc
   } else {
