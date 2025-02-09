@@ -119,7 +119,10 @@ in {
 
             args.program      = "{0}";
             args.initCommands = let
-              primer = pkgs.writeTextDir "lldb_dap_rustc_primer.py" /* py */ ''
+              primer = pkgs.runCommand "primer" {} (/* py */ ''
+                mkdir $out
+                echo '
+
                 import subprocess
                 import pathlib
                 import lldb
@@ -132,8 +135,10 @@ in {
                 # Load lldb_lookup.py and execute lldb_commands with the correct path
                 lldb.debugger.HandleCommand(f"""command script import "{rustlib_etc / 'lldb_lookup.py'}" """)
                 lldb.debugger.HandleCommand(f"""command source -s 0 "{rustlib_etc / 'lldb_commands'}" """)
-              '';
-            in [ "command script import ${primer}/lldb_dab_rustc_primer.py" ];
+
+                ' > $out/primer.py
+              '');
+            in [ "command script import ${primer}/primer.py" ];
           }];
         }
       ];
