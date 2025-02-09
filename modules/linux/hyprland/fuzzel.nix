@@ -3,7 +3,7 @@
 in merge <| mkIf config.isDesktop {
   home-manager.sharedModules = [{
     wayland.windowManager.hyprland.settings = {
-      bindl = [(replaceStrings [ "\n;" "\n" ] [ ";" "" ] ''
+      bindl = [(replaceStrings [ "\n;" "\n" ] [ ";" "" ] /* sh */ ''
         , XF86PowerOff, exec,
         pkill fuzzel;
         echo -en "Suspend\0icon\x1fsystem-suspend\nHibernate\0icon\x1fsystem-suspend-hibernate-alt2\nPower Off\0icon\x1fsystem-shutdown\nReboot\0icon\x1fsystem-reboot"

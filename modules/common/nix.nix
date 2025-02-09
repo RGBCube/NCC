@@ -38,7 +38,7 @@ in {
   ];
 
   home-manager.sharedModules = [{
-    programs.nushell.configFile.text = mkAfter ''
+    programs.nushell.configFile.text = mkAfter /* nu */ ''
       def --wrapped nr [program: string = "", ...arguments] {
         if ($program | str contains "#") or ($program | str contains ":") {
           nix run $program -- ...$arguments
