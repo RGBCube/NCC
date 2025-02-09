@@ -26,21 +26,35 @@ in {
 
   environment.variables.STARSHIP_LOG = "error";
 
-  # nixpkgs.overlays = [(self: super: {
-  #   starship = super.starship.overrideAttrs (old: {
-  #     src = self.fetchFromGitHub {
-  #       owner  = "poliorcetics";
-  #       repo   = "starship";
-  #       rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
-  #       hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
-  #     };
+  nixpkgs.overlays = [(self: super: {
+    zoxide = super.zoxide.overrideAttrs (old: {
+      src = self.fetchFromGitHub {
+        owner  = "Bahex";
+        repo   = "zoxide";
+        rev    = "0450775af9b1430460967ba8fb5aa434f95c4bc4";
+        hash   = "sha256-WhACxJMuhI9HGohcwg+ztZpQCVUZ4uibIQqGfJEEp/Y=";
+      };
 
-  #     cargoDeps = super.starship.cargoDeps.overrideAttrs (_: {
-  #       inherit (self.starship) src;
-  #       outputHash = "sha256-3NJV+hsgX3H8pycso0gCdzxJg8SgVwGMbIoHDDRZBvY=";
-  #     });
-  #   });
-  # })];
+      cargoDeps = self.rustPlatform.fetchCargoVendor {
+        inherit (self.zoxide) src;
+        hash = "sha256-v3tcQaEXfGyt1j2fShvxxrA9Xc90AWxEzEUT09cQ+is=";
+      };
+    });
+
+    starship = super.starship.overrideAttrs (old: {
+      src = self.fetchFromGitHub {
+        owner  = "poliorcetics";
+        repo   = "starship";
+        rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
+        hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
+      };
+
+      cargoDeps = self.rustPlatform.fetchCargoVendor {
+        inherit (self.starship) src;
+        hash = "sha256-EvslXwa4xGrrWLTqJlj/+iviBibPY0lRKcErNpb1FFo=";
+      };
+    });
+  })];
 
   home-manager.sharedModules = [(homeArgs: let
     homeConfig = homeArgs.config;
