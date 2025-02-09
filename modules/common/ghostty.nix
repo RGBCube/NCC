@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }: let
   inherit (lib) enabled mapAttrsToList merge mkIf optionals;
 in merge <| mkIf config.isDesktop {
-  home-manager.sharedModules = [{
-    programs.nushell.environmentVariables = {
-      TERMINAL     = mkIf config.isLinux "ghostty";
-      TERM_PROGRAM = mkIf config.isDarwin "ghostty";
-    };
+  environment.variables = {
+    TERMINAL     = mkIf config.isLinux "ghostty";
+    TERM_PROGRAM = mkIf config.isDarwin "ghostty";
+  };
 
+  home-manager.sharedModules = [{
     programs.ghostty = enabled {
       # Don't actually install Ghostty if we are on Darwin.
       # For some reason it is marked as broken.
