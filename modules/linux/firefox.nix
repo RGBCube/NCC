@@ -16,7 +16,7 @@ in merge <| mkIf config.isDesktop {
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         };
 
-        userChrome = ''
+        userChrome = /* css */ ''
           #TabsToolbar {
             visibility: collapse;
           }

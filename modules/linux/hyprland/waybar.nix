@@ -89,7 +89,7 @@ in merge <| mkIf config.isDesktop {
         clock.tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       }];
 
-      style = ''
+      style = /* css */ ''
         * {
           border: none;
           border-radius: ${toString cornerRadius}px;

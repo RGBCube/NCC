@@ -3,11 +3,11 @@
 in merge {
   security.sudo = enabled {
     execWheelOnly = true;
-    extraConfig   = ''
+    extraConfig   = /* sudo */ ''
       Defaults lecture = never
       Defaults pwfeedback
       Defaults env_keep += "DISPLAY EDITOR PATH"
-      ${optionalString config.isServer ''
+      ${optionalString config.isServer /* sudo */ ''
         Defaults timestamp_timeout = 0
       ''}
     '';

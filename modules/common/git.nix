@@ -81,7 +81,7 @@ in {
       gitUrl    = "https://git.rgbcu.be/";
       gitDomain = head <| match "https://(.*)/" gitUrl;
     in {
-      programs.nushell.configFile.text = mkAfter ''
+      programs.nushell.configFile.text = mkAfter /* nu */ ''
         # Sets the remote origin to the specified user and repository on my git instance
         def gsr [user_and_repo: string] {
           let user_and_repo = if ($user_and_repo | str index-of "/") != -1 {

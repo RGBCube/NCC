@@ -22,7 +22,7 @@ in {
   })];
 
   home-manager.sharedModules = [{
-    programs.nushell.configFile.text = mkIf (config.isDesktop && config.isLinux) <| mkAfter ''
+    programs.nushell.configFile.text = mkIf (config.isDesktop && config.isLinux) <| mkAfter /* nu */ ''
       def --wrapped hx [...arguments] {
         if $env.TERM == "xterm-kitty" {
           kitty @ set-spacing padding=0
@@ -118,20 +118,22 @@ in {
             }];
 
             args.program      = "{0}";
-            args.initCommands = [ "command script import ${pkgs.writeText "lldb_dap_rustc_primer.py" ''
-              import subprocess
-              import pathlib
-              import lldb
+            args.initCommands = let
+              primer = pkgs.writeTextDir "lldb_dap_rustc_primer.py" /* py */ ''
+                import subprocess
+                import pathlib
+                import lldb
 
-              # Not hardcoding a nix store path here on purpose.
-              rustlib_etc = pathlib.Path(subprocess.getoutput("rustc --print sysroot")) / "lib" / "rustlib" / "etc"
-              if not rustlib_etc.exists():
-                  raise RuntimeError("Unable to determine rustc sysroot")
+                # Not hardcoding a nix store path here on purpose.
+                rustlib_etc = pathlib.Path(subprocess.getoutput("rustc --print sysroot")) / "lib" / "rustlib" / "etc"
+                if not rustlib_etc.exists():
+                    raise RuntimeError("Unable to determine rustc sysroot")
 
-              # Load lldb_lookup.py and execute lldb_commands with the correct path
-              lldb.debugger.HandleCommand(f"""command script import "{rustlib_etc / 'lldb_lookup.py'}" """)
-              lldb.debugger.HandleCommand(f"""command source -s 0 "{rustlib_etc / 'lldb_commands'}" """)
-            ''}" ];
+                # Load lldb_lookup.py and execute lldb_commands with the correct path
+                lldb.debugger.HandleCommand(f"""command script import "{rustlib_etc / 'lldb_lookup.py'}" """)
+                lldb.debugger.HandleCommand(f"""command source -s 0 "{rustlib_etc / 'lldb_commands'}" """)
+              '';
+            in [ "command script import ${primer}/lldb_dab_rustc_primer.py" ];
           }];
         }
       ];
