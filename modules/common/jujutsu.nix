@@ -3,6 +3,7 @@
 in {
   environment.systemPackages = [
     pkgs.difftastic
+    pkgs.radicle-node
   ];
 
   home-manager.sharedModules = [(homeArgs: let
