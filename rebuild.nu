@@ -114,6 +114,8 @@ def darwin-set-zshrc [] {
     | get 0.index
 
     $env.PATH = $env.PATH | insert $usr_bin_index ($shadow_path | path expand)
+
+    $env.SHELL = which nu | get 0.path
   "
 
   let zshrc = $"
