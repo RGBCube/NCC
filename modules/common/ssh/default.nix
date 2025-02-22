@@ -40,11 +40,11 @@ in {
         #   port     = 2222;
         # };
 
-        # disk = {
-        #   hostname = self.disk.networking.ipv4;
-        #   user     = "floppy";
-        #   port     = 2222;
-        # };
+        disk = {
+          hostname = self.disk.networking.ipv4;
+          user     = "floppy";
+          port     = 2222;
+        };
 
         nine = {
           hostname = self.nine.networking.ipv4;

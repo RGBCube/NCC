@@ -3,19 +3,20 @@
 in {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
-  boot.loader.grub = enabled {
-    efiSupport            = true;
-    efiInstallAsRemovable = true;
-    device                = "nodev";
+  boot.loader = {
+    systemd-boot = enabled {
+      editor = false;
+    };
+
+    efi.canTouchEfiVariables = true;
   };
 
   boot.initrd.availableKernelModules = [
+    "ahci"
     "ata_piix"
-    "uhci_hcd"
-    "xen_blkfront"
+    "nvme"
+    "sr_mod"
   ];
-
-  boot.initrd.kernelModules = [ "nvme" ];
 
   fileSystems."/" = {
     device  = "/dev/disk/by-label/root";
@@ -29,5 +30,7 @@ in {
     options = [ "noatime" ];
   };
 
-  zramSwap = enabled;
+  swapDevices = [{
+    device = "/dev/disk/by-label/swap";
+  }];
 }

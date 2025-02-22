@@ -1,6 +1,10 @@
 let
-  inherit (import ./keys.nix) nine admins all;
+  inherit (import ./keys.nix) disk nine admins all;
 in {
+  # disk
+  "hosts/disk/password.floppy.age".publicKeys = [ disk ] ++ admins;
+  "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
+
   # nine
   "hosts/nine/id.age".publicKeys                         = [ nine ] ++ admins;
   "hosts/nine/password.seven.age".publicKeys             = [ nine ] ++ admins;

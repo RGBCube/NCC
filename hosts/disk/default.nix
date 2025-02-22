@@ -9,14 +9,14 @@ in {
     path = config.secrets.id.path;
   }];
 
-  secrets.sevenPassword.file  = ./password.seven.age;
+  secrets.floppyPassword.file = ./password.floppy.age;
   users.users                 = {
-    root.hashedPasswordFile = config.secrets.sevenPassword.path;
+    root.hashedPasswordFile = config.secrets.floppyPassword.path;
 
-    seven = {
-      description                 = "Hungry Seven";
+    floppy = {
+      description                 = "Floppy";
       openssh.authorizedKeys.keys = keys.admins;
-      hashedPasswordFile          = config.secrets.sevenPassword.path;
+      hashedPasswordFile          = config.secrets.floppyPassword.path;
       isNormalUser                = true;
       extraGroups                 = [ "wheel" ];
     };
@@ -24,41 +24,41 @@ in {
     backup = {
       description                 = "Backup";
       openssh.authorizedKeys.keys = keys.all;
-      hashedPasswordFile          = config.secrets.sevenPassword.path;
+      hashedPasswordFile          = config.secrets.floppyPassword.path;
       isNormalUser                = true;
     };
   };
 
   home-manager.users = {
     root   = {};
-    seven  = {};
+    floppy = {};
     backup = {};
   };
 
   networking = let
-    interface = "enp4s0";
+    interface = "ens32";
   in {
-    hostName = "nine";
+    hostName = "disk";
 
-    ipv4 = "152.53.2.105";
-    ipv6 = "2a0a:4cc0:0:12d9::";
+    ipv4 = "23.164.232.40";
+    ipv6 = "2602:f9f7::40";
 
     domain = "rgbcu.be";
 
     defaultGateway = {
       inherit interface;
 
-      address = "152.53.0.1";
+      address = "23.164.232.1";
     };
 
     defaultGateway6 = {
       inherit interface;
 
-      address = "fe80::1";
+      address = "2602:f9f7::1";
     };
   };
 
-  nixpkgs.hostPlatform       = "aarch64-linux";
+  nixpkgs.hostPlatform       = "x86_64-linux";
   system.stateVersion        = "23.11";
   home-manager.sharedModules = [{
     home.stateVersion = "23.11";
