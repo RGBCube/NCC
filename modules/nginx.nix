@@ -1,4 +1,5 @@
 { config, lib, pkgs, ... }: let
+  inherit (config.networking) domain;
   inherit (lib) enabled mkConst;
 in {
   options.nginxSslTemplate = mkConst {
@@ -8,6 +9,10 @@ in {
   };
 
   options.nginxHeaders = mkConst ''
+    # TODO: Not working for some reason.
+    add_header Access-Control-Allow-Origin $allow_origin;
+    add_header Access-Control-Allow-Methods $allow_methods;
+
     add_header Strict-Transport-Security $hsts_header;
 
     add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
@@ -46,6 +51,14 @@ in {
     commonHttpConfig = ''
       map $scheme $hsts_header {
         https "max-age=31536000; includeSubdomains; preload";
+      }
+
+      map $http_origin $allow_origin {
+        ~^https://.+\.${domain}$ $http_origin;
+      }
+
+      map $http_origin $allow_methods {
+        ~^https://.+\.${domain}$ "GET, HEAD, OPTIONS";
       }
 
       ${config.nginxHeaders}
