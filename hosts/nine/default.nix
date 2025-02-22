@@ -41,7 +41,7 @@ in {
     hostName = "nine";
 
     ipv4 = "152.53.2.105";
-    ipv6 = "2a0a:4cc0::12d9";
+    ipv6 = "2a0a:4cc0:0:12d9::";
 
     domain = "rgbcu.be";
 
