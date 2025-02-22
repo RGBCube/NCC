@@ -3,8 +3,6 @@ lib: lib.nixosSystem ({ config, keys, lib, ... }: let
 in {
   imports = collectNix ./. |> remove ./default.nix;
 
-  networking.hostName = "nine";
-
   secrets.id.file           = ./id.age;
   services.openssh.hostKeys = [{
     type = "ed25519";
@@ -37,16 +35,29 @@ in {
     backup = {};
   };
 
-  networking = {
+  networking = let
+    interface = "enp4s0";
+  in {
+    hostName = "nine";
+
     ipv4 = "152.53.2.105";
     ipv6 = "2a0a:4cc0::12d9";
 
     domain = "rgbcu.be";
 
-    defaultGateway  = "152.53.0.1";
-    defaultGateway6 = "fe80::1";
+    defaultGateway = {
+      inherit interface;
 
-    interfaces.enp4s0 = {
+      address = "152.53.0.1";
+    };
+
+    defaultGateway6 = {
+      inherit interface;
+
+      address = "fe80::1";
+    };
+
+    interfaces.${interface} = {
       ipv4.addresses = [{
         address      = config.networking.ipv4;
         prefixLength = 22;
