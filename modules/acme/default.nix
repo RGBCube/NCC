@@ -1,9 +1,12 @@
-{ config, ... }: let
+{ config, lib, ... }: let
   inherit (config.networking) domain;
+  inherit (lib) mkValue;
 in {
-  secrets.acmeEnvironment.file = ./environment.age;
+  options.acmeGroup = mkValue "nginx";
 
-  security.acme = {
+  config.secrets.acmeEnvironment.file = ./environment.age;
+
+  config.security.acme = {
     acceptTerms = true;
 
     defaults = {
@@ -15,7 +18,7 @@ in {
 
     certs.${domain} = {
       extraDomainNames = [ "*.${domain}" ];
-      group            = "nginx";
+      group            = config.acmeGroup;
     };
   };
 }
