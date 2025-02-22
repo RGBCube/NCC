@@ -1,8 +1,6 @@
 { self, config, lib, ... }: let
   inherit (lib) const enabled genAttrs head mkDefault;
   inherit (config.networking) domain;
-
-  fqdn = "mail1.${domain}";
 in {
   imports = [(self + /modules/acme)];
 
@@ -19,8 +17,6 @@ in {
   acmeGroup = "mail";
 
   mailserver = enabled {
-    fqdn = mkDefault fqdn;
-
     domains           = mkDefault [ domain ];
     certificateScheme = "acme";
 

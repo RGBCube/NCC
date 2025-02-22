@@ -5,8 +5,12 @@
 !docs/
 
 !hosts/
+
+!hosts/disk/
+
 !hosts/nine/
 !hosts/nine/github2forgejo/
+
 !hosts/pala/
 
 !lib/
