@@ -1,5 +1,5 @@
 { config, lib, ... }: let
-  inherit (lib) any elem getAttr last mapAttrsToList mkConst splitString;
+  inherit (lib) last mkConst mkValue splitString;
 in {
   options = {
     os = mkConst <| last <| splitString "-" config.nixpkgs.hostPlatform.system;
@@ -7,7 +7,9 @@ in {
     isLinux  = mkConst <| config.os == "linux";
     isDarwin = mkConst <| config.os == "darwin";
 
-    isDesktop = mkConst <| config.isDarwin || false; # (any (elem "graphical") <| mapAttrsToList (_: getAttr "extraGroups") config.users.users);
-    isServer  = mkConst <| !config.isDesktop;
+    type = mkValue "server";
+
+    isDesktop = mkConst <| config.type == "desktop";
+    isServer  = mkConst <| config.type == "server";
   };
 }

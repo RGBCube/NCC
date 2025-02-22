@@ -1,6 +1,6 @@
 # NCC
 
-RGBCube's Configuration Collection.
+RGBCube's Config Collection.
 
 ## License
 

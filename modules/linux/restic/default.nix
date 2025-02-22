@@ -1,5 +1,5 @@
 { config, lib, ... }: let
-  inherit (lib) genAttrs merge mkConst mkIf remove;
+  inherit (lib) genAttrs mkConst mkIf remove;
 in{
   options.resticHosts = mkConst <| remove config.networking.hostName [ "cube" "disk" "nine" ];
 

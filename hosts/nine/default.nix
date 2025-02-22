@@ -1,18 +1,11 @@
 lib: lib.nixosSystem ({ config, keys, lib, ... }: let
-  inherit (lib) collect remove;
+  inherit (lib) collectNix remove;
 in {
-  imports = collect ./. |> remove ./default.nix;
-
-  nixpkgs.hostPlatform = "aarch64-linux";
-
-  system.stateVersion  = "23.11";
-  home-manager.sharedModules = [{
-    home.stateVersion = "23.11";
-  }];
+  imports = collectNix ./. |> remove ./default.nix;
 
   networking.hostName = "nine";
 
-  secrets.id.file             = ./id.age;
+  secrets.id.file           = ./id.age;
   services.openssh.hostKeys = [{
     type = "ed25519";
     path = config.secrets.id.path;
@@ -26,6 +19,7 @@ in {
       description                 = "Hungry Seven";
       openssh.authorizedKeys.keys = keys.admins;
       hashedPasswordFile          = config.secrets.sevenPassword.path;
+      isNormalUser                = true;
       extraGroups                 = [ "wheel" ];
     };
 
@@ -33,7 +27,14 @@ in {
       description                 = "Backup";
       openssh.authorizedKeys.keys = keys.all;
       hashedPasswordFile          = config.secrets.sevenPassword.path;
+      isNormalUser                = true;
     };
+  };
+
+  home-manager.users = {
+    root   = {};
+    seven  = {};
+    backup = {};
   };
 
   networking = {
@@ -57,4 +58,10 @@ in {
       }];
     };
   };
+
+  nixpkgs.hostPlatform       = "aarch64-linux";
+  system.stateVersion        = "23.11";
+  home-manager.sharedModules = [{
+    home.stateVersion = "23.11";
+  }];
 })

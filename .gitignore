@@ -6,11 +6,13 @@
 
 !hosts/
 !hosts/nine/
+!hosts/nine/github2forgejo/
 !hosts/pala/
 
 !lib/
 
 !modules/
+
 !modules/common/
 !modules/common/nushell/
 !modules/common/ssh/
@@ -18,6 +20,9 @@
 !modules/linux/
 !modules/linux/hyprland/
 !modules/linux/restic/
+
+!modules/acme/
+!modules/mail/
 
 !flake.lock
 
