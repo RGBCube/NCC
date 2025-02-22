@@ -16,6 +16,8 @@ in {
     paths = [ config.mailserver.dkimKeyDirectory config.mailserver.mailDirectory ];
   };
 
+  acmeGroup = "mail";
+
   mailserver = enabled {
     fqdn = mkDefault fqdn;
 
