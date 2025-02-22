@@ -1,6 +1,6 @@
 { self, config, lib, ... }: let
-  inherit (lib) const enabled genAttrs head mkDefault;
   inherit (config.networking) domain;
+  inherit (lib) const enabled genAttrs head mkDefault;
 in {
   imports = [(self + /modules/acme)];
 
@@ -14,7 +14,7 @@ in {
     paths = [ config.mailserver.dkimKeyDirectory config.mailserver.mailDirectory ];
   };
 
-  acmeGroup = "mail";
+  acmeUsers = [ "mail" ];
 
   mailserver = enabled {
     domains           = mkDefault [ domain ];
