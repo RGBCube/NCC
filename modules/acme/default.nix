@@ -2,9 +2,11 @@
   inherit (config.networking) domain;
   inherit (lib) mkValue;
 in {
-  options.acmeGroup = mkValue "nginx";
+  options.acmeUsers = mkValue [];
 
   config.secrets.acmeEnvironment.file = ./environment.age;
+
+  config.users.groups.acme.members = config.acmeUsers;
 
   config.security.acme = {
     acceptTerms = true;
@@ -18,7 +20,7 @@ in {
 
     certs.${domain} = {
       extraDomainNames = [ "*.${domain}" ];
-      group            = config.acmeGroup;
+      group            = "acme";
     };
   };
 }
