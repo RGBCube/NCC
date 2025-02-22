@@ -240,7 +240,7 @@ in {
 
     # RUST
     pkgs.rust-analyzer-nightly
-    pkgs.lldb_20
+    pkgs.lldb
 
     # TYPESCRIPT & OTHERS
     pkgs.deno

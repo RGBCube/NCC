@@ -1,9 +1,9 @@
 inputs: self: super: let
-  inherit (self) attrValues filter getAttrFromPath hasAttrByPath collect;
+  inherit (self) attrValues filter getAttrFromPath hasAttrByPath collectNix;
 
-  commonModules = collect ../modules/common;
-  nixosModules  = collect ../modules/linux;
-  darwinModules = collect ../modules/darwin;
+  commonModules = collectNix ../modules/common;
+  nixosModules  = collectNix ../modules/linux;
+  darwinModules = collectNix ../modules/darwin;
 
   collectInputs = let
     inputs' = attrValues inputs;

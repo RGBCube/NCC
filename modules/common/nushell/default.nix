@@ -1,30 +1,32 @@
 { config, lib, pkgs, ... }: let
   inherit (lib) enabled filter first foldl' getExe last match mkIf nameValuePair optionalAttrs readFile removeAttrs splitString;
 in {
-  users = optionalAttrs config.isLinux { defaultUserShell = pkgs.nushell; };
+  environment = optionalAttrs config.isLinux {
+    sessionVariables.SHELLS = getExe pkgs.nushell;
+  } // {
+    shells = mkIf config.isDarwin [ pkgs.nushell ];
 
-  environment.shells = mkIf config.isDarwin [ pkgs.nushell ];
+    shellAliases = {
+      la  = "ls --all";
+      lla = "ls --long --all";
+      sl  = "ls";
 
-  environment.shellAliases = {
-    la  = "ls --all";
-    lla = "ls --long --all";
-    sl  = "ls";
+      cp = "cp --recursive --verbose --progress";
+      mk = "mkdir";
+      mv = "mv --verbose";
+      rm = "rm --recursive --verbose";
 
-    cp = "cp --recursive --verbose --progress";
-    mk = "mkdir";
-    mv = "mv --verbose";
-    rm = "rm --recursive --verbose";
+      pstree = "pstree -g 2";
+      tree   = "tree -CF --dirsfirst";
+    };
 
-    pstree = "pstree -g 2";
-    tree   = "tree -CF --dirsfirst";
+    systemPackages = [
+      pkgs.fish   # For completions.
+      pkgs.zoxide # For completions and better cd.
+    ];
+
+    variables.STARSHIP_LOG = "error";
   };
-
-  environment.systemPackages = [
-    pkgs.fish   # For completions.
-    pkgs.zoxide # For completions and better cd.
-  ];
-
-  environment.variables.STARSHIP_LOG = "error";
 
   nixpkgs.overlays = [(self: super: {
     zoxide = super.zoxide.overrideAttrs (old: {

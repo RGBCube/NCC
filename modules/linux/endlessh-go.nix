@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) enabled merge mkEnableOption mkIf mkOption types;
+  inherit (lib) enabled mkEnableOption mkIf mkOption types;
 
   fakeSSHPort    = 22;
 in {
@@ -19,7 +19,7 @@ in {
     extraOptions = [
       "-alsologtostderr"
       "-geoip_supplier max-mind-db"
-      "-max_mind_db ${pkgs.clash-geoip}/etc/clash/Country.mmdb"
+      "-max_mind_db ${pkgs.dbip-country-lite}/share/dbip/dbip-country-lite.mmdb"
     ];
 
     prometheus = config.services.prometheus.exporters.endlessh-go;

@@ -1,4 +1,6 @@
 lib: lib.darwinSystem {
+  type = "desktop";
+
   networking.hostName = "pala";
 
   users.users.pala = {

@@ -46,11 +46,11 @@ in {
         #   port     = 2222;
         # };
 
-        # nine = {
-        #   hostname = self.nine.networking.ipv4;
-        #   user     = "seven";
-        #   port     = 2222;
-        # };
+        nine = {
+          hostname = self.nine.networking.ipv4;
+          user     = "seven";
+          port     = 2222;
+        };
       };
     };
   }];

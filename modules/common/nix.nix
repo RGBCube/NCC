@@ -1,5 +1,5 @@
 { self, config, inputs, lib, pkgs, ... }: let
-  inherit (lib) concatStringsSep const disabled filterAttrs flip isType mapAttrs mapAttrsToList merge mkAfter optionalAttrs;
+  inherit (lib) concatStringsSep const disabled filterAttrs flip id isType mapAttrs mapAttrsToList merge mkAfter optionalAttrs;
   inherit (lib.strings) toJSON;
 
   registryMap = inputs
@@ -11,7 +11,7 @@ in {
 
   nix.nixPath = registryMap
       |> mapAttrsToList (name: value: "${name}=${value}")
-      |> concatStringsSep ":";
+      |> (if config.isDarwin then concatStringsSep ":" else id);
 
   nix.registry = registryMap // { default = inputs.nixpkgs; }
     |> mapAttrs (_: flake: { inherit flake; });

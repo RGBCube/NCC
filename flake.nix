@@ -1,5 +1,5 @@
 {
-  description = "RGBCube's Configuration Collection";
+  description = "RGBCube's Config Collection";
 
   nixConfig = {
     extra-substituters = [
@@ -32,7 +32,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -54,16 +54,22 @@
       inputs.home-manager.follows = "home-manager";
     };
 
+    github2forgejo = {
+      url = "github:RGBCube/GitHub2Forgejo";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-mailserver = {
+      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     fenix.url = "github:nix-community/fenix";
 
     # nix.url = "github:NixOS/nix";
     nil.url = "github:oxalica/nil";
-
-    jj = {
-      url = "github:jj-vcs/jj";
-
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     crash = {
       url = "github:RGBCube/crash";
@@ -76,7 +82,7 @@
 
   outputs = inputs @ { nixpkgs, nix-darwin, ... }: let
     inherit (builtins) readDir;
-    inherit (nixpkgs.lib) attrsToList const groupBy listToAttrs mapAttrs;
+    inherit (nixpkgs.lib) attrsToList const groupBy listToAttrs mapAttrs nameValuePair;
 
     lib'' = nixpkgs.lib.extend (_: _: nix-darwin.lib);
     lib'  = lib''.extend (_: _: builtins);
@@ -91,7 +97,12 @@
         else
           "darwinConfigurations")
       |> mapAttrs (const listToAttrs);
-  in hostsByType // {
+
+    hostConfigs = hostsByType.darwinConfigurations // hostsByType.nixosConfigurations
+      |> attrsToList
+      |> map ({ name, value }: nameValuePair name value.config)
+      |> listToAttrs;
+  in hostsByType // hostConfigs // {
     inherit lib;
   };
 }

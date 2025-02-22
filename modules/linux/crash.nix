@@ -1,7 +1,3 @@
-{ config, lib, pkgs, ... }: let
-  inherit (lib) getExe;
-in {
-  environment.sessionVariables.SHELLS = getExe config.environment.sessionVariables.SHELL;
-
+{ pkgs, ... }: {
   users.defaultUserShell = pkgs.crash;
 }

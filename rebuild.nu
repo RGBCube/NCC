@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-# Rebuild a NixOS / Darwin configuration.
+# Rebuild a NixOS / Darwin config.
 def main --wrapped [
   host: string = "" # The host to build.
   ...arguments      # The arguments to pass to `nixos-rebuild switch`.
@@ -10,17 +10,6 @@ def main --wrapped [
   } else {
     (hostname)
   }
-
-  let args_split = $arguments | split list "--"
-
-  let nh_flags = [
-    "--hostname" $host
-  ] | append ($args_split | get --ignore-errors 0 | default [])
-
-  let nix_flags = [
-    "--option" "accept-flake-config" "true"
-    "--option" "eval-cache"          "false"
-  ] | append ($args_split | get --ignore-errors 1 | default [])
 
   if $host != (hostname) {
     git ls-files
@@ -33,11 +22,24 @@ def main --wrapped [
 
     ssh -q -tt $host $"
       cd ncc
-      ./rebuild.nu ($host) ($arguments | str join ' ')
+      # TODO: Migration artifact. Remove.
+      nix shell github:NixOS/nix --command nu -c '
+        ./rebuild.nu ($host) ($arguments | str join ' ')
+      '
     "
 
     return
   }
+
+  let args_split = $arguments | prepend "" | split list "--"
+  let nh_flags = [
+    "--hostname" $host
+  ] | append ($args_split | get 0 | filter { $in != "" })
+
+  let nix_flags = [
+    "--option" "accept-flake-config" "true"
+    "--option" "eval-cache"          "false"
+  ] | append ($args_split | get --ignore-errors 1 | default [])
 
   if (uname | get kernel-name) == "Darwin" {
     darwin-rebuild switch --flake (".#" + $host) ...$nix_flags
@@ -56,7 +58,8 @@ def main --wrapped [
 # the "install developer tools" popup.
 #
 # Set by default to "SplitForks" because who even uses that?
-const original_trigger = "/usr/bin/SplitForks"
+# TODO: Migration artifact. Make const.
+let original_trigger = "/usr/bin/SplitForks"
 
 # Where the symbolic links to `/usr/bin/false` will
 # be created in to shadow all popup-triggering binaries.
@@ -75,7 +78,8 @@ const original_trigger = "/usr/bin/SplitForks"
 #
 # Do NOT set this to a path that you use for other things,
 # it will get deleted if it exists to only have the shadowers.
-const shadow_path = "~/.local/shadow" | path expand # Did you read the comment?
+# TODO: Migration artifact. Make const.
+let shadow_path = "~/.local/shadow" | path expand # Did you read the comment?
 
 def darwin-shadow-xcode-popup [] {
   print "shadowing xcode popup binaries..."

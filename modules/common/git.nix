@@ -95,8 +95,6 @@ in {
       '';
 
       programs.git = enabled {
-        package = pkgs.gitFull;
-
         userName  = homeConfig.programs.jujutsu.settings.user.name;
         userEmail = homeConfig.programs.jujutsu.settings.user.email;
 
