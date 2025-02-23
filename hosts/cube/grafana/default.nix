@@ -3,7 +3,6 @@
   inherit (lib) const enabled genAttrs merge;
 
   fqdn = "metrics.${domain}";
-
   port = 8000;
 in {
   imports = [(self + /modules/nginx.nix)];

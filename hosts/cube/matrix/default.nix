@@ -4,21 +4,19 @@
 
   pathSite = "/var/www/site";
 
-  domainChat = "chat.${domain}";
-  domainSync = "sync.${domain}";
+  fqdn = "chat.${domain}";
+  port = 8002;
 
-  wellKnownResponse = data: ''
-    default_type application/json;
-    add_header Access-Control-Allow-Origin *;
-    return 200 '${strings.toJSON data}';
-  '';
+  configClient."m.homeserver".base_url        = "https://${fqdn}";
+  configServer."m.server" = "${fqdn}:443";
 
-  configClient."m.homeserver".base_url        = "https://${domainChat}";
-  configClient."org.matrix.msc3575.proxy".url = "https://${domainSync}";
-
-  configServer."m.server" = "${domainChat}:443";
-
-  configWellKnownResponse.locations = {
+  configWellKnownResponse.locations = let
+    wellKnownResponse = data: ''
+      default_type application/json;
+      add_header Access-Control-Allow-Origin *;
+      return 200 '${strings.toJSON data}';
+    '';
+  in {
     "= /.well-known/matrix/client".extraConfig = wellKnownResponse configClient;
     "= /.well-known/matrix/server".extraConfig = wellKnownResponse configServer;
   };
@@ -31,9 +29,6 @@
 
     locations."/assets/".extraConfig = "return 301 https://${domain}$request_uri;";
   };
-
-  portSynapse = 8002;
-  portSync    = 8003;
 in {
   imports = [(self + /modules/nginx.nix)];
 
@@ -41,15 +36,9 @@ in {
     file  = ./password.secret.age;
     owner = "matrix-synapse";
   };
-  secrets.matrixSyncPassword = {
-    file  = ./password.sync.age;
-    owner = "matrix-synapse";
-  };
-
-  services.postgresql.ensure = [ "matrix-synapse" "matrix-sliding-sync" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
-    paths = [ "/var/lib/matrix-synapse"  "/var/lib/matrix-sliding-sync" ];
+    paths = [ "/var/lib/matrix-synapse" ];
   };
 
   services.matrix-synapse = enabled {
@@ -85,7 +74,7 @@ in {
     extraConfigFiles = [ config.secrets.matrixSecret.path ];
 
     settings.listeners = [{
-      port = portSynapse;
+      inherit port;
 
       bind_addresses = [ "::1" ];
       tls            = false;
@@ -101,29 +90,10 @@ in {
 
   services.nginx.virtualHosts.${domain} = configWellKnownResponse;
 
-  services.nginx.virtualHosts.${domainChat} = merge config.services.nginx.sslTemplate configWellKnownResponse configNotFoundLocation {
+  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate configWellKnownResponse configNotFoundLocation {
     root = "${pathSite}";
 
-    locations."/_matrix".proxyPass         = "http://[::1]:${toString portSynapse}";
-    locations."/_synapse/client".proxyPass = "http://[::1]:${toString portSynapse}";
-  };
-
-  services.matrix-sliding-sync = enabled {
-    environmentFile = config.age.secrets.matrixSyncPassword.path;
-    settings        = {
-      SYNCV3_SERVER   = "https://${domainChat}";
-      SYNCV3_DB       = "postgresql:///matrix-sliding-sync?host=/run/postgresql";
-      SYNCV3_BINDADDR = "[::1]:${toString portSync}";
-    };
-  };
-
-  services.nginx.virtualHosts.${domainSync} = merge config.services.nginx.sslTemplate configNotFoundLocation {
-    root = pathSite;
-
-    locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
-      .proxyPass = "http://[::1]:${toString portSynapse}";
-
-    locations."~ ^(\\/_matrix|\\/_synapse\\/client)"
-      .proxyPass = "http://[::1]:${toString portSync}";
+    locations."/_matrix".proxyPass         = "http://[::1]:${toString port}";
+    locations."/_synapse/client".proxyPass = "http://[::1]:${toString port}";
   };
 }
