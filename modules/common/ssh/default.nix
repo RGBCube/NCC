@@ -34,20 +34,20 @@ in {
 
         # TODO: Maybe autogenerate these?
 
-        # cube = {
-        #   hostname = self.cube.networking.ipv4;
-        #   user     = "rgb";
-        #   port     = 2222;
-        # };
+        cube = {
+          hostname = self.cube.networking.ipv4.address;
+          user     = "rgb";
+          port     = 2222;
+        };
 
         disk = {
-          hostname = self.disk.networking.ipv4;
+          hostname = self.disk.networking.ipv4.address;
           user     = "floppy";
           port     = 2222;
         };
 
         nine = {
-          hostname = self.nine.networking.ipv4;
+          hostname = self.nine.networking.ipv4.address;
           user     = "seven";
           port     = 2222;
         };

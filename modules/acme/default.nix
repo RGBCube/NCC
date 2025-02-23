@@ -2,11 +2,11 @@
   inherit (config.networking) domain;
   inherit (lib) mkValue;
 in {
-  options.acmeUsers = mkValue [];
+  options.security.acme.users = mkValue [];
 
   config.secrets.acmeEnvironment.file = ./environment.age;
 
-  config.users.groups.acme.members = config.acmeUsers;
+  config.users.groups.acme.members = config.security.acme.users;
 
   config.security.acme = {
     acceptTerms = true;

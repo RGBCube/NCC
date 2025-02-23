@@ -3,14 +3,12 @@
   inherit (lib) optionals;
 in {
   networking.interfaces.${interface} = {
-    ipv4.addresses = optionals (config.networking.ipv4 != null) [{
-      address      = config.networking.ipv4;
-      prefixLength = 22;
+    ipv4.addresses = optionals (config.networking.ipv4.address != null) [{
+      inherit (config.networking.ipv4) address prefixLength;
     }];
 
-    ipv6.addresses = optionals (config.networking.ipv4 != null)  [{
-      address      = config.networking.ipv6;
-      prefixLength = 64;
+    ipv6.addresses = optionals (config.networking.ipv4.address != null)  [{
+      inherit (config.networking.ipv6) address prefixLength;
     }];
   };
 }

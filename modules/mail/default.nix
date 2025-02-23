@@ -10,11 +10,11 @@ in {
     listenAddress = "[::]";
   };
 
-  services.restic.backups = genAttrs config.resticHosts <| const {
+  services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ config.mailserver.dkimKeyDirectory config.mailserver.mailDirectory ];
   };
 
-  acmeUsers = [ "mail" ];
+  security.acme.users = [ "mail" ];
 
   mailserver = enabled {
     domains           = mkDefault [ domain ];

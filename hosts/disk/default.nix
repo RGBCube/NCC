@@ -40,8 +40,8 @@ in {
   in {
     hostName = "disk";
 
-    ipv4 = "23.164.232.40";
-    ipv6 = "2602:f9f7::40";
+    ipv4.address = "23.164.232.40";
+    ipv6.address = "2602:f9f7::40";
 
     domain = "rgbcu.be";
 
