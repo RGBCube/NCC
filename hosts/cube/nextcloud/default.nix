@@ -1,6 +1,6 @@
  { self, config, lib, pkgs, ... }: let
   inherit (config.networking) domain;
-  inherit (lib) const enabled genAttrs mkAfter;
+  inherit (lib) const enabled genAttrs merge mkAfter;
 
   fqdn = "cloud.${domain}";
 
@@ -107,5 +107,7 @@ in {
     nginx.recommendedHttpHeaders = true;
   };
 
-  services.nginx.virtualHosts.${fqdn} = config.services.nginx.sslTemplate;
+  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate {
+    extraConfig = config.services.nginx.headers;    
+  };
 }
