@@ -21,11 +21,13 @@ in {
     retentionTime = "1w";
 
     scrapeConfigs = let
-      configToScrapeConfig = hostName: { hostConfig, ... }:
-        hostConfig.services.prometheus.exporters
+      configToScrapeConfig = hostName: { config, ... }: let
+        hostConfig = config;
+      in hostConfig.services.prometheus.exporters
         |> filterAttrs (exporterName: exporterConfig:
           exporterName != "minio" &&
           exporterName != "unifi-poller" &&
+          exporterName != "tor" &&
           exporterConfig.enable or false)
         |> mapAttrsToList (exporterName: exporterConfig: {
           job_name = "${exporterName}-${hostName}";
