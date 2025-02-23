@@ -6,6 +6,8 @@
 
   port = 8000;
 in {
+  imports = [(self + /modules/nginx.nix)];
+
   secrets.grafanaPassword = {
     file  = ./password.age;
     owner = "grafana";
@@ -76,7 +78,7 @@ in {
     };
   };
 
-  services.nginx.virtualHosts.${fqdn} = merge config.nginx.sslTemplate {
+  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate {
     locations."/" = {
       proxyPass       = "http://[::1]:${toString port}";
       proxyWebsockets = true;

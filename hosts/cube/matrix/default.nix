@@ -1,4 +1,4 @@
-{ config, lib, ... }: let
+{ self, config, lib, ... }: let
   inherit (config.networking) domain;
   inherit (lib) const enabled genAttrs merge strings;
 
@@ -35,6 +35,8 @@
   portSynapse = 8002;
   portSync    = 8003;
 in {
+  imports = [(self + /modules/nginx.nix)];
+
   secrets.matrixSecret = {
     file  = ./password.secret.age;
     owner = "matrix-synapse";
@@ -108,7 +110,7 @@ in {
 
   services.nginx.virtualHosts.${domain} = configWellKnownResponse;
 
-  services.nginx.virtualHosts.${domainChat} = merge config.nginx.sslTemplate configWellKnownResponse configNotFoundLocation {
+  services.nginx.virtualHosts.${domainChat} = merge config.services.nginx.sslTemplate configWellKnownResponse configNotFoundLocation {
     root = "${pathSite}";
 
     locations."/_matrix".proxyPass         = "http://[::1]:${toString portSynapse}";
@@ -124,7 +126,7 @@ in {
     };
   };
 
-  services.nginx.virtualHosts.${domainSync} = merge config.nginx.sslTemplate configNotFoundLocation {
+  services.nginx.virtualHosts.${domainSync} = merge config.services.nginx.sslTemplate configNotFoundLocation {
     root = pathSite;
 
     locations."~ ^/(client/|_matrix/client/unstable/org.matrix.msc3575/sync)"
