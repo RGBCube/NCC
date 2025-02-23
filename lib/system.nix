@@ -1,9 +1,9 @@
 inputs: self: super: let
   inherit (self) attrValues filter getAttrFromPath hasAttrByPath collectNix;
 
-  commonModules = collectNix ../modules/common;
-  nixosModules  = collectNix ../modules/linux;
-  darwinModules = collectNix ../modules/darwin;
+  modulesCommon = collectNix ../modules/common;
+  modulesLinux  = collectNix ../modules/linux;
+  modulesDarwin = collectNix ../modules/darwin;
 
   collectInputs = let
     inputs' = attrValues inputs;
@@ -11,8 +11,8 @@ inputs: self: super: let
     |> filter (hasAttrByPath path)
     |> map (getAttrFromPath path);
 
-  inputNixosModules  = collectInputs [ "nixosModules"  "default" ];
-  inputDarwinModules = collectInputs [ "darwinModules" "default" ];
+  inputModulesLinux  = collectInputs [ "nixosModules"  "default" ];
+  inputModulesDarwin = collectInputs [ "darwinModules" "default" ];
 
   inputOverlays = collectInputs [ "overlays" "default" ];
   overlayModule = { nixpkgs.overlays = inputOverlays; };
@@ -30,9 +30,9 @@ in {
     modules = [
       module
       overlayModule
-    ] ++ commonModules
-      ++ nixosModules
-      ++ inputNixosModules;
+    ] ++ modulesCommon
+      ++ modulesLinux
+      ++ inputModulesLinux;
   };
 
   darwinSystem = module: super.darwinSystem {
@@ -41,8 +41,8 @@ in {
     modules = [
       module
       overlayModule
-    ] ++ commonModules
-      ++ darwinModules
-      ++ inputDarwinModules;
+    ] ++ modulesCommon
+      ++ modulesDarwin
+      ++ inputModulesDarwin;
   };
 }

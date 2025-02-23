@@ -2,13 +2,13 @@
   inherit (config.networking) domain;
   inherit (lib) enabled mkConst;
 in {
-  options.nginxSslTemplate = mkConst {
+  options.nginx.sslTemplate = mkConst {
     forceSSL    = true;
     quic        = true;
     useACMEHost = config.networking.domain;
   };
 
-  options.nginxHeaders = mkConst ''
+  options.nginx.headers = mkConst ''
     # TODO: Not working for some reason.
     add_header Access-Control-Allow-Origin $allow_origin;
     add_header Access-Control-Allow-Methods $allow_methods;
@@ -33,7 +33,7 @@ in {
     listenAddress = "[::]";
   };
 
-  config.acmeUsers = [ "nginx" ];
+  config.security.acme.users = [ "nginx" ];
 
   config.services.nginx = enabled {
     package = pkgs.nginxQuic;
@@ -61,7 +61,7 @@ in {
         ~^https://.+\.${domain}$ "GET, HEAD, OPTIONS";
       }
 
-      ${config.nginxHeaders}
+      ${config.nginx.headers}
 
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';

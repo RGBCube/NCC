@@ -8,12 +8,12 @@ in merge <| mkIf config.isDesktop {
   xdg.portal = enabled {
     config.common.default = "*";
 
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
+    extraPortals = [
+      pkgs.xdg-desktop-portal-hyprland
     ];
 
-    configPackages = with pkgs; [
-      hyprland
+    configPackages = [
+      pkgs.hyprland
     ];
   };
 
@@ -50,7 +50,7 @@ in merge <| mkIf config.isDesktop {
         enableXdgAutostart = true;
       };
 
-      # plugins = with pkgs; [ hyprcursors ];
+      # plugins = [ pkgs.hyprcursors ];
 
       # settings.plugin.dynamic-cursors = {
       #   mode  = "rotate";

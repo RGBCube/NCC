@@ -1,14 +1,14 @@
 { config, lib, ... }: let
-  inherit (lib) enabled concatStringsSep map;
+  inherit (lib) enabled concatStringsSep;
 in {
   services.resolved = enabled {
     dnssec     = "true";
     dnsovertls = "true";
 
-    extraConfig = config.dnsServers
+    extraConfig = config.networking.dns.servers
       |> map (server: "DNS=${server}")
       |> concatStringsSep "\n";
 
-    fallbackDns = config.fallbackDnsServers;
+    fallbackDns = config.networking.dns.serversFallback;
   };
 }
