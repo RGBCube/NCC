@@ -6,6 +6,8 @@
 
   port = 8001;
 in {
+  imports = [(self + /modules/nginx.nix)];
+
   secrets.forgejoPasswordRunner = {
     file  = ./password.runner.age;
     owner = "forgejo";
@@ -155,7 +157,7 @@ in {
     };
   };
 
-  services.nginx.virtualHosts.${fqdn} = merge config.nginx.sslTemplate {
+  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate {
     locations."/".proxyPass = "http://[::1]:${toString port}";
   };
 }

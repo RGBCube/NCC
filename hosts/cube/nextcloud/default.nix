@@ -1,4 +1,4 @@
- { config, lib, pkgs, ... }: let
+ { self, config, lib, pkgs, ... }: let
   inherit (config.networking) domain;
   inherit (lib) const enabled genAttrs mkAfter;
 
@@ -6,6 +6,8 @@
 
   packageNextcloud = pkgs.nextcloud29;
 in {
+  imports = [(self + /modules/nginx.nix)];
+
   secrets.nextcloudPassword = {
     file  = ./password.age;
     owner = "nextcloud";
@@ -114,5 +116,5 @@ in {
     nginx.recommendedHttpHeaders = true;
   };
 
-  services.nginx.virtualHosts.${fqdn} = config.ngnixSslTemplate;
+  services.nginx.virtualHosts.${fqdn} = config.services.nginx.sslTemplate;
 }

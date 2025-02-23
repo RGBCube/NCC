@@ -1,14 +1,16 @@
-{ config, lib, pkgs, ... }: let
+{ self, config, lib, pkgs, ... }: let
   inherit (config.networking) domain;
   inherit (lib) enabled mkConst;
 in {
-  options.nginx.sslTemplate = mkConst {
+  imports = [(self + /modules/acme)];
+
+  options.services.nginx.sslTemplate = mkConst {
     forceSSL    = true;
     quic        = true;
     useACMEHost = config.networking.domain;
   };
 
-  options.nginx.headers = mkConst ''
+  options.services.nginx.headers = mkConst ''
     # TODO: Not working for some reason.
     add_header Access-Control-Allow-Origin $allow_origin;
     add_header Access-Control-Allow-Methods $allow_methods;
@@ -61,7 +63,7 @@ in {
         ~^https://.+\.${domain}$ "GET, HEAD, OPTIONS";
       }
 
-      ${config.nginx.headers}
+      ${config.services.nginx.headers}
 
       proxy_cookie_path / "/; secure; HttpOnly; SameSite=strict";
     '';
