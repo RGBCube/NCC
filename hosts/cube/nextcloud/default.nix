@@ -63,7 +63,7 @@ in {
     settings = {
       default_phone_region = "TR";
 
-      # Even with manual SMTP configuration, Nextcloud fails to communicate properly
+      # Even with a manual SMTP config, Nextcloud fails to communicate properly
       # and fails to send mail. PHP moment?
       # mail_smtphost     = "::1"; # FIXME: Will need to use SMTP.
       # mail_smtpmode     = "sendmail";

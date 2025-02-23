@@ -97,7 +97,7 @@ in {
     };
 
     programs.nushell = enabled {
-      configFile.text = readFile ./configuration.nu;
+      configFile.text = readFile ./config.nu;
       envFile.text    = readFile ./environment.nu;
 
       environmentVariables = let
