@@ -69,6 +69,13 @@ in {
   };
 
   services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate {
+    extraConfig = /* nginx */ ''
+      # Grafana sets `nosniff` while not setting the content type properly,
+      # so everything breaks with it. Unset the header.
+      ${config.services.nginx.headers}
+      add_header X-Content-Type-Options "" always;
+    '';
+
     locations."/" = {
       proxyPass       = "http://[::1]:${toString port}";
       proxyWebsockets = true;
