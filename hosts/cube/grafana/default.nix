@@ -17,16 +17,7 @@ in {
     owner = "grafana";
   };
 
-  services.postgresql = let
-    users = [ "grafana" ];
-  in {
-    ensureDatabases = users;
-    ensureUsers     = map users (name: {
-      inherit name;
-
-      ensureDBOwnership = true;
-    });
-  };
+  services.postgresql.ensure = [ "grafana" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/var/lib/grafana" ];

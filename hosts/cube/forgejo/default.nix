@@ -17,16 +17,7 @@ in {
     owner = "forgejo";
   };
 
-  services.postgresql = let
-    users = [ "forgejo" ];
-  in {
-    ensureDatabases = users;
-    ensureUsers     = map users (name: {
-      inherit name;
-
-      ensureDBOwnership = true;
-    });
-  };
+  services.postgresql.ensure = [ "forgejo" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/var/lib/gitea-runner"  "/var/lib/forgejo" ];
