@@ -42,9 +42,9 @@ in {
       local  all      all    peer
     '';
 
-    ensureDatabases = config.services.postgres.ensure;
+    ensureDatabases = config.services.postgresql.ensure;
 
-    ensureUsers = flip map config.services.postgres.ensure (name: {
+    ensureUsers = flip map config.services.postgresql.ensure (name: {
       inherit name;
 
       ensureDBOwnership = true;
