@@ -2,8 +2,6 @@
   inherit (config.networking) domain;
   inherit (lib) const enabled genAttrs merge strings;
 
-  pathSite = "/var/www/site";
-
   fqdn = "chat.${domain}";
   port = 8002;
 
@@ -23,24 +21,6 @@
     "= /.well-known/matrix/server".extraConfig = wellKnownResponse {
       "m.server" = "${fqdn}:443";
     };
-  };
-
-  configNotFoundLocation = {
-    extraConfig = /* nginx */ ''
-      error_page 404 /404.html;
-    '';
-
-    locations."/".extraConfig = /* nginx */ ''
-      return 404;
-    '';
-
-    locations."/404".extraConfig = /* nginx */ ''
-      internal;
-    '';
-
-    locations."/assets/".extraConfig = /* nginx */ ''
-      return 301 https://${domain}$request_uri;
-    '';
   };
 in {
   imports = [(self + /modules/nginx.nix)];
@@ -103,8 +83,8 @@ in {
 
   services.nginx.virtualHosts.${domain} = configWellKnownResponse;
 
-  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate configWellKnownResponse configNotFoundLocation {
-    root = pathSite;
+  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate configWellKnownResponse {
+    locations."/".return = "301 https://${domain}/404";
 
     locations."/_matrix".proxyPass         = "http://[::1]:${toString port}";
     locations."/_synapse/client".proxyPass = "http://[::1]:${toString port}";
