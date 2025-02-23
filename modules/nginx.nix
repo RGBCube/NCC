@@ -7,23 +7,20 @@ in {
   options.services.nginx.sslTemplate = mkConst {
     forceSSL    = true;
     quic        = true;
-    useACMEHost = config.networking.domain;
+    useACMEHost = domain;
   };
 
-  options.services.nginx.headers = mkConst ''
-    # TODO: Not working for some reason.
-    add_header Access-Control-Allow-Origin $allow_origin;
-    add_header Access-Control-Allow-Methods $allow_methods;
+  options.services.nginx.headers = mkConst /* nginx */ ''
+    add_header Access-Control-Allow-Origin $allow_origin always;
+    add_header Access-Control-Allow-Methods $allow_methods always;
 
-    add_header Strict-Transport-Security $hsts_header;
+    add_header Strict-Transport-Security $hsts_header always;
 
-    add_header Content-Security-Policy "script-src 'self'; object-src 'none'; base-uri 'none';" always;
+    add_header Content-Security-Policy "script-src 'self' 'unsafe-inline'; object-src 'none'; base-uri 'none';" always;
 
-    add_header Referrer-Policy no-referrer;
+    add_header Referrer-Policy no-referrer always;
 
-    add_header X-Frame-Options DENY;
-
-    add_header X-Content-Type-Options nosniff;
+    add_header X-Frame-Options DENY always;
   '';
 
   config.networking.firewall = {
@@ -50,7 +47,7 @@ in {
     recommendedProxySettings  = true;
     recommendedTlsSettings    = true;
 
-    commonHttpConfig = ''
+    commonHttpConfig = /* nginx */ ''
       map $scheme $hsts_header {
         https "max-age=31536000; includeSubdomains; preload";
       }

@@ -5,8 +5,13 @@
   pathSite = "/var/www/site";
 
   configNotFoundLocation = {
-    extraConfig                  = "error_page 404 /404.html;";
-    locations."/404".extraConfig = "internal;";
+    extraConfig = /* nginx */ ''
+      error_page 404 /404.html;
+    '';
+
+    locations."/404".extraConfig = /* nginx */ ''
+      internal;
+    '';
   };
 in {
   imports = [(self + /modules/nginx.nix)];
@@ -17,11 +22,11 @@ in {
 
       locations."/".tryFiles = "$uri $uri.html $uri/index.html =404";
 
-      locations."/assets/".extraConfig = ''
+      locations."/assets/".extraConfig = /* nginx */ ''
         if ($request_method = OPTIONS) {
           ${config.services.nginx.headers}
-          add_header Content-Type text/plain;
-          add_header Content-Length 0;
+          add_header Content-Type text/plain always;
+          add_header Content-Length 0 always;
           return 204;
         }
 
@@ -30,14 +35,21 @@ in {
     };
 
     virtualHosts."www.${domain}" = merge config.services.nginx.sslTemplate {
-      locations."/".extraConfig = "return 301 https://${domain}$request_uri;";
+      locations."/".extraConfig = /* nginx */ ''
+        return 301 https://${domain}$request_uri;
+      '';
     };
 
     virtualHosts._ = merge config.services.nginx.sslTemplate configNotFoundLocation {
       root = pathSite;
 
-      locations."/".extraConfig        = "return 404;";
-      locations."/assets/".extraConfig = "return 301 https://${domain}$request_uri;";
+      locations."/".extraConfig = /* nginx */ ''
+        return 404;
+      '';
+
+      locations."/assets/".extraConfig = /* nginx */ ''
+        return 301 https://${domain}$request_uri;
+      '';
     };
   };
 }
