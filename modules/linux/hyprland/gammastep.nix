@@ -2,7 +2,7 @@
   inherit (lib) enabled merge mkIf;
 in merge <| mkIf config.isDesktop {
   services.geoclue2 = enabled {
-    appConfig.gammstep = {
+    appConfig.gammastep = {
       isAllowed = true;
       isSystem  = false;
     };
