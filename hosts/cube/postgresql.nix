@@ -24,7 +24,7 @@ in {
     '';
   };
 
-  options.services.postgresql.ensure = mkValue [ "postgres" "root" ];
+  options.services.postgresql.ensure = mkValue [];
 
   config.services.postgresql = enabled {
     package = pkgs.postgresql_14;
@@ -41,6 +41,8 @@ in {
       # Type Database DBUser Authentication
       local  all      all    peer
     '';
+
+    ensure = [ "postgres" "root" ];
 
     ensureDatabases = config.services.postgresql.ensure;
 
