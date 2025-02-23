@@ -13,13 +13,13 @@ in {
   config.services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/tmp/postgresql-dump.sql.gz" ];
 
-    backupPrepareCommand = ''
+    backupPrepareCommand = /* sh */ ''
       ${config.services.postgresql.package}/bin/pg_dumpall --clean \
       | ${lib.getExe pkgs.gzip} --rsyncable \
       > /tmp/postgresql-dump.sql.gz
     '';
 
-    backupCleanupCommand = ''
+    backupCleanupCommand = /* sh */ ''
       rm /tmp/postgresql-dump.sql.gz
     '';
   };
@@ -32,12 +32,12 @@ in {
     enableJIT = true;
 
     initdbArgs    = [ "--locale=C" "--encoding=UTF8" ];
-    initialScript = pkgs.writeText "grant-root-perms" ''
+    initialScript = pkgs.writeText "grant-root-perms.sql" ''
       GRANT pg_read_all_data  TO root;
       GRANT pg_write_all_data TO root;
     '';
 
-    authentication = mkOverride 10 ''
+    authentication = mkOverride 10 /* ini */ ''
       # Type Database DBUser Authentication
       local  all      all    peer
     '';

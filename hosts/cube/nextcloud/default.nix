@@ -35,7 +35,7 @@ in {
     after    = [ "postgresql.service" ];
     requires = [ "postgresql.service" ];
 
-    script = mkAfter /* shell */ ''
+    script = mkAfter /* sh */ ''
       # TODO: Nextcloud 30 removed these. Find another way.
       # nextcloud-occ theming:config name "RGBCube's Depot"
       # nextcloud-occ theming:config slogan "RGBCube's storage of insignificant data."
