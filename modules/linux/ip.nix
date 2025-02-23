@@ -7,7 +7,7 @@ in {
       inherit (config.networking.ipv4) address prefixLength;
     }];
 
-    ipv6.addresses = optionals (config.networking.ipv4.address != null)  [{
+    ipv6.addresses = optionals (config.networking.ipv6.address != null)  [{
       inherit (config.networking.ipv6) address prefixLength;
     }];
   };
