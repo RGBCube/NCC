@@ -7,29 +7,40 @@
   fqdn = "chat.${domain}";
   port = 8002;
 
-  configClient."m.homeserver".base_url        = "https://${fqdn}";
-  configServer."m.server" = "${fqdn}:443";
+  wellKnownResponse = data: /* nginx */ ''
+    ${config.services.nginx.headers}
+    add_header Access-Control-Allow-Origin * always;
 
-  configWellKnownResponse.locations = let
-    wellKnownResponse = data: ''
-      ${config.services.nginx.headers}
-      add_header Access-Control-Allow-Origin *;
+    default_type application/json;
+    return 200 '${strings.toJSON data}';
+  '';
 
-      default_type application/json;
-      return 200 '${strings.toJSON data}';
-    '';
-  in {
-    "= /.well-known/matrix/client".extraConfig = wellKnownResponse configClient;
-    "= /.well-known/matrix/server".extraConfig = wellKnownResponse configServer;
+  configWellKnownResponse.locations = {
+    "= /.well-known/matrix/client".extraConfig = wellKnownResponse {
+      "m.homeserver".base_url = "https://${fqdn}";
+    };
+
+    "= /.well-known/matrix/server".extraConfig = wellKnownResponse {
+      "m.server" = "${fqdn}:443";
+    };
   };
 
   configNotFoundLocation = {
-    locations."/".extraConfig = "return 404;";
+    extraConfig = /* nginx */ ''
+      error_page 404 /404.html;
+    '';
 
-    extraConfig                  = "error_page 404 /404.html;";
-    locations."/404".extraConfig = "internal;";
+    locations."/".extraConfig = /* nginx */ ''
+      return 404;
+    '';
 
-    locations."/assets/".extraConfig = "return 301 https://${domain}$request_uri;";
+    locations."/404".extraConfig = /* nginx */ ''
+      internal;
+    '';
+
+    locations."/assets/".extraConfig = /* nginx */ ''
+      return 301 https://${domain}$request_uri;
+    '';
   };
 in {
   imports = [(self + /modules/nginx.nix)];
@@ -93,7 +104,7 @@ in {
   services.nginx.virtualHosts.${domain} = configWellKnownResponse;
 
   services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate configWellKnownResponse configNotFoundLocation {
-    root = "${pathSite}";
+    root = pathSite;
 
     locations."/_matrix".proxyPass         = "http://[::1]:${toString port}";
     locations."/_synapse/client".proxyPass = "http://[::1]:${toString port}";

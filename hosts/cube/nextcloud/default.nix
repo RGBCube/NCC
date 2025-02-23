@@ -4,7 +4,7 @@
 
   fqdn = "cloud.${domain}";
 
-  packageNextcloud = pkgs.nextcloud29;
+  packageNextcloud = pkgs.nextcloud30;
 in {
   imports = [(self + /modules/nginx.nix)];
 
@@ -35,14 +35,15 @@ in {
     after    = [ "postgresql.service" ];
     requires = [ "postgresql.service" ];
 
-    script = mkAfter ''
-      nextcloud-occ theming:config name "RGBCube's Depot"
-      nextcloud-occ theming:config slogan "RGBCube's storage of insignificant data."
+    script = mkAfter /* shell */ ''
+      # TODO: Nextcloud 30 removed these. Find another way.
+      # nextcloud-occ theming:config name "RGBCube's Depot"
+      # nextcloud-occ theming:config slogan "RGBCube's storage of insignificant data."
 
-      nextcloud-occ theming:config color "#000000"
-      nextcloud-occ theming:config background backgroundColor
+      # nextcloud-occ theming:config color "#000000"
+      # nextcloud-occ theming:config background backgroundColor
 
-      nextcloud-occ theming:config logo ${./icon.gif}
+      # nextcloud-occ theming:config logo ${./icon.gif}
     '';
   };
 
@@ -98,10 +99,8 @@ in {
     extraAppsEnable = true;
     extraApps       = {
       inherit (packageNextcloud.packages.apps)
-        bookmarks calendar contacts deck
-        forms impersonate mail # groupfolders impersonate mail
-        maps notes polls previewgenerator; # tasks;
-        # Add: files_markdown files_texteditor memories news
+        bookmarks calendar contacts deck forms
+        impersonate mail maps notes previewgenerator;
     };
 
     nginx.recommendedHttpHeaders = true;

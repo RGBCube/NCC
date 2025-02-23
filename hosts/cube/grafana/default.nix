@@ -38,7 +38,7 @@ in {
       database.user = "grafana";
 
       server.domain    = fqdn;
-      server.http_addr = "[::1]";
+      server.http_addr = "::1";
       server.http_port = port;
 
       users.default_theme = "system";
@@ -75,4 +75,3 @@ in {
     };
   };
 }
-

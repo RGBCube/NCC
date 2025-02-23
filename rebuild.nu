@@ -22,10 +22,7 @@ def main --wrapped [
 
     ssh -q -tt $host $"
       cd ncc
-      # TODO: Migration artifact. Remove.
-      nix shell github:NixOS/nix --command nu -c '
-        ./rebuild.nu ($host) ($arguments | str join ' ')
-      '
+      ./rebuild.nu ($host) ($arguments | str join ' ')
     "
 
     return
@@ -58,8 +55,7 @@ def main --wrapped [
 # the "install developer tools" popup.
 #
 # Set by default to "SplitForks" because who even uses that?
-# TODO: Migration artifact. Make const.
-let original_trigger = "/usr/bin/SplitForks"
+const original_trigger = "/usr/bin/SplitForks"
 
 # Where the symbolic links to `/usr/bin/false` will
 # be created in to shadow all popup-triggering binaries.
@@ -78,8 +74,7 @@ let original_trigger = "/usr/bin/SplitForks"
 #
 # Do NOT set this to a path that you use for other things,
 # it will get deleted if it exists to only have the shadowers.
-# TODO: Migration artifact. Make const.
-let shadow_path = "~/.local/shadow" | path expand # Did you read the comment?
+const shadow_path = "~/.local/shadow" | path expand # Did you read the comment?
 
 def darwin-shadow-xcode-popup [] {
   print "shadowing xcode popup binaries..."
