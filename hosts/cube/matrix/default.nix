@@ -46,16 +46,7 @@ in {
     owner = "matrix-synapse";
   };
 
-  services.postgresql = let
-    users = [ "matrix-synapse" "matrix-sliding-sync" ];
-  in {
-    ensureDatabases = users;
-    ensureUsers     = map users (name: {
-      inherit name;
-
-      ensureDBOwnership = true;
-    });
-  };
+  services.postgresql.ensure = [ "matrix-synapse" "matrix-sliding-sync" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/var/lib/matrix-synapse"  "/var/lib/matrix-sliding-sync" ];

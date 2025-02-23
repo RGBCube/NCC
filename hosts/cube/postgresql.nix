@@ -1,16 +1,16 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) const enabled genAttrs mkForce mkOverride;
+  inherit (lib) const enabled flip genAttrs mkForce mkOverride mkValue;
 in {
-  environment.systemPackages = [
+  config.environment.systemPackages = [
     config.services.postgresql.package
   ];
 
-  services.prometheus.exporters.postgres = enabled {
+  config.services.prometheus.exporters.postgres = enabled {
     listenAddress       = "[::]";
     runAsLocalSuperUser = true;
   };
 
-  services.restic.backups = genAttrs config.services.restic.hosts <| const {
+  config.services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/tmp/postgresql-dump.sql.gz" ];
 
     backupPrepareCommand = ''
@@ -24,7 +24,9 @@ in {
     '';
   };
 
-  services.postgresql = enabled {
+  options.services.postgresql.ensure = mkValue [ "postgres" "root" ];
+
+  config.services.postgresql = enabled {
     package = pkgs.postgresql_14;
 
     enableJIT = true;
@@ -40,15 +42,16 @@ in {
       local  all      all    peer
     '';
 
-    ensureUsers = map [ "postgres" "root" ] (name: {
+    ensureDatabases = config.services.postgres.ensure;
+
+    ensureUsers = flip map config.services.postgres.ensure (name: {
       inherit name;
 
+      ensureDBOwnership = true;
+
       ensureClauses = {
-        createdb    = true;
-        createrole  = true;
         login       = true;
-        replication = true;
-        superuser   = true;
+        superuser   = name == "postgres" || name == "root";
       };
     });
 

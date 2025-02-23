@@ -25,16 +25,7 @@ in {
     passwordFile = config.secrets.nextcloudPasswordExporter.path;
   };
 
-  services.postgresql = let
-    users = [ "nextcloud" ];
-  in {
-    ensureDatabases = users;
-    ensureUsers     = map users (name: {
-      inherit name;
-
-      ensureDBOwnership = true;
-    });
-  };
+  services.postgresql.ensure = [ "nextcloud" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/var/lib/nextcloud" ];
