@@ -12,8 +12,10 @@
 
   configWellKnownResponse.locations = let
     wellKnownResponse = data: ''
-      default_type application/json;
+      ${config.services.nginx.headers}
       add_header Access-Control-Allow-Origin *;
+
+      default_type application/json;
       return 200 '${strings.toJSON data}';
     '';
   in {
