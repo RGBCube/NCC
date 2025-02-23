@@ -5,10 +5,10 @@ in {
     dnssec     = "true";
     dnsovertls = "true";
 
-    extraConfig = config.networking.dns.servers
+    extraConfig = config.dns.servers
       |> map (server: "DNS=${server}")
       |> concatStringsSep "\n";
 
-    fallbackDns = config.networking.dns.serversFallback;
+    fallbackDns = config.dns.serversFallback;
   };
 }
