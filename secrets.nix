@@ -6,7 +6,6 @@ in {
   "hosts/cube/grafana/password.age".publicKeys        = [ cube ] ++ admins;
   "hosts/cube/id.age".publicKeys                      = [ cube ] ++ admins;
   "hosts/cube/matrix/password.secret.age".publicKeys  = [ cube ] ++ admins;
-  "hosts/cube/matrix/password.sync.age".publicKeys    = [ cube ] ++ admins;
   "hosts/cube/nextcloud/password.age".publicKeys      = [ cube ] ++ admins;
   "hosts/cube/password.rgb.age".publicKeys            = [ cube ] ++ admins;
 

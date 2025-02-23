@@ -3,7 +3,6 @@
   inherit (lib) const enabled genAttrs head merge mkForce;
 
   fqdn = "git.${domain}";
-
   port = 8001;
 in {
   imports = [(self + /modules/nginx.nix)];
