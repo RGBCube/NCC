@@ -6,6 +6,8 @@
 
 !hosts/
 
+!hosts/best/
+
 !hosts/cube/
 !hosts/cube/matrix/
 !hosts/cube/nextcloud/

@@ -1,6 +1,10 @@
 let
-  inherit (import ./keys.nix) cube disk nine admins all;
+  inherit (import ./keys.nix) best cube disk nine admins all;
 in {
+  # best
+  "hosts/best/id.age".publicKeys           = [ best ] ++ admins;
+  "hosts/best/password.the.age".publicKeys = [ best ] ++ admins;
+
   # cube
   "hosts/cube/forgejo/password.runner.age".publicKeys = [ cube ] ++ admins;
   "hosts/cube/grafana/password.age".publicKeys        = [ cube ] ++ admins;

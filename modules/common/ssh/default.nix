@@ -34,6 +34,12 @@ in {
 
         # TODO: Maybe autogenerate these?
 
+        best = {
+          hostname = self.best.networking.ipv4.address;
+          user     = "the";
+          port     = 2222;
+        };
+
         cube = {
           hostname = self.cube.networking.ipv4.address;
           user     = "rgb";
