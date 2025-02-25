@@ -104,19 +104,20 @@ in {
         environmentVariables = config.environment.variables;
 
         homeVariables      = homeConfig.home.sessionVariables;
-        homeVariablesExtra = pkgs.runCommand "home-variables-extra.env" {} ''
-            alias export=echo
-            # echo foo > $out
-            # FIXME
-            eval $(cat ${homeConfig.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh) > $out
-          ''
-            # |> (aaa: (_: break _) aaa)
-            |> readFile
-            |> splitString "\n"
-            |> filter (s: s != "")
-            |> map (match "([^=]+)=(.*)")
-            |> map (keyAndValue: nameValuePair (first keyAndValue) (last keyAndValue))
-            |> foldl' (x: y: x // y) {};
+        # homeVariablesExtra = pkgs.runCommand "home-variables-extra.env" {} ''
+        #     alias export=echo
+        #     # echo foo > $out
+        #     # FIXME
+        #     eval $(cat ${homeConfig.home.sessionVariablesPackage}/etc/profile.d/hm-session-vars.sh) > $out
+        #   ''
+        #     # |> (aaa: (_: break _) aaa)
+        #     |> readFile
+        #     |> splitString "\n"
+        #     |> filter (s: s != "")
+        #     |> map (match "([^=]+)=(.*)")
+        #     |> map (keyAndValue: nameValuePair (first keyAndValue) (last keyAndValue))
+        #     |> foldl' (x: y: x // y) {};
+        homeVariablesExtra = {};
       in environmentVariables // homeVariables // homeVariablesExtra;
 
       shellAliases = removeAttrs config.environment.shellAliases [ "ls" "l" ] // {
