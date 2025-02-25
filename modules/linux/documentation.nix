@@ -1,12 +1,9 @@
 { lib, ... }: let
-  inherit (lib) enabled disabled;
+  inherit (lib) disabled;
 in {
   documentation = {
     doc  = disabled;
     info = disabled;
-
-    man = enabled {
-      generateCaches = true;
-    };
+    man  = disabled;
   };
 }
