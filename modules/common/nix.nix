@@ -20,7 +20,7 @@ in {
       maxJobs           = 20;
       protocol          = "ssh-ng";
       sshUser           = "build";
-      supportedFeatures = [ "kvm" "big-parallel" ];
+      supportedFeatures = [ "benchmark" "big-parallel" "kvm" "nixos-test" ];
       system            = value.config.nixpkgs.hostPlatform.system;
     });
 
