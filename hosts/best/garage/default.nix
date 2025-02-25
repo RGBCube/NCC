@@ -2,9 +2,11 @@
   inherit (config.networking) domain;
   inherit (lib) enabled merge;
 
-  fqdn    = "s3.${domain}";
+  fqdnS3  = "s3.${domain}";
+  fqdnWeb = "cdn.${domain}";
   portS3  = 8003;
-  portRpc = 8004;
+  portWeb = 8004;
+  portRpc = 8005;
 in {
   imports = [(self + /modules/nginx.nix)];
 
@@ -33,12 +35,17 @@ in {
         s3_region = "garage";
 
         api_bind_addr = "[::1]:${toString portS3}";
-        root_domain   = fqdn;
+        root_domain   = fqdnS3;
+      };
+
+      s3_web = {
+        bind_addr = "[::1]:${toString portWeb}";
+        root_domain   = fqdnWeb;
       };
     };
   };
 
-  services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate {
+  services.nginx.virtualHosts.${fqdnS3} = merge config.services.nginx.sslTemplate {
     locations."/".proxyPass = "http://[::1]:${toString portS3}";
   };
 }
