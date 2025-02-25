@@ -1,4 +1,8 @@
-lib: lib.darwinSystem {
+lib: lib.darwinSystem ({ lib, ... }: let
+  inherit (lib) collectNix remove;
+in {
+  imports = collectNix ./. |> remove ./default.nix;
+
   type = "desktop";
 
   networking.hostName = "pala";
@@ -13,6 +17,5 @@ lib: lib.darwinSystem {
     homeDirectory = "/Users/pala";
   };
 
-  nixpkgs.hostPlatform = "aarch64-darwin";
   system.stateVersion  = 5;
-}
+})

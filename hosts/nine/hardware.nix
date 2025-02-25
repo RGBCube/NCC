@@ -30,4 +30,6 @@ in {
   };
 
   zramSwap = enabled;
+
+  nixpkgs.hostPlatform = "aarch64-linux";
 }

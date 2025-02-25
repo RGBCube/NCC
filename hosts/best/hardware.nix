@@ -27,4 +27,6 @@ in {
     fsType  = "vfat";
     options = [ "noatime" ];
   };
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 }

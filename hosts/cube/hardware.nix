@@ -20,4 +20,6 @@ in {
     fsType  = "ext4";
     options = [ "noatime" ];
   };
+
+  nixpkgs.hostPlatform = "x86_64-linux";
 }

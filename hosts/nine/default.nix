@@ -58,7 +58,6 @@ in {
     };
   };
 
-  nixpkgs.hostPlatform       = "aarch64-linux";
   system.stateVersion        = "23.11";
   home-manager.sharedModules = [{
     home.stateVersion = "23.11";
