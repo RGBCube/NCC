@@ -7,6 +7,7 @@
 !hosts/
 
 !hosts/best/
+!hosts/best/garage/
 !hosts/best/nix-serve/
 
 !hosts/cube/
