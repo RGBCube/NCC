@@ -12,8 +12,6 @@ in {
   "hosts/best/hercules/secrets.age".publicKeys      = [ best ] ++ admins;
   "hosts/best/hercules/token.age".publicKeys        = [ best ] ++ admins;
 
-  "hosts/best/nix-serve/key.age".publicKeys     = [ best ] ++ admins;
-
   # cube
   "hosts/cube/id.age".publicKeys                      = [ cube ] ++ admins;
   "hosts/cube/password.rgb.age".publicKeys            = [ cube ] ++ admins;

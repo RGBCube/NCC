@@ -3,8 +3,8 @@
   inherit (lib) enabled merge;
 
   fqdn    = "s3.${domain}";
-  portS3  = 8004;
-  portRpc = 8005;
+  portS3  = 8003;
+  portRpc = 8004;
 in {
   imports = [(self + /modules/nginx.nix)];
 
