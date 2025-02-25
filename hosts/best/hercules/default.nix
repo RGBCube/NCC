@@ -1,5 +1,5 @@
 { self, config, lib, ... }: let
-  inherit (lib) enabled genAttrs removeAttrs;
+  inherit (lib) disabled genAttrs removeAttrs;
 in {
   secrets.awsCredentials = {
     file  = ./credentials.age;
@@ -25,7 +25,7 @@ in {
     home.file.".aws/credentials".source = homeLib.file.mkOutOfStoreSymlink config.secrets.awsCredentials.path;
   });
 
-  services.hercules-ci-agent = enabled {
+  services.hercules-ci-agent = disabled {
     settings = {
       binaryCachesPath     = config.secrets.herculesCaches.path;
       clusterJoinTokenPath = config.secrets.herculesToken.path;
