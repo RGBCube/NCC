@@ -5,6 +5,7 @@
     extra-substituters = [
       "https://cache.garnix.io/"
       "https://cache.privatevoid.net"
+      "https://cache.rgbcu.be/"
       "https://hyprland.cachix.org/"
       "https://nix-community.cachix.org/"
     ];
@@ -12,6 +13,7 @@
     extra-trusted-public-keys = [
       "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       "cache.privatevoid.net:SErQ8bvNWANeAvtsOESUwVYr2VJynfuc9JRwlzTTkVg="
+      "cache.rgbcu.be:nBN/5Qg5E8GIYwaoslm9DYo2zeqlBiCVNCPf17djr+w="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     ];

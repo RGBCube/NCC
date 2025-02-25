@@ -7,6 +7,7 @@
 !hosts/
 
 !hosts/best/
+!hosts/best/nix-serve/
 
 !hosts/cube/
 !hosts/cube/matrix/
