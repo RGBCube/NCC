@@ -7,6 +7,11 @@ in {
 
   "hosts/best/garage/environment.age".publicKeys = [ best ] ++ admins;
 
+  "hosts/best/hercules/caches.age".publicKeys       = [ best ] ++ admins;
+  "hosts/best/hercules/credentials.age".publicKeys  = [ best ] ++ admins;
+  "hosts/best/hercules/secrets.age".publicKeys      = [ best ] ++ admins;
+  "hosts/best/hercules/token.age".publicKeys        = [ best ] ++ admins;
+
   "hosts/best/nix-serve/key.age".publicKeys     = [ best ] ++ admins;
 
   # cube

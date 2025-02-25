@@ -9,6 +9,7 @@
 !hosts/best/
 !hosts/best/garage/
 !hosts/best/nix-serve/
+!hosts/best/hercules/
 
 !hosts/cube/
 !hosts/cube/matrix/
