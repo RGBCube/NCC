@@ -1,5 +1,5 @@
 { self, config, inputs, lib, pkgs, ... }: let
-  inherit (lib) concatStringsSep const disabled filterAttrs flip id isType mapAttrs mapAttrsToList merge mkAfter optionalAttrs;
+  inherit (lib) attrsToList concatStringsSep const disabled filter filterAttrs flip id isType mapAttrs mapAttrsToList merge mkAfter optionalAttrs;
   inherit (lib.strings) toJSON;
 
   registryMap = inputs
@@ -9,17 +9,22 @@ in {
   # that happens rebuilds are slow thanks to my garbage WiFi.
   environment.etc.".system-inputs.json".text = toJSON registryMap;
 
-  nix.nixPath = registryMap
-      |> mapAttrsToList (name: value: "${name}=${value}")
-      |> (if config.isDarwin then concatStringsSep ":" else id);
-
-  nix.registry = registryMap // { default = inputs.nixpkgs; }
-    |> mapAttrs (_: flake: { inherit flake; });
+  nix.distributedBuilds = true;
+  nix.buildMachines     = self.nixosConfigurations
+    |> attrsToList
+    |> filter ({ name, value }:
+      name != config.networking.hostName &&
+      value.config.users.users ? build)
+    |> map ({ name, value }: {
+      hostName          = name;
+      maxJobs           = 20;
+      protocol          = "ssh-ng";
+      sshUser           = "build";
+      supportedFeatures = [ "kvm" "big-parallel" ];
+      system            = value.config.nixpkgs.hostPlatform.system;
+    });
 
   nix.channel = disabled;
-
-  nix.settings = (import <| self + /flake.nix).nixConfig
-    |> flip removeAttrs (if config.isDarwin then [ "use-cgroups" ] else []);
 
   nix.gc = merge {
     automatic  = true;
@@ -28,6 +33,16 @@ in {
     dates      = "weekly";
     persistent = true;
   };
+
+  nix.nixPath = registryMap
+      |> mapAttrsToList (name: value: "${name}=${value}")
+      |> (if config.isDarwin then concatStringsSep ":" else id);
+
+  nix.registry = registryMap // { default = inputs.nixpkgs; }
+    |> mapAttrs (_: flake: { inherit flake; });
+
+  nix.settings = (import <| self + /flake.nix).nixConfig
+    |> flip removeAttrs (if config.isDarwin then [ "use-cgroups" ] else []);
 
   nix.optimise.automatic = true;
 

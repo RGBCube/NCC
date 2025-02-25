@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }: let
   inherit (lib) const enabled flip genAttrs mkForce mkOverride mkValue;
 in {
-  config.environment.systemPackages = [
-    config.services.postgresql.package
-  ];
-
   config.services.prometheus.exporters.postgres = enabled {
     listenAddress       = "[::]";
     runAsLocalSuperUser = true;
@@ -25,6 +21,10 @@ in {
   };
 
   options.services.postgresql.ensure = mkValue [];
+
+  config.environment.systemPackages = [
+    config.services.postgresql.package
+  ];
 
   config.services.postgresql = enabled {
     package = pkgs.postgresql_14;

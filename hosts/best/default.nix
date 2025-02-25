@@ -27,6 +27,14 @@ in {
       hashedPasswordFile          = config.secrets.thePassword.path;
       isNormalUser                = true;
     };
+
+    build = {
+      description                 = "Build";
+      openssh.authorizedKeys.keys = keys.all;
+      hashedPasswordFile          = config.secrets.thePassword.path;
+      isNormalUser                = true;
+      extraGroups                 = [ "build" ];
+    };
   };
 
   home-manager.users = {

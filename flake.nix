@@ -28,7 +28,7 @@
     flake-registry           = "";
     http-connections         = 50;
     show-trace               = true;
-    trusted-users            = [ "root" "@wheel" "@admin" ];
+    trusted-users            = [ "root" "@build" "@wheel" "@admin" ];
     use-cgroups              = true;
     warn-dirty               = false;
   };
