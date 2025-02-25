@@ -1,5 +1,5 @@
-{ config, lib, ... }: let
-  inherit (lib) enabled genAttrs;
+{ self, config, lib, ... }: let
+  inherit (lib) enabled genAttrs removeAttrs;
 in {
   secrets.awsCredentials = {
     file  = ./credentials.age;
@@ -30,6 +30,11 @@ in {
       binaryCachesPath     = config.secrets.herculesCaches.path;
       clusterJoinTokenPath = config.secrets.herculesToken.path;
       secretsJsonPath      = config.secrets.herculesSecrets.path;
+
+      nixSettings = removeAttrs (import <| self + /flake.nix).nixConfig [
+        "extra-substituters"
+        "extra-trusted-private-keys"
+      ];
     };
   };
 }
