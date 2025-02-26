@@ -1,11 +1,10 @@
 { self, config, lib, ... }: let
-  inherit (lib) enabled genAttrs removeAttrs;
+  inherit (lib) enabled removeAttrs;
 in {
-  secrets.awsCredentials = {
+  secrets.herculesCredentials = {
     file  = ./credentials.age;
     owner = "hercules-ci-agent";
   };
-
   secrets.herculesCaches = {
     file  = ./caches.age;
     owner = "hercules-ci-agent";
@@ -19,11 +18,12 @@ in {
     owner = "hercules-ci-agent";
   };
 
-  home-manager.users = genAttrs [ "hercules-ci-agent" "root" ] (_: homeArgs: let
-    homeLib    = homeArgs.config.lib;
-  in {
-    home.file.".aws/credentials".source = homeLib.file.mkOutOfStoreSymlink config.secrets.awsCredentials.path;
-  });
+  systemd.services.hercules-ci-agent.environment = {
+    AWS_SHARED_CREDENTIALS_FILE = config.secrets.herculesCredentials.path;
+
+    # AWS SDK is incredibly gay and will continuously try to contact 169.254.169.254 for EC2 metadata.
+    AWS_EC2_METADATA_DISABLED = "true";
+  };
 
   services.hercules-ci-agent = enabled {
     settings = {
