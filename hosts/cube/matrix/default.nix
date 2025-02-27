@@ -23,12 +23,17 @@
     };
   };
 in {
-  imports = [(self + /modules/nginx.nix)];
+  imports = [
+    (self + /modules/nginx.nix)
+    (self + /modules/postgresql.nix)
+  ];
 
   secrets.matrixSecret = {
     file  = ./password.secret.age;
     owner = "matrix-synapse";
   };
+
+  services.postgresql.ensure = [ "matrix-synapse" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
     paths = [ "/var/lib/matrix-synapse" ];

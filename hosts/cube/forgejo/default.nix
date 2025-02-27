@@ -5,7 +5,10 @@
   fqdn = "git.${domain}";
   port = 8001;
 in {
-  imports = [(self + /modules/nginx.nix)];
+  imports = [
+    (self + /modules/nginx.nix)
+    (self + /modules/postgresql.nix)
+  ];
 
   secrets.forgejoPasswordRunner = {
     file  = ./password.runner.age;

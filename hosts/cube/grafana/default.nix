@@ -5,7 +5,10 @@
   fqdn = "metrics.${domain}";
   port = 8000;
 in {
-  imports = [(self + /modules/nginx.nix)];
+  imports = [
+    (self + /modules/nginx.nix)
+    (self + /modules/postgresql.nix)
+  ];
 
   secrets.grafanaPassword = {
     file  = ./password.age;

@@ -6,7 +6,10 @@
 
   packageNextcloud = pkgs.nextcloud30;
 in {
-  imports = [(self + /modules/nginx.nix)];
+  imports = [
+    (self + /modules/nginx.nix)
+    (self + /modules/postgresql.nix)
+  ];
 
   secrets.nextcloudPassword = {
     file  = ./password.age;
