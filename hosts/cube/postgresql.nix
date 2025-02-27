@@ -31,11 +31,7 @@ in {
 
     enableJIT = true;
 
-    initdbArgs    = [ "--locale=C" "--encoding=UTF8" ];
-    initialScript = pkgs.writeText "grant-root-perms.sql" ''
-      GRANT pg_read_all_data  TO root;
-      GRANT pg_write_all_data TO root;
-    '';
+    initdbArgs = [ "--locale=C" "--encoding=UTF8" ];
 
     authentication = mkOverride 10 /* ini */ ''
       # Type Database DBUser Authentication
