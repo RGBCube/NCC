@@ -16,7 +16,6 @@
 !hosts/cube/nextcloud/
 !hosts/cube/nextcloud/*.gif
 !hosts/cube/grafana/
-!hosts/cube/forgejo/
 
 !hosts/disk/
 

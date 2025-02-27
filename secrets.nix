@@ -18,7 +18,6 @@ in {
   "hosts/cube/id.age".publicKeys                      = [ cube ] ++ admins;
   "hosts/cube/password.rgb.age".publicKeys            = [ cube ] ++ admins;
 
-  "hosts/cube/forgejo/password.runner.age".publicKeys = [ cube ] ++ admins;
   "hosts/cube/grafana/password.age".publicKeys        = [ cube ] ++ admins;
   "hosts/cube/matrix/password.secret.age".publicKeys  = [ cube ] ++ admins;
   "hosts/cube/nextcloud/password.age".publicKeys      = [ cube ] ++ admins;

@@ -1,4 +1,4 @@
-{ self, config, lib, pkgs, ... }: let
+{ self, config, lib, ... }: let
   inherit (config.networking) domain;
   inherit (lib) const enabled genAttrs head merge mkForce;
 
@@ -10,10 +10,6 @@ in {
     (self + /modules/postgresql.nix)
   ];
 
-  secrets.forgejoPasswordRunner = {
-    file  = ./password.runner.age;
-    owner = "forgejo";
-  };
   secrets.forgejoPasswordMail = {
     file  = self + /modules/mail/password.plain.age;
     owner = "forgejo";
@@ -22,47 +18,7 @@ in {
   services.postgresql.ensure = [ "forgejo" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
-    paths = [ "/var/lib/gitea-runner"  "/var/lib/forgejo" ];
-  };
-
-  users.groups.gitea-runner = {};
-  users.users.gitea-runner  = {
-    extraGroups  = [ "docker" ];
-    group        = "gitea-runner";
-    home         = "/var/lib/gitea-runner";
-    isSystemUser = true;
-  };
-
-  services.gitea-actions-runner = {
-    package = pkgs.forgejo-actions-runner;
-
-    instances.runner-01 = enabled {
-      name = "runner-01";
-      url  = fqdn;
-
-      labels = [
-        "debian-latest:docker://node:18-bullseye"
-        "ubuntu-latest:docker://node:18-bullseye"
-        "act:docker://ghcr.io/catthehacker/ubuntu:act-latest"
-      ];
-
-      tokenFile = config.secrets.forgejoPasswordRunner.path;
-
-      settings = {
-        cache.enabled     = true;
-        capacity          = 4;
-        container.network = "host";
-      };
-
-      hostPackages = [
-        pkgs.bash
-        pkgs.uutils-coreutils-noprefix
-        pkgs.curl
-        pkgs.gitMinimal
-        pkgs.sudo
-        pkgs.wget
-      ];
-    };
+    paths = [ "/var/lib/forgejo" ];
   };
 
   services.openssh.settings.AcceptEnv = mkForce "SHELLS COLOTERM GIT_PROTOCOL";
@@ -81,11 +37,6 @@ in {
       description = "RGBCube's Forge of Shitty Software";
     in {
       default.APP_NAME = description;
-
-      actions = {
-        ENABLED             = true;
-        DEFAULT_ACTIONS_URL = "https://${fqdn}";
-      };
 
       attachment.ALLOWED_TYPES = "*/*";
 
@@ -109,7 +60,7 @@ in {
       repository = {
         DEFAULT_BRANCH      = "master";
         DEFAULT_MERGE_STYLE = "rebase-merge";
-        DEFAULT_REPO_UNITS  = "repo.code, repo.issues, repo.pulls, repo.actions";
+        DEFAULT_REPO_UNITS  = "repo.code, repo.issues, repo.pulls";
 
         DEFAULT_PUSH_CREATE_PRIVATE = false;
         ENABLE_PUSH_CREATE_ORG      = true;
@@ -120,7 +71,7 @@ in {
 
       "repository.upload" = {
         FILE_MAX_SIZE = 100;
-        MAX_FILES = 10;
+        MAX_FILES     = 10;
       };
 
       server = {
