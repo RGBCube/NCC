@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: let
+{ self, config, lib, pkgs, ... }: let
   inherit (lib) head mkAfter enabled merge mkIf;
   inherit (lib.strings) match;
 in {
@@ -77,8 +77,7 @@ in {
     (homeArgs: let
       homeConfig = homeArgs.config;
 
-      # TODO: gitUrl    = self.cube.services.forgejo.settings.server.ROOT_URL;
-      gitUrl    = "https://git.rgbcu.be/";
+      gitUrl    = self.best.services.forgejo.settings.server.ROOT_URL;
       gitDomain = head <| match "https://(.*)/" gitUrl;
     in {
       programs.nushell.configFile.text = mkAfter /* nu */ ''
@@ -137,8 +136,7 @@ in {
         } <| mkIf config.isDesktop {
           core.sshCommand                                  = "ssh -i ~/.ssh/id";
           url."ssh://git@github.com/".insteadOf            = "https://github.com/";
-          # TODO: url."ssh://forgejo@${gitDomain}:${toString (head self.cube.services.openssh.ports)}/".insteadOf = gitUrl;
-          url."ssh://forgejo@${gitDomain}:2222/".insteadOf = gitUrl;
+          url."ssh://forgejo@${gitDomain}:${toString self.cube.services.forgejo.settings.server.SSH_PORT}/".insteadOf = gitUrl;
 
           commit.gpgSign  = true;
           tag.gpgSign     = true;

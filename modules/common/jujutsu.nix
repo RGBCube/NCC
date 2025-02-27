@@ -1,5 +1,5 @@
-{ config, lib, pkgs, ... }: let
-  inherit (lib) enabled getExe;
+{ self, config, lib, pkgs, ... }: let
+  inherit (lib) enabled getExe head;
 in {
   environment.systemPackages = [
     pkgs.difftastic
@@ -15,8 +15,7 @@ in {
 
     programs.jujutsu = enabled {
       settings = let
-        # TODO: mailDomain = head self.disk.mailserver.domains;
-        mailDomain = "rgbcu.be";
+        mailDomain = head self.disk.mailserver.domains;
       in {
         user.name  = "RGBCube";
         user.email = "git@${mailDomain}";
