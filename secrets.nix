@@ -5,6 +5,8 @@ in {
   "hosts/best/id.age".publicKeys            = [ best ] ++ admins;
   "hosts/best/password.the.age".publicKeys  = [ best ] ++ admins;
 
+  "hosts/best/cache/key.age".publicKeys = [ best ] ++ admins;
+
   "hosts/best/garage/environment.age".publicKeys = [ best ] ++ admins;
 
   "hosts/best/hercules/caches.age".publicKeys       = [ best ] ++ admins;

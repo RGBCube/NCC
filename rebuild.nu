@@ -22,6 +22,10 @@ def main --wrapped [
   }
 
   if $host != (hostname) {
+    ssh -q -tt $host $"
+      rm -rf ncc
+    "
+
     git ls-files
     | sync --files-from - ./ ($host + ":ncc")
 

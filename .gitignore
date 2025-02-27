@@ -7,8 +7,8 @@
 !hosts/
 
 !hosts/best/
+!hosts/best/cache/
 !hosts/best/garage/
-!hosts/best/nix-serve/
 !hosts/best/hercules/
 
 !hosts/cube/
