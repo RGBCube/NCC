@@ -46,6 +46,10 @@ in {
   };
 
   services.nginx.virtualHosts.${fqdnS3} = merge config.services.nginx.sslTemplate {
+    extraConfig = /* nginx */ ''
+      client_max_body_size 5g;
+    '';
+
     locations."/".proxyPass = "http://[::1]:${toString portS3}";
   };
 }
