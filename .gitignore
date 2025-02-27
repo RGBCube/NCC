@@ -9,13 +9,13 @@
 !hosts/best/
 !hosts/best/cache/
 !hosts/best/garage/
+!hosts/best/grafana/
 !hosts/best/hercules/
+!hosts/best/matrix/
+!hosts/best/nextcloud/
+!hosts/best/nextcloud/*.gif
 
 !hosts/cube/
-!hosts/cube/matrix/
-!hosts/cube/nextcloud/
-!hosts/cube/nextcloud/*.gif
-!hosts/cube/grafana/
 
 !hosts/disk/
 

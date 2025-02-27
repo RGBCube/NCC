@@ -9,18 +9,20 @@ in {
 
   "hosts/best/garage/environment.age".publicKeys = [ best ] ++ admins;
 
+  "hosts/best/grafana/password.age".publicKeys        = [ best ] ++ admins;
+
   "hosts/best/hercules/caches.age".publicKeys       = [ best ] ++ admins;
   "hosts/best/hercules/credentials.age".publicKeys  = [ best ] ++ admins;
   "hosts/best/hercules/secrets.age".publicKeys      = [ best ] ++ admins;
   "hosts/best/hercules/token.age".publicKeys        = [ best ] ++ admins;
 
+  "hosts/best/matrix/password.secret.age".publicKeys  = [ best ] ++ admins;
+
+  "hosts/best/nextcloud/password.age".publicKeys      = [ best ] ++ admins;
+
   # cube
   "hosts/cube/id.age".publicKeys                      = [ cube ] ++ admins;
   "hosts/cube/password.rgb.age".publicKeys            = [ cube ] ++ admins;
-
-  "hosts/cube/grafana/password.age".publicKeys        = [ cube ] ++ admins;
-  "hosts/cube/matrix/password.secret.age".publicKeys  = [ cube ] ++ admins;
-  "hosts/cube/nextcloud/password.age".publicKeys      = [ cube ] ++ admins;
 
   # disk
   "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
