@@ -40,12 +40,6 @@ in {
           port     = 2222;
         };
 
-        cube = {
-          hostname = self.cube.networking.ipv4.address;
-          user     = "rgb";
-          port     = 2222;
-        };
-
         disk = {
           hostname = self.disk.networking.ipv4.address;
           user     = "floppy";

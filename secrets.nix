@@ -1,5 +1,5 @@
 let
-  inherit (import ./keys.nix) best cube disk nine admins all;
+  inherit (import ./keys.nix) best disk nine admins all;
 in {
   # best
   "hosts/best/id.age".publicKeys            = [ best ] ++ admins;
@@ -19,10 +19,6 @@ in {
   "hosts/best/matrix/password.secret.age".publicKeys  = [ best ] ++ admins;
 
   "hosts/best/nextcloud/password.age".publicKeys      = [ best ] ++ admins;
-
-  # cube
-  "hosts/cube/id.age".publicKeys                      = [ cube ] ++ admins;
-  "hosts/cube/password.rgb.age".publicKeys            = [ cube ] ++ admins;
 
   # disk
   "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;

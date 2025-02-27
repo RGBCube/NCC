@@ -15,8 +15,6 @@
 !hosts/best/nextcloud/
 !hosts/best/nextcloud/*.gif
 
-!hosts/cube/
-
 !hosts/disk/
 
 !hosts/nine/

@@ -1,7 +1,7 @@
 { config, lib, ... }: let
   inherit (lib) genAttrs mkConst mkIf remove;
 in{
-  options.services.restic.hosts = mkConst <| remove config.networking.hostName [ "cube" "disk" "nine" "best" ];
+  options.services.restic.hosts = mkConst <| remove config.networking.hostName [ "disk" "nine" "best" ];
 
   config.secrets.resticPassword.file = mkIf config.isServer ./password.age;
 
