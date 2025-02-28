@@ -7,7 +7,7 @@ in {
     (if config.isLinux then
       "/root/.ssh/id"
     else
-      "/Users/${config.users.users |> attrNames |> head}/.ssh/id")
+      "/Users/${head <| attrNames <| config.users.users}/.ssh/id")
   ];
 
   environment = mkIf config.isDesktop {

@@ -38,7 +38,7 @@ in {
         });
 
     in self.nixosConfigurations
-    |> mapAttrsToList configToScrapeConfig
-    |> flatten;
+      |> mapAttrsToList configToScrapeConfig
+      |> flatten;
   };
 }

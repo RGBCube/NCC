@@ -35,8 +35,8 @@ in {
   };
 
   nix.nixPath = registryMap
-      |> mapAttrsToList (name: value: "${name}=${value}")
-      |> (if config.isDarwin then concatStringsSep ":" else id);
+    |> mapAttrsToList (name: value: "${name}=${value}")
+    |> (if config.isDarwin then concatStringsSep ":" else id);
 
   nix.registry = registryMap // { default = inputs.nixpkgs; }
     |> mapAttrs (_: flake: { inherit flake; });
