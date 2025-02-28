@@ -1,7 +1,19 @@
 { self, config, lib, pkgs, ... }: let
-  inherit (lib) enabled mkIf;
+  inherit (lib) enabled mkIf filterAttrs attrNames mapAttrs head remove;
 
   controlPath = "~/.ssh/control";
+
+  hosts = self.nixosConfigurations
+    |> filterAttrs (_: value: value.config.services.openssh.enable)
+    |> mapAttrs (_: value: {
+      hostname = value.config.networking.ipv4.address;
+
+      user = value.config.users.users
+        |> attrNames
+        |> remove "root"
+        |> remove "backup"
+        |> head;
+    });
 in {
   secrets.sshConfig = {
     file = ./config.age;
@@ -24,32 +36,12 @@ in {
 
       includes = [ config.secrets.sshConfig.path ];
 
-      matchBlocks = {
+      matchBlocks = hosts // {
         "*" = {
           setEnv.COLORTERM = "truecolor";
           setEnv.TERM      = "xterm-256color";
 
           identityFile = "~/.ssh/id";
-        };
-
-        # TODO: Maybe autogenerate these?
-
-        best = {
-          hostname = self.best.networking.ipv4.address;
-          user     = "the";
-          port     = 2222;
-        };
-
-        disk = {
-          hostname = self.disk.networking.ipv4.address;
-          user     = "floppy";
-          port     = 2222;
-        };
-
-        nine = {
-          hostname = self.nine.networking.ipv4.address;
-          user     = "seven";
-          port     = 2222;
         };
       };
     };
