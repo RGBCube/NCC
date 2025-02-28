@@ -9,14 +9,17 @@ in {
     path = config.secrets.id.path;
   }];
 
-  secrets.sevenPassword.file  = ./password.seven.age;
-  users.users                 = {
-    root.hashedPasswordFile = config.secrets.sevenPassword.path;
+  secrets.password.file  = ./password.age;
+  users.users            = {
+    root = {
+      openssh.authorizedKeys.keys = keys.admins;
+      hashedPasswordFile          = config.secrets.password.path;
+    };
 
     seven = {
       description                 = "Hungry Seven";
       openssh.authorizedKeys.keys = keys.admins;
-      hashedPasswordFile          = config.secrets.sevenPassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
       extraGroups                 = [ "wheel" ];
     };
@@ -24,7 +27,7 @@ in {
     backup = {
       description                 = "Backup";
       openssh.authorizedKeys.keys = keys.all;
-      hashedPasswordFile          = config.secrets.sevenPassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
     };
   };

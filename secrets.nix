@@ -3,7 +3,7 @@ let
 in {
   # best
   "hosts/best/id.age".publicKeys            = [ best ] ++ admins;
-  "hosts/best/password.the.age".publicKeys  = [ best ] ++ admins;
+  "hosts/best/password.age".publicKeys  = [ best ] ++ admins;
 
   "hosts/best/cache/key.age".publicKeys = [ best ] ++ admins;
 
@@ -22,11 +22,11 @@ in {
 
   # disk
   "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
-  "hosts/disk/password.floppy.age".publicKeys = [ disk ] ++ admins;
+  "hosts/disk/password.age".publicKeys = [ disk ] ++ admins;
 
   # nine
   "hosts/nine/id.age".publicKeys                         = [ nine ] ++ admins;
-  "hosts/nine/password.seven.age".publicKeys             = [ nine ] ++ admins;
+  "hosts/nine/password.age".publicKeys             = [ nine ] ++ admins;
 
   "hosts/nine/github2forgejo/environment.age".publicKeys = [ nine ] ++ admins;
 

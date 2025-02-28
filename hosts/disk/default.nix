@@ -9,14 +9,17 @@ in {
     path = config.secrets.id.path;
   }];
 
-  secrets.floppyPassword.file = ./password.floppy.age;
-  users.users                 = {
-    root.hashedPasswordFile = config.secrets.floppyPassword.path;
+  secrets.password.file = ./password.age;
+  users.users           = {
+    root = {
+      openssh.authorizedKeys.keys = keys.admins;
+      hashedPasswordFile          = config.secrets.password.path;
+    };
 
     floppy = {
       description                 = "Floppy";
       openssh.authorizedKeys.keys = keys.admins;
-      hashedPasswordFile          = config.secrets.floppyPassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
       extraGroups                 = [ "wheel" ];
     };
@@ -24,7 +27,7 @@ in {
     backup = {
       description                 = "Backup";
       openssh.authorizedKeys.keys = keys.all;
-      hashedPasswordFile          = config.secrets.floppyPassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
     };
   };

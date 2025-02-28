@@ -9,14 +9,17 @@ in {
     path = config.secrets.id.path;
   }];
 
-  secrets.thePassword.file = ./password.the.age;
-  users.users                 = {
-    root.hashedPasswordFile = config.secrets.thePassword.path;
+  secrets.password.file = ./password.age;
+  users.users           = {
+    root = {
+      openssh.authorizedKeys.keys = keys.admins;
+      hashedPasswordFile          = config.secrets.password.path;
+    };
 
     the = {
       description                 = "The";
       openssh.authorizedKeys.keys = keys.admins;
-      hashedPasswordFile          = config.secrets.thePassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
       extraGroups                 = [ "wheel" ];
     };
@@ -24,14 +27,14 @@ in {
     backup = {
       description                 = "Backup";
       openssh.authorizedKeys.keys = keys.all;
-      hashedPasswordFile          = config.secrets.thePassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
     };
 
     build = {
       description                 = "Build";
       openssh.authorizedKeys.keys = keys.all;
-      hashedPasswordFile          = config.secrets.thePassword.path;
+      hashedPasswordFile          = config.secrets.password.path;
       isNormalUser                = true;
       extraGroups                 = [ "build" ];
     };
