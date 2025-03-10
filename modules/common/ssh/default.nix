@@ -9,8 +9,9 @@
       user = value.config.users.users
         |> filterAttrs (_: value: value.isNormalUser)
         |> attrNames
-        |> remove "root"
         |> remove "backup"
+        |> remove "build"
+        |> remove "root"
         |> head;
 
       hostname = value.config.networking.ipv4.address;
