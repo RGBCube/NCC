@@ -136,7 +136,7 @@ in {
         } <| mkIf config.isDesktop {
           core.sshCommand                                  = "ssh -i ~/.ssh/id";
           url."ssh://git@github.com/".insteadOf            = "https://github.com/";
-          url."ssh://forgejo@${gitDomain}:${toString self.cube.services.forgejo.settings.server.SSH_PORT}/".insteadOf = gitUrl;
+          url."ssh://forgejo@${gitDomain}:${toString self.best.services.forgejo.settings.server.SSH_PORT}/".insteadOf = gitUrl;
 
           commit.gpgSign  = true;
           tag.gpgSign     = true;
