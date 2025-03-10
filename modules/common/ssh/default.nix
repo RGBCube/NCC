@@ -6,13 +6,15 @@
   hosts = self.nixosConfigurations
     |> filterAttrs (_: value: value.config.services.openssh.enable)
     |> mapAttrs (_: value: {
-      hostname = value.config.networking.ipv4.address;
-
       user = value.config.users.users
         |> attrNames
         |> remove "root"
         |> remove "backup"
         |> head;
+
+      hostname = value.config.networking.ipv4.address;
+
+      port = head value.config.services.openssh.ports;
     });
 in {
   secrets.sshConfig = {
