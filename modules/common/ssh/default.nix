@@ -7,6 +7,7 @@
     |> filterAttrs (_: value: value.config.services.openssh.enable)
     |> mapAttrs (_: value: {
       user = value.config.users.users
+        |> filterAttrs (_: value: value.isNormalUser)
         |> attrNames
         |> remove "root"
         |> remove "backup"
