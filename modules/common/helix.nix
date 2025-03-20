@@ -167,7 +167,12 @@ in {
       };
 
       languages.language-server.rust-analyzer = {
-        config.check.command = "clippy";
+        config = {
+          cargo.features               = "all";
+          check.command                = "clippy";
+          completion.callable.snippets = "add_parentheses";
+          completion.excludeTraits     = [ "yansi::Paint" ];
+        };
       };
 
       settings.theme = "gruvbox_dark_hard";
