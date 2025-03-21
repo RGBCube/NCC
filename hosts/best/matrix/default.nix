@@ -1,6 +1,7 @@
 { self, config, lib, ... }: let
   inherit (config.networking) domain;
-  inherit (lib) const enabled genAttrs merge strings;
+  inherit (lib) const enabled genAttrs merge;
+  inherit (lib.strings) toJSON;
 
   fqdn = "chat.${domain}";
   port = 8002;
@@ -10,7 +11,7 @@
     add_header Access-Control-Allow-Origin * always;
 
     default_type application/json;
-    return 200 '${strings.toJSON data}';
+    return 200 '${toJSON data}';
   '';
 
   configWellKnownResponse.locations = {
