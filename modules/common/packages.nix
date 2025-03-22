@@ -36,14 +36,13 @@ in {
     pkgs.maven
     pkgs.zig
 
-    pkgs.element-desktop
-
     pkgs.qbittorrent
   ] ++ optionals (config.isLinux && config.isDesktop) [
     pkgs.thunderbird
 
     pkgs.whatsapp-for-linux
 
+    pkgs.element-desktop
     pkgs.zulip
     pkgs.fractal
 
