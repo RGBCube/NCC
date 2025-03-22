@@ -57,7 +57,7 @@ end
 do -- HOTKEYS
   local super = { "cmd", "alt" }
   local super_ctrl = { "cmd", "alt", "ctrl" }
-  local super_alt = { "cmd", "alt", "shift" }
+  local super_shift = { "cmd", "alt", "shift" }
 
   hs.hotkey.bind(super, "left", PaperWM.actions.focus_left)
   hs.hotkey.bind(super, "down", PaperWM.actions.focus_down)
@@ -80,27 +80,27 @@ do -- HOTKEYS
   hs.hotkey.bind(super_ctrl, "l", function() windowResize(100, 0) end)
 
   hs.hotkey.bind(super, "tab", function() spaceChange(1) end)
-  hs.hotkey.bind(super_alt, "tab", function() spaceChange(-1) end)
+  hs.hotkey.bind(super_shift, "tab", function() spaceChange(-1) end)
 
   for index = 1, 9 do
     hs.hotkey.bind(super, tostring(index), PaperWM.actions["switch_space_" .. index])
-    hs.hotkey.bind(super_alt, tostring(index), PaperWM.actions["move_window_" .. index])
+    hs.hotkey.bind(super_shift, tostring(index), PaperWM.actions["move_window_" .. index])
   end
 
-  hs.hotkey.bind(super_alt, "left", PaperWM.actions.swap_left)
-  hs.hotkey.bind(super_alt, "down", PaperWM.actions.swap_down)
-  hs.hotkey.bind(super_alt, "up", PaperWM.actions.swap_up)
-  hs.hotkey.bind(super_alt, "right", PaperWM.actions.swap_right)
+  hs.hotkey.bind(super_shift, "left", PaperWM.actions.swap_left)
+  hs.hotkey.bind(super_shift, "down", PaperWM.actions.swap_down)
+  hs.hotkey.bind(super_shift, "up", PaperWM.actions.swap_up)
+  hs.hotkey.bind(super_shift, "right", PaperWM.actions.swap_right)
 
-  hs.hotkey.bind(super_alt, "h", PaperWM.actions.swap_left)
-  hs.hotkey.bind(super_alt, "j", PaperWM.actions.swap_down)
-  hs.hotkey.bind(super_alt, "k", PaperWM.actions.swap_up)
-  hs.hotkey.bind(super_alt, "l", PaperWM.actions.swap_right)
+  hs.hotkey.bind(super_shift, "h", PaperWM.actions.swap_left)
+  hs.hotkey.bind(super_shift, "j", PaperWM.actions.swap_down)
+  hs.hotkey.bind(super_shift, "k", PaperWM.actions.swap_up)
+  hs.hotkey.bind(super_shift, "l", PaperWM.actions.swap_right)
 
   hs.hotkey.bind(super, "q", windowClose)
   hs.hotkey.bind(super, "c", PaperWM.actions.center_window)
   hs.hotkey.bind(super, "f", PaperWM.actions.full_width)
-  hs.hotkey.bind(super_alt, "f", PaperWM.actions.toggle_floating)
+  hs.hotkey.bind(super_shift, "f", PaperWM.actions.toggle_floating)
 
   hs.hotkey.bind(super, "w", function() hs.application.launchOrFocus("Firefox") end)
   hs.hotkey.bind(super, "return", function() hs.application.launchOrFocus("Ghostty") end)

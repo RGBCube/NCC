@@ -16,7 +16,7 @@ in merge <| mkIf config.isDesktop {
       bind = [
         "SUPER    , SPACE, exec, pkill fuzzel; fuzzel"
         "SUPER    , E    , exec, pkill fuzzel; cat ${./emojis.txt} | fuzzel --no-fuzzy --dmenu | cut -d ' ' -f 1 | tr -d '\\n' | wl-copy"
-        "SUPER+ALT, E    , exec, pkill fuzzel; cat ${./emojis.txt} | fuzzel --no-fuzzy --dmenu | cut -d ' ' -f 1 | tr -d '\\n' | wtype -"
+        "SUPER+SHIFT, E    , exec, pkill fuzzel; cat ${./emojis.txt} | fuzzel --no-fuzzy --dmenu | cut -d ' ' -f 1 | tr -d '\\n' | wtype -"
         "SUPER    , V    , exec, pkill fuzzel; cliphist list | fuzzel --dmenu | cliphist decode | wl-copy"
       ];
     };

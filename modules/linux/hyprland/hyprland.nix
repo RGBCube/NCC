@@ -89,8 +89,8 @@ in merge <| mkIf config.isDesktop {
           ", XF86AudioMute   , exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
           ", XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
 
-          "SUPER+ALT, Insert, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
-          "SUPER+ALT, Delete, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+          "SUPER+SHIFT, Insert, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@   toggle"
+          "SUPER+SHIFT, Delete, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
         ];
 
         bindm = [
@@ -123,33 +123,33 @@ in merge <| mkIf config.isDesktop {
 
         bind = flatten [
           "SUPER    , TAB, workspace, e+1"
-          "SUPER+ALT, TAB, workspace, e-1"
+          "SUPER+SHIFT, TAB, workspace, e-1"
 
           "SUPER, mouse_up,   workspace, e+1"
           "SUPER, mouse_down, workspace, e-1"
 
           (map (n: [
             "SUPER    , ${toString n}, workspace            , ${toString n}"
-            "SUPER+ALT, ${toString n}, movetoworkspacesilent, ${toString n}"
+            "SUPER+SHIFT, ${toString n}, movetoworkspacesilent, ${toString n}"
           ]) <| range 1 9)
           "SUPER    , 0, workspace            , 10"
-          "SUPER+ALT, 0, movetoworkspacesilent, 10"
+          "SUPER+SHIFT, 0, movetoworkspacesilent, 10"
 
-          "SUPER+ALT, left , movewindow, l"
-          "SUPER+ALT, down , movewindow, d"
-          "SUPER+ALT, up   , movewindow, u"
-          "SUPER+ALT, right, movewindow, r"
+          "SUPER+SHIFT, left , movewindow, l"
+          "SUPER+SHIFT, down , movewindow, d"
+          "SUPER+SHIFT, up   , movewindow, u"
+          "SUPER+SHIFT, right, movewindow, r"
 
-          "SUPER+ALT, h, movewindow, l"
-          "SUPER+ALT, j, movewindow, d"
-          "SUPER+ALT, k, movewindow, u"
-          "SUPER+ALT, l, movewindow, r"
+          "SUPER+SHIFT, h, movewindow, l"
+          "SUPER+SHIFT, j, movewindow, d"
+          "SUPER+SHIFT, k, movewindow, u"
+          "SUPER+SHIFT, l, movewindow, r"
         
           "SUPER    , Q, killactive"
           "SUPER    , F, fullscreen"
-          "SUPER+ALT, F, togglefloating"
+          "SUPER+SHIFT, F, togglefloating"
 
-          "SUPER+ALT, RETURN, exec, kitty"
+          "SUPER+SHIFT, RETURN, exec, kitty"
           "SUPER    , RETURN, exec, ghostty --gtk-single-instance=true"
           "SUPER    , W     , exec, firefox"
           "SUPER    , D     , exec, discord"
@@ -159,7 +159,7 @@ in merge <| mkIf config.isDesktop {
           # "SUPER    , C     , exec, hyprpicker --autocopy"
 
           "   , PRINT, exec, pkill grim; grim -g \"$(slurp -w 0)\" - | swappy -f - -o - | wl-copy --type image/png"
-          "ALT, PRINT, exec, pkill grim; grim                      - | swappy -f - -o - | wl-copy --type image/png"
+          "SHIFT, PRINT, exec, pkill grim; grim                      - | swappy -f - -o - | wl-copy --type image/png"
         ];
 
         general = with config.theme; {
