@@ -29,7 +29,10 @@
 !modules/common/
 !modules/common/nushell/
 !modules/common/ssh/
+
 !modules/darwin/
+!modules/darwin/hammerspoon/
+
 !modules/linux/
 !modules/linux/hyprland/
 !modules/linux/restic/
@@ -40,6 +43,7 @@
 !flake.lock
 
 !*.age
+!*.lua
 !*.md
 !*.nix
 !*.nu
