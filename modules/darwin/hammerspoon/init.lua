@@ -99,8 +99,8 @@ do -- HOTKEYS
 
   hs.hotkey.bind(super, "q", windowClose)
   hs.hotkey.bind(super, "c", PaperWM.actions.center_window)
-  hs.hotkey.bind(super, "f", PaperWM.actions.full_width)
-  hs.hotkey.bind(super_shift, "f", PaperWM.actions.toggle_floating)
+  hs.hotkey.bind(super_ctrl, "f", PaperWM.actions.full_width)
+  hs.hotkey.bind(super, "f", PaperWM.actions.toggle_floating)
 
   hs.hotkey.bind(super, "w", function() hs.application.launchOrFocus("Firefox") end)
   hs.hotkey.bind(super, "return", function() hs.application.launchOrFocus("Ghostty") end)
