@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) enabled mapAttrsToList merge mkIf optionals;
+  inherit (lib) enabled mapAttrsToList merge mkIf;
 in merge <| mkIf config.isDesktop {
   environment.variables = {
     TERMINAL     = mkIf config.isLinux "ghostty";
@@ -26,7 +26,7 @@ in merge <| mkIf config.isDesktop {
 
         mouse-hide-while-typing = true;
 
-        confirm-close-surface = false;
+        confirm-close-surface         = false;
         quit-after-last-window-closed = true;
 
         window-decoration = config.isDarwin;
@@ -74,9 +74,7 @@ in merge <| mkIf config.isDesktop {
         } ++ mapAttrsToList (name: value: "ctrl+${name}=${value}") {
           "physical:tab"       = "next_tab";
           "shift+physical:tab" = "previous_tab";
-        } ++ optionals config.isDarwin [
-          "command+q=quit"
-        ];
+        };
       };
     };
   }];
