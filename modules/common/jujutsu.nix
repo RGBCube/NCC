@@ -1,10 +1,12 @@
 { self, config, lib, pkgs, ... }: let
-  inherit (lib) enabled getExe head;
+  inherit (lib) attrValues enabled getExe head;
 in {
-  environment.systemPackages = [
-    pkgs.difftastic
-    pkgs.radicle-node
-  ];
+  environment.systemPackages = attrValues {
+    inherit (pkgs)
+      difftastic
+      radicle-node
+    ;
+  };
 
   home-manager.sharedModules = [(homeArgs: let
     homeConfig = homeArgs.config;

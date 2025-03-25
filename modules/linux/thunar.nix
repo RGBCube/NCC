@@ -1,18 +1,25 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) enabled merge mkIf;
+  inherit (lib) attrValues enabled merge mkIf;
 in merge <| mkIf config.isDesktop {
   programs.thunar = enabled {
-    plugins = [
-      pkgs.xfce.thunar-archive-plugin
-      pkgs.xfce.thunar-media-tags-plugin
-      pkgs.xfce.thunar-volman
-    ];
+    plugins = attrValues {
+      inherit (pkgs.xfce)
+        thunar-archive-plugin
+        thunar-media-tags-plugin
+        thunar-volman
+      ;
+    };
   };
 
-  environment.systemPackages = [
-    pkgs.ark
-    pkgs.ffmpegthumbnailer
-    pkgs.libgsf
-    pkgs.xfce.tumbler
-  ];
+  environment.systemPackages = attrValues {
+    inherit (pkgs)
+      ark
+      ffmpegthumbnailer
+      libgsf
+    ;
+
+    inherit (pkgs.xfce)
+      tumbler
+    ;
+  };
 }

@@ -1,5 +1,5 @@
 { self, config, lib, pkgs, ... }: let
-  inherit (lib) head mkAfter enabled merge mkIf;
+  inherit (lib) attrValues head mkAfter enabled merge mkIf;
   inherit (lib.strings) match;
 in {
   environment.shellAliases = merge {
@@ -68,10 +68,12 @@ in {
     "ask-git" = "gh copilot suggest --target git   --";
   };
 
-  environment.systemPackages = [
-    pkgs.git-absorb
-    pkgs.tig
-  ];
+  environment.systemPackages = attrValues {
+    inherit (pkgs)
+      git-absorb
+      tig
+    ;
+  };
 
   home-manager.sharedModules = [
     (homeArgs: let

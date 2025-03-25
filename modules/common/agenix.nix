@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) attrNames head mkAliasOptionModule mkIf;
+  inherit (lib) attrNames attrValues head mkAliasOptionModule mkIf;
 in {
   imports = [(mkAliasOptionModule [ "secrets" ] [ "age" "secrets" ])];
 
@@ -12,6 +12,10 @@ in {
 
   environment = mkIf config.isDesktop {
     shellAliases.agenix = "agenix --identity ~/.ssh/id";
-    systemPackages      = [ pkgs.agenix ];
+    systemPackages      = attrValues {
+      inherit (pkgs)
+        agenix
+      ;
+    };
   };
 }

@@ -1,57 +1,71 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) optionals;
+  inherit (lib) attrValues optionalAttrs;
 in {
-  environment.systemPackages = [
-    pkgs.asciinema
-    pkgs.cowsay
-    pkgs.curlHTTP3
-    pkgs.dig
-    pkgs.doggo
-    pkgs.fastfetch
-    pkgs.fd
-    (pkgs.fortune.override { withOffensive = true; })
-    pkgs.hyperfine
-    pkgs.moreutils
-    pkgs.openssl
-    pkgs.p7zip
-    pkgs.pstree
-    pkgs.rsync
-    pkgs.timg
-    pkgs.tree
-    pkgs.uutils-coreutils-noprefix
-    pkgs.yazi
-    pkgs.yt-dlp
-  ] ++ optionals config.isLinux [
-    pkgs.traceroute
-    pkgs.usbutils
-    pkgs.strace
-  ] ++ optionals config.isDesktop [
-    pkgs.clang_16
-    pkgs.clang-tools_16
-    pkgs.deno
-    pkgs.gh
-    pkgs.go
-    pkgs.jdk
-    pkgs.lld
-    pkgs.maven
-    pkgs.zig
+  environment.systemPackages = attrValues <| {
+    inherit (pkgs)
+      asciinema
+      cowsay
+      curlHTTP3
+      dig
+      doggo
+      fastfetch
+      fd
+      hyperfine
+      moreutils
+      openssl
+      p7zip
+      pstree
+      rsync
+      timg
+      tokei
+      tree
+      typos
+      uutils-coreutils-noprefix
+      yazi
+      yt-dlp
+    ;
 
-    pkgs.qbittorrent
-  ] ++ optionals (config.isLinux && config.isDesktop) [
-    pkgs.thunderbird
+    fortune = pkgs.fortune.override { withOffensive = true; };
+  } // optionalAttrs config.isLinux {
+    inherit (pkgs)
+      traceroute
+      usbutils
+      strace
+    ;
+  } // optionalAttrs config.isDesktop {
+    inherit (pkgs)
+      clang_16
+      clang-tools_16
+      deno
+      gh
+      go
+      jdk
+      lld
+      maven
+      zig
 
-    pkgs.whatsapp-for-linux
+      qbittorrent
+    ;
+  } // optionalAttrs (config.isLinux && config.isDesktop) {
+    inherit (pkgs)
+      thunderbird
 
-    pkgs.element-desktop
-    pkgs.zulip
-    pkgs.fractal
+      whatsapp-for-linux
 
-    pkgs.obs-studio
+      element-desktop
+      zulip
+      fractal
 
-    pkgs.krita
+      obs-studio
 
-    pkgs.libreoffice
-    pkgs.hunspellDicts.en_US
-    pkgs.hunspellDicts.en_GB-ize
-  ];
+      krita
+
+      libreoffice
+    ;
+
+    inherit (pkgs.hunspellDicts)
+      en_US
+      en_GB-ize
+    ;
+  };
 }

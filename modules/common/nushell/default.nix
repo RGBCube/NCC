@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) enabled filter first foldl' getExe last match mkIf nameValuePair optionalAttrs readFile removeAttrs splitString;
+  inherit (lib) attrValues enabled filter first foldl' getExe last match mkIf nameValuePair optionalAttrs readFile removeAttrs splitString;
 in {
   environment = optionalAttrs config.isLinux {
     sessionVariables.SHELLS = getExe pkgs.nushell;
@@ -20,10 +20,12 @@ in {
       tree   = "tree -CF --dirsfirst";
     };
 
-    systemPackages = [
-      pkgs.fish   # For completions.
-      pkgs.zoxide # For completions and better cd.
-    ];
+    systemPackages = attrValues {
+      inherit (pkgs)
+        fish   # For completions.
+        zoxide # For completions and better cd.
+      ;
+    };
 
     variables.STARSHIP_LOG = "error";
   };

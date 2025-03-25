@@ -1,18 +1,24 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: let
+  inherit (lib) attrValues;
+in {
   environment.variables.CARGO_NET_GIT_FETCH_WITH_CLI = "true";
 
-  environment.systemPackages = [
-    pkgs.cargo-expand
-    pkgs.cargo-fuzz
+  environment.systemPackages = attrValues {
+    inherit (pkgs)
+      cargo-expand
+      cargo-fuzz
 
-    pkgs.evcxr
+      evcxr
 
-    (pkgs.fenix.complete.withComponents [
+      taplo
+    ;
+
+    fenix = pkgs.fenix.complete.withComponents [
       "cargo"
       "clippy"
       "rust-src"
       "rustc"
       "rustfmt"
-    ])
-  ];
+    ];
+  };
 }

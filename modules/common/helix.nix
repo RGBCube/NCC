@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) const enabled genAttrs mkAfter mkIf;
+  inherit (lib) attrValues const enabled genAttrs mkAfter mkIf;
 in {
   environment = {
     variables.EDITOR = "hx";
@@ -213,47 +213,57 @@ in {
     };
   }];
 
-  environment.systemPackages = mkIf config.isDesktop [
-    # CMAKE
-    pkgs.cmake-language-server
+  environment.systemPackages = mkIf config.isDesktop <| attrValues {
+    inherit (pkgs)
+      # CMAKE
+      cmake-language-server
 
-    # GO
-    pkgs.gopls
+      # GO
+      gopls
 
-    # HTML
-    pkgs.vscode-langservers-extracted
-    pkgs.nodePackages_latest.prettier
+      # HTML
+      vscode-langservers-extracted
 
-    # KOTLIN
-    pkgs.kotlin-language-server
+      # KOTLIN
+      kotlin-language-server
 
-    # LATEX
-    pkgs.texlab
+      # LATEX
+      texlab
 
-    # LUA
-    pkgs.lua-language-server
+      # LUA
+      lua-language-server
 
-    # MARKDOWN
-    pkgs.marksman
+      # MARKDOWN
+      marksman
 
-    # NIX
-    pkgs.alejandra
-    pkgs.nil
+      # NIX
+      alejandra
+      nil
 
-    # PYTHON
-    pkgs.python311Packages.python-lsp-server
 
-    # RUST
-    pkgs.rust-analyzer-nightly
-    pkgs.lldb
+      # RUST
+      rust-analyzer-nightly
+      lldb
 
-    # TYPESCRIPT & OTHERS
-    pkgs.deno
+      # TYPESCRIPT & OTHERS
+      deno
 
-    # YAML
-    pkgs.yaml-language-server
+      # YAML
+      yaml-language-server
 
-    # ZIG
-    pkgs.zls
-  ];
+      # ZIG
+      zls
+    ;
+
+    inherit (pkgs.python311Packages)
+      # PYTHON
+      # TODO: Replace with basedpyright.
+      python-lsp-server
+    ;
+
+    inherit (pkgs.nodePackages_latest)
+      # HTML
+      prettier
+    ;
+  };
 }
