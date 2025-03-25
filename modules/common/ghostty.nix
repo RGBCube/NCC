@@ -29,7 +29,8 @@ in merge <| mkIf config.isDesktop {
         confirm-close-surface         = false;
         quit-after-last-window-closed = true;
 
-        window-decoration = config.isDarwin;
+        window-decoration    = config.isDarwin;
+        macos-titlebar-style = "tabs";
 
         config-file = toString <| pkgs.writeText "base16-config" ghosttyConfig;
 
