@@ -153,7 +153,7 @@ in merge <| mkIf config.isDesktop {
 
           "SUPER+SHIFT, RETURN, exec, kitty"
           "SUPER    , RETURN, exec, ghostty --gtk-single-instance=true"
-          "SUPER    , W     , exec, firefox"
+          "SUPER    , W     , exec, zen-beta"
           "SUPER    , D     , exec, discord"
           "SUPER    , Z     , exec, zulip"
           "SUPER    , M     , exec, thunderbird"

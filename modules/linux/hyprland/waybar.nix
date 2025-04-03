@@ -36,7 +36,7 @@ in merge <| mkIf config.isDesktop {
           separate-outputs = true;
 
           rewrite."(.*) - Discord"   = "󰙯 $1";
-          rewrite."(.*) — Mozilla Firefox" = "󰖟 $1";
+          rewrite."(.*) — Zen" = "󰖟 $1";
           rewrite."(.*) — nu"        = " $1";
         };
 

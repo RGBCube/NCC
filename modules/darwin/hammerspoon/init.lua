@@ -102,7 +102,7 @@ do -- HOTKEYS
   hs.hotkey.bind(super_ctrl, "f", PaperWM.actions.full_width)
   hs.hotkey.bind(super, "f", PaperWM.actions.toggle_floating)
 
-  hs.hotkey.bind(super, "w", function() hs.application.launchOrFocus("Firefox") end)
+  hs.hotkey.bind(super, "w", function() hs.application.launchOrFocus("Zen") end)
   hs.hotkey.bind(super, "return", function() hs.application.launchOrFocus("Ghostty") end)
   hs.hotkey.bind(super, "t", function() hs.application.launchOrFocus("Finder") end)
 

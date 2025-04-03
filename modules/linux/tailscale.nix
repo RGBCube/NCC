@@ -4,7 +4,7 @@
   # Shorter is better for networking interfaces IMO.
   interface = "ts0";
 in {
-  # This doesn't work with dig but works with curl, Firefox
+  # This doesn't work with dig but works with curl, Zen
   # and all other tools. Skill issue.
   services.resolved.domains = [ "warthog-major.ts.net" ];
 
