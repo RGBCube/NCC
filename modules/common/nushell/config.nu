@@ -158,9 +158,15 @@ $env.config.cursor_shape = {
 
 $env.config.hooks = {
   command_not_found: {||}
-  display_output:    "table --expand"
-  env_change:        {}
-  pre_execution:     [
+
+  display_output: {
+    tee { table --expand | print }
+    | $env.last = $in
+  }
+
+  env_change: {}
+
+  pre_execution: [
     {
       let prompt = commandline | str trim
 
@@ -171,7 +177,13 @@ $env.config.hooks = {
       print $"(ansi title)($prompt) — nu(char bel)"
     }
   ]
-  pre_prompt:        []
+
+  pre_prompt: []
+}
+
+# Retrieve the output of the last command.
+def _ []: nothing -> any {
+  $env.last
 }
 
 $env.config.menus = [
