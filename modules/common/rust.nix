@@ -1,7 +1,15 @@
-{ lib, pkgs, ... }: let
-  inherit (lib) attrValues;
+{ config, lib, pkgs, ... }: let
+  inherit (lib) attrValues makeLibraryPath mkIf;
 in {
-  environment.variables.CARGO_NET_GIT_FETCH_WITH_CLI = "true";
+  environment.variables = {
+    CARGO_NET_GIT_FETCH_WITH_CLI = "true";
+
+    LIBRARY_PATH = mkIf config.isDarwin <| makeLibraryPath <| attrValues {
+      inherit (pkgs)
+        libiconv
+      ;
+    };
+  };
 
   environment.systemPackages = attrValues {
     inherit (pkgs)
