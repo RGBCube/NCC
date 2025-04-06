@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) attrValues const enabled genAttrs mapAttrs mkAfter mkIf;
+  inherit (lib) attrValues const elem enabled genAttrs mapAttrs mkAfter mkIf optionalAttrs;
 in {
   environment = {
     variables.EDITOR = "hx";
@@ -59,6 +59,8 @@ in {
             auto-format       = true;
             formatter.command = "deno";
             formatter.args    = [ "fmt" "--unstable-component" "--ext" extension "-" ];
+          } // optionalAttrs (elem name [ "javascript" "jsx" "typescript" "tsx" ]) {
+            language-servers = [ "deno" ];
           })
           |> attrValues;
       in formattedLanguages ++ [
