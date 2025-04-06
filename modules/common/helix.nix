@@ -69,6 +69,12 @@ in {
         }
 
         {
+          name             = "python";
+          auto-format      = true;
+          language-servers = [ "basedpyright" ];
+        }
+
+        {
           name = "rust";
 
           debugger.name      = "lldb-dap";
@@ -207,6 +213,8 @@ in {
       alejandra
       nil
 
+      # PYTHON
+      basedpyright
 
       # RUST
       rust-analyzer-nightly
@@ -220,17 +228,6 @@ in {
 
       # ZIG
       zls
-    ;
-
-    inherit (pkgs.python311Packages)
-      # PYTHON
-      # TODO: Replace with basedpyright.
-      python-lsp-server
-    ;
-
-    inherit (pkgs.nodePackages_latest)
-      # HTML
-      prettier
     ;
   };
 }
