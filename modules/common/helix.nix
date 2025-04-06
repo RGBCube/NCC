@@ -58,7 +58,7 @@ in {
 
             auto-format       = true;
             formatter.command = "deno";
-            formatter.args    = [ "fmt" "-" "--ext" extension ];
+            formatter.args    = [ "fmt" "--unstable-component" "--ext" extension "-" ];
           })
           |> attrValues;
       in formattedLanguages ++ [
