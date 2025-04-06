@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) attrValues const enabled genAttrs mkAfter mkIf;
+  inherit (lib) attrValues const enabled genAttrs mapAttrs mkAfter mkIf;
 in {
   environment = {
     variables.EDITOR = "hx";
@@ -38,63 +38,30 @@ in {
 
     programs.helix = enabled {
       languages.language = let
-        denoFormatter = language: {
-          command = "deno";
-          args    = [ "fmt" "-" "--ext" language ];
-        };
+        formattedLanguages = {
+          astro      = "astro";
+          css        = "css";
+          html       = "html";
+          javascript = "js";
+          json       = "json";
+          jsonc      = "jsonc";
+          jsx        = "jsx";
+          markdown   = "md";
+          scss       = "scss";
+          svelte     = "svelte";
+          tsx        = "tsx";
+          typescript = "ts";
+          vue        = "vue";
+          yaml       = "yaml";
+        } |> mapAttrs (name: extension: {
+            inherit name;
 
-        denoFormatterLanguages = map (name: {
-          inherit name;
-
-          auto-format = true;
-          formatter   = denoFormatter name;
-        }) [ "markdown" "json" ];
-
-        prettier = language: {
-          command = "prettier";
-          args    = [ "--parser" language ];
-        };
-
-        prettierLanguages = map (name: {
-          inherit name;
-
-          auto-format = true;
-          formatter   = prettier name;
-        }) [ "css" "scss" "yaml" ];
-      in denoFormatterLanguages ++ prettierLanguages ++ [
-        {
-          name        = "html";
-          # Added vto.
-          file-types  = [ "asp" "aspx" "htm" "html" "jshtm" "jsp" "rhtml" "shtml" "volt" "vto" "xht" "xhtml" ];
-          auto-format = false;
-          formatter   = prettier "html";
-        }
-        {
-          name             = "javascript";
-          auto-format      = true;
-          formatter        = denoFormatter "js";
-          language-servers = [ "deno" ];
-        }
-        {
-          name             = "jsx";
-          auto-format      = true;
-          formatter        = denoFormatter "jsx";
-          language-servers = [ "deno" ];
-        }
-        {
-          name             = "typescript";
-          auto-format      = true;
-          formatter        = denoFormatter "ts";
-          language-servers = [ "deno" ];
-        }
-        {
-          name             = "tsx";
-          auto-format      = true;
-          formatter        = denoFormatter "tsx";
-          language-servers = [ "deno" ];
-        }
-
-        # NON-DENO
+            auto-format       = true;
+            formatter.command = "deno";
+            formatter.args    = [ "fmt" "-" "--ext" extension ];
+          })
+          |> attrValues;
+      in formattedLanguages ++ [
         {
           name              = "nix";
           auto-format       = false;
