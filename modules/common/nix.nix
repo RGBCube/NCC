@@ -1,5 +1,5 @@
 { self, config, inputs, lib, pkgs, ... }: let
-  inherit (lib) attrValues attrsToList concatStringsSep const disabled filter filterAttrs flip id isType mapAttrs mapAttrsToList merge mkAfter optionalAttrs optionals;
+  inherit (lib) attrValues attrsToList concatStringsSep const disabled filter filterAttrs flip id isType mapAttrs mapAttrsToList match merge mkAfter optionalAttrs optionals;
   inherit (lib.strings) toJSON;
 
   registryMap = inputs
@@ -42,7 +42,14 @@ in {
     |> mapAttrs (_: flake: { inherit flake; });
 
   nix.settings = (import <| self + /flake.nix).nixConfig
-    |> flip removeAttrs (optionals config.isDarwin [ "use-cgroups" ]);
+    |> flip removeAttrs (optionals config.isDarwin [ "use-cgroups" ])
+    |> (if config.services.nix-serve.enable then
+      (cfg: cfg // {
+        extra-substituters = cfg.extra-substituters
+          |> filter (x: match ".*cache.rgbcu.be.*" x != null);
+      })
+    else
+      id);
 
   nix.optimise.automatic = true;
 
