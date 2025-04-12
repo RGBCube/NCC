@@ -51,11 +51,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1740235896,
-        "narHash": "sha256-C1y5H/BB6FsL5eWyzQXaqJkG5zfRBu+8jloVY4bFvvo=",
+        "lastModified": 1744500346,
+        "narHash": "sha256-/HGEtOjajQM0WL8AkvrXWVExFBy5P2s1qVrabLoOGA0=",
         "owner": "RGBCube",
         "repo": "crash",
-        "rev": "3405a772baa5c33adab82c3d6034a7f1d8c62b65",
+        "rev": "119c52f0904ab43891d0e35d8670da12411fdf3c",
         "type": "github"
       },
       "original": {
@@ -145,11 +145,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744400600,
-        "narHash": "sha256-qYhUgA98mhq1QK13r9qVY+sG1ri6FBgyp+GApX6wS20=",
+        "lastModified": 1744498625,
+        "narHash": "sha256-pL52uCt9CUoTTmysGG91c2FeU7XUvpB7Cep6yon2vDk=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "b74b22bb6167e8dff083ec6988c98798bf8954d3",
+        "rev": "db56335ca8942d86f2200664acdbd5b9212b26ad",
         "type": "github"
       },
       "original": {
