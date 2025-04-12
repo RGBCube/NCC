@@ -42,9 +42,9 @@ in {
         git.fetch = [ "origin" "upstream" "rad" ];
         git.push  = "origin"; # TODO: Find a way to make this become rad when origin is up to date.
 
-        signing.sign-all = true;
         signing.backend  = "ssh";
-        signing.key     = "~/.ssh/id";
+        signing.behavior = "own";
+        signing.key      = "~/.ssh/id";
       };
     };
   })];
