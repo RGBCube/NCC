@@ -51,11 +51,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1744500346,
-        "narHash": "sha256-/HGEtOjajQM0WL8AkvrXWVExFBy5P2s1qVrabLoOGA0=",
+        "lastModified": 1744501884,
+        "narHash": "sha256-53+m6VaUK32GfHLRg1d5qRR9klu8XNytPEctTQtZNaA=",
         "owner": "RGBCube",
         "repo": "crash",
-        "rev": "119c52f0904ab43891d0e35d8670da12411fdf3c",
+        "rev": "7849872b30482ecab7d3586246e46855522ea64d",
         "type": "github"
       },
       "original": {
