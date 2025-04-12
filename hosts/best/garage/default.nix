@@ -13,7 +13,7 @@ in {
   secrets.garageEnvironment.file  = ./environment.age;
 
   services.garage = enabled {
-    package = pkgs.garage_1_0_1;
+    package = pkgs.garage_1_x;
 
     environmentFile = config.secrets.garageEnvironment.path;
 
