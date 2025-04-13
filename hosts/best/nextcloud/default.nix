@@ -4,7 +4,7 @@
 
   fqdn = "cloud.${domain}";
 
-  packageNextcloud = pkgs.nextcloud30;
+  packageNextcloud = pkgs.nextcloud31;
 in {
   imports = [
     (self + /modules/nginx.nix)
@@ -103,7 +103,8 @@ in {
     extraApps       = {
       inherit (packageNextcloud.packages.apps)
         bookmarks calendar contacts deck forms
-        impersonate mail maps notes previewgenerator;
+        impersonate mail notes previewgenerator;
+        # TODO: maps
     };
 
     nginx.recommendedHttpHeaders = true;
