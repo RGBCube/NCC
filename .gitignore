@@ -5,45 +5,17 @@
 !docs/
 
 !hosts/
-
-!hosts/best/
-!hosts/best/cache/
-!hosts/best/garage/
-!hosts/best/grafana/
-!hosts/best/hercules/
-!hosts/best/matrix/
-!hosts/best/nextcloud/
-!hosts/best/nextcloud/*.gif
-
-!hosts/disk/
-
-!hosts/nine/
-!hosts/nine/github2forgejo/
-
-!hosts/pala/
+!hosts/**/
 
 !lib/
 
 !modules/
-
-!modules/common/
-!modules/common/nushell/
-!modules/common/ssh/
-
-!modules/darwin/
-!modules/darwin/hammerspoon/
-
-!modules/linux/
-!modules/linux/hyprland/
-!modules/linux/restic/
-
-!modules/acme/
-!modules/mail/
+!modules/**/
 
 !flake.lock
 
 !*.age
-!*.lua
+!*.gif
 !*.md
 !*.nix
 !*.nu
