@@ -67,7 +67,7 @@ in {
         {
           name              = "nix";
           auto-format       = false;
-          formatter.command = "alejandra";
+          formatter.command = "nixfmt";
         }
 
         {
@@ -212,7 +212,7 @@ in {
       marksman
 
       # NIX
-      alejandra
+      nixfmt-rfc-style
       nil
 
       # PYTHON
