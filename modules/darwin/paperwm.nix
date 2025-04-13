@@ -31,6 +31,14 @@ in {
     NSAutomaticQuoteSubstitutionEnabled  = false;
   };
 
+  system.defaults.CustomSystemPreferences."com.apple.AppleMultitouchTrackpad" = {
+    TrackpadThreeFingerVertSwipeGesture = 0; # Four finger swipe up for mission control.
+
+    # Disable 3 finger horizontal stuff.
+    TrackpadFourFingerHorizSwipeGesture  = 0;
+    TrackpadThreeFingerHorizSwipeGesture = 0;
+  };
+
   system.defaults.CustomSystemPreferences."com.apple.Accessibility".ReduceMotionEnabled = 1;
   system.defaults.universalaccess.reduceMotion                                          = true;
 
