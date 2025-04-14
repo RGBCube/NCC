@@ -7,19 +7,19 @@ in {
     AppleScrollerPagingBehavior = true; # Jump to the spot that was pressed in the scrollbar.
     AppleShowScrollBars         = "WhenScrolling";
 
-    AppleWindowTabbingMode = "always"; # Always prefer tabs for new windows.
-
     NSWindowShouldDragOnGesture              = true; # CMD+CTRL click to drag window.
     AppleEnableMouseSwipeNavigateWithScrolls = false;
     AppleEnableSwipeNavigateWithScrolls      = false;
 
+    AppleWindowTabbingMode = "always"; # Always prefer tabs for new windows.
     AppleKeyboardUIMode      = 3; # Full keyboard access.
-    ApplePressAndHoldEnabled = false;
+    ApplePressAndHoldEnabled = false; # No ligatures when you press and hold a key, just repeat it.
 
     NSScrollAnimationEnabled = true;
     NSWindowResizeTime       = 0.001;
 
     "com.apple.keyboard.fnState" = true; # Invert Fn.
+    "com.apple.trackpad.scaling" = 1.5;  # Faster mouse speed.
 
     InitialKeyRepeat             = 15;
     KeyRepeat                    = 1;
@@ -37,6 +37,10 @@ in {
     # Disable 3 finger horizontal stuff.
     TrackpadFourFingerHorizSwipeGesture  = 0;
     TrackpadThreeFingerHorizSwipeGesture = 0;
+
+    # Smooth clicking.
+    FirstClickThreshold  = 0;
+    SecondClickThreshold = 0;
   };
 
   system.defaults.CustomSystemPreferences."com.apple.Accessibility".ReduceMotionEnabled = 1;
