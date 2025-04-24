@@ -57,8 +57,8 @@ in {
       source = pkgs.fetchFromGitHub {
         owner = "mogenson";
         repo  = "PaperWM.spoon";
-        rev   = "41389206e739e6f48ea59ddcfc07254226f4c93f";
-        hash  = "sha256-O1Pis5udvh3PUYJmO+R2Aw11/udxk3v5hf2U9SzbeqI=";
+        rev   = "88aa02ad9002d1b5697aeaf9fb27cdb5cedc4964";
+        hash  = "sha256-c6ltYZKLjZXXin8UaURY0xIrdFvA06aKxC5oty2FCdY=";
       };
     };
 
