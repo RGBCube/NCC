@@ -35,6 +35,18 @@ in {
         ui.conflict-marker-style = "snapshot";
         ui.graph.style = if config.theme.cornerRadius > 0 then "curved" else "square";
 
+        templates.draft_commit_description = /* python */ ''
+          concat(
+            coalesce(description, "\n"),
+            surround(
+              "\nJJ: This commit contains the following changes:\n", "",
+              indent("JJ:     ", diff.stat(72)),
+            ),
+            "\nJJ: ignore-rest\n",
+            diff.git(),
+          )
+        '';
+
         git.auto-local-bookmark  = true;
         git.push-bookmark-prefix = "change-";
         git.subprocess           = true;
