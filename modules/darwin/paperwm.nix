@@ -18,7 +18,7 @@ in {
     NSScrollAnimationEnabled = true;
     NSWindowResizeTime       = 0.001;
 
-    "com.apple.keyboard.fnState" = true; # Invert Fn.
+    # "com.apple.keyboard.fnState" = true; # Invert Fn.
     "com.apple.trackpad.scaling" = 1.5;  # Faster mouse speed.
 
     InitialKeyRepeat             = 15;
