@@ -23,19 +23,11 @@ in {
       isNormalUser                = true;
       extraGroups                 = [ "wheel" ];
     };
-
-    backup = {
-      description                 = "Backup";
-      openssh.authorizedKeys.keys = keys.all;
-      hashedPasswordFile          = config.secrets.password.path;
-      isNormalUser                = true;
-    };
   };
 
   home-manager.users = {
     root   = {};
     floppy = {};
-    backup = {};
   };
 
   networking = let
