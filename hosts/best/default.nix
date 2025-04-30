@@ -1,4 +1,4 @@
-lib: lib.nixosSystem ({ config, keys, lib, ... }: let
+lib: lib.nixosSystem' ({ config, keys, lib, ... }: let
   inherit (lib) collectNix remove;
 in {
   imports = collectNix ./. |> remove ./default.nix;

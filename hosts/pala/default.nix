@@ -1,4 +1,4 @@
-lib: lib.darwinSystem ({ lib, ... }: let
+lib: lib.darwinSystem' ({ lib, ... }: let
   inherit (lib) collectNix remove;
 in {
   imports = collectNix ./. |> remove ./default.nix;

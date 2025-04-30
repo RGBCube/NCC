@@ -24,7 +24,7 @@ inputs: self: super: let
     lib  = self;
   };
 in {
-  nixosSystem = module: super.nixosSystem {
+  nixosSystem' = module: super.nixosSystem {
     inherit specialArgs;
 
     modules = [
@@ -35,7 +35,7 @@ in {
       ++ inputModulesLinux;
   };
 
-  darwinSystem = module: super.darwinSystem {
+  darwinSystem' = module: super.darwinSystem {
     inherit specialArgs;
 
     modules = [
