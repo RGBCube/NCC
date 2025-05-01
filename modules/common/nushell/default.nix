@@ -49,13 +49,13 @@ in {
       src = self.fetchFromGitHub {
         owner  = "poliorcetics";
         repo   = "starship";
-        rev    = "19926e1e0aa25eddf63f93ba270d60eef023338f";
-        hash   = "sha256-mi2O8JzXNLIF0/GuXVyf27JVV7d6zoskIjB29r5fPso=";
+        rev    = "92aba18381994599850053ba667c25017566b8ee";
+        hash   = "sha256-FKDvkDcxUPDLcjFQzvqsGXeJUm0Dq8TcA4edf5OkdWo=";
       };
 
       cargoDeps = self.rustPlatform.fetchCargoVendor {
         inherit (self.starship) src;
-        hash = "sha256-EvslXwa4xGrrWLTqJlj/+iviBibPY0lRKcErNpb1FFo=";
+        hash = "sha256-nH1iYjKw/GbYKadoymH3onWBbMzuMUaRCSTNWVE+A9E=";
       };
     });
   })];
