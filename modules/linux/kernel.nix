@@ -1,5 +1,8 @@
-{ pkgs, ... }: {
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+{ config, pkgs, ... }: {
+  boot.kernelPackages = if config.isServer then
+    pkgs.linuxPackages_latest
+  else
+    pkgs.linuxKernel.packages.linux_zen;
 
   # Credits:
   # - https://github.com/NotAShelf/nyx/blob/main/modules/core/common/system/security/kernel.nix
