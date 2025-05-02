@@ -57,6 +57,11 @@ in {
         inherit (self.starship) src;
         hash = "sha256-nH1iYjKw/GbYKadoymH3onWBbMzuMUaRCSTNWVE+A9E=";
       };
+
+      nativeBuildInputs = old.nativeBuildInputs ++ [
+        pkgs.cmake
+        pkgs.zlib-ng
+      ];
     });
   })];
 
