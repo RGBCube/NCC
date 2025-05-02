@@ -42,14 +42,14 @@ in {
     |> mapAttrs (_: flake: { inherit flake; });
 
   nix.settings = (import <| self + /flake.nix).nixConfig
-    |> flip removeAttrs (optionals config.isDarwin [ "use-cgroups" ])
-    |> (if config.isLinux && config.services.nix-serve.enable then
-      (cfg: cfg // {
-        extra-substituters = cfg.extra-substituters
-          |> filter (x: match ".*cache.rgbcu.be.*" x == null);
-      })
-    else
-      id);
+    |> flip removeAttrs (optionals config.isDarwin [ "use-cgroups" ]);
+    # |> (if config.isLinux && config.services.nix-serve.enable then
+    #   (cfg: cfg // {
+    #     extra-substituters = cfg.extra-substituters
+    #       |> filter (x: match ".*cache.rgbcu.be.*" x == null);
+    #   })
+    # else
+    #   id);
 
   nix.optimise.automatic = true;
 
