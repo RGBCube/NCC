@@ -46,7 +46,7 @@ in {
     |> (if config.isLinux && config.services.nix-serve.enable then
       (cfg: cfg // {
         extra-substituters = cfg.extra-substituters
-          |> filter (x: match ".*cache.rgbcu.be.*" x != null);
+          |> filter (x: match ".*cache.rgbcu.be.*" x == null);
       })
     else
       id);
