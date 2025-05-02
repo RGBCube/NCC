@@ -209,7 +209,7 @@ in {
       lua-language-server
 
       # MARKDOWN
-      marksman
+      markdown-oxide
 
       # NIX
       nixfmt-rfc-style
