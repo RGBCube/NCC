@@ -25,6 +25,25 @@ in {
         aliases.".." = [ "edit" "@-" ];
         aliases.",," = [ "edit" "@+" ];
 
+        aliases.pull = [ "git" "fetch" ];
+        aliases.push = [ "git" "push" ];
+
+        aliases.init = [ "git" "init" "--colocate" ];
+        aliases.i    = [ "git" "init" "--colocate" ];
+
+        aliases.c  =   "commit";
+        aliases.ci = [ "commit" "--interactive" ];
+
+        aliases.e = "edit";
+        aliases.r = "rebase";
+
+        aliases.s  =   "squash";
+        aliases.si = [ "squash" "--interactive" ];
+
+        aliases.tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
+
+        revset-aliases."closest_bookmark(to)" = "heads(::to & bookmarks())";
+
         revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().., 2) | reachable(@, all())";
 
         ui.default-command = "status";
@@ -33,7 +52,7 @@ in {
         ui.diff.tool       = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
 
         ui.conflict-marker-style = "snapshot";
-        ui.graph.style = if config.theme.cornerRadius > 0 then "curved" else "square";
+        ui.graph.style           = if config.theme.cornerRadius > 0 then "curved" else "square";
 
         templates.draft_commit_description = /* python */ ''
           concat(
@@ -52,7 +71,7 @@ in {
         git.subprocess           = true;
 
         git.fetch = [ "origin" "upstream" "rad" ];
-        git.push  = "origin"; # TODO: Find a way to make this become rad when origin is up to date.
+        git.push  =   "origin";
 
         signing.backend  = "ssh";
         signing.behavior = "own";
