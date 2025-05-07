@@ -2,7 +2,7 @@
 
 def --wrapped sync [...arguments] {
   (rsync
-    --rsh "ssh -q"
+    --rsh "ssh"
     --compress
     --delete --recursive --force
     --delete-excluded
@@ -22,14 +22,14 @@ def main --wrapped [
   }
 
   if $host != (hostname) {
-    ssh -q -tt $host $"
+    ssh -tt $host $"
       rm -rf ncc
     "
 
     git ls-files
     | sync --files-from - ./ ($host + ":ncc")
 
-    ssh -q -tt $host $"
+    ssh -tt $host $"
       cd ncc
       ./rebuild.nu ($host) ($arguments | str join ' ')
     "
