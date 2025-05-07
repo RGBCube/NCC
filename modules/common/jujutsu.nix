@@ -28,6 +28,9 @@ in {
         aliases.pull = [ "git" "fetch" ];
         aliases.push = [ "git" "push" ];
 
+        aliases.clone = [ "git" "clone" "--colocate" ];
+        aliases.cl    = [ "git" "clone" "--colocate" ];
+
         aliases.init = [ "git" "init" "--colocate" ];
         aliases.i    = [ "git" "init" "--colocate" ];
 
