@@ -37,16 +37,17 @@ in {
         aliases.init = [ "git" "init" "--colocate" ];
         aliases.i    = [ "git" "init" "--colocate" ];
 
-        aliases.c  =   "commit";
+        aliases.c  = [ "commit" ];
         aliases.ci = [ "commit" "--interactive" ];
 
-        aliases.e = "edit";
-        aliases.r = "rebase";
+        aliases.e = [ "edit" ];
+        aliases.r = [ "rebase" ];
 
-        aliases.s  =   "squash";
+        aliases.s  = [ "squash" ];
         aliases.si = [ "squash" "--interactive" ];
 
-        aliases.d  = "diff";
+        aliases.d  = [ "diff" ];
+        aliases.l  = [ "log" ];
 
         aliases.tug = [ "bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-" ];
 
