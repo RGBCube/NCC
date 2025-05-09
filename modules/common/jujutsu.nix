@@ -25,8 +25,11 @@ in {
         aliases.".." = [ "edit" "@-" ];
         aliases.",," = [ "edit" "@+" ];
 
-        aliases.pull = [ "git" "fetch" ];
+        aliases.fetch = [ "git" "fetch" ];
+        aliases.f     = [ "git" "fetch" ];
+
         aliases.push = [ "git" "push" ];
+        aliases.p    = [ "git" "push" ];
 
         aliases.clone = [ "git" "clone" "--colocate" ];
         aliases.cl    = [ "git" "clone" "--colocate" ];
@@ -43,7 +46,9 @@ in {
         aliases.s  =   "squash";
         aliases.si = [ "squash" "--interactive" ];
 
-        aliases.tug = ["bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-"];
+        aliases.d  = "diff";
+
+        aliases.tug = [ "bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-" ];
 
         revset-aliases."closest_bookmark(to)" = "heads(::to & bookmarks())";
 
