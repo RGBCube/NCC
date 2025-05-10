@@ -13,8 +13,10 @@ in {
 
   environment.systemPackages = attrValues {
     inherit (pkgs)
+      cargo-deny
       cargo-expand
       cargo-fuzz
+      cargo-nextest
 
       evcxr
 
