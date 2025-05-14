@@ -8,13 +8,7 @@ in {
     ;
   };
 
-  home-manager.sharedModules = [(homeArgs: let
-    homeConfig = homeArgs.config;
-    homeLib    = homeArgs.config.lib;
-  in {
-    # HACK: There is no way to get libgit2 to use custom key paths so we are linking this.
-    home.file.".ssh/id_ed25519".source = homeLib.file.mkOutOfStoreSymlink "${homeConfig.home.homeDirectory}/.ssh/id";
-
+  home-manager.sharedModules = [{
     programs.jujutsu = enabled {
       settings = let
         mailDomain = head self.disk.mailserver.domains;
@@ -88,5 +82,5 @@ in {
         signing.key      = "~/.ssh/id";
       };
     };
-  })];
+  }];
 }
