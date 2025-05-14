@@ -49,9 +49,10 @@ in {
         aliases.d  = [ "diff" ];
         aliases.l  = [ "log" ];
 
-        aliases.tug = [ "bookmark" "move" "--from" "closest_bookmark(@-)" "--to" "@-" ];
+        aliases.tug = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
 
-        revset-aliases."closest_bookmark(to)" = "heads(::to & bookmarks())";
+        revset-aliases."closest(to)" = "heads(::to & bookmarks())";
+        revset-aliases."closest_pushable(to)" = "heads(::to & mutable() & ~description(exact:\"\") & (~empty() | merges()))";
 
         revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().., 2) | reachable(@, all())";
 
