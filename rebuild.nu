@@ -48,7 +48,7 @@ def main --wrapped [
   ] | append ($args_split | get --ignore-errors 1 | default [])
 
   if (uname | get kernel-name) == "Darwin" {
-    darwin-rebuild switch --flake (".#" + $host) ...$nix_flags
+    nh darwin switch . ...$nh_flags -- ...$nix_flags
 
     if not (xcode-select --install e>| str contains "Command line tools are already installed") {
       darwin-shadow-xcode-popup
