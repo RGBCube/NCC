@@ -72,7 +72,7 @@
 
     fenix.url = "github:nix-community/fenix";
 
-    # nix.url = "github:NixOS/nix";
+    nix.url = "github:DeterminateSystems/nix-src";
     nil.url = "github:oxalica/nil";
 
     crash = {
