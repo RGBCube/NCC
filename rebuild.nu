@@ -13,15 +13,19 @@ def --wrapped sync [...arguments] {
 # Rebuild a NixOS / Darwin config.
 def main --wrapped [
   host: string = "" # The host to build.
-  ...arguments      # The arguments to pass to `nixos-rebuild switch`.
+  --remote (-r)     # Whether if this is a remote host. The config will be built on this host if it is.
+  ...arguments      # The arguments to pass to `nh {os,darwin} switch` and `nix` (separated by --).
 ]: nothing -> nothing {
   let host = if ($host | is-not-empty) {
     $host
+  } else if $remote {
+    print $"(ansi red_bold)error:(ansi reset) hostname not specified for remote build"
+    exit 1
   } else {
     (hostname)
   }
 
-  if $host != (hostname) {
+  if $remote {
     ssh -tt $host $"
       rm -rf ncc
     "
