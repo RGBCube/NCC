@@ -73,7 +73,7 @@ in {
         '';
 
         git.auto-local-bookmark  = true;
-        git.push-bookmark-prefix = "change-";
+        git.push-bookmark-prefix = "change-rgbcube-";
         git.subprocess           = true;
 
         git.fetch = [ "origin" "upstream" "rad" ];
