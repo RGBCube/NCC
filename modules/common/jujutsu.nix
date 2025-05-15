@@ -42,15 +42,17 @@ in {
 
         aliases.d  = [ "diff" ];
         aliases.l  = [ "log" ];
+        aliases.ls = [ "log" "--summary" ];
+        aliases.la = [ "log" "--revisions" "::" ];
 
         aliases.tug = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
 
         revset-aliases."closest(to)" = "heads(::to & bookmarks())";
         revset-aliases."closest_pushable(to)" = "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
 
-        revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().., 2) | reachable(@, all())";
+        revsets.log = "present(@) | present(trunk()) | ancestors(remote_bookmarks().. | @.., 8)";
 
-        ui.default-command = "status";
+        ui.default-command = "ls";
 
         ui.diff-editor     = ":builtin";
         ui.diff.tool       = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
