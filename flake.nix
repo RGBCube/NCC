@@ -29,6 +29,7 @@
     builders-use-substitutes = true;
     flake-registry           = "";
     http-connections         = 50;
+    lazy-trees               = true;
     show-trace               = true;
     trusted-users            = [ "root" "@build" "@wheel" "@admin" ];
     use-cgroups              = true;
