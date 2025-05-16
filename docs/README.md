@@ -1,4 +1,4 @@
-# NCC
+# ncc
 
 RGBCube's Config Collection.
 
