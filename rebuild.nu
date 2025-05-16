@@ -17,7 +17,7 @@ def main --wrapped [
   ...arguments      # The arguments to pass to `nh {os,darwin} switch` and `nix` (separated by --).
 ]: nothing -> nothing {
   let host = if ($host | is-not-empty) {
-    if $host != (hostname) {
+    if $host != (hostname) and not $remote {
       print $"(ansi yellow_bold)warn:(ansi reset) building local configuration for hostname that does not match the local machine"
     }
 
