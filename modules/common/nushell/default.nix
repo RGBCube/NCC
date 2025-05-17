@@ -17,7 +17,7 @@ in {
       rm = "rm --recursive --verbose";
 
       pstree = "pstree -g 2";
-      tree   = "tree -CF --dirsfirst";
+      tree   = "tree -F --dirsfirst";
     };
 
     systemPackages = attrValues {
