@@ -1,5 +1,5 @@
 { self, config, lib, pkgs, ... }: let
-  inherit (lib) attrValues enabled getExe head;
+  inherit (lib) attrValues enabled getExe head mkIf;
 in {
   environment.systemPackages = attrValues {
     inherit (pkgs)
@@ -79,9 +79,9 @@ in {
         git.fetch = [ "origin" "upstream" "rad" ];
         git.push  =   "origin";
 
-        signing.backend  = "ssh";
-        signing.behavior = "own";
-        signing.key      = "~/.ssh/id";
+        signing.backend  = mkIf config.isDesktop "ssh";
+        signing.behavior = mkIf config.isDesktop "own";
+        signing.key      = mkIf config.isDesktop "~/.ssh/id";
       };
     };
   }];
