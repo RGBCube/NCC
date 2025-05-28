@@ -147,6 +147,7 @@ in {
           check.command                = "clippy";
           completion.callable.snippets = "add_parentheses";
           completion.excludeTraits     = [ "yansi::Paint" ];
+          diagnostics.disabled         = [ "inactive-code" "unlinked-file" ];
         };
       };
 
