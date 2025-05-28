@@ -8,6 +8,7 @@ in {
       curlHTTP3
       dig
       doggo
+      eza
       fastfetch
       fd
       hyperfine
@@ -18,7 +19,6 @@ in {
       rsync
       timg
       tokei
-      tree
       typos
       uutils-coreutils-noprefix
       yazi

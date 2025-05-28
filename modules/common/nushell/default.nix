@@ -17,7 +17,7 @@ in {
       rm = "rm --recursive --verbose";
 
       pstree = "pstree -g 2";
-      tree   = "tree -F --dirsfirst";
+      tree   = "eza --tree --git-ignore --group-directories-first";
     };
 
     systemPackages = attrValues {
