@@ -154,22 +154,20 @@ in {
       settings.theme = "gruvbox_dark_hard";
 
       settings.editor = {
-        auto-completion     = false;
-        bufferline          = "multiple";
-        color-modes         = true;
-        completion-replace  = true;
-        cursor-shape.insert = "bar";
-        cursorline          = true;
-        file-picker.hidden  = false;
-        idle-timeout        = 0;
-        line-number         = "relative";
-        shell               = [ "bash" "-c" ];
-        text-width          = 100;
+        auto-completion    = false;
+        bufferline         = "multiple";
+        color-modes        = true;
+        cursorline         = true;
+        file-picker.hidden = false;
+        idle-timeout       = 0;
+        line-number        = "relative";
+        text-width         = 100;
       };
 
-      settings.editor.indent-guides = {
-        character = "▏";
-        render = true;
+      settings.editor.cursor-shape = {
+        insert = "bar";
+        normal = "block";
+        select = "underline";
       };
 
       settings.editor.statusline.mode = {
@@ -178,14 +176,19 @@ in {
         select = "SELECT";
       };
 
+      settings.editor.indent-guides = {
+        character = "▏";
+        render = true;
+      };
+
       settings.editor.whitespace = {
         characters.tab = "→";
         render.tab     = "all";
       };
 
-      settings.keys = genAttrs [ "normal" "select" ] (const {
+      settings.keys = genAttrs [ "normal" "select" ] <| const {
         D = "extend_to_line_end";
-      });
+      };
     };
   }];
 
