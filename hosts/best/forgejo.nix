@@ -18,7 +18,8 @@ in {
   services.postgresql.ensure = [ "forgejo" ];
 
   services.restic.backups = genAttrs config.services.restic.hosts <| const {
-    paths = [ "/var/lib/forgejo" ];
+    paths   = [ "/var/lib/forgejo" ];
+    exclude = [ "/var/lib/forgejo/data/repo-archive"];
   };
 
   services.openssh.settings.AcceptEnv = mkForce "SHELLS COLOTERM GIT_PROTOCOL";
