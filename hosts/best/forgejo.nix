@@ -43,6 +43,14 @@ in {
 
       cache.ENABLED = true;
 
+      # AI scrapers can go to hell.
+      "cron.archive_cleaup" = let
+        interval = "4h";
+      in {
+        SCHEDULE   = "@every ${interval}";
+        OLDER_THAN =           interval;
+      };
+
       mailer = {
         ENABLED = true;
 
