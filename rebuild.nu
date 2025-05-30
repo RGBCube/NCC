@@ -31,7 +31,7 @@ def main --wrapped [
 
   if $remote {
     ssh -tt $host $"
-      rm -rf ncc
+      rm --recursive --force ncc
     "
 
     git ls-files
