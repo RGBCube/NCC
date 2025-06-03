@@ -1,9 +1,10 @@
 { self, config, lib, pkgs, ... }: let
-  inherit (lib) attrValues enabled getExe head mkIf;
+  inherit (lib) attrValues enabled head mkIf;
 in {
   environment.systemPackages = attrValues {
     inherit (pkgs)
       difftastic
+      mergiraf
       radicle-node
     ;
   };
@@ -31,19 +32,26 @@ in {
         aliases.init = [ "git" "init" "--colocate" ];
         aliases.i    = [ "git" "init" "--colocate" ];
 
+        aliases.a  = [ "abandon" ];
+
         aliases.c  = [ "commit" ];
         aliases.ci = [ "commit" "--interactive" ];
 
-        aliases.e = [ "edit" ];
-        aliases.r = [ "rebase" ];
-
-        aliases.s  = [ "squash" ];
-        aliases.si = [ "squash" "--interactive" ];
-
         aliases.d  = [ "diff" ];
+
+        aliases.e = [ "edit" ];
+
         aliases.l  = [ "log" ];
         aliases.ls = [ "log" "--summary" ];
         aliases.la = [ "log" "--revisions" "::" ];
+
+        aliases.r = [ "rebase" ];
+
+        aliases.resolve-ast = [ "resolve" "--tool" "mergiraf" ];
+        aliases.rs          = [ "resolve-ast" ];
+
+        aliases.s  = [ "squash" ];
+        aliases.si = [ "squash" "--interactive" ];
 
         aliases.tug = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
 
@@ -55,7 +63,7 @@ in {
         ui.default-command = "ls";
 
         ui.diff-editor     = ":builtin";
-        ui.diff.tool       = [ "${getExe pkgs.difftastic}" "--color" "always" "$left" "$right" ];
+        ui.diff.tool       = [ "difft" "--color" "always" "$left" "$right" ];
 
         ui.conflict-marker-style = "snapshot";
         ui.graph.style           = if config.theme.cornerRadius > 0 then "curved" else "square";
