@@ -23,6 +23,7 @@ in {
 
       locations."~ ^/assets/(fonts|icons|images)/".extraConfig = /* nginx */ ''
         expires max;
+        ${config.services.nginx.headers}
         add_header Cache-Control $cache_header always;
       '';
 
