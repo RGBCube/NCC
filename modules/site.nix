@@ -7,10 +7,24 @@ in {
   imports = [(self + /modules/nginx.nix)];
 
   services.nginx = enabled {
+    appendHttpConfig = /* nginx */ ''
+      # Cache only successful responses.
+      map $status $cache_header {
+        200     "public";
+        302     "public";
+        default "no-cache";
+      }
+    '';
+
     virtualHosts.${domain} = merge config.services.nginx.sslTemplate {
       inherit root;
 
       locations."/".tryFiles = "$uri $uri.html $uri/index.html =404";
+
+      locations."~ ^/assets/(fonts|icons|images)/".extraConfig = /* nginx */ ''
+        expires max;
+        add_header Cache-Control $cache_header always;
+      '';
 
       extraConfig = /* nginx */ ''
         error_page 404 /404.html;
