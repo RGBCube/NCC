@@ -19,5 +19,5 @@ def --env mc [path: path]: nothing -> nothing {
 def --env mcg [path: path]: nothing -> nothing {
   mkdir $path
   cd $path
-  git init
+  jj git init --colocate
 }
