@@ -16,7 +16,7 @@ in {
       mv = "mv --verbose";
       rm = "rm --recursive --verbose";
 
-      pstree = "pstree -g 2";
+      pstree = "pstree -g 3";
       tree   = "eza --tree --git-ignore --group-directories-first";
     };
 

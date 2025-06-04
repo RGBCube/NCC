@@ -124,17 +124,17 @@ in merge <| mkIf config.isDesktop {
         ];
 
         bind = flatten [
-          "SUPER    , TAB, workspace, e+1"
+          "SUPER      , TAB, workspace, e+1"
           "SUPER+SHIFT, TAB, workspace, e-1"
 
           "SUPER, mouse_up,   workspace, e+1"
           "SUPER, mouse_down, workspace, e-1"
 
           (map (n: [
-            "SUPER    , ${toString n}, workspace            , ${toString n}"
+            "SUPER      , ${toString n}, workspace            , ${toString n}"
             "SUPER+SHIFT, ${toString n}, movetoworkspacesilent, ${toString n}"
           ]) <| range 1 9)
-          "SUPER    , 0, workspace            , 10"
+          "SUPER      , 0, workspace            , 10"
           "SUPER+SHIFT, 0, movetoworkspacesilent, 10"
 
           "SUPER+SHIFT, left , movewindow, l"
@@ -147,20 +147,20 @@ in merge <| mkIf config.isDesktop {
           "SUPER+SHIFT, k, movewindow, u"
           "SUPER+SHIFT, l, movewindow, r"
         
-          "SUPER    , Q, killactive"
-          "SUPER    , F, fullscreen"
+          "SUPER      , Q, killactive"
+          "SUPER      , F, fullscreen"
           "SUPER+SHIFT, F, togglefloating"
 
           "SUPER+SHIFT, RETURN, exec, kitty"
-          "SUPER    , RETURN, exec, ghostty --gtk-single-instance=true"
-          "SUPER    , W     , exec, zen-beta"
-          "SUPER    , D     , exec, discord"
-          "SUPER    , Z     , exec, zulip"
-          "SUPER    , M     , exec, thunderbird"
-          "SUPER    , T     , exec, thunar"
+          "SUPER      , RETURN, exec, ghostty --gtk-single-instance=true"
+          "SUPER      , W     , exec, zen-beta"
+          "SUPER      , D     , exec, discord"
+          "SUPER      , Z     , exec, zulip"
+          "SUPER      , M     , exec, thunderbird"
+          "SUPER      , T     , exec, thunar"
           # "SUPER    , C     , exec, hyprpicker --autocopy"
 
-          "   , PRINT, exec, pkill grim; grim -g \"$(slurp -w 0)\" - | swappy -f - -o - | wl-copy --type image/png"
+          "     , PRINT, exec, pkill grim; grim -g \"$(slurp -w 0)\" - | swappy -f - -o - | wl-copy --type image/png"
           "SHIFT, PRINT, exec, pkill grim; grim                      - | swappy -f - -o - | wl-copy --type image/png"
         ];
 

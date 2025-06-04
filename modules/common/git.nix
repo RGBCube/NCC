@@ -29,7 +29,7 @@ in {
 
     gl  = "git log";
     glo = "git log --oneline --graph";
-    glp = "git log -p --ext-diff";
+    glp = "git log --patch --ext-diff";
 
     gpl   = "git pull";
     gplr  = "git pull --rebase";

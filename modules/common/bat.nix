@@ -14,7 +14,8 @@ in {
     programs.bat = enabled {
       config.theme      = "base16";
       themes.base16.src = pkgs.writeText "base16.tmTheme" config.theme.tmTheme;
-      config.pager = "less -FR";
+
+      config.pager = "less --quit-if-one-screen --RAW-CONTROL-CHARS";
     };
   }];
 }
