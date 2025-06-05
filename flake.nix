@@ -25,7 +25,6 @@
       "pipe-operators"
     ];
 
-    accept-flake-config      = true;
     builders-use-substitutes = true;
     flake-registry           = "";
     http-connections         = 50;
