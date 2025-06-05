@@ -22,13 +22,13 @@ in {
   })];
 
   home-manager.sharedModules = [{
-    programs.nushell.configFile.text = mkIf (config.isDesktop && config.isLinux) <| mkAfter /* nu */ ''
+    programs.nushell.configFile.text = mkIf /*(*/config.isDesktop/* && config.isLinux)*/ <| mkAfter /* nu */ ''
       def --wrapped hx [...arguments] {
         if $env.TERM == "xterm-kitty" {
           kitty @ set-spacing padding=0
         }
 
-        ^hx ...$arguments
+        RUST_BACKTRACE=full ^hx ...$arguments
 
         if $env.TERM == "xterm-kitty" {
           kitty @ set-spacing padding=${toString config.theme.padding}
