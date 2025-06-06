@@ -41,19 +41,27 @@ in {
 
         aliases.e = [ "edit" ];
 
-        aliases.l  = [ "log" ];
-        aliases.ls = [ "log" "--summary" ];
-        aliases.la = [ "log" "--revisions" "::" ];
+        aliases.l   = [ "log" ];
+        aliases.la  = [ "log" "--revisions" "::" ];
+        aliases.ls  = [ "log" "--summary" ];
+        aliases.lsa = [ "log" "--summary" "--revisions" "::" ];
+        aliases.lp  = [ "log" "--patch" ];
+        aliases.lpa = [ "log" "--patch" "--revisions" "::" ];
 
         aliases.r = [ "rebase" ];
 
+        aliases.res = [ "resolve" ];
+
         aliases.resolve-ast = [ "resolve" "--tool" "mergiraf" ];
-        aliases.rs          = [ "resolve-ast" ];
+        aliases.resa        = [ "resolve-ast" ];
 
         aliases.s  = [ "squash" ];
         aliases.si = [ "squash" "--interactive" ];
 
+        aliases.sh = [ "show" ];
+
         aliases.tug = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
+        aliases.t   = [ "t" ];
 
         revset-aliases."closest(to)" = "heads(::to & bookmarks())";
         revset-aliases."closest_pushable(to)" = "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
