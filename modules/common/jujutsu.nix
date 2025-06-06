@@ -61,7 +61,7 @@ in {
         aliases.sh = [ "show" ];
 
         aliases.tug = [ "bookmark" "move" "--from" "closest(@-)" "--to" "closest_pushable(@)" ];
-        aliases.t   = [ "t" ];
+        aliases.t   = [ "tug" ];
 
         revset-aliases."closest(to)" = "heads(::to & bookmarks())";
         revset-aliases."closest_pushable(to)" = "heads(::to & ~description(exact:\"\") & (~empty() | merges()))";
