@@ -28,7 +28,7 @@ in {
           kitty @ set-spacing padding=0
         }
 
-        RUST_BACKTRACE=full ^hx ...$arguments
+        RUST_BACKTRACE=full ^hx ...($arguments | each { glob $in } | flatten)
 
         if $env.TERM == "xterm-kitty" {
           kitty @ set-spacing padding=${toString config.theme.padding}
