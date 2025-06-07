@@ -56,14 +56,17 @@ in {
       # from the outside web at all. Only /_matrix is reverse proxied to.
 
       database.name  = "psycopg2";
+      max_upload_size = "512M";
 
       report_stats = false;
 
       enable_metrics = true;
       metrics_flags.known_servers = true;
 
-      expire_access_token = true;
       url_preview_enabled = true;
+      dynamic_thumbnails = true;
+
+      expire_access_token = true;
 
       # Trusting Matrix.org.
       suppress_key_server_warning = true;
@@ -90,6 +93,10 @@ in {
   services.nginx.virtualHosts.${domain} = configWellKnownResponse;
 
   services.nginx.virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate configWellKnownResponse {
+    extraConfig = /* nginx */ ''
+      client_max_body_size ${config.services.matrix-synapse.settings.max_upload_size};
+    '';
+
     locations."/".return = "301 https://${domain}/404";
 
     locations."/_matrix".proxyPass         = "http://[::1]:${toString port}";
