@@ -161,6 +161,7 @@ in {
         file-picker.hidden = false;
         idle-timeout       = 0;
         line-number        = "relative";
+        shell              = [ "nu" "--commands" ];
         text-width         = 100;
       };
 
