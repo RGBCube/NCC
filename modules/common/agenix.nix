@@ -1,5 +1,5 @@
 { config, lib, pkgs, ... }: let
-  inherit (lib) attrNames attrValues head mkAliasOptionModule mkIf;
+  inherit (lib) attrNames attrValues filterAttrs hasPrefix head mkAliasOptionModule mkIf;
 in {
   imports = [(mkAliasOptionModule [ "secrets" ] [ "age" "secrets" ])];
 
@@ -7,7 +7,7 @@ in {
     (if config.isLinux then
       "/root/.ssh/id"
     else
-      "/Users/${head <| attrNames <| config.users.users}/.ssh/id")
+      "/Users/${head <| attrNames <| filterAttrs (_: value: value.home != null && hasPrefix "/Users/" value.home) config.users.users}/.ssh/id")
   ];
 
   environment = mkIf config.isDesktop {

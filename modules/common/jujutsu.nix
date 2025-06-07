@@ -70,8 +70,8 @@ in {
 
         ui.default-command = "ls";
 
-        ui.diff-editor     = ":builtin";
-        ui.diff.tool       = [ "difft" "--color" "always" "$left" "$right" ];
+        ui.diff-editor    = ":builtin";
+        ui.diff-formatter = [ "difft" "--color" "always" "$left" "$right" ];
 
         ui.conflict-marker-style = "snapshot";
         ui.graph.style           = if config.theme.cornerRadius > 0 then "curved" else "square";
@@ -90,7 +90,6 @@ in {
 
         git.auto-local-bookmark  = true;
         git.push-bookmark-prefix = "change-rgbcube-";
-        git.subprocess           = true;
 
         git.fetch = [ "origin" "upstream" "rad" ];
         git.push  =   "origin";
