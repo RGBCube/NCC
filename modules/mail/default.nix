@@ -47,5 +47,7 @@ in {
 
       hashedPasswordFile = config.secrets.mailPassword.path;
     };
+
+    stateVersion = 2;
   };
 }
