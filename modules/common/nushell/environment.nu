@@ -11,6 +11,10 @@ def copy []: string -> nothing {
 	print --no-newline $"(ansi osc)52;c;($in | encode base64)(ansi st)"
 }
 
+def today []: nothing -> string {
+  date now | format date "%Y-%m-%d"
+}
+
 def --env mc [path: path]: nothing -> nothing {
   mkdir $path
   cd $path
