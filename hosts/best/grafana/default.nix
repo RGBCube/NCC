@@ -77,6 +77,8 @@ in {
         # Grafana sets `nosniff` while not setting the content type properly,
         # so everything breaks with it. Unset the header.
         proxy_hide_header X-Content-Type-Options;
+
+        ${config.services.plausible.extraNginxConfigFor fqdn}
       '';
 
       proxyPass       = "http://[::1]:${toString port}";

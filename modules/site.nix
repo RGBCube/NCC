@@ -2,6 +2,7 @@
   inherit (config.networking) domain;
   inherit (lib) enabled merge;
 
+  fqdn = domain;
   root = "/var/www/site";
 in {
   imports = [(self + /modules/nginx.nix)];
@@ -16,7 +17,7 @@ in {
       }
     '';
 
-    virtualHosts.${domain} = merge config.services.nginx.sslTemplate {
+    virtualHosts.${fqdn} = merge config.services.nginx.sslTemplate {
       inherit root;
 
       locations."/".tryFiles = "$uri $uri.html $uri/index.html =404";
@@ -29,6 +30,8 @@ in {
 
       extraConfig = /* nginx */ ''
         error_page 404 /404.html;
+
+        ${config.services.plausible.extraNginxConfigFor fqdn}
       '';
 
       locations."/404".extraConfig = /* nginx */ ''
@@ -36,12 +39,12 @@ in {
       '';
     };
 
-    virtualHosts."www.${domain}" = merge config.services.nginx.sslTemplate {
-      locations."/".return = "301 https://${domain}$request_uri";
+    virtualHosts."www.${fqdn}" = merge config.services.nginx.sslTemplate {
+      locations."/".return = "301 https://${fqdn}$request_uri";
     };
 
     virtualHosts._ = merge config.services.nginx.sslTemplate {
-      locations."/".return = "301 https://${domain}/404";
+      locations."/".return = "301 https://${fqdn}/404";
     };
   };
 }

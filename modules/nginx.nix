@@ -52,6 +52,7 @@ in {
         https "max-age=31536000; includeSubdomains; preload";
       }
 
+      # FIXME: These two aren't working.
       map $http_origin $allow_origin {
         ~^https://.+\.${domain}$ $http_origin;
       }
