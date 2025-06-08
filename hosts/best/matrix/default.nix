@@ -66,6 +66,7 @@ in {
       url_preview_enabled = true;
       dynamic_thumbnails = true;
 
+      enable_registration = false; # Setting it explicitly just in case.
       expire_access_token = true;
 
       # Trusting Matrix.org.
