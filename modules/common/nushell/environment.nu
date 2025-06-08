@@ -7,6 +7,12 @@ $env.ENV_CONVERSIONS.PATH = {
   }
 }
 
+$env.LS_COLORS = (open ~/.config/nushell/ls_colors.txt)
+
+source ~/.config/nushell/zoxide.nu
+
+source ~/.config/nushell/starship.nu
+
 def copy []: string -> nothing {
 	print --no-newline $"(ansi osc)52;c;($in | encode base64)(ansi st)"
 }
