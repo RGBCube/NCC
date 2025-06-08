@@ -10,7 +10,7 @@ in {
 
   secrets.nixServeKey = {
     file  = ./key.age;
-    owner = "nix-serve";
+    owner = "root"; # `nix-serve` runs as root.
   };
 
   services.nix-serve = enabled {
