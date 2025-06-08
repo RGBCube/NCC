@@ -32,9 +32,9 @@ let site_path = glob "~" | path join "projects" "site"
 
 # Edit a thought dump.
 def "dump ed" [
-  path: string # The thought dump to edit. Namespaced using '.', does not include file extension.
+  namespace: string # The thought dump to edit. Namespaced using '.', does not include file extension.
 ]: nothing -> nothing {
-  let dump_path = $site_path | path join "site" "dump" ...($path | split row ".") | $in + ".md"
+  let dump_path = $site_path | path join "site" "dump" ...($namespace | split row ".") | $in + ".md"
 
   mkdir ($dump_path | path parse | get parent)
   touch $dump_path
@@ -46,25 +46,34 @@ def "dump ed" [
   let dump_size = ls $dump_path | get 0.size
   if $dump_size == 0b {
     print $"(ansi red)thought dump was emptied(ansi reset)"
-    dump rm ($dump_path | str substring 0..<-3)
+    dump rm $namespace
   } else if $old_dump_hash == (open $dump_path | hash sha256) {
-    print $"(ansi yellow)thought dump was not touched(ansi reset)"
+    print $"(ansi yellow)thought dump was not changed(ansi reset)"
   } else {
-    cd $"(ansi magenta)thought dump was edited(ansi reset)"
+    print $"(ansi magenta)thought dump was edited(ansi reset)"
     print $"(ansi green)deploying...(ansi reset)"
 
     cd $site_path
-    ./apply.nu
+
+    jj commit --message $"dump\(($namespace)\): update"
+    jj bookmark set master --revision @-
+
+    [
+      { jj git push --remote origin }
+      { jj git push --remote rad }
+      { ./apply.nu }
+    ] | par-each { do $in }
+
     cd -
   }
 }
 
 # Delete a thought dump.
 def "dump rm" [
-  path: string # The thought dump to edit. Namespaced using '.', does not include file extension.
+  namespace: string # The thought dump to edit. Namespaced using '.', does not include file extension.
 ]: nothing -> nothing {
-  print $path
-  let dump_path = $site_path | path join "site" "dump" ...($path | split row ".") | $in + ".md"
+  print $namespace
+  let dump_path = $site_path | path join "site" "dump" ...($namespace | split row ".") | $in + ".md"
   let parent_path = $dump_path | path parse | get parent
 
   print $"(ansi red)deleting thought dump...(ansi reset)"
