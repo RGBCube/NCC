@@ -68,7 +68,7 @@ in {
       }
 
       map $http_origin $allow_methods {
-        ~^https://.+\.${domain}$ "GET, HEAD, OPTIONS";
+        ~^https://.+\.${domain}$ "CONNECT, DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT, TRACE";
       }
 
       ${config.services.nginx.headers}
