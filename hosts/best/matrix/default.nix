@@ -7,7 +7,7 @@
   port = 8002;
 
   wellKnownResponse = data: /* nginx */ ''
-    ${config.services.nginx.headers}
+    ${config.services.nginx.headersNoAccessControlOrigin}
     add_header Access-Control-Allow-Origin * always;
 
     default_type application/json;

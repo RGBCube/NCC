@@ -11,15 +11,26 @@ in {
   };
 
   options.services.nginx.headers = mkConst /* nginx */ ''
+    proxy_hide_header Access-Control-Allow-Origin;
     add_header Access-Control-Allow-Origin $allow_origin always;
+
+    ${config.services.nginx.headersNoAccessControlOrigin}
+  '';
+
+  options.services.nginx.headersNoAccessControlOrigin = mkConst /* nginx */ ''
+    proxy_hide_header Access-Control-Allow-Methods;
     add_header Access-Control-Allow-Methods $allow_methods always;
 
+    proxy_hide_header Strict-Transport-Security;
     add_header Strict-Transport-Security $hsts_header always;
 
+    proxy_hide_header Content-Security-Policy;
     add_header Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' ${domain} *.${domain}; object-src 'self' ${domain} *.${domain}; base-uri 'self';" always;
 
+    proxy_hide_header Referrer-Policy;
     add_header Referrer-Policy no-referrer always;
 
+    proxy_hide_header X-Frame-Options;
     add_header X-Frame-Options DENY always;
   '';
 
@@ -52,7 +63,6 @@ in {
         https "max-age=31536000; includeSubdomains; preload";
       }
 
-      # FIXME: These two aren't working.
       map $http_origin $allow_origin {
         ~^https://.+\.${domain}$ $http_origin;
       }
