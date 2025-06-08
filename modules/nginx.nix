@@ -16,7 +16,7 @@ in {
 
     add_header Strict-Transport-Security $hsts_header always;
 
-    add_header Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval'; object-src 'self'; base-uri 'self';" always;
+    add_header Content-Security-Policy "script-src 'self' 'unsafe-inline' 'unsafe-eval' ${domain} *.${domain}; object-src 'self' ${domain} *.${domain}; base-uri 'self';" always;
 
     add_header Referrer-Policy no-referrer always;
 

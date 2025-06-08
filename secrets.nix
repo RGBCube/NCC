@@ -20,6 +20,8 @@ in {
 
   "hosts/best/nextcloud/password.age".publicKeys      = [ best ] ++ admins;
 
+  "hosts/best/plausible/key.age".publicKeys      = [ best ] ++ admins;
+
   # disk
   "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
   "hosts/disk/password.age".publicKeys = [ disk ] ++ admins;
