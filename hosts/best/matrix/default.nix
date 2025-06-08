@@ -63,11 +63,15 @@ in {
       enable_metrics = true;
       metrics_flags.known_servers = true;
 
+      allow_public_rooms_without_auth    = true;
+      allow_public_rooms_over_federation = true;
+
       url_preview_enabled = true;
       dynamic_thumbnails = true;
 
       enable_registration = false; # Setting it explicitly just in case.
-      expire_access_token = true;
+
+      delete_stale_devices_after = "30d";
 
       # Trusting Matrix.org.
       suppress_key_server_warning = true;
