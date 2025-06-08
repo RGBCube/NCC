@@ -21,6 +21,7 @@ in {
       tokei
       typos
       uutils-coreutils-noprefix
+      xh
       yazi
       yt-dlp
     ;
