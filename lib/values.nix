@@ -12,7 +12,7 @@ in {
       contents = self.contents ++ [ next ];
     };
   };
-  
+
   enabled  = merge { enable = true; };
   disabled = merge { enable = false; };
 }

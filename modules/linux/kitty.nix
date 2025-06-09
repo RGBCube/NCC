@@ -35,7 +35,7 @@ in merge <| mkIf config.isDesktop {
 
         background = base00;
         foreground = base05;
-      
+
         selection_background = base02;
         selection_foreground = base00;
 

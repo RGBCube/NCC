@@ -146,7 +146,7 @@ in merge <| mkIf config.isDesktop {
           "SUPER+SHIFT, j, movewindow, d"
           "SUPER+SHIFT, k, movewindow, u"
           "SUPER+SHIFT, l, movewindow, r"
-        
+
           "SUPER      , Q, killactive"
           "SUPER      , F, fullscreen"
           "SUPER+SHIFT, F, togglefloating"
@@ -158,7 +158,7 @@ in merge <| mkIf config.isDesktop {
           "SUPER      , Z     , exec, zulip"
           "SUPER      , M     , exec, thunderbird"
           "SUPER      , T     , exec, thunar"
-          # "SUPER    , C     , exec, hyprpicker --autocopy"
+          "SUPER      , C     , exec, hyprpicker --autocopy"
 
           "     , PRINT, exec, pkill grim; grim -g \"$(slurp -w 0)\" - | swappy -f - -o - | wl-copy --type image/png"
           "SHIFT, PRINT, exec, pkill grim; grim                      - | swappy -f - -o - | wl-copy --type image/png"

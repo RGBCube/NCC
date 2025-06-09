@@ -11,4 +11,4 @@ in {
     # Not [ domain ] because this is a backup mailserver. contact@mail2.rgbcu.be.
     domains = [ fqdn ];
   };
-} 
+}

@@ -8,4 +8,4 @@ in {
   mailserver = {
     inherit fqdn;
   };
-} 
+}

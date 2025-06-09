@@ -114,12 +114,12 @@
       manipulators = allBasic [
         {
           from.key_code = "quote";
-        
+
           to = [{ key_code = "i"; }];
         }
         {
           from.key_code = "i";
-        
+
           to = [{ key_code = "quote"; }];
         }
       ];
