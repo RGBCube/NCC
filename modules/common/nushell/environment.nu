@@ -122,7 +122,7 @@ module dump {
         { jj ...$jj_arguments git push --remote origin }
         { jj ...$jj_arguments git push --remote rad }
         { deploy }
-      ] | par-each { do $in }
+      ] | par-each { do $in } | last
     }
   }
 
