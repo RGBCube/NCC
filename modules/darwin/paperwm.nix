@@ -21,8 +21,8 @@ in {
     "com.apple.keyboard.fnState" = false; # Don't invert Fn.
     "com.apple.trackpad.scaling" = 1.5;  # Faster mouse speed.
 
-    InitialKeyRepeat             = 15;
-    KeyRepeat                    = 1;
+    InitialKeyRepeat = 15;
+    KeyRepeat        = 1;
 
     NSAutomaticCapitalizationEnabled     = false;
     NSAutomaticDashSubstitutionEnabled   = false;
