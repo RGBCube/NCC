@@ -10,9 +10,9 @@ in merge <| mkIf config.isDesktop {
     programs.ghostty = enabled {
       # Don't actually install Ghostty if we are on Darwin.
       # For some reason it is marked as broken.
-      package = mkIf config.isDarwin <| pkgs.writeScriptBin "not-ghostty" "";
+      package = mkIf config.isDarwin null;
 
-      # Bat syntax points to emptyDirectory.
+      # Can't install things from null.
       installBatSyntax = !config.isDarwin;
 
       clearDefaultKeybinds = true;
