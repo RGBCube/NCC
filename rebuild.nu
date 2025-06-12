@@ -30,14 +30,14 @@ def main --wrapped [
   }
 
   if $remote {
-    ssh -tt $host $"
+    ssh -tt ("root@" + $host) $"
       rm --recursive --force ncc
     "
 
     git ls-files
-    | sync --files-from - ./ ($host + ":ncc")
+    | sync --files-from - ./ $"root@($host):ncc"
 
-    ssh -tt $host $"
+    ssh -tt ("root@" + $host) $"
       cd ncc
       ./rebuild.nu ($host) ($arguments | str join ' ')
     "
@@ -56,7 +56,7 @@ def main --wrapped [
   ] | append ($args_split | get --ignore-errors 1 | default [])
 
   if (uname | get kernel-name) == "Darwin" {
-    NH_NO_CHECKS=1 nh darwin switch . ...$nh_flags -- ...$nix_flags
+    NH_BYPASS_ROOT_CHECK=true NH_NO_CHECKS=true nh darwin switch . ...$nh_flags -- ...$nix_flags
 
     if not (xcode-select --install e>| str contains "Command line tools are already installed") {
       darwin-shadow-xcode-popup
@@ -64,7 +64,7 @@ def main --wrapped [
 
     darwin-set-zshrc
   } else {
-    NH_NO_CHECKS=1 nh os switch . ...$nh_flags -- ...$nix_flags
+    NH_BYPASS_ROOT_CHECK=true NH_NO_CHECKS=true nh os switch . ...$nh_flags -- ...$nix_flags
   }
 }
 
