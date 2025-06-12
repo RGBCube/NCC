@@ -80,8 +80,8 @@ in {
 
       delete_stale_devices_after = "30d";
 
-      # Trusting Matrix.org.
-      suppress_key_server_warning = true;
+      # Request signing keys from servers directly.
+      trusted_key_servers = [];
 
       signing_key_path                = config.secrets.matrixKey.path;
       registration_shared_secret_path = config.secrets.matrixSecret.path;
