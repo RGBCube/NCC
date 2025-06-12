@@ -9,26 +9,27 @@ in {
 
   "hosts/best/garage/environment.age".publicKeys = [ best ] ++ admins;
 
-  "hosts/best/grafana/password.age".publicKeys        = [ best ] ++ admins;
+  "hosts/best/grafana/password.age".publicKeys = [ best ] ++ admins;
 
-  "hosts/best/hercules/caches.age".publicKeys       = [ best ] ++ admins;
-  "hosts/best/hercules/credentials.age".publicKeys  = [ best ] ++ admins;
-  "hosts/best/hercules/secrets.age".publicKeys      = [ best ] ++ admins;
-  "hosts/best/hercules/token.age".publicKeys        = [ best ] ++ admins;
+  "hosts/best/hercules/caches.age".publicKeys      = [ best ] ++ admins;
+  "hosts/best/hercules/credentials.age".publicKeys = [ best ] ++ admins;
+  "hosts/best/hercules/secrets.age".publicKeys     = [ best ] ++ admins;
+  "hosts/best/hercules/token.age".publicKeys       = [ best ] ++ admins;
 
-  "hosts/best/matrix/password.secret.age".publicKeys  = [ best ] ++ admins;
+  "hosts/best/matrix/key.age".publicKeys    = [ best ] ++ admins;
+  "hosts/best/matrix/secret.age".publicKeys = [ best ] ++ admins;
 
-  "hosts/best/nextcloud/password.age".publicKeys      = [ best ] ++ admins;
+  "hosts/best/nextcloud/password.age".publicKeys = [ best ] ++ admins;
 
-  "hosts/best/plausible/key.age".publicKeys      = [ best ] ++ admins;
+  "hosts/best/plausible/key.age".publicKeys = [ best ] ++ admins;
 
   # disk
   "hosts/disk/id.age".publicKeys              = [ disk ] ++ admins;
   "hosts/disk/password.age".publicKeys = [ disk ] ++ admins;
 
   # nine
-  "hosts/nine/id.age".publicKeys                         = [ nine ] ++ admins;
-  "hosts/nine/password.age".publicKeys             = [ nine ] ++ admins;
+  "hosts/nine/id.age".publicKeys       = [ nine ] ++ admins;
+  "hosts/nine/password.age".publicKeys = [ nine ] ++ admins;
 
   "hosts/nine/github2forgejo/environment.age".publicKeys = [ nine ] ++ admins;
 

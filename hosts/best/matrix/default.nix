@@ -1,3 +1,6 @@
+# TODO: FIXME: We are not handling backups properly.
+# The `e2e_one_time_keys_json` table should not be backed up.
+
 { self, config, lib, ... }: let
   inherit (config.networking) domain;
   inherit (lib) const enabled genAttrs merge;
@@ -29,8 +32,12 @@ in {
     (self + /modules/postgresql.nix)
   ];
 
+  secrets.matrixKey = {
+    file  = ./key.age;
+    owner = "matrix-synapse";
+  };
   secrets.matrixSecret = {
-    file  = ./password.secret.age;
+    file  = ./secret.age;
     owner = "matrix-synapse";
   };
 
@@ -75,10 +82,10 @@ in {
 
       # Trusting Matrix.org.
       suppress_key_server_warning = true;
-    };
 
-    # Sets registration_shared_secret.
-    extraConfigFiles = [ config.secrets.matrixSecret.path ];
+      signing_key_path                = config.secrets.matrixKey.path;
+      registration_shared_secret_path = config.secrets.matrixSecret.path;
+    };
 
     settings.listeners = [{
       inherit port;
